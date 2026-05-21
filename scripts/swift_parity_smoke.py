@@ -21,11 +21,16 @@ from cellprotocol.identity import Identity, InMemoryIdentityVault
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CELLPROTOCOL = ROOT.parent / "CellProtocol"
+CELLPROTOCOL = Path(os.environ.get("PY_CELL_SWIFT_CELLPROTOCOL_DIR", ROOT.parent / "CellProtocol")).expanduser().resolve()
 GUID = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
 
 
 async def main() -> int:
+    if not CELLPROTOCOL.exists():
+        raise RuntimeError(
+            "CellProtocol checkout not found. Set PY_CELL_SWIFT_CELLPROTOCOL_DIR "
+            "or place CellProtocol next to PyCellProtocol."
+        )
     vault = InMemoryIdentityVault()
     owner = await vault.identity("python-scaffold", make_new_if_not_found=True)
     assert owner is not None

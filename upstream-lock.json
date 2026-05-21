@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-05-20T21:06:21Z",
+  "repositories": {
+    "CellProtocol": {
+      "branch": "main",
+      "commitDate": "2026-05-14T16:24:37+02:00",
+      "head": "49bdd593579ca0f9a0dc3a63928e6ca67f0c65e2",
+      "remote": "git@github.com:Digipomps/CellProtocol.git",
+      "repository": "Digipomps/CellProtocol",
+      "status": "available"
+    },
+    "CellScaffold": {
+      "branch": "main",
+      "commitDate": "2026-05-20T14:25:47+02:00",
+      "head": "79e7b5d03a83209fe0742fb4f4909d2e36de5b9e",
+      "remote": "git@github.com:Digipomps/CellScaffold.git",
+      "repository": "Digipomps/CellScaffold",
+      "status": "available"
+    }
+  },
+  "schemaVersion": "pycellprotocol.upstream-lock.v1"
+}
