@@ -67,7 +67,7 @@ jobs:
           python-version: "3.13"
 
       - name: Install PyCellProtocol
-        run: python -m pip install -e ".[scaffold]"
+        run: python -m pip install -e ".[scaffold,dev]"
 
       - name: Run Python parity tests
         run: python -m pytest
