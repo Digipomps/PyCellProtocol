@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-05-20T21:06:21Z",
+  "generatedAt": "2026-05-22T09:59:27Z",
   "repositories": {
     "CellProtocol": {
       "branch": "main",
-      "commitDate": "2026-05-14T16:24:37+02:00",
-      "head": "49bdd593579ca0f9a0dc3a63928e6ca67f0c65e2",
-      "remote": "git@github.com:Digipomps/CellProtocol.git",
+      "commitDate": "2026-05-21T08:57:06+02:00",
+      "head": "daaad4605a35a7f03dfd266193a70732efdf6ce5",
+      "remote": "https://github.com/Digipomps/CellProtocol",
       "repository": "Digipomps/CellProtocol",
       "status": "available"
     },
