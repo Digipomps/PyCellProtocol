@@ -61,6 +61,13 @@ jobs:
         if: ${{ env.CELLPROTOCOL_SYNC_TOKEN == '' }}
         run: echo "CELLPROTOCOL_SYNC_TOKEN is not configured; private CellScaffold checkout is skipped."
 
+      - name: Configure private Digipomps dependency access
+        if: ${{ env.CELLPROTOCOL_SYNC_TOKEN != '' }}
+        run: >
+          git config --global
+          url."https://x-access-token:${CELLPROTOCOL_SYNC_TOKEN}@github.com/Digipomps/".insteadOf
+          "https://github.com/Digipomps/"
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -73,9 +80,14 @@ jobs:
         run: python -m pytest
 
       - name: Run Swift bridge parity smoke
+        if: ${{ env.CELLPROTOCOL_SYNC_TOKEN != '' }}
         env:
           PY_CELL_SWIFT_CELLPROTOCOL_DIR: ${{ github.workspace }}/upstream/CellProtocol
         run: python scripts/swift_parity_smoke.py
+
+      - name: Explain skipped Swift bridge parity smoke
+        if: ${{ env.CELLPROTOCOL_SYNC_TOKEN == '' }}
+        run: echo "CELLPROTOCOL_SYNC_TOKEN is not configured; SwiftPM private Digipomps dependencies are not available."
 
       - name: Update upstream lock
         run: >
