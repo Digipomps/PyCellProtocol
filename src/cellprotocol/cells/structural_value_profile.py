@@ -432,6 +432,74 @@ def _current_value(nodes: list[str], adj: dict[str, set[str]], usage: Any) -> di
     }
 
 
+# --------------------------- reusable profile ---------------------------
+
+def compute_profile(
+    nodes: list[str],
+    edges: list[tuple[str, str]],
+    edge_types: list[str],
+    *,
+    nulls: int = 100,
+    bootstrap: int = 100,
+    drop: float = 0.1,
+    seed: int = 7,
+    usage: Any = None,
+    graph_id: str | None = None,
+) -> dict[str, Any]:
+    """Pure, deterministic Structural Value Profile for a typed graph.
+
+    Single source of truth shared by StructuralValueProfileCell and
+    GraphMetricsCompareCell. Given the same inputs and seed it returns the
+    same profile, so any emitted FlowElement is replayable.
+    """
+    node_ids, adj = _build_adjacency(list(nodes), edges)
+    types = edge_types or ["edge"] * len(edges)
+    rng = random.Random(seed)
+    m = _core_metrics(node_ids, adj, len(edges), types)
+    box_scales = m["diameter_giant"]
+    return {
+        "status": "ok",
+        "schemaVersion": STATE_SCHEMA,
+        "graphID": graph_id,
+        "pillar1_scale_health": {k: m[k] for k in (
+            "N", "E_directed", "E_undirected_simple", "density_undirected", "mean_degree",
+            "components", "giant_fraction", "diameter_giant", "effective_diameter_p90",
+            "isolates", "leaf_fraction")},
+        "pillar2_current_value": _current_value(node_ids, adj, usage),
+        "pillar3_potential_value": {k: m[k] for k in (
+            "open_triad_ratio", "mean_local_clustering", "articulation_points", "bridges",
+            "leaf_fraction", "type_entropy")},
+        "pillar4_complexity": {k: m[k] for k in (
+            "vn_entropy", "vn_entropy_norm", "degree_entropy_norm", "compressibility_ratio")},
+        "fractal_gate": {
+            "usable_box_scales": box_scales,
+            "estimable": box_scales >= FRACTAL_MIN_BOX_SCALES,
+            "note": f"box-covering fractal dimension gated off below ~{FRACTAL_MIN_BOX_SCALES} usable radii (advisory 2026-07-04)",
+        },
+        "null_model_zscores": _null_zscores(node_ids, adj, nulls, rng) if nulls > 0 else {},
+        "bootstrap_stability": _bootstrap_stability(node_ids, edges, bootstrap, drop, rng) if bootstrap > 0 else {},
+        "params": {"nulls": nulls, "bootstrap": bootstrap, "drop": drop, "seed": seed},
+    }
+
+
+def edgelist_from_payload(payload: dict[str, Any]) -> tuple[list[str], list[tuple[str, str]], list[str], str | None]:
+    """Parse a {graphID, nodes:[{id,type}|str], edges:[{u,v,type}]} payload."""
+    node_ids: list[str] = []
+    for item in payload.get("nodes", []) or []:
+        if isinstance(item, dict) and isinstance(item.get("id"), str):
+            node_ids.append(item["id"])
+        elif isinstance(item, str):
+            node_ids.append(item)
+    edges: list[tuple[str, str]] = []
+    types: list[str] = []
+    for e in payload.get("edges", []) or []:
+        if isinstance(e, dict) and isinstance(e.get("u"), str) and isinstance(e.get("v"), str):
+            edges.append((e["u"], e["v"]))
+            types.append(e["type"] if isinstance(e.get("type"), str) else "edge")
+    graph_id = payload.get("graphID") if isinstance(payload.get("graphID"), str) else None
+    return node_ids, edges, types, graph_id
+
+
 # ------------------------------ the cell --------------------------------
 
 class StructuralValueProfileCell(GeneralCell):
@@ -491,13 +559,8 @@ class StructuralValueProfileCell(GeneralCell):
         return {"status": "ok", "graphID": self._graph_id, "N": len(self._nodes), "E": len(self._edges)}
 
     def _load_edgelist(self, payload: dict[str, Any]) -> dict[str, Any]:
-        edges: list[tuple[str, str]] = []
-        types: list[str] = []
-        for e in payload.get("edges", []):
-            if isinstance(e, dict) and isinstance(e.get("u"), str) and isinstance(e.get("v"), str):
-                edges.append((e["u"], e["v"]))
-                types.append(e.get("type") if isinstance(e.get("type"), str) else "edge")
-        return self._ingest(payload.get("graphID"), payload.get("nodes"), edges, types)
+        node_ids, edges, types, graph_id = edgelist_from_payload(payload)
+        return self._ingest(graph_id, node_ids, edges, types)
 
     def _load_from_graph_index(self, payload: dict[str, Any]) -> dict[str, Any]:
         """Accept a GraphIndexCell graph.state payload ({nodes, edges:[{from,to}]})."""
@@ -518,38 +581,17 @@ class StructuralValueProfileCell(GeneralCell):
         if not self._nodes:
             return {"status": "error", "message": "no graph loaded; call graph.profile.load first or pass inline graph"}
 
-        nulls = _clamp_int(payload.get("nulls", 100), 0, 1000)
-        bootstrap = _clamp_int(payload.get("bootstrap", 100), 0, 1000)
-        drop = _clamp_float(payload.get("drop", 0.1), 0.0, 0.9)
-        seed = _clamp_int(payload.get("seed", 7), 0, 2**31 - 1)
-        rng = random.Random(seed)
-
-        _, adj = _build_adjacency(list(self._nodes), self._edges)
-        m = _core_metrics(self._nodes, adj, len(self._edges), self._edge_types or ["edge"] * len(self._edges))
-        box_scales = m["diameter_giant"]
-        profile = {
-            "status": "ok",
-            "schemaVersion": STATE_SCHEMA,
-            "graphID": self._graph_id,
-            "pillar1_scale_health": {k: m[k] for k in (
-                "N", "E_directed", "E_undirected_simple", "density_undirected", "mean_degree",
-                "components", "giant_fraction", "diameter_giant", "effective_diameter_p90",
-                "isolates", "leaf_fraction")},
-            "pillar2_current_value": _current_value(self._nodes, adj, payload.get("usage")),
-            "pillar3_potential_value": {k: m[k] for k in (
-                "open_triad_ratio", "mean_local_clustering", "articulation_points", "bridges",
-                "leaf_fraction", "type_entropy")},
-            "pillar4_complexity": {k: m[k] for k in (
-                "vn_entropy", "vn_entropy_norm", "degree_entropy_norm", "compressibility_ratio")},
-            "fractal_gate": {
-                "usable_box_scales": box_scales,
-                "estimable": box_scales >= FRACTAL_MIN_BOX_SCALES,
-                "note": f"box-covering fractal dimension gated off below ~{FRACTAL_MIN_BOX_SCALES} usable radii (advisory 2026-07-04)",
-            },
-            "null_model_zscores": _null_zscores(self._nodes, adj, nulls, rng) if nulls > 0 else {},
-            "bootstrap_stability": _bootstrap_stability(list(self._nodes), self._edges, bootstrap, drop, rng) if bootstrap > 0 else {},
-            "params": {"nulls": nulls, "bootstrap": bootstrap, "drop": drop, "seed": seed},
-        }
+        profile = compute_profile(
+            self._nodes,
+            self._edges,
+            self._edge_types,
+            nulls=_clamp_int(payload.get("nulls", 100), 0, 1000),
+            bootstrap=_clamp_int(payload.get("bootstrap", 100), 0, 1000),
+            drop=_clamp_float(payload.get("drop", 0.1), 0.0, 0.9),
+            seed=_clamp_int(payload.get("seed", 7), 0, 2**31 - 1),
+            usage=payload.get("usage"),
+            graph_id=self._graph_id,
+        )
         self._last_profile = profile
         self._emit_audit(profile)
         return profile

@@ -3,6 +3,7 @@ import asyncio
 from cellprotocol.cells import (
     EntityAnchorCell,
     GraphIndexCell,
+    GraphMetricsCompareCell,
     StructuralValueProfileCell,
     TrustedIssuersProxyCell,
     VaultCell,
@@ -160,6 +161,71 @@ def test_structural_value_profile_from_graph_index():
         assert loaded["N"] == 3 and loaded["E"] == 2
         profile = await cell.set("graph.profile.compute", {"nulls": 0, "bootstrap": 0})
         assert profile["pillar1_scale_health"]["N"] == 3
+
+    run(scenario())
+
+
+def _dense_edgelist(gid):
+    # A denser, more integrated graph than the K3+tail: two overlapping triangles.
+    return {
+        "graphID": gid,
+        "nodes": [{"id": n, "type": "x"} for n in ["a", "b", "c", "d", "e"]],
+        "edges": [
+            {"u": "a", "v": "b"}, {"u": "b", "v": "c"}, {"u": "c", "v": "a"},
+            {"u": "c", "v": "d"}, {"u": "d", "v": "e"}, {"u": "e", "v": "c"},
+        ],
+    }
+
+
+def test_graph_metrics_compare_graphs_exchange():
+    async def scenario():
+        cell = GraphMetricsCompareCell()
+        result = await cell.set("graph.compare.graphs", {
+            "a": _triangle_edgelist(),          # sparse, one triangle + tail
+            "b": _dense_edgelist("dense"),      # two overlapping triangles
+            "labels": {"a": "sparse", "b": "dense"},
+            "params": {"nulls": 30, "bootstrap": 0, "seed": 5},
+        })
+        assert result["status"] == "ok"
+        assert result["mode"] == "exchange"
+        assert result["schemaVersion"] == "haven.graph.metrics-compare.v1"
+        # dense graph should lead structural richness (higher null-normalized signal)
+        assert result["scorecard"]["structural_richness"]["leader"] in ("sparse", "dense", "tie")
+        # realized use unavailable without usage traces
+        assert result["scorecard"]["realized_use"]["leader"] == "unavailable"
+        assert result["comparison"]["scale"]["N"]["a"] == 4
+        assert result["comparison"]["scale"]["N"]["b"] == 5
+        state = await cell.get("graph.compare.state")
+        assert state["hasComparison"] is True and state["mode"] == "exchange"
+
+    run(scenario())
+
+
+def test_graph_metrics_compare_growth_flags_padding():
+    async def scenario():
+        # before: integrated small graph; after: same plus a long disconnected chain
+        before = StructuralValueProfileCell()
+        await before.set("graph.profile.load", _dense_edgelist("t0"))
+        prof_before = await before.set("graph.profile.compute", {"nulls": 0, "bootstrap": 0})
+
+        after = StructuralValueProfileCell()
+        padded = _dense_edgelist("t1")
+        chain = [f"z{i}" for i in range(8)]
+        padded["nodes"] += [{"id": n, "type": "pad"} for n in chain]
+        padded["edges"] += [{"u": chain[i], "v": chain[i + 1]} for i in range(len(chain) - 1)]
+        await after.set("graph.profile.load", padded)
+        prof_after = await after.set("graph.profile.compute", {"nulls": 0, "bootstrap": 0})
+
+        cell = GraphMetricsCompareCell()
+        result = await cell.set("graph.compare.profiles", {
+            "a": prof_before, "b": prof_after, "mode": "growth",
+            "labels": {"a": "t0", "b": "t1"},
+        })
+        assert result["mode"] == "growth"
+        growth = result["growth"]
+        assert growth["deltas"]["N"] == 8  # eight padding nodes added
+        # padding: size up, clustering/giant not up -> warning
+        assert growth["padding_warning"] is True
 
     run(scenario())
 
