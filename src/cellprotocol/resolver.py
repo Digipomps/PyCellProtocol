@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+import asyncio
 import inspect
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import StrEnum
 from typing import Any, Callable
 from urllib.parse import urlparse
@@ -9,6 +10,7 @@ from urllib.parse import urlparse
 from .bridge import BridgeBase
 from .configuration import CellConfiguration, CellReference
 from .general_cell import GeneralCell
+from .identity import identity_signing_fingerprint
 from .value import KeyValue
 
 
@@ -63,20 +65,23 @@ class CellResolve:
 
     _scaffold_instance: Any | None = None
     _identity_instances: dict[str, Any] | None = None
+    _instance_lock: asyncio.Lock = field(default_factory=asyncio.Lock, init=False, repr=False)
 
     async def resolve(self, requester: Any | None = None) -> Any:
         if self.scope == CellUsageScope.template:
             return await self._new_instance(requester)
         if self.scope == CellUsageScope.identityUnique:
-            identity_key = getattr(requester, "uuid", None) or getattr(self.identity, "uuid", None) or "anonymous"
-            if self._identity_instances is None:
-                self._identity_instances = {}
-            if identity_key not in self._identity_instances:
-                self._identity_instances[identity_key] = await self._new_instance(requester)
-            return self._identity_instances[identity_key]
-        if self._scaffold_instance is None:
-            self._scaffold_instance = self.emit_cell or await self._new_instance(requester)
-        return self._scaffold_instance
+            identity_key = _identity_cache_key(requester or self.identity)
+            async with self._instance_lock:
+                if self._identity_instances is None:
+                    self._identity_instances = {}
+                if identity_key not in self._identity_instances:
+                    self._identity_instances[identity_key] = await self._new_instance(requester)
+                return self._identity_instances[identity_key]
+        async with self._instance_lock:
+            if self._scaffold_instance is None:
+                self._scaffold_instance = self.emit_cell or await self._new_instance(requester)
+            return self._scaffold_instance
 
     async def _new_instance(self, requester: Any | None = None) -> Any:
         if self.factory is None:
@@ -220,7 +225,7 @@ class CellResolver:
                 await target.set(key_value.target, value, requester)
 
     def _remote_bridge(self, bridge_url: str, requester: Any | None = None) -> BridgeBase:
-        key = (bridge_url, getattr(requester, "uuid", "anonymous"))
+        key = (bridge_url, _identity_cache_key(requester))
         if key not in self._remote_cache:
             self._remote_cache[key] = BridgeBase(identity=requester)
         return self._remote_cache[key]
@@ -246,3 +251,13 @@ def _local_name(endpoint: str) -> str:
             raise ResolverError(f"Remote cell endpoint cannot be local: {endpoint}")
         return parsed.path.strip("/").split("/", 1)[0]
     return endpoint.strip("/").split("/", 1)[0]
+
+
+def _identity_cache_key(identity: Any | None) -> str:
+    if identity is None:
+        return "anonymous"
+    uuid = str(getattr(identity, "uuid", "anonymous"))
+    fingerprint = identity_signing_fingerprint(identity)
+    if fingerprint is None:
+        raise ResolverError("Identity-scoped resolution requires a public signing key")
+    return f"{uuid}:{fingerprint}"

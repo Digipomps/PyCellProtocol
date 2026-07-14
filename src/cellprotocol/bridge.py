@@ -45,6 +45,8 @@ COMMANDS = {
     "none",
 }
 
+_DEFAULT_BRIDGE_IDENTITY = object()
+
 
 @dataclass
 class BridgeCommand:
@@ -99,7 +101,10 @@ class BridgeEndpoint:
         self.owner = owner
 
     async def handle(self, command: BridgeCommand) -> list[BridgeCommand]:
-        requester = command.identity or self.owner
+        # A wire identity is only a public reference. It is never upgraded to
+        # the server owner and cannot prove control without an authenticated
+        # challenge/session layer.
+        requester = command.identity
         cid = command.cid
         try:
             match command.command:
@@ -110,7 +115,8 @@ class BridgeEndpoint:
                 case "admit":
                     return [BridgeCommand("response", TypedValue("connectState", await self.target.admit(command.payload)), cid)]
                 case "agreement":
-                    return [BridgeCommand("response", TypedValue("agreementState", "signed"), cid)]
+                    state = await self.target.add_agreement(command.payload, requester)
+                    return [BridgeCommand("response", TypedValue("agreementState", state), cid)]
                 case "get":
                     keypath = _payload_string(command.payload)
                     value = await self.target.get(keypath, requester)
@@ -142,11 +148,10 @@ class BridgeEndpoint:
                 case "attachedStatuses":
                     return [BridgeCommand("response", TypedValue("object", await self.target.attached_statuses(requester)), cid)]
                 case "sign":
-                    message = _payload_bytes(command.payload)
-                    if requester is None:
-                        raise RuntimeError("sign requires identity")
-                    signature = await requester.sign(message)
-                    return [BridgeCommand("response", TypedValue("signature", signature), cid)]
+                    _ = _payload_bytes(command.payload)
+                    raise PermissionError(
+                        "Remote signing is unavailable until a validated purpose/audience/nonce/expiry challenge is implemented"
+                    )
                 case _:
                     return [BridgeCommand("response", TypedValue("string", f"unsupported command: {command.cmd}"), cid)]
         except Exception as error:
@@ -167,11 +172,23 @@ class BridgeBase:
         self.identity = identity
         self._cid = 0
 
-    async def request(self, cmd: str, payload: Any | None = None) -> Any:
+    async def request(
+        self,
+        cmd: str,
+        payload: Any | None = None,
+        *,
+        identity: Identity | None | object = _DEFAULT_BRIDGE_IDENTITY,
+    ) -> Any:
         if self._send_command is None:
             raise RuntimeError("BridgeBase has no transport")
         self._cid += 1
-        command = BridgeCommand(cmd=cmd, payload=payload, cid=self._cid, identity=self.identity)
+        command_identity = self.identity if identity is _DEFAULT_BRIDGE_IDENTITY else identity
+        command = BridgeCommand(
+            cmd=cmd,
+            payload=payload,
+            cid=self._cid,
+            identity=command_identity,
+        )
         response = await self._send_command(command)
         if isinstance(response, list):
             response = response[-1]
@@ -193,13 +210,11 @@ class BridgeBase:
         return response
 
     async def sign(self, identity: Identity, message: bytes) -> bytes:
-        previous = self.identity
-        self.identity = identity
-        try:
-            result = await self.request("sign", TypedValue("signData", message))
-        finally:
-            self.identity = previous
-        return result
+        return await self.request(
+            "sign",
+            TypedValue("signData", message),
+            identity=identity,
+        )
 
 
 class WebSocketBridgeSession:

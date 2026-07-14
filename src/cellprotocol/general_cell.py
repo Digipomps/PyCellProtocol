@@ -4,13 +4,44 @@ import asyncio
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
 from typing import Any, AsyncIterator
-from uuid import uuid4
+from uuid import NAMESPACE_URL, uuid4, uuid5
 
+from .identity import Identity, proves_identity_control, same_identity_reference
 from .keypath import KeyPathError, get_keypath, set_keypath
 from .value import JSONValue, from_json_value, to_json_value
 
 GetHandler = Callable[[str, Any | None], Awaitable[Any]]
 SetHandler = Callable[[str, Any, Any | None], Awaitable[Any | None]]
+
+
+class _ReentrantAsyncLock:
+    """Serialize Cell operations while allowing same-task handler composition."""
+
+    def __init__(self) -> None:
+        self._lock = asyncio.Lock()
+        self._owner: asyncio.Task[Any] | None = None
+        self._depth = 0
+
+    async def __aenter__(self) -> "_ReentrantAsyncLock":
+        task = asyncio.current_task()
+        if task is None:
+            raise RuntimeError("Cell state access requires an asyncio task")
+        if self._owner is task:
+            self._depth += 1
+            return self
+        await self._lock.acquire()
+        self._owner = task
+        self._depth = 1
+        return self
+
+    async def __aexit__(self, exc_type: Any, exc: Any, traceback: Any) -> None:
+        task = asyncio.current_task()
+        if task is None or self._owner is not task or self._depth <= 0:
+            raise RuntimeError("Cell state lock released by a non-owner task")
+        self._depth -= 1
+        if self._depth == 0:
+            self._owner = None
+            self._lock.release()
 
 
 @dataclass
@@ -83,6 +114,9 @@ class GeneralCell:
     def __init__(self, owner: Any | None = None, name: str | None = None, uuid: str | None = None) -> None:
         self.owner = owner
         self.uuid = uuid or str(uuid4())
+        self._contract_template_uuid = str(
+            uuid5(NAMESPACE_URL, f"cellprotocol:{self.uuid}:contractTemplate")
+        )
         self.name = name or self.__class__.__name__.removesuffix("Cell")
         self.agreement_template = AgreementTemplate()
         self.identity_domain: str | None = None
@@ -92,6 +126,7 @@ class GeneralCell:
         self._explore_contracts: dict[str, dict[str, Any]] = {}
         self._attached: dict[str, Any] = {}
         self._flow_queue: asyncio.Queue[FlowElement | None] = asyncio.Queue()
+        self._state_lock = _ReentrantAsyncLock()
 
     async def add_get_handler(self, key: str, handler: GetHandler) -> None:
         self._get_handlers[key] = handler
@@ -119,31 +154,39 @@ class GeneralCell:
         }
 
     async def get(self, keypath: str, requester: Any | None = None) -> Any:
-        handler = self._handler_for(keypath, self._get_handlers)
-        if handler is not None:
-            return await handler(keypath, requester)
         if keypath == "description":
             return await self.advertise(requester)
         if keypath == "keys":
             return await self.keys(requester)
-        return get_keypath(self._storage, keypath)
+        async with self._state_lock:
+            await self._require_access("r---", keypath, requester)
+            handler = self._handler_for(keypath, self._get_handlers)
+            if handler is not None:
+                return await handler(keypath, requester)
+            return get_keypath(self._storage, keypath)
 
     async def set(self, keypath: str, value: Any, requester: Any | None = None) -> Any | None:
-        handler = self._handler_for(keypath, self._set_handlers)
-        if handler is not None:
-            return await handler(keypath, value, requester)
-        set_keypath(self._storage, keypath, value)
-        self.push_flow_element(
-            FlowElement(
-                title="Cell update",
-                content={"keypath": keypath, "data": value},
-                topic="cell.update",
-                origin=self.uuid,
+        async with self._state_lock:
+            await self._require_access("-w--", keypath, requester)
+            handler = self._handler_for(keypath, self._set_handlers)
+            if handler is not None:
+                return await handler(keypath, value, requester)
+            set_keypath(self._storage, keypath, value)
+            self.push_flow_element(
+                FlowElement(
+                    title="Cell update",
+                    content={"keypath": keypath, "data": value},
+                    topic="cell.update",
+                    origin=self.uuid,
+                )
             )
-        )
-        return None
+            return None
 
     async def keys(self, requester: Any | None = None) -> list[str]:
+        await self._require_access("r---", "keys", requester)
+        return self._declared_keys()
+
+    def _declared_keys(self) -> list[str]:
         keys = set(self._explore_contracts)
         keys.update(self._get_handlers)
         keys.update(self._set_handlers)
@@ -177,10 +220,12 @@ class GeneralCell:
         return type(value).__name__
 
     async def attach(self, emitter: Any, label: str, requester: Any | None = None) -> str:
+        await self._require_access("--x-", label, requester)
         self._attached[label] = emitter
         return "connected"
 
     async def absorb_flow(self, label: str, requester: Any | None = None) -> None:
+        await self._require_access("r---", label, requester)
         emitter = self._attached.get(label)
         if emitter is None:
             raise KeyPathError(f"No attached emitter with label {label}")
@@ -192,15 +237,19 @@ class GeneralCell:
         asyncio.create_task(pump())
 
     async def detach(self, label: str, requester: Any | None = None) -> None:
+        await self._require_access("--x-", label, requester)
         self._attached.pop(label, None)
 
     async def attached_status(self, label: str, requester: Any | None = None) -> str:
+        await self._require_access("r---", label, requester)
         return "connected" if label in self._attached else "notConnected"
 
     async def attached_statuses(self, requester: Any | None = None) -> dict[str, str]:
+        await self._require_access("r---", "attachedStatuses", requester)
         return {label: "connected" for label in self._attached}
 
     async def flow(self, requester: Any | None = None) -> AsyncIterator[FlowElement]:
+        await self._require_access("r---", "flow", requester)
         while True:
             item = await self._flow_queue.get()
             if item is None:
@@ -214,15 +263,18 @@ class GeneralCell:
         self._flow_queue.put_nowait(None)
 
     async def admit(self, context: Any) -> str:
-        return "connected"
+        _ = context
+        raise PermissionError("Admission is unavailable until proof-validated contracts are implemented")
 
     async def add_agreement(self, contract: Any, identity: Any) -> str:
-        return "signed"
+        _ = contract, identity
+        raise PermissionError("Agreement admission is unavailable until owner-approved signatures are implemented")
 
     async def advertise(self, requester: Any | None = None) -> dict[str, Any]:
-        owner_json = _identity_json(self.owner or requester)
+        _ = requester
+        owner_json = _identity_json(self.owner)
         contract_template = {
-            "uuid": str(uuid4()),
+            "uuid": self._contract_template_uuid,
             "name": "Contract name here",
             "state": "template",
             "owner": owner_json,
@@ -238,11 +290,16 @@ class GeneralCell:
             "identityDomain": self.identity_domain or "",
             "contractTemplate": contract_template,
             "agreementTemplate": self.agreement_template.to_json(),
-            "keys": await self.keys(requester),
+            "keys": self._declared_keys(),
         }
 
     async def is_member(self, identity: Any, requester: Any | None = None) -> bool:
-        return bool(self.owner is None or identity is self.owner or getattr(identity, "uuid", None) == getattr(self.owner, "uuid", None))
+        if self.owner is None:
+            return True
+        if requester is not None:
+            await self._require_access("r---", "isMember", requester)
+            return same_identity_reference(identity, self.owner)
+        return await proves_identity_control(identity, self.owner)
 
     def _handler_for(self, keypath: str, handlers: dict[str, Any]) -> Any | None:
         candidates = [
@@ -255,15 +312,31 @@ class GeneralCell:
         return handlers[max(candidates, key=len)]
 
     async def validate_access(self, permission: str, keypath: str, requester: Any | None = None) -> bool:
-        _ = permission, keypath, requester
-        return True
+        _ = permission, keypath
+        if self.owner is None:
+            return True
+        return await proves_identity_control(requester, self.owner)
+
+    async def _require_access(self, permission: str, keypath: str, requester: Any | None) -> None:
+        if not await self.validate_access(permission, keypath, requester):
+            raise PermissionError("Cell access denied: requester did not prove control of the owner identity")
 
 
 def _identity_json(identity: Any | None) -> dict[str, Any]:
-    if identity is not None and hasattr(identity, "to_json"):
-        return identity.to_json()
-    return {
+    if isinstance(identity, Identity):
+        encoded = identity.to_json()
+        return {
+            key: encoded[key]
+            for key in (
+                "uuid",
+                "displayName",
+                "publicSecureKey",
+                "publicKeyAgreementSecureKey",
+            )
+            if key in encoded
+        }
+    output = {
         "uuid": getattr(identity, "uuid", "00000000-0000-0000-0000-000000000000"),
         "displayName": getattr(identity, "displayName", "Python Scaffold"),
-        "properties": {},
     }
+    return output

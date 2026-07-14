@@ -1,8 +1,32 @@
 import json
+from pathlib import Path
 
 from cellprotocol.bridge import BridgeCommand
 from cellprotocol.configuration import CellConfiguration
+from cellprotocol.identity import Identity, identity_signing_fingerprint
 from cellprotocol.value import KeyValue, SetValueResponse, TypedValue
+
+
+FIXTURES = Path(__file__).parent / "fixtures"
+
+
+def test_swift_origin_identity_and_description_command_fixture_round_trip():
+    fixture = json.loads(
+        (FIXTURES / "swift_identity_description_command.json").read_text(encoding="utf-8")
+    )
+    identity = Identity.from_json(fixture["identity"])
+
+    assert identity.publicSecureKey == fixture["identity"]["publicSecureKey"]["compressedKey"]
+    assert identity_signing_fingerprint(identity) == (
+        "EdDSA:Curve25519:" + fixture["identity"]["publicSecureKey"]["compressedKey"]
+    )
+    assert identity.to_json() == fixture["identity"]
+
+    command = BridgeCommand.from_json(fixture["descriptionCommand"])
+    assert command.command == "description"
+    assert command.identity is not None
+    assert command.identity.to_json() == fixture["identity"]
+    assert command.to_json() == fixture["descriptionCommand"]
 
 
 def test_bridge_command_encodes_swift_key_value_payload():

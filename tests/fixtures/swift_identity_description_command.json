@@ -1,0 +1,42 @@
+{
+  "provenance": {
+    "generator": "CellProtocol 0ef84bcfbb81d2e112e961719821ed218cf95169 JSONEncoder(sortedKeys)",
+    "sourceTypes": [
+      "CellBase.Identity",
+      "CellBase.SecureKey",
+      "CellBase.BridgeCommand"
+    ]
+  },
+  "identity": {
+    "displayName": "Swift fixture",
+    "properties": {},
+    "publicSecureKey": {
+      "algorithm": "EdDSA",
+      "compressedKey": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8=",
+      "curveType": "Curve25519",
+      "date": 42,
+      "privateKey": false,
+      "size": 256,
+      "use": "signature"
+    },
+    "uuid": "11111111-2222-3333-4444-555555555555"
+  },
+  "descriptionCommand": {
+    "cid": 17,
+    "cmd": "description",
+    "identity": {
+      "displayName": "Swift fixture",
+      "properties": {},
+      "publicSecureKey": {
+        "algorithm": "EdDSA",
+        "compressedKey": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8=",
+        "curveType": "Curve25519",
+        "date": 42,
+        "privateKey": false,
+        "size": 256,
+        "use": "signature"
+      },
+      "uuid": "11111111-2222-3333-4444-555555555555"
+    }
+  }
+}
