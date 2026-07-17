@@ -1,3 +1,4 @@
+import base64
 import json
 from pathlib import Path
 
@@ -62,6 +63,23 @@ def test_bridge_command_preserves_swift_set_value_response_key():
     decoded = BridgeCommand.from_json(json.dumps(encoded))
     assert decoded.payload.value.state == "ok"
     assert decoded.payload.value.value == {"id": "n1"}
+
+
+def test_bridge_command_decodes_swift_sign_and_signature_payloads_as_bytes():
+    message = b"identity challenge"
+    signature = b"signature bytes"
+
+    sign_command = BridgeCommand.from_json(
+        {"cmd": "sign", "cid": 7, "sign": base64.b64encode(message).decode("ascii")}
+    )
+    signature_command = BridgeCommand.from_json(
+        {"cmd": "response", "cid": 7, "&signature": base64.b64encode(signature).decode("ascii")}
+    )
+
+    assert sign_command.payload.kind == "signData"
+    assert sign_command.payload.value == message
+    assert signature_command.payload.kind == "signature"
+    assert signature_command.payload.value == signature
 
 
 def test_cell_configuration_parses_current_skeleton_wrappers_and_refs():

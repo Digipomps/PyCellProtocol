@@ -38,3 +38,23 @@ Optional scaffold runtime dependencies are installed with:
 python3 -m pip install -e ".[scaffold]"
 pycell scaffold serve --host 127.0.0.1 --port 8080
 ```
+
+Outbound bridge-only dependencies can be installed with:
+
+```bash
+python3 -m pip install -e ".[bridge]"
+```
+
+Remote `cell://host/CellName` references are resolved through registered
+bridgehead routes. `wss://` is the default; `ws://` is rejected unless the
+resolver is created with `allows_insecure_websockets=True` for local/dev use.
+The default route shape is `/bridgehead/{CellName}/{requesterUUID}`, which
+maps to Vapor's `/bridgehead/:pubId/:bridgeId` bridgehead naming.
+
+## Upstream parity watch
+
+The `Upstream CellProtocol sync` GitHub Actions workflow watches upstream
+`CellProtocol` and `CellScaffold` heads through `repository_dispatch`, manual
+runs, and an hourly scheduled fallback. It classifies upstream diffs before
+running parity checks and treats resolver, vault, `CellConfiguration`, bridge,
+identity-vault, and related Swift tests as contract-critical paths.

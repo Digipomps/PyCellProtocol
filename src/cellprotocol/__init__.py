@@ -5,7 +5,7 @@ bridge and resolver parity tests. Rendering is deliberately outside this
 package; CellConfiguration skeletons are parsed and preserved, not rendered.
 """
 
-from .bridge import BridgeCommand, BridgeEndpoint
+from .bridge import BridgeCommand, BridgeEndpoint, BridgeTransportError, CloudBridge, CloudBridgePublisherSession, WebSocketBridgeClient
 from .configuration import CellConfiguration, CellConfigurationDiscovery, CellReference
 from .general_cell import FlowElement, GeneralCell
 from .identity import (
@@ -22,12 +22,15 @@ __all__ = [
     "BridgeCommand",
     "BridgeEndpoint",
     "BridgeIdentityVault",
+    "BridgeTransportError",
     "CellConfiguration",
     "CellConfigurationDiscovery",
     "CellReference",
     "CellResolve",
     "CellResolver",
     "CellUsageScope",
+    "CloudBridge",
+    "CloudBridgePublisherSession",
     "FlowElement",
     "GeneralCell",
     "Identity",
@@ -39,4 +42,5 @@ __all__ = [
     "RemoteCellHostRoute",
     "SetValueResponse",
     "TypedValue",
+    "WebSocketBridgeClient",
 ]

@@ -7,7 +7,7 @@ from enum import StrEnum
 from typing import Any, Callable
 from urllib.parse import urlparse
 
-from .bridge import BridgeBase
+from .bridge import BridgeBase, CloudBridge
 from .configuration import CellConfiguration, CellReference
 from .general_cell import GeneralCell
 from .identity import identity_signing_fingerprint
@@ -99,8 +99,13 @@ class CellResolve:
 
 
 class CellResolver:
-    def __init__(self, allows_insecure_websockets: bool = False) -> None:
+    def __init__(
+        self,
+        allows_insecure_websockets: bool = False,
+        remote_bridge_factory: Callable[[str, Any | None], BridgeBase] | None = None,
+    ) -> None:
         self.allows_insecure_websockets = allows_insecure_websockets
+        self._remote_bridge_factory = remote_bridge_factory or _default_remote_bridge_factory
         self._named: dict[str, CellResolve] = {}
         self._uuid: dict[str, Any] = {}
         self._remote_hosts: dict[str, RemoteCellHostRoute] = {}
@@ -155,6 +160,8 @@ class CellResolver:
         if parsed.scheme and parsed.scheme not in {"cell", "ws", "wss"}:
             raise ResolverError(f"Unsupported endpoint scheme: {parsed.scheme}")
         if parsed.scheme in {"ws", "wss"}:
+            if parsed.scheme == "ws" and not self.allows_insecure_websockets:
+                raise ResolverError("Insecure ws transport is disabled")
             return self._remote_bridge(endpoint, requester)
         if parsed.scheme == "cell" and parsed.netloc:
             route = self._remote_hosts.get(parsed.netloc)
@@ -227,7 +234,7 @@ class CellResolver:
     def _remote_bridge(self, bridge_url: str, requester: Any | None = None) -> BridgeBase:
         key = (bridge_url, _identity_cache_key(requester))
         if key not in self._remote_cache:
-            self._remote_cache[key] = BridgeBase(identity=requester)
+            self._remote_cache[key] = self._remote_bridge_factory(bridge_url, requester)
         return self._remote_cache[key]
 
     def _split_cell_url(self, url: str) -> tuple[str, str]:
@@ -261,3 +268,7 @@ def _identity_cache_key(identity: Any | None) -> str:
     if fingerprint is None:
         raise ResolverError("Identity-scoped resolution requires a public signing key")
     return f"{uuid}:{fingerprint}"
+
+
+def _default_remote_bridge_factory(bridge_url: str, requester: Any | None) -> BridgeBase:
+    return CloudBridge(bridge_url, identity=requester)

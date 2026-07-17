@@ -245,10 +245,10 @@ def payload_from_bridge_json(key: str, value: Any) -> TypedValue:
         return TypedValue(kind, KeyValue.from_json(value))
     if kind == "setValueResponse":
         return TypedValue(kind, SetValueResponse.from_json(value))
-    if kind == "data":
+    if kind in {"data", "signData", "signature"}:
         if isinstance(value, str):
             return TypedValue(kind, base64.b64decode(value.encode("ascii")))
-        raise CodecError("Bridge data payload must be base64 string")
+        raise CodecError("Bridge data/signature payload must be base64 string")
     return TypedValue(kind, from_json_value(value))
 
 

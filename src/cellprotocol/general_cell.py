@@ -125,6 +125,7 @@ class GeneralCell:
         self._set_handlers: dict[str, SetHandler] = {}
         self._explore_contracts: dict[str, dict[str, Any]] = {}
         self._attached: dict[str, Any] = {}
+        self._flow_tasks: dict[str, asyncio.Task[None]] = {}
         self._flow_queue: asyncio.Queue[FlowElement | None] = asyncio.Queue()
         self._state_lock = _ReentrantAsyncLock()
 
@@ -229,16 +230,36 @@ class GeneralCell:
         emitter = self._attached.get(label)
         if emitter is None:
             raise KeyPathError(f"No attached emitter with label {label}")
+        await self.drop_flow(label, requester)
 
         async def pump() -> None:
             async for element in emitter.flow(requester):
                 self.push_flow_element(element)
 
-        asyncio.create_task(pump())
+        self._flow_tasks[label] = asyncio.create_task(pump())
 
     async def detach(self, label: str, requester: Any | None = None) -> None:
         await self._require_access("--x-", label, requester)
+        await self.drop_flow(label, requester)
         self._attached.pop(label, None)
+
+    async def detach_all(self, requester: Any | None = None) -> None:
+        await self.drop_all_flows(requester)
+        self._attached.clear()
+
+    async def drop_flow(self, label: str, requester: Any | None = None) -> None:
+        _ = requester
+        task = self._flow_tasks.pop(label, None)
+        if task is not None:
+            task.cancel()
+            try:
+                await task
+            except asyncio.CancelledError:
+                pass
+
+    async def drop_all_flows(self, requester: Any | None = None) -> None:
+        for label in list(self._flow_tasks):
+            await self.drop_flow(label, requester)
 
     async def attached_status(self, label: str, requester: Any | None = None) -> str:
         await self._require_access("r---", label, requester)

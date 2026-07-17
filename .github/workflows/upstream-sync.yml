@@ -31,8 +31,11 @@ jobs:
     runs-on: macos-latest
     env:
       CELLPROTOCOL_SYNC_TOKEN: ${{ secrets.CELLPROTOCOL_SYNC_TOKEN }}
+      CELLPROTOCOL_REPOSITORY: ${{ github.event.client_payload.repository == 'Digipomps/CellProtocol' && github.event.client_payload.head_repository || 'Digipomps/CellProtocol' }}
       CELLPROTOCOL_REF: ${{ github.event.client_payload.repository == 'Digipomps/CellProtocol' && github.event.client_payload.sha || github.event.inputs.cellprotocol_ref || 'main' }}
+      CELLSCAFFOLD_REPOSITORY: ${{ github.event.client_payload.repository == 'Digipomps/CellScaffold' && github.event.client_payload.head_repository || 'Digipomps/CellScaffold' }}
       CELLSCAFFOLD_REF: ${{ github.event.client_payload.repository == 'Digipomps/CellScaffold' && github.event.client_payload.sha || github.event.inputs.cellscaffold_ref || 'main' }}
+      UPSTREAM_EVENT_NAME: ${{ github.event.client_payload.event_name || github.event_name }}
 
     steps:
       - name: Check out PyCellProtocol
@@ -43,18 +46,20 @@ jobs:
       - name: Check out CellProtocol
         uses: actions/checkout@v4
         with:
-          repository: Digipomps/CellProtocol
+          repository: ${{ env.CELLPROTOCOL_REPOSITORY }}
           ref: ${{ env.CELLPROTOCOL_REF }}
           path: upstream/CellProtocol
+          fetch-depth: 0
           token: ${{ secrets.CELLPROTOCOL_SYNC_TOKEN || github.token }}
 
       - name: Check out CellScaffold
         if: ${{ env.CELLPROTOCOL_SYNC_TOKEN != '' }}
         uses: actions/checkout@v4
         with:
-          repository: Digipomps/CellScaffold
+          repository: ${{ env.CELLSCAFFOLD_REPOSITORY }}
           ref: ${{ env.CELLSCAFFOLD_REF }}
           path: upstream/CellScaffold
+          fetch-depth: 0
           token: ${{ secrets.CELLPROTOCOL_SYNC_TOKEN }}
 
       - name: Explain skipped CellScaffold checkout
@@ -73,23 +78,39 @@ jobs:
         with:
           python-version: "3.13"
 
+      - name: Check upstream relevance
+        id: upstream_relevance
+        run: >
+          python scripts/check_upstream_relevance.py
+          --cellprotocol upstream/CellProtocol
+          --cellscaffold upstream/CellScaffold
+          --lock upstream-lock.json
+          --summary upstream-relevance.json
+
+      - name: Explain skipped parity tests
+        if: ${{ steps.upstream_relevance.outputs.relevant != 'true' }}
+        run: echo "No resolver/vault/CellConfiguration/bridge changes were detected; parity tests are skipped and upstream lock will be refreshed."
+
       - name: Install PyCellProtocol
+        if: ${{ steps.upstream_relevance.outputs.relevant == 'true' }}
         run: python -m pip install -e ".[scaffold,dev]"
 
       - name: Run Python parity tests
+        if: ${{ steps.upstream_relevance.outputs.relevant == 'true' }}
         run: python -m pytest
 
       - name: Run Swift bridge parity smoke
-        if: ${{ env.CELLPROTOCOL_SYNC_TOKEN != '' }}
+        if: ${{ steps.upstream_relevance.outputs.relevant == 'true' && env.CELLPROTOCOL_SYNC_TOKEN != '' }}
         env:
           PY_CELL_SWIFT_CELLPROTOCOL_DIR: ${{ github.workspace }}/upstream/CellProtocol
         run: python scripts/swift_parity_smoke.py
 
       - name: Explain skipped Swift bridge parity smoke
-        if: ${{ env.CELLPROTOCOL_SYNC_TOKEN == '' }}
+        if: ${{ steps.upstream_relevance.outputs.relevant == 'true' && env.CELLPROTOCOL_SYNC_TOKEN == '' }}
         run: echo "CELLPROTOCOL_SYNC_TOKEN is not configured; SwiftPM private Digipomps dependencies are not available."
 
       - name: Update upstream lock
+        if: ${{ env.UPSTREAM_EVENT_NAME != 'pull_request' }}
         run: >
           python scripts/update_upstream_lock.py
           --cellprotocol upstream/CellProtocol
@@ -97,6 +118,7 @@ jobs:
           --output upstream-lock.json
 
       - name: Commit upstream lock when it changed
+        if: ${{ env.UPSTREAM_EVENT_NAME != 'pull_request' }}
         run: |
           if [ -z "$(git status --porcelain -- upstream-lock.json)" ]; then
             echo "upstream-lock.json is already current."
