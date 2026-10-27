@@ -1,0 +1,51 @@
+name: Interop matrix
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      go_ref:
+        description: GoCellProtocol ref with cmd/interop-peer
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  matrix:
+    name: Python and Go peers, 3 flows
+    runs-on: ubuntu-latest
+    env:
+      # The Go peer is on this branch until Digipomps/GoCellProtocol#36 merges.
+      GO_REF: ${{ github.event.inputs.go_ref || 'pdd/interop-contracts-v1' }}
+      NO_PROXY: 127.0.0.1,localhost
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Digipomps/GoCellProtocol
+          ref: ${{ env.GO_REF }}
+          path: gocellprotocol
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+          cache: false
+      - name: Install
+        run: |
+          python -m pip install -e '.[scaffold]'
+          (cd gocellprotocol && go build -o "$RUNNER_TEMP/interop-peer" ./cmd/interop-peer)
+      - name: Run matrix
+        run: |
+          python interop/matrix/run_matrix.py \
+            --peer python="python -m cellprotocol_scaffold.interop_peer" \
+            --peer go="$RUNNER_TEMP/interop-peer" \
+            --out "$RUNNER_TEMP/TESTRESULT.md"
+      - name: Summary
+        if: always()
+        run: cat "$RUNNER_TEMP/TESTRESULT.md" >> "$GITHUB_STEP_SUMMARY" || true
