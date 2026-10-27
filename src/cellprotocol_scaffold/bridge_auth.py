@@ -80,11 +80,23 @@ class AuthenticatedBridgeSession:
             with contextlib.suppress(Exception):
                 await self.websocket.close()
 
+    async def _receive_frame(self) -> str:
+        """One frame as text. Swift's VaporBridgeTransport sends binary frames, Python and Go send text."""
+        message = await self.websocket.receive()
+        if message.get("type") == "websocket.disconnect":
+            raise ConnectionError(f"disconnected ({message.get('code')})")
+        if message.get("text") is not None:
+            return message["text"]
+        data = message.get("bytes")
+        if data is None:
+            raise auth.ChannelFailure("malformed")
+        return data.decode("utf-8")
+
     async def _admit(self) -> None:
         deadline = auth.PRE_AUTH_DEADLINE
         while self.server.state != "authenticated":
             try:
-                text = await asyncio.wait_for(self.websocket.receive_text(), timeout=deadline)
+                text = await asyncio.wait_for(self._receive_frame(), timeout=deadline)
             except asyncio.TimeoutError as error:
                 raise auth.ChannelFailure("expired") from error
             reply = self.server.receive(text.encode("utf-8"))
@@ -100,7 +112,7 @@ class AuthenticatedBridgeSession:
     async def _serve(self, endpoint: BridgeEndpoint) -> None:
         while True:
             try:
-                text = await self.websocket.receive_text()
+                text = await self._receive_frame()
             except Exception:
                 # Peer went away (WebSocketDisconnect or transport error).
                 return

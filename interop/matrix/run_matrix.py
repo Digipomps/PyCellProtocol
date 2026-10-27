@@ -106,7 +106,7 @@ class Steps:
 # ---- flows ---------------------------------------------------------------------------
 
 
-def flow_extend(host: Peer, guest: Peer, stranger: Peer, steps: Steps, _port: int):
+def flow_extend(host: Peer, guest: Peer, stranger: Peer, steps: Steps, _node: dict):
     asked = guest.set("extension", "extension.beginRequest", {"audience": AUDIENCE})
     steps.check("guest builds request", isinstance(asked, dict) and asked.get("payload"), asked)
     review = host.set("extension", "extension.reviewRequest", asked["payload"])
@@ -122,9 +122,9 @@ def flow_extend(host: Peer, guest: Peer, stranger: Peer, steps: Steps, _port: in
     steps.check("guest refuses an approval for someone else's request", not (isinstance(wrong, dict) and wrong.get("status") == "ok"), wrong)
 
 
-def flow_invite(host: Peer, guest: Peer, _stranger: Peer, steps: Steps, port: int):
-    node = host.op("serve", port=port)
+def flow_invite(host: Peer, guest: Peer, _stranger: Peer, steps: Steps, node: dict):
     base = node["landingBase"]
+    port = base.rsplit(":", 1)[-1]
     host.op("invitation", landingBase=base, contactEndpointID=f"ep-{host.uuid}")
     guest.op("invitation", landingBase=base)
     p = host.set("invitation", "invite.prepare", {"recipient": f"guest+{port}@example.org", "recipientDisplayName": "Guest"})
@@ -142,11 +142,9 @@ def flow_invite(host: Peer, guest: Peer, _stranger: Peer, steps: Steps, port: in
     host.set("invitation", "invite.revoke", {"ticketID": p2["ticketID"]})
     late = guest.set("invitation", "invite.respond", {"link": p2["selfContainedLink"]})
     steps.check("revoked link refuses the reply", late.get("code") == "not_active", late)
-    return node
 
 
-def flow_chat(host: Peer, guest: Peer, stranger: Peer, steps: Steps, port: int, node=None):
-    node = node or host.op("serve", port=port)
+def flow_chat(host: Peer, guest: Peer, stranger: Peer, steps: Steps, node: dict):
     url = node["chatURL"]
     host.set("chat", "audience.inviteIdentities", [guest.identity])
     artifact = host.set("chat", "audience.generateInvitationArtifacts", True)[0]
@@ -178,9 +176,11 @@ def main() -> int:
     parser.add_argument("--peer", action="append", required=True, help="lang=command")
     parser.add_argument("--out", help="write the result table (Markdown) here")
     parser.add_argument("--port", type=int, default=18200, help="first local port")
+    parser.add_argument("--flows", default=",".join(name for name, _ in FLOWS), help="comma-separated subset of extend,invite,chat")
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
     peers = dict(p.split("=", 1) for p in args.peer)
+    flows = [(name, fn) for name, fn in FLOWS if name in args.flows.split(",")]
     langs = list(peers)
     port = args.port
     table: dict[tuple[str, str, str], tuple[int, int, list]] = {}
@@ -190,16 +190,11 @@ def main() -> int:
             host = Peer(host_lang, peers[host_lang], "Alice"); started.append(host)
             guest = Peer(guest_lang, peers[guest_lang], "Bob"); started.append(guest)
             stranger = Peer(guest_lang, peers[guest_lang], "Mallory"); started.append(stranger)
-            node = None
-            for flow, fn in FLOWS:
+            node = host.op("serve", port=port)
+            for flow, fn in flows:
                 steps = Steps()
                 try:
-                    if flow == "chat":
-                        fn(host, guest, stranger, steps, port, node)
-                    else:
-                        result = fn(host, guest, stranger, steps, port)
-                        if flow == "invite":
-                            node = result
+                    fn(host, guest, stranger, steps, node)
                 except Exception as error:  # noqa: BLE001
                     if not steps.done or steps.done[-1][1]:
                         steps.check("flow ran to the end", False, f"{type(error).__name__}: {error}")
@@ -211,7 +206,7 @@ def main() -> int:
                     if args.verbose or not ok:
                         print(f"       {'ok ' if ok else 'XX '} {name}" + (f"  {detail}" if detail else ""))
         except Exception as error:  # noqa: BLE001
-            for flow, _ in FLOWS:
+            for flow, _ in flows:
                 table.setdefault((flow, host_lang, guest_lang), (0, 1, [("peer started", False, str(error))]))
             print(f"FAIL host={host_lang} guest={guest_lang}: {error}")
         finally:
@@ -229,7 +224,7 @@ def main() -> int:
             "| flow | " + " | ".join(f"{h} → {g}" for h, g in pairs) + " |",
             "|---|" + "---|" * len(pairs),
         ]
-        for flow, _ in FLOWS:
+        for flow, _ in flows:
             cells = []
             for h, g in pairs:
                 p, n, _ = table[(flow, h, g)]
