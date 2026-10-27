@@ -67,7 +67,7 @@ def create_app(
 
     app = FastAPI(title="PyCellProtocol Scaffold", version="0.1.0")
     # /i/... is the same invitation landing a Swift CellScaffold serves.
-    app.state.invite_landing = invite_landing or InviteLanding()
+    app.state.invite_landing = invite_landing or InviteLanding(rate_limit=os.environ.get("PYCELL_INVITE_RATE_LIMIT") != "0")
     mount_invite_landing(app, app.state.invite_landing)
     state: dict[str, Any] = {"resolver": None, "owner": None, "lock": asyncio.Lock()}
 
