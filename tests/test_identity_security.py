@@ -551,3 +551,24 @@ def test_exclusive_master_key_creation_fsyncs_new_directory_and_key_entry(tmp_pa
 
     assert key_path.read_bytes() == b"master-key"
     assert fsynced == [tmp_path, key_path.parent]
+
+
+def test_identity_accepts_swift_server_and_go_key_size_encoding():
+    """Swift EphemeralIdentityVault and Go write size 32; CellApple writes 256."""
+    from cellprotocol.identity import Identity
+
+    key = "U/hRm2j+ZIXHLwje5kra8iMaJa0PS9sdpIJOT0HfoYQ="
+    for size in (32, 256):
+        wire = {
+            "uuid": "ab619800-8796-4222-b507-7505c04ff794",
+            "displayName": "probe",
+            "properties": {},
+            "publicSecureKey": {
+                "algorithm": "EdDSA", "compressedKey": key, "curveType": "Curve25519",
+                "date": 0, "privateKey": False, "size": size, "use": "signature",
+            },
+        }
+        assert Identity.from_json(wire).publicSecureKey == key
+    wire["publicSecureKey"]["size"] = 64
+    with pytest.raises(ValueError):
+        Identity.from_json(wire)
