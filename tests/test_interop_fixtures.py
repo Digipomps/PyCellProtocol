@@ -23,7 +23,7 @@ ALL_CASES = {entry["id"]: json.loads((FIXTURES / entry["file"]).read_text(encodi
 # Bridge channel admission vectors are checked in test_interop_channel.py.
 # Channel vectors and the VC chain have their own tests (test_interop_channel,
 # test_interop_identity_link).
-OWN_TESTS = {"BridgeChannelAuthV1", "VCClaim", "VCPresentation", "IdentityLinkCompletionEnvelope"}
+OWN_TESTS = {"BridgeChannelAuthV1", "EntityGenesisSeal", "VCClaim", "VCPresentation", "IdentityLinkCompletionEnvelope"}
 CASES = {key: case for key, case in ALL_CASES.items() if case["type"] not in OWN_TESTS}
 NOW = float(MANIFEST["verifyAtEpoch"])
 

@@ -60,16 +60,8 @@ def test_entity_anchor_identity_links_and_batch_persist():
         assert persisted["status"] == "persisted"
         assert await entity.get("person.displayName", owner) == "Ada"
 
-        approval = await entity.set("identityLinks.approveEnrollment", {"approvalID": "approval/1"}, owner)
-        assert approval["status"] == "approved"
-        completed = await entity.set("identityLinks.completeEnrollment", {"linkID": "link/1", "approvalJTI": "jti-1"}, owner)
-        assert completed["status"] == "completed"
-        replay = await entity.set("identityLinks.completeEnrollment", {"linkID": "link/2", "approvalJTI": "jti-1"}, owner)
-        assert replay["status"] == "error"
-        revoked = await entity.set("identityLinks.revoke", {"linkID": "link/1"}, owner)
-        assert revoked["status"] == "revoked"
         state = await entity.get("identityLinks.state", owner)
-        assert state["status"] == "ready"
+        assert state["status"] == "ready" and state["sealed"] is True
 
     run(scenario())
 

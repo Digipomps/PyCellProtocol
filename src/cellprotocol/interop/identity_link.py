@@ -792,7 +792,123 @@ def approve_enrollment(
     return IdentityLinkApprovalPackage(approval=approval, same_entity_credential=credential, issuer_identity=issuer)
 
 
+# ---------------------------------------------------------------------------
+# Genesis seal (EntityGenesis.swift)
+# ---------------------------------------------------------------------------
+
+SEAL_KEYPATH = "identityLinks.genesis"
+RECORDS_KEYPATH = "identityLinks.records"
+GENESIS_LINK_PREFIX = "genesis-"
+ANCHOR_REFERENCE = "cell:///EntityAnchor"
+SAME_ENTITY_SCOPE = "same_entity"
+GENESIS_TRIGGERS = ("onboarding", "addressBookImport", "verifiableCredential", "fileUpload", "directEdit", "firstPersist")
+
+
+@dataclass
+class EntityGenesisSeal(WireModel):
+    """Stored at `identityLinks.genesis`; its presence means the anchor is sealed."""
+
+    anchor_id: str
+    sealed_at: str
+    trigger: str
+    link_id: str
+    initiator_identity_uuid: str
+    version: int = 1
+    proof: Optional[IdentityEnrollmentApprovalProof] = None
+
+    SPECS = {
+        "version": _s("version", "int"),
+        "anchor_id": _s("anchorID"),
+        "sealed_at": _s("sealedAt"),
+        "trigger": _s("trigger"),
+        "link_id": _s("linkID"),
+        "initiator_identity_uuid": _s("initiatorIdentityUUID"),
+        "proof": _s("proof", "model", model=IdentityEnrollmentApprovalProof, optional=True),
+    }
+    EXCLUDED_FROM_SIGNATURE = ("proof",)
+
+
+def genesis_link_id(anchor_id: str) -> str:
+    return GENESIS_LINK_PREFIX + anchor_id
+
+
+def is_genesis_link(link_id: str) -> bool:
+    return link_id.startswith(GENESIS_LINK_PREFIX)
+
+
+def is_immutable_genesis_keypath(keypath: str) -> bool:
+    return keypath == SEAL_KEYPATH or keypath.startswith(SEAL_KEYPATH + ".")
+
+
+def safe_record_key(link_id: str) -> str:
+    return re.sub(r"[^A-Za-z0-9_-]", "_", link_id)
+
+
+def record_keypath(link_id: str) -> str:
+    return RECORDS_KEYPATH + "." + safe_record_key(link_id)
+
+
+def genesis_record(anchor_id: str, initiator: IdentityPublicKeyDescriptor, identity_domain: str, sealed_at: str) -> IdentityLinkRecord:
+    return IdentityLinkRecord(
+        link_id=genesis_link_id(anchor_id),
+        entity_binding=EntityBindingDescriptor(mode="localEntityAnchor", entity_anchor_reference=ANCHOR_REFERENCE),
+        linked_identity=initiator,
+        approved_domains=[identity_domain],
+        approved_identity_contexts=[],
+        approved_scopes=[SAME_ENTITY_SCOPE],
+        issuer_identity_uuid=initiator.uuid,
+        issuer_type="existingDevice",
+        status="active",
+        linked_at=sealed_at,
+    )
+
+
+def unsigned_genesis_seal(anchor_id: str, initiator: IdentityPublicKeyDescriptor, trigger: str, now: float) -> EntityGenesisSeal:
+    if trigger not in GENESIS_TRIGGERS:
+        raise LinkFailure("invalidTrigger", trigger)
+    return EntityGenesisSeal(
+        anchor_id=anchor_id,
+        sealed_at=iso8601(now),
+        trigger=trigger,
+        link_id=genesis_link_id(anchor_id),
+        initiator_identity_uuid=initiator.uuid,
+        proof=IdentityEnrollmentApprovalProof(
+            issuer_identity_uuid=initiator.uuid, issuer_type="existingDevice", algorithm=initiator.algorithm, curve_type=initiator.curve_type
+        ),
+    )
+
+
+def seal_genesis(
+    anchor_id: str, initiator: IdentityPublicKeyDescriptor, signer: Signer, *, identity_domain: str, trigger: str, now: float
+) -> tuple[EntityGenesisSeal, IdentityLinkRecord]:
+    """`EntityGenesisService.seal`. The caller must already have proven that
+    `initiator` owns the anchor."""
+    seal = unsigned_genesis_seal(anchor_id, initiator, trigger, now)
+    assert seal.proof is not None
+    seal.proof.signature = signer(seal.canonical_payload())
+    return seal, genesis_record(anchor_id, initiator, identity_domain, seal.sealed_at)
+
+
+def verify_genesis(seal: EntityGenesisSeal, record: IdentityLinkRecord) -> None:
+    """`EntityGenesisService.verify`: both come from storage, so neither is trusted alone."""
+    if seal.link_id != record.link_id:
+        raise LinkFailure("sealDoesNotMatchRecord", "linkID")
+    if seal.initiator_identity_uuid != record.linked_identity.uuid or seal.initiator_identity_uuid != record.issuer_identity_uuid:
+        raise LinkFailure("sealDoesNotMatchRecord", "initiator")
+    if record.entity_binding.mode != "localEntityAnchor":
+        raise LinkFailure("sealDoesNotMatchRecord", "entityBinding")
+    if record.issuer_type != "existingDevice" or record.status != "active":
+        raise LinkFailure("sealDoesNotMatchRecord", "record")
+    if seal.proof is None or seal.proof.signature is None:
+        raise LinkFailure("sealProofInvalid")
+    if not verify_signature(seal.proof.signature, seal.canonical_payload(), record.linked_identity):
+        raise LinkFailure("sealProofInvalid")
+
+
 __all__ = [
+    "EntityGenesisSeal",
+    "seal_genesis",
+    "verify_genesis",
     "CompletionResult",
     "IdentityLinkApprovalEnvelope",
     "IdentityLinkApprovalPackage",

@@ -23,12 +23,12 @@ MANIFEST = json.loads((FIXTURES / "manifest.json").read_text(encoding="utf-8"))
 CASES = {
     entry["id"]: json.loads((FIXTURES / entry["file"]).read_text(encoding="utf-8"))
     for entry in MANIFEST["cases"]
-    if entry["type"] in ("VCClaim", "VCPresentation", "IdentityLinkCompletionEnvelope")
+    if entry["type"] in ("VCClaim", "VCPresentation", "IdentityLinkCompletionEnvelope", "EntityGenesisSeal")
 }
 SEEDS = {party["name"]: bytes.fromhex(party["seedHex"]) for party in MANIFEST["parties"]}
 DESCRIPTORS = {party["name"]: m.IdentityPublicKeyDescriptor.from_wire(party["descriptor"]) for party in MANIFEST["parties"]}
 VERIFY_AT = MANIFEST["verifyAtEpoch"]
-TYPES = {"VCClaim": il.VCClaim, "VCPresentation": il.VCPresentation, "IdentityLinkCompletionEnvelope": il.IdentityLinkCompletionEnvelope}
+TYPES = {"EntityGenesisSeal": il.EntityGenesisSeal, "VCClaim": il.VCClaim, "VCPresentation": il.VCPresentation, "IdentityLinkCompletionEnvelope": il.IdentityLinkCompletionEnvelope}
 
 
 def _b(text: str) -> bytes:
@@ -40,7 +40,7 @@ def _decode(case: dict):
 
 
 def test_cases_present():
-    assert len(CASES) == 11
+    assert len(CASES) == 14
 
 
 @pytest.mark.parametrize("case_id", sorted(CASES))
@@ -57,6 +57,13 @@ def _verdict(case: dict) -> str:
     model = _decode(case)
     if case["type"] == "VCClaim":
         return "valid" if model.verify(DESCRIPTORS["alice"]) else "invalid"
+    if case["type"] == "EntityGenesisSeal":
+        record = il.IdentityLinkRecord.from_wire(json.loads(_b(case["related"]["recordBase64"])))
+        try:
+            il.verify_genesis(model, record)
+        except il.LinkFailure as failure:
+            return failure.code
+        return "valid"
     if case["type"] == "VCPresentation":
         challenge = base64.b64decode(CASES["extend.completion.valid"]["object"]["expectedPresentationChallenge"])
         return "valid" if model.verify_holder_proof(challenge, "staging.haven.digipomps.org") else "invalid"
@@ -171,3 +178,20 @@ def test_python_approver_and_new_key_complete_a_link():
 def test_base58_round_trip_with_leading_zeros():
     for data in (b"", b"\x00", b"\x00\x00\x01", b"\xed\x01" + bytes(range(32))):
         assert il.base58_decode(il.base58_encode(data)) == data
+
+
+def test_python_built_genesis_seal_equals_swift():
+    case = CASES["extend.genesis.valid"]
+    swift_seal = _decode(case)
+    alice_sign, _ = v.ed25519_signer(SEEDS["alice"])
+    seal, record = il.seal_genesis(
+        swift_seal.anchor_id,
+        DESCRIPTORS["alice"],
+        alice_sign,
+        identity_domain="private",
+        trigger="onboarding",
+        now=il.parse_iso8601(swift_seal.sealed_at).timestamp(),
+    )
+    assert seal.to_json_bytes() == swift_seal.to_json_bytes()
+    assert record.to_json_bytes() == _b(case["related"]["recordBase64"])
+    assert il.record_keypath(record.link_id) == case["related"]["recordKeypath"]

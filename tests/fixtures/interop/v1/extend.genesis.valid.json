@@ -1,0 +1,44 @@
+{
+  "canonicalBase64" : "eyJhbmNob3JJRCI6IkEwQzQwMDAwLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMDBBMSIsImluaXRpYXRvcklkZW50aXR5VVVJRCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyIsImxpbmtJRCI6ImdlbmVzaXMtQTBDNDAwMDAtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwMEExIiwic2VhbGVkQXQiOiIyMDI2LTEwLTI3VDExOjU4OjIwWiIsInRyaWdnZXIiOiJvbmJvYXJkaW5nIiwidmVyc2lvbiI6MX0=",
+  "canonicalSHA256Hex" : "ca88df1df26e4970493eed10ca7a576cea0bacf7870d20b0411bff6134896cac",
+  "description" : "Ankeret forsegles til Alice, som startet entiteten. Signert av Alice, og peker på genesis-lenken.",
+  "encodedBase64" : "eyJhbmNob3JJRCI6IkEwQzQwMDAwLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMDBBMSIsImluaXRpYXRvcklkZW50aXR5VVVJRCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyIsImxpbmtJRCI6ImdlbmVzaXMtQTBDNDAwMDAtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwMEExIiwicHJvb2YiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiaXNzdWVySWRlbnRpdHlVVUlEIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIiwiaXNzdWVyVHlwZSI6ImV4aXN0aW5nRGV2aWNlIiwic2lnbmF0dXJlIjoiVTlycmIyVVhEOE5MSitqdmN0RnhpZ29JMTY5TkRNcERwRnZzNmw5YmlHMmhXclFTXC9pRU5nRkJzbnlQN3ZcL3VoOEwzVzhQYkNoUkJDZVRGU3dKQTZCQT09IiwidHlwZSI6InNpZ25hdHVyZSJ9LCJzZWFsZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTg6MjBaIiwidHJpZ2dlciI6Im9uYm9hcmRpbmciLCJ2ZXJzaW9uIjoxfQ==",
+  "excludedTopLevelKeys" : [
+    "proof"
+  ],
+  "expect" : {
+    "signatureValid" : true,
+    "verdict" : "valid"
+  },
+  "flow" : "extend",
+  "id" : "extend.genesis.valid",
+  "object" : {
+    "anchorID" : "A0C40000-0000-4000-8000-0000000000A1",
+    "initiatorIdentityUUID" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+    "linkID" : "genesis-A0C40000-0000-4000-8000-0000000000A1",
+    "proof" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "issuerIdentityUUID" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+      "issuerType" : "existingDevice",
+      "signature" : "U9rrb2UXD8NLJ+jvctFxigoI169NDMpDpFvs6l9biG2hWrQS\/iENgFBsnyP7v\/uh8L3W8PbChRBCeTFSwJA6BA==",
+      "type" : "signature"
+    },
+    "sealedAt" : "2026-10-27T11:58:20Z",
+    "trigger" : "onboarding",
+    "version" : 1
+  },
+  "related" : {
+    "recordBase64" : "eyJhcHByb3ZlZERvbWFpbnMiOlsicHJpdmF0ZSJdLCJhcHByb3ZlZElkZW50aXR5Q29udGV4dHMiOltdLCJhcHByb3ZlZFNjb3BlcyI6WyJzYW1lX2VudGl0eSJdLCJlbnRpdHlCaW5kaW5nIjp7ImVudGl0eUFuY2hvclJlZmVyZW5jZSI6ImNlbGw6XC9cL1wvRW50aXR5QW5jaG9yIiwibW9kZSI6ImxvY2FsRW50aXR5QW5jaG9yIn0sImlzc3VlcklkZW50aXR5VVVJRCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyIsImlzc3VlclR5cGUiOiJleGlzdGluZ0RldmljZSIsImxpbmtJRCI6ImdlbmVzaXMtQTBDNDAwMDAtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwMEExIiwibGlua2VkQXQiOiIyMDI2LTEwLTI3VDExOjU4OjIwWiIsImxpbmtlZElkZW50aXR5Ijp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYWxpY2UiLCJwdWJsaWNLZXkiOiIxS3FuekRsamtOaGlqWTBFWGgrRjd5ZW0zeVM5c0gzTU1mbm85S0RiNFFZPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMifSwic3RhdHVzIjoiYWN0aXZlIn0=",
+    "recordKeypath" : "identityLinks.records.genesis-A0C40000-0000-4000-8000-0000000000A1"
+  },
+  "signatureBase64" : "U9rrb2UXD8NLJ+jvctFxigoI169NDMpDpFvs6l9biG2hWrQS\/iENgFBsnyP7v\/uh8L3W8PbChRBCeTFSwJA6BA==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "alice",
+    "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+  },
+  "type" : "EntityGenesisSeal"
+}

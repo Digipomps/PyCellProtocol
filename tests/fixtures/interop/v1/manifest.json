@@ -258,6 +258,24 @@
       "flow" : "extend",
       "id" : "extend.completion.wrong-challenge",
       "type" : "IdentityLinkCompletionEnvelope"
+    },
+    {
+      "file" : "extend.genesis.valid.json",
+      "flow" : "extend",
+      "id" : "extend.genesis.valid",
+      "type" : "EntityGenesisSeal"
+    },
+    {
+      "file" : "extend.genesis.tampered.json",
+      "flow" : "extend",
+      "id" : "extend.genesis.tampered",
+      "type" : "EntityGenesisSeal"
+    },
+    {
+      "file" : "extend.genesis.wrong-record.json",
+      "flow" : "extend",
+      "id" : "extend.genesis.wrong-record",
+      "type" : "EntityGenesisSeal"
     }
   ],
   "generator" : "Tests\/CellBaseTests\/InteropFixturesV1Tests.swift",
