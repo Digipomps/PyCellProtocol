@@ -1,3 +1,4 @@
+from .chat import ChatCell
 from .entity_anchor import EntityAnchorCell
 from .entity_extension import EntityScaffoldExtensionCell
 from .function_cell import FunctionCell, cell, get, set
@@ -9,6 +10,7 @@ from .trusted_issuers import CredentialVerifier, SwiftCredentialVerifierClient, 
 from .vault import VaultCell
 
 __all__ = [
+    "ChatCell",
     "CredentialVerifier",
     "EntityAnchorCell",
     "EntityScaffoldExtensionCell",
