@@ -1,0 +1,38 @@
+{
+  "canonicalBase64" : "eyJhY3Rpb24iOiJicmlkZ2Uub3BlbiIsImF1ZGllbmNlIjoid3NzOlwvXC9zdGFnaW5nLmhhdmVuLmRpZ2lwb21wcy5vcmdcL2JyaWRnZWhlYWQiLCJkb21haW4iOiJwcml2YXRlIiwiZXhwaXJlc0F0IjoxNzkzMTAyNDUwLCJpZGVudGl0eVVVSUQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDBCMEIiLCJpc3N1ZWRBdCI6MTc5MzEwMjM5MCwibm9uY2UiOiJVNTAwN1VCemZMYUZRVTh3aHRWSHlrQmd1dzFOaVdcLzdBZ1o1NWNqSVh0OD0iLCJwdWJsaWNLZXlGaW5nZXJwcmludCI6IkVkRFNBOkN1cnZlMjU1MTk6UFNobjVKYmFhS1QwbHB6SEhGZ2M0ZnE4SUJERzRXeU9rZFpMMFVlZnV6RT0iLCJwdXJwb3NlIjoiaWRlbnRpdHktb3JpZ2luLXByb29mIiwicmVzb3VyY2UiOiJjZWxsOlwvXC9cL0VudGl0eVNjYWZmb2xkRXh0ZW5zaW9uIiwidHlwZSI6Im9yZy5oYXZlbi5jZWxscHJvdG9jb2wuaWRlbnRpdHktc2lnbmluZy1jaGFsbGVuZ2UiLCJ2ZXJzaW9uIjoxfQ==",
+  "canonicalSHA256Hex" : "b77ee0a7b61f4d615640bbf544c065d12bff1ef2418ceb616d704d9599f9f2b6",
+  "description" : "Bob beviser kontroll over nøkkelen før broen åpnes. De signerte bytene er JSONEncoder med sortedKeys, ikke JSONSerialization.",
+  "encodedBase64" : "eyJhY3Rpb24iOiJicmlkZ2Uub3BlbiIsImF1ZGllbmNlIjoid3NzOlwvXC9zdGFnaW5nLmhhdmVuLmRpZ2lwb21wcy5vcmdcL2JyaWRnZWhlYWQiLCJkb21haW4iOiJwcml2YXRlIiwiZXhwaXJlc0F0IjoxNzkzMTAyNDUwLCJpZGVudGl0eVVVSUQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDBCMEIiLCJpc3N1ZWRBdCI6MTc5MzEwMjM5MCwibm9uY2UiOiJVNTAwN1VCemZMYUZRVTh3aHRWSHlrQmd1dzFOaVdcLzdBZ1o1NWNqSVh0OD0iLCJwdWJsaWNLZXlGaW5nZXJwcmludCI6IkVkRFNBOkN1cnZlMjU1MTk6UFNobjVKYmFhS1QwbHB6SEhGZ2M0ZnE4SUJERzRXeU9rZFpMMFVlZnV6RT0iLCJwdXJwb3NlIjoiaWRlbnRpdHktb3JpZ2luLXByb29mIiwicmVzb3VyY2UiOiJjZWxsOlwvXC9cL0VudGl0eVNjYWZmb2xkRXh0ZW5zaW9uIiwidHlwZSI6Im9yZy5oYXZlbi5jZWxscHJvdG9jb2wuaWRlbnRpdHktc2lnbmluZy1jaGFsbGVuZ2UiLCJ2ZXJzaW9uIjoxfQ==",
+  "excludedTopLevelKeys" : [
+
+  ],
+  "expect" : {
+    "signatureValid" : true,
+    "verdict" : "valid"
+  },
+  "flow" : "bridge",
+  "id" : "bridge.signing-challenge.valid",
+  "object" : {
+    "action" : "bridge.open",
+    "audience" : "wss:\/\/staging.haven.digipomps.org\/bridgehead",
+    "domain" : "private",
+    "expiresAt" : 1793102450,
+    "identityUUID" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+    "issuedAt" : 1793102390,
+    "nonce" : "U5007UBzfLaFQU8whtVHykBguw1NiW\/7AgZ55cjIXt8=",
+    "publicKeyFingerprint" : "EdDSA:Curve25519:PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+    "purpose" : "identity-origin-proof",
+    "resource" : "cell:\/\/\/EntityScaffoldExtension",
+    "type" : "org.haven.cellprotocol.identity-signing-challenge",
+    "version" : 1
+  },
+  "signatureBase64" : "9JJZb4+9dm6IImA8XcpgyVJ2Rco0thNwy\/ERQbNTTna8\/oe9AX2DwY5eL2lWwg1CCdpJZFIzbyBzZOd2uLadAw==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "bob",
+    "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+  },
+  "type" : "IdentitySigningChallenge"
+}

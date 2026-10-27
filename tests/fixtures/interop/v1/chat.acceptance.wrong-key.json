@@ -1,0 +1,53 @@
+{
+  "canonicalBase64" : "eyJhY2NlcHRhbmNlSUQiOiJjaGF0YWNjLWludGVyb3AtMDAwMSIsImNoYXRDZWxsVVVJRCI6IkM0QTdDMzExLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQzRBNyIsImNyZWF0ZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTk6MTAuMDAwWiIsImludml0YXRpb25IYXNoIjoiTnFES1wvUVlxaytHalhvSUZLaU9DUVBCaGtCNVwvakdnY3NING12VnVZeUxnPSIsImludml0YXRpb25JRCI6ImNoYXRpbnYtaW50ZXJvcC0wMDAxIiwiaW52aXRlZUlkZW50aXR5Ijp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYm9iIiwicHVibGljS2V5IjoiUFNobjVKYmFhS1QwbHB6SEhGZ2M0ZnE4SUJERzRXeU9rZFpMMFVlZnV6RT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwQjBCIn0sImludml0ZWVLZXlBZ3JlZW1lbnRLZXkiOiJIbjVXZFwvdUV4c2hsMzdJS05YR1ZTeWZ2Z0RVSlhRMmFWbERiTmVFTXlRYz0iLCJpbnZpdGVySWRlbnRpdHlVVUlEIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIiwibm9uY2UiOiJNcjVkTUNxVitCcTVwSDFvN05KbGVCRERrRFgyVkhQNGs4XC90V1AwMklxcz0iLCJwdXJwb3NlIjoiYWNjZXB0X2NoYXRfaW52aXRhdGlvbiIsInZlcnNpb24iOjF9",
+  "canonicalSHA256Hex" : "a40db3f649f3bfb5a273735acc31f52e9c7004d125114cb391e529e18b10efe1",
+  "description" : "Aksept signert av en annen enn den inviterte.",
+  "encodedBase64" : "eyJhY2NlcHRhbmNlSUQiOiJjaGF0YWNjLWludGVyb3AtMDAwMSIsImNoYXRDZWxsVVVJRCI6IkM0QTdDMzExLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQzRBNyIsImNyZWF0ZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTk6MTAuMDAwWiIsImludml0YXRpb25IYXNoIjoiTnFES1wvUVlxaytHalhvSUZLaU9DUVBCaGtCNVwvakdnY3NING12VnVZeUxnPSIsImludml0YXRpb25JRCI6ImNoYXRpbnYtaW50ZXJvcC0wMDAxIiwiaW52aXRlZUlkZW50aXR5Ijp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYm9iIiwicHVibGljS2V5IjoiUFNobjVKYmFhS1QwbHB6SEhGZ2M0ZnE4SUJERzRXeU9rZFpMMFVlZnV6RT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwQjBCIn0sImludml0ZWVLZXlBZ3JlZW1lbnRLZXkiOiJIbjVXZFwvdUV4c2hsMzdJS05YR1ZTeWZ2Z0RVSlhRMmFWbERiTmVFTXlRYz0iLCJpbnZpdGVySWRlbnRpdHlVVUlEIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIiwibm9uY2UiOiJNcjVkTUNxVitCcTVwSDFvN05KbGVCRERrRFgyVkhQNGs4XC90V1AwMklxcz0iLCJwcm9vZiI6eyJhbGdvcml0aG0iOiJFZERTQSIsImJ5SWRlbnRpdHlVVUlEIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwQjBCIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsInNpZ25hdHVyZSI6IjhtRDc1U3RGZDdZTElXS2Y0YTV1UkcwWEVhbnZSMzJhelVCRGpQQ3MwMFdHcUtjbmNOb0RxcXZKUUlDYkZsVURPSFwvRVVkaUppWFVlZEFSaHIwT2lCUT09IiwidHlwZSI6InNpZ25hdHVyZSJ9LCJwdXJwb3NlIjoiYWNjZXB0X2NoYXRfaW52aXRhdGlvbiIsInZlcnNpb24iOjF9",
+  "excludedTopLevelKeys" : [
+    "proof"
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "invalidAcceptanceProof"
+  },
+  "flow" : "chat",
+  "id" : "chat.acceptance.wrong-key",
+  "object" : {
+    "acceptanceID" : "chatacc-interop-0001",
+    "chatCellUUID" : "C4A7C311-0000-4000-8000-00000000C4A7",
+    "createdAt" : "2026-10-27T11:59:10.000Z",
+    "invitationHash" : "NqDK\/QYqk+GjXoIFKiOCQPBhkB5\/jGgcsH4mvVuYyLg=",
+    "invitationID" : "chatinv-interop-0001",
+    "inviteeIdentity" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "bob",
+      "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+    },
+    "inviteeKeyAgreementKey" : "Hn5Wd\/uExshl37IKNXGVSyfvgDUJXQ2aVlDbNeEMyQc=",
+    "inviterIdentityUUID" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+    "nonce" : "Mr5dMCqV+Bq5pH1o7NJleBDDkDX2VHP4k8\/tWP02Iqs=",
+    "proof" : {
+      "algorithm" : "EdDSA",
+      "byIdentityUUID" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+      "curveType" : "Curve25519",
+      "signature" : "8mD75StFd7YLIWKf4a5uRG0XEanvR32azUBDjPCs00WGqKcncNoDqqvJQICbFlUDOH\/EUdiJiXUedARhr0OiBQ==",
+      "type" : "signature"
+    },
+    "purpose" : "accept_chat_invitation",
+    "version" : 1
+  },
+  "related" : {
+    "invitation" : "chat.invitation.valid"
+  },
+  "signatureBase64" : "8mD75StFd7YLIWKf4a5uRG0XEanvR32azUBDjPCs00WGqKcncNoDqqvJQICbFlUDOH\/EUdiJiXUedARhr0OiBQ==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "bob",
+    "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+  },
+  "type" : "ChatInvitationAcceptance"
+}

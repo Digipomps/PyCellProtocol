@@ -51,6 +51,21 @@ resolver is created with `allows_insecure_websockets=True` for local/dev use.
 The default route shape is `/bridgehead/{CellName}/{requesterUUID}`, which
 maps to Vapor's `/bridgehead/:pubId/:bridgeId` bridgehead naming.
 
+## Cross-language contracts (`cellprotocol.interop`)
+
+Wire models, canonical encoding and verifiers for the three flows that must
+work between Swift, Python and Go scaffolds: entity extension, invitation and
+chat, plus the identity proof a bridge asks for. They reproduce Swift byte for
+byte and are tested against the golden fixtures Swift generates
+(`tests/fixtures/interop/v1`, copied from CellProtocol `fixtures/interop/v1`):
+
+```bash
+python3 -m pytest tests/test_interop_fixtures.py
+```
+
+These are contracts only. The cells that run the flows on a Python scaffold,
+and the authenticated inbound bridge they need, are not here yet.
+
 ## Upstream parity watch
 
 The `Upstream CellProtocol sync` GitHub Actions workflow watches upstream

@@ -1,0 +1,61 @@
+{
+  "canonicalBase64" : "eyJhayI6ImVtYWlsIiwiYXUiOiJhdWQtMGM1ZDFlIiwiYnMiOlt7ImsiOiJuYW1lIiwibyI6IkJva2xpc3RlbiwgMTIuIHNlcC4iLCJ2IjoiQm9iIFRlc3Rlc2VuIn1dLCJjYSI6MTc5MzEwMjAwMCwiY2UiOiJlcC1pbnRlcm9wLTEiLCJlYSI6MTc5NDMxMjAwMCwiZXIiOiJjZWxsOlwvXC9cL0VudGl0eUFuY2hvciIsImduIjoiQm9iIiwiaGMiOiJBQkMyMzQiLCJpZCI6InByaXZhdGUiLCJpcyI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImFsaWNlIiwicHVibGljS2V5IjoiMUtxbnpEbGprTmhpalkwRVhoK0Y3eWVtM3lTOXNIM01NZm5vOUtEYjRRWT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIn0sIm4iOiJBbGljZSIsIm5jIjoib2MzdHdPbElIaUZ1aFR6XC9uYjBIQkE9PSIsIm5vIjoiSGVpXC9oYWxsbyBcIsOGcmxpZ1wiIFxcIHN0aTogYVwvYj9jPWQmZTxmPlxubGluamVcdFRhYiDDpsO4w6Ugw4bDmMOFIPCfmYIgw6kiLCJ0IjoiaW52LWludGVyb3AtMDAwMSIsInYiOjF9",
+  "canonicalSHA256Hex" : "5c30bee43a71416f003433e056ebf17f5f24ea9654c66104e6053cbf948f07cc",
+  "description" : "Notatet har skråstrek, anførselstegn, bakstrek, linjeskift, tab, æøå og emoji.",
+  "encodedBase64" : "eyJhayI6ImVtYWlsIiwiYXUiOiJhdWQtMGM1ZDFlIiwiYnMiOlt7ImsiOiJuYW1lIiwibyI6IkJva2xpc3RlbiwgMTIuIHNlcC4iLCJ2IjoiQm9iIFRlc3Rlc2VuIn1dLCJjYSI6MTc5MzEwMjAwMCwiY2UiOiJlcC1pbnRlcm9wLTEiLCJlYSI6MTc5NDMxMjAwMCwiZXIiOiJjZWxsOlwvXC9cL0VudGl0eUFuY2hvciIsImduIjoiQm9iIiwiaGMiOiJBQkMyMzQiLCJpZCI6InByaXZhdGUiLCJpcyI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImFsaWNlIiwicHVibGljS2V5IjoiMUtxbnpEbGprTmhpalkwRVhoK0Y3eWVtM3lTOXNIM01NZm5vOUtEYjRRWT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIn0sIm4iOiJBbGljZSIsIm5jIjoib2MzdHdPbElIaUZ1aFR6XC9uYjBIQkE9PSIsIm5vIjoiSGVpXC9oYWxsbyBcIsOGcmxpZ1wiIFxcIHN0aTogYVwvYj9jPWQmZTxmPlxubGluamVcdFRhYiDDpsO4w6Ugw4bDmMOFIPCfmYIgw6kiLCJwZiI6eyJhbCI6IkVkRFNBIiwiYnkiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMiLCJjdiI6IkN1cnZlMjU1MTkiLCJzZyI6ImZXVjV4Mk5HdzVuaFRcL1RaQzVkalNPSmYzV2R5Y2V4S2VmNW5SaWNuemQ1XC85eVE5V0FaN3lJcE8wR3JoaUVuN1I1bnBXclBMaGZTdFJDMkVsXC94S0RRPT0iLCJ0eSI6InNpZ25hdHVyZSJ9LCJ0IjoiaW52LWludGVyb3AtMDAwMSIsInYiOjF9",
+  "excludedTopLevelKeys" : [
+    "pf"
+  ],
+  "expect" : {
+    "signatureValid" : true,
+    "verdict" : "valid"
+  },
+  "flow" : "invite",
+  "id" : "invite.ticket.stress-text",
+  "object" : {
+    "ak" : "email",
+    "au" : "aud-0c5d1e",
+    "bs" : [
+      {
+        "k" : "name",
+        "o" : "Boklisten, 12. sep.",
+        "v" : "Bob Testesen"
+      }
+    ],
+    "ca" : 1793102000,
+    "ce" : "ep-interop-1",
+    "ea" : 1794312000,
+    "er" : "cell:\/\/\/EntityAnchor",
+    "gn" : "Bob",
+    "hc" : "ABC234",
+    "id" : "private",
+    "is" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "alice",
+      "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+    },
+    "n" : "Alice",
+    "nc" : "oc3twOlIHiFuhTz\/nb0HBA==",
+    "no" : "Hei\/hallo \"Ærlig\" \\ sti: a\/b?c=d&e<f>\nlinje\tTab æøå ÆØÅ 🙂 é",
+    "pf" : {
+      "al" : "EdDSA",
+      "by" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+      "cv" : "Curve25519",
+      "sg" : "fWV5x2NGw5nhT\/TZC5djSOJf3WdycexKef5nRicnzd5\/9yQ9WAZ7yIpO0GrhiEn7R5npWrPLhfStRC2El\/xKDQ==",
+      "ty" : "signature"
+    },
+    "t" : "inv-interop-0001",
+    "v" : 1
+  },
+  "signatureBase64" : "fWV5x2NGw5nhT\/TZC5djSOJf3WdycexKef5nRicnzd5\/9yQ9WAZ7yIpO0GrhiEn7R5npWrPLhfStRC2El\/xKDQ==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "alice",
+    "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+  },
+  "type" : "HavenInviteTicket"
+}

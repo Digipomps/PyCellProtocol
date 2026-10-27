@@ -1,0 +1,61 @@
+{
+  "canonicalBase64" : "eyJhdWRpZW5jZU1vZGUiOiJpbnZpdGVkIiwiY2hhdENlbGxVVUlEIjoiQzRBN0MzMTEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBDNEE3IiwiY3JlYXRlZEF0IjoiMjAyNi0xMC0yN1QxMTo1ODowMC4wMDBaIiwiZXhwaXJlc0F0IjoiMjAzNi0xMC0yN1QxMjowMDowMFoiLCJpbnZpdGF0aW9uSUQiOiJjaGF0aW52LWludGVyb3AtMDAwMSIsImludml0ZWRJZGVudGl0eSI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImJvYiIsInB1YmxpY0tleSI6IlBTaG41SmJhYUtUMGxwekhIRmdjNGZxOElCREc0V3lPa2RaTDBVZWZ1ekU9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQiJ9LCJpbnZpdGVySWRlbnRpdHkiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJhbGljZSIsInB1YmxpY0tleSI6IjFLcW56RGxqa05oaWpZMEVYaCtGN3llbTN5UzlzSDNNTWZubzlLRGI0UVk9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyJ9LCJub25jZSI6IlVFV2dHTXIxTUdiR0lEVjFWb2licGVWdWMwTlFyYlpQQktqU2VyU2xrYzg9IiwicGVyc2lzdGVuY2VNb2RlIjoicGVyc2lzdGVudCIsInB1cnBvc2UiOiJjaGF0X2ludml0YXRpb24iLCJzdWl0ZUlEIjoiaGF2ZW4uY2hhdC52MSIsInRvcGljIjoiTWFzdGVycHJvc2pla3QgSEFWRU4iLCJ2ZXJzaW9uIjoxfQ==",
+  "canonicalSHA256Hex" : "36a0cafd062a93e1a35e82052a238240f061901e7f8c681cb07e26bd5b98c8b8",
+  "description" : "Alice inviterer Bob til en ChatCell. invitationHash = SHA-256 av de kanoniske bytene.",
+  "encodedBase64" : "eyJhdWRpZW5jZU1vZGUiOiJpbnZpdGVkIiwiY2hhdENlbGxVVUlEIjoiQzRBN0MzMTEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBDNEE3IiwiY3JlYXRlZEF0IjoiMjAyNi0xMC0yN1QxMTo1ODowMC4wMDBaIiwiZXhwaXJlc0F0IjoiMjAzNi0xMC0yN1QxMjowMDowMFoiLCJpbnZpdGF0aW9uSUQiOiJjaGF0aW52LWludGVyb3AtMDAwMSIsImludml0ZWRJZGVudGl0eSI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImJvYiIsInB1YmxpY0tleSI6IlBTaG41SmJhYUtUMGxwekhIRmdjNGZxOElCREc0V3lPa2RaTDBVZWZ1ekU9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQiJ9LCJpbnZpdGVySWRlbnRpdHkiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJhbGljZSIsInB1YmxpY0tleSI6IjFLcW56RGxqa05oaWpZMEVYaCtGN3llbTN5UzlzSDNNTWZubzlLRGI0UVk9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyJ9LCJub25jZSI6IlVFV2dHTXIxTUdiR0lEVjFWb2licGVWdWMwTlFyYlpQQktqU2VyU2xrYzg9IiwicGVyc2lzdGVuY2VNb2RlIjoicGVyc2lzdGVudCIsInByb29mIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiYnlJZGVudGl0eVVVSUQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5Iiwic2lnbmF0dXJlIjoiYTUzUnl2Q3RXYlUxRlVEQ1wvUDZBdjRZN3AzdWc3Mm41WFVUd3dWKzdiQW5pd0dUVWp3dCtvcUloXC9la0puZ1hvXC9pb3dOMGxscUNuOStqMHNBZnhDRHc9PSIsInR5cGUiOiJzaWduYXR1cmUifSwicHVycG9zZSI6ImNoYXRfaW52aXRhdGlvbiIsInN1aXRlSUQiOiJoYXZlbi5jaGF0LnYxIiwidG9waWMiOiJNYXN0ZXJwcm9zamVrdCBIQVZFTiIsInZlcnNpb24iOjF9",
+  "excludedTopLevelKeys" : [
+    "proof"
+  ],
+  "expect" : {
+    "signatureValid" : true,
+    "verdict" : "valid"
+  },
+  "flow" : "chat",
+  "id" : "chat.invitation.valid",
+  "object" : {
+    "audienceMode" : "invited",
+    "chatCellUUID" : "C4A7C311-0000-4000-8000-00000000C4A7",
+    "createdAt" : "2026-10-27T11:58:00.000Z",
+    "expiresAt" : "2036-10-27T12:00:00Z",
+    "invitationID" : "chatinv-interop-0001",
+    "invitedIdentity" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "bob",
+      "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+    },
+    "inviterIdentity" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "alice",
+      "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+    },
+    "nonce" : "UEWgGMr1MGbGIDV1VoibpeVuc0NQrbZPBKjSerSlkc8=",
+    "persistenceMode" : "persistent",
+    "proof" : {
+      "algorithm" : "EdDSA",
+      "byIdentityUUID" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+      "curveType" : "Curve25519",
+      "signature" : "a53RyvCtWbU1FUDC\/P6Av4Y7p3ug72n5XUTwwV+7bAniwGTUjwt+oqIh\/ekJngXo\/iowN0llqCn9+j0sAfxCDw==",
+      "type" : "signature"
+    },
+    "purpose" : "chat_invitation",
+    "suiteID" : "haven.chat.v1",
+    "topic" : "Masterprosjekt HAVEN",
+    "version" : 1
+  },
+  "related" : {
+    "invitationHashBase64" : "NqDK\/QYqk+GjXoIFKiOCQPBhkB5\/jGgcsH4mvVuYyLg="
+  },
+  "signatureBase64" : "a53RyvCtWbU1FUDC\/P6Av4Y7p3ug72n5XUTwwV+7bAniwGTUjwt+oqIh\/ekJngXo\/iowN0llqCn9+j0sAfxCDw==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "alice",
+    "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+  },
+  "type" : "ChatInvitationArtifact"
+}

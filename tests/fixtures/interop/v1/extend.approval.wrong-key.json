@@ -1,0 +1,77 @@
+{
+  "canonicalBase64" : "eyJhcHByb3ZhbElEIjoiYXByLWludGVyb3AtMDAwMSIsImFwcHJvdmVkRG9tYWlucyI6WyJwcml2YXRlIl0sImFwcHJvdmVkSWRlbnRpdHlDb250ZXh0cyI6WyJkZWZhdWx0Il0sImFwcHJvdmVkU2NvcGVzIjpbImNoYXQucmVhZCIsImNoYXQud3JpdGUiXSwiYXVkaWVuY2UiOiJzdGFnaW5nLmhhdmVuLmRpZ2lwb21wcy5vcmciLCJjcmVhdGVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjMwWiIsImVudGl0eUJpbmRpbmciOnsiYXVkaWVuY2UiOiJzdGFnaW5nLmhhdmVuLmRpZ2lwb21wcy5vcmciLCJiaW5kaW5nSUQiOiJiaW5kLTAwMDEiLCJlbnRpdHlBbmNob3JSZWZlcmVuY2UiOiJjZWxsOlwvXC9cL0VudGl0eUFuY2hvciIsIm1vZGUiOiJsb2NhbEVudGl0eUFuY2hvciJ9LCJleHBpcmVzQXQiOiIyMDI2LTEwLTI3VDEyOjA0OjMwWiIsImZyZXNoQXV0aEV2aWRlbmNlIjp7ImNoYWxsZW5nZSI6ImVtNnNXQW1Kd29ST2pWc08xT0R6OTRyYWpnMG9EV1wvYmV2ZHcyZE5EZTVFPSIsImNyZWRlbnRpYWxJRCI6InQ5Q3hicENaRzJnZCtcL1wvRE1hZVVwQT09IiwibWV0aG9kIjoid2ViYXV0aG4iLCJwZXJmb3JtZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTk6MjVaIn0sImZyZXNoQXV0aE1ldGhvZCI6IndlYmF1dGhuIiwiZnJlc2hBdXRoUGVyZm9ybWVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjI1WiIsImZyZXNoQXV0aFJlcXVpcmVkIjp0cnVlLCJpc3N1ZXJJZGVudGl0eVVVSUQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMiLCJpc3N1ZXJUeXBlIjoiZXhpc3RpbmdEZXZpY2UiLCJqdGkiOiJqdGktaW50ZXJvcC0wMDAxIiwib3JpZ2luIjoiaHR0cHM6XC9cL3N0YWdpbmcuaGF2ZW4uZGlnaXBvbXBzLm9yZ1wvbGluayIsInB1cnBvc2UiOiJhcHByb3ZlX2xpbmtfaWRlbnRpdHkiLCJyZXF1ZXN0SGFzaCI6ImVtNnNXQW1Kd29ST2pWc08xT0R6OTRyYWpnMG9EV1wvYmV2ZHcyZE5EZTVFPSIsInN1YmplY3RJZGVudGl0eSI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImJvYiIsInB1YmxpY0tleSI6IlBTaG41SmJhYUtUMGxwekhIRmdjNGZxOElCREc0V3lPa2RaTDBVZWZ1ekU9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQiJ9LCJ2ZXJzaW9uIjoxfQ==",
+  "canonicalSHA256Hex" : "eff31dfafc60d3cdd482be056c3bc6eb56aea045ca13529f4c9efa4ea306538b",
+  "description" : "Godkjenning signert av en nøkkel som ikke er utstederen.",
+  "encodedBase64" : "eyJhcHByb3ZhbElEIjoiYXByLWludGVyb3AtMDAwMSIsImFwcHJvdmVkRG9tYWlucyI6WyJwcml2YXRlIl0sImFwcHJvdmVkSWRlbnRpdHlDb250ZXh0cyI6WyJkZWZhdWx0Il0sImFwcHJvdmVkU2NvcGVzIjpbImNoYXQucmVhZCIsImNoYXQud3JpdGUiXSwiYXVkaWVuY2UiOiJzdGFnaW5nLmhhdmVuLmRpZ2lwb21wcy5vcmciLCJjcmVhdGVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjMwWiIsImVudGl0eUJpbmRpbmciOnsiYXVkaWVuY2UiOiJzdGFnaW5nLmhhdmVuLmRpZ2lwb21wcy5vcmciLCJiaW5kaW5nSUQiOiJiaW5kLTAwMDEiLCJlbnRpdHlBbmNob3JSZWZlcmVuY2UiOiJjZWxsOlwvXC9cL0VudGl0eUFuY2hvciIsIm1vZGUiOiJsb2NhbEVudGl0eUFuY2hvciJ9LCJleHBpcmVzQXQiOiIyMDI2LTEwLTI3VDEyOjA0OjMwWiIsImZyZXNoQXV0aEV2aWRlbmNlIjp7ImNoYWxsZW5nZSI6ImVtNnNXQW1Kd29ST2pWc08xT0R6OTRyYWpnMG9EV1wvYmV2ZHcyZE5EZTVFPSIsImNyZWRlbnRpYWxJRCI6InQ5Q3hicENaRzJnZCtcL1wvRE1hZVVwQT09IiwibWV0aG9kIjoid2ViYXV0aG4iLCJwZXJmb3JtZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTk6MjVaIn0sImZyZXNoQXV0aE1ldGhvZCI6IndlYmF1dGhuIiwiZnJlc2hBdXRoUGVyZm9ybWVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjI1WiIsImZyZXNoQXV0aFJlcXVpcmVkIjp0cnVlLCJpc3N1ZXJJZGVudGl0eVVVSUQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMiLCJpc3N1ZXJUeXBlIjoiZXhpc3RpbmdEZXZpY2UiLCJqdGkiOiJqdGktaW50ZXJvcC0wMDAxIiwib3JpZ2luIjoiaHR0cHM6XC9cL3N0YWdpbmcuaGF2ZW4uZGlnaXBvbXBzLm9yZ1wvbGluayIsInByb29mIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImlzc3VlcklkZW50aXR5VVVJRCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDBCQUQwMCIsImlzc3VlclR5cGUiOiJleGlzdGluZ0RldmljZSIsInNpZ25hdHVyZSI6ImhRQmpFeEg0N2Q1OHZUT1ZqWkxFTjBGTDJjV3QzdHVnV1RFYUhvbDZSZWtYU2Q0NzI3cXlXVGQ0ZjE1TDFjS3U0Rm1jbWtFUkUzbVJ5dTBSRlJyckJ3PT0iLCJ0eXBlIjoic2lnbmF0dXJlIn0sInB1cnBvc2UiOiJhcHByb3ZlX2xpbmtfaWRlbnRpdHkiLCJyZXF1ZXN0SGFzaCI6ImVtNnNXQW1Kd29ST2pWc08xT0R6OTRyYWpnMG9EV1wvYmV2ZHcyZE5EZTVFPSIsInN1YmplY3RJZGVudGl0eSI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImJvYiIsInB1YmxpY0tleSI6IlBTaG41SmJhYUtUMGxwekhIRmdjNGZxOElCREc0V3lPa2RaTDBVZWZ1ekU9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQiJ9LCJ2ZXJzaW9uIjoxfQ==",
+  "excludedTopLevelKeys" : [
+    "proof"
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "bad_signature"
+  },
+  "flow" : "extend",
+  "id" : "extend.approval.wrong-key",
+  "object" : {
+    "approvalID" : "apr-interop-0001",
+    "approvedDomains" : [
+      "private"
+    ],
+    "approvedIdentityContexts" : [
+      "default"
+    ],
+    "approvedScopes" : [
+      "chat.read",
+      "chat.write"
+    ],
+    "audience" : "staging.haven.digipomps.org",
+    "createdAt" : "2026-10-27T11:59:30Z",
+    "entityBinding" : {
+      "audience" : "staging.haven.digipomps.org",
+      "bindingID" : "bind-0001",
+      "entityAnchorReference" : "cell:\/\/\/EntityAnchor",
+      "mode" : "localEntityAnchor"
+    },
+    "expiresAt" : "2026-10-27T12:04:30Z",
+    "freshAuthEvidence" : {
+      "challenge" : "em6sWAmJwoROjVsO1ODz94rajg0oDW\/bevdw2dNDe5E=",
+      "credentialID" : "t9CxbpCZG2gd+\/\/DMaeUpA==",
+      "method" : "webauthn",
+      "performedAt" : "2026-10-27T11:59:25Z"
+    },
+    "freshAuthMethod" : "webauthn",
+    "freshAuthPerformedAt" : "2026-10-27T11:59:25Z",
+    "freshAuthRequired" : true,
+    "issuerIdentityUUID" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+    "issuerType" : "existingDevice",
+    "jti" : "jti-interop-0001",
+    "origin" : "https:\/\/staging.haven.digipomps.org\/link",
+    "proof" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "issuerIdentityUUID" : "6F1C2B0A-0000-4000-8000-0000000BAD00",
+      "issuerType" : "existingDevice",
+      "signature" : "hQBjExH47d58vTOVjZLEN0FL2cWt3tugWTEaHol6RekXSd4727qyWTd4f15L1cKu4FmcmkERE3mRyu0RFRrrBw==",
+      "type" : "signature"
+    },
+    "purpose" : "approve_link_identity",
+    "requestHash" : "em6sWAmJwoROjVsO1ODz94rajg0oDW\/bevdw2dNDe5E=",
+    "subjectIdentity" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "bob",
+      "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+    },
+    "version" : 1
+  },
+  "signatureBase64" : "hQBjExH47d58vTOVjZLEN0FL2cWt3tugWTEaHol6RekXSd4727qyWTd4f15L1cKu4FmcmkERE3mRyu0RFRrrBw==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "alice",
+    "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+  },
+  "type" : "IdentityEnrollmentApproval"
+}

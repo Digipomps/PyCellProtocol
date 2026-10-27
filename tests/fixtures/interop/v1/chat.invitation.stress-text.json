@@ -1,0 +1,58 @@
+{
+  "canonicalBase64" : "eyJhdWRpZW5jZU1vZGUiOiJpbnZpdGVkIiwiY2hhdENlbGxVVUlEIjoiQzRBN0MzMTEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBDNEE3IiwiY3JlYXRlZEF0IjoiMjAyNi0xMC0yN1QxMTo1ODowMC4wMDBaIiwiZXhwaXJlc0F0IjoiMjAzNi0xMC0yN1QxMjowMDowMFoiLCJpbnZpdGF0aW9uSUQiOiJjaGF0aW52LWludGVyb3AtMDAwMSIsImludml0ZWRJZGVudGl0eSI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImJvYiIsInB1YmxpY0tleSI6IlBTaG41SmJhYUtUMGxwekhIRmdjNGZxOElCREc0V3lPa2RaTDBVZWZ1ekU9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQiJ9LCJpbnZpdGVySWRlbnRpdHkiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJhbGljZSIsInB1YmxpY0tleSI6IjFLcW56RGxqa05oaWpZMEVYaCtGN3llbTN5UzlzSDNNTWZubzlLRGI0UVk9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyJ9LCJub25jZSI6IlVFV2dHTXIxTUdiR0lEVjFWb2licGVWdWMwTlFyYlpQQktqU2VyU2xrYzg9IiwicGVyc2lzdGVuY2VNb2RlIjoicGVyc2lzdGVudCIsInB1cnBvc2UiOiJjaGF0X2ludml0YXRpb24iLCJzdWl0ZUlEIjoiaGF2ZW4uY2hhdC52MSIsInRvcGljIjoiSGVpXC9oYWxsbyBcIsOGcmxpZ1wiIFxcIHN0aTogYVwvYj9jPWQmZTxmPlxubGluamVcdFRhYiDDpsO4w6Ugw4bDmMOFIPCfmYIgw6kiLCJ2ZXJzaW9uIjoxfQ==",
+  "canonicalSHA256Hex" : "5ce8958937ecd0e53e60e695fd9ee67603da6f5f509eb5afcac5f00d3cc989a1",
+  "description" : "Emnet har skråstrek, anførselstegn, bakstrek, linjeskift, tab, æøå og emoji.",
+  "encodedBase64" : "eyJhdWRpZW5jZU1vZGUiOiJpbnZpdGVkIiwiY2hhdENlbGxVVUlEIjoiQzRBN0MzMTEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBDNEE3IiwiY3JlYXRlZEF0IjoiMjAyNi0xMC0yN1QxMTo1ODowMC4wMDBaIiwiZXhwaXJlc0F0IjoiMjAzNi0xMC0yN1QxMjowMDowMFoiLCJpbnZpdGF0aW9uSUQiOiJjaGF0aW52LWludGVyb3AtMDAwMSIsImludml0ZWRJZGVudGl0eSI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImJvYiIsInB1YmxpY0tleSI6IlBTaG41SmJhYUtUMGxwekhIRmdjNGZxOElCREc0V3lPa2RaTDBVZWZ1ekU9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQiJ9LCJpbnZpdGVySWRlbnRpdHkiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJhbGljZSIsInB1YmxpY0tleSI6IjFLcW56RGxqa05oaWpZMEVYaCtGN3llbTN5UzlzSDNNTWZubzlLRGI0UVk9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyJ9LCJub25jZSI6IlVFV2dHTXIxTUdiR0lEVjFWb2licGVWdWMwTlFyYlpQQktqU2VyU2xrYzg9IiwicGVyc2lzdGVuY2VNb2RlIjoicGVyc2lzdGVudCIsInByb29mIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiYnlJZGVudGl0eVVVSUQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5Iiwic2lnbmF0dXJlIjoibW1uOFlDelZuVVBESEw5blM2amlBS2kzbnpnVmRIazY2a3ZOYkJqSzlxSmd3eXJtQVhJYTZHQVEyNHppR0VjVHpCcGU4SDI3WWpcL213WEZnSytRV0J3PT0iLCJ0eXBlIjoic2lnbmF0dXJlIn0sInB1cnBvc2UiOiJjaGF0X2ludml0YXRpb24iLCJzdWl0ZUlEIjoiaGF2ZW4uY2hhdC52MSIsInRvcGljIjoiSGVpXC9oYWxsbyBcIsOGcmxpZ1wiIFxcIHN0aTogYVwvYj9jPWQmZTxmPlxubGluamVcdFRhYiDDpsO4w6Ugw4bDmMOFIPCfmYIgw6kiLCJ2ZXJzaW9uIjoxfQ==",
+  "excludedTopLevelKeys" : [
+    "proof"
+  ],
+  "expect" : {
+    "signatureValid" : true,
+    "verdict" : "valid"
+  },
+  "flow" : "chat",
+  "id" : "chat.invitation.stress-text",
+  "object" : {
+    "audienceMode" : "invited",
+    "chatCellUUID" : "C4A7C311-0000-4000-8000-00000000C4A7",
+    "createdAt" : "2026-10-27T11:58:00.000Z",
+    "expiresAt" : "2036-10-27T12:00:00Z",
+    "invitationID" : "chatinv-interop-0001",
+    "invitedIdentity" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "bob",
+      "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+    },
+    "inviterIdentity" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "alice",
+      "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+    },
+    "nonce" : "UEWgGMr1MGbGIDV1VoibpeVuc0NQrbZPBKjSerSlkc8=",
+    "persistenceMode" : "persistent",
+    "proof" : {
+      "algorithm" : "EdDSA",
+      "byIdentityUUID" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+      "curveType" : "Curve25519",
+      "signature" : "mmn8YCzVnUPDHL9nS6jiAKi3nzgVdHk66kvNbBjK9qJgwyrmAXIa6GAQ24ziGEcTzBpe8H27Yj\/mwXFgK+QWBw==",
+      "type" : "signature"
+    },
+    "purpose" : "chat_invitation",
+    "suiteID" : "haven.chat.v1",
+    "topic" : "Hei\/hallo \"Ærlig\" \\ sti: a\/b?c=d&e<f>\nlinje\tTab æøå ÆØÅ 🙂 é",
+    "version" : 1
+  },
+  "signatureBase64" : "mmn8YCzVnUPDHL9nS6jiAKi3nzgVdHk66kvNbBjK9qJgwyrmAXIa6GAQ24ziGEcTzBpe8H27Yj\/mwXFgK+QWBw==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "alice",
+    "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+  },
+  "type" : "ChatInvitationArtifact"
+}

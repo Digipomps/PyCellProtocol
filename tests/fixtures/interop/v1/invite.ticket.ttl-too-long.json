@@ -1,0 +1,61 @@
+{
+  "canonicalBase64" : "eyJhayI6ImVtYWlsIiwiYXUiOiJhdWQtMGM1ZDFlIiwiYnMiOlt7ImsiOiJuYW1lIiwibyI6IkJva2xpc3RlbiwgMTIuIHNlcC4iLCJ2IjoiQm9iIFRlc3Rlc2VuIn1dLCJjYSI6MTc5MzEwMjAwMCwiY2UiOiJlcC1pbnRlcm9wLTEiLCJlYSI6MTgwMDk2NDQwMCwiZXIiOiJjZWxsOlwvXC9cL0VudGl0eUFuY2hvciIsImduIjoiQm9iIiwiaGMiOiJBQkMyMzQiLCJpZCI6InByaXZhdGUiLCJpcyI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImFsaWNlIiwicHVibGljS2V5IjoiMUtxbnpEbGprTmhpalkwRVhoK0Y3eWVtM3lTOXNIM01NZm5vOUtEYjRRWT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIn0sIm4iOiJBbGljZSIsIm5jIjoib2MzdHdPbElIaUZ1aFR6XC9uYjBIQkE9PSIsIm5vIjoiVmVsa29tbWVuIHRpbCBtYXN0ZXJwcm9zamVrdGV0LiIsInQiOiJpbnYtaW50ZXJvcC0wMDAxIiwidiI6MX0=",
+  "canonicalSHA256Hex" : "d8f08ef2d6b5a1d3d94681b961ca5673f3e57b4998182b9c78f7511613b67092",
+  "description" : "Gyldig signatur, men påstår å leve over 90 dager.",
+  "encodedBase64" : "eyJhayI6ImVtYWlsIiwiYXUiOiJhdWQtMGM1ZDFlIiwiYnMiOlt7ImsiOiJuYW1lIiwibyI6IkJva2xpc3RlbiwgMTIuIHNlcC4iLCJ2IjoiQm9iIFRlc3Rlc2VuIn1dLCJjYSI6MTc5MzEwMjAwMCwiY2UiOiJlcC1pbnRlcm9wLTEiLCJlYSI6MTgwMDk2NDQwMCwiZXIiOiJjZWxsOlwvXC9cL0VudGl0eUFuY2hvciIsImduIjoiQm9iIiwiaGMiOiJBQkMyMzQiLCJpZCI6InByaXZhdGUiLCJpcyI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImFsaWNlIiwicHVibGljS2V5IjoiMUtxbnpEbGprTmhpalkwRVhoK0Y3eWVtM3lTOXNIM01NZm5vOUtEYjRRWT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIn0sIm4iOiJBbGljZSIsIm5jIjoib2MzdHdPbElIaUZ1aFR6XC9uYjBIQkE9PSIsIm5vIjoiVmVsa29tbWVuIHRpbCBtYXN0ZXJwcm9zamVrdGV0LiIsInBmIjp7ImFsIjoiRWREU0EiLCJieSI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyIsImN2IjoiQ3VydmUyNTUxOSIsInNnIjoiUjNOZUt4dzE2WGtNM21odE1TbjRVXC9JR3pOKzhJeE40b2V3cUphMW5sZHplb0psSXlNWVhEczNWWDVtdXhOSlwvNUl1WGM0ekF5SkVvRWFZQnRFTHpDUT09IiwidHkiOiJzaWduYXR1cmUifSwidCI6Imludi1pbnRlcm9wLTAwMDEiLCJ2IjoxfQ==",
+  "excludedTopLevelKeys" : [
+    "pf"
+  ],
+  "expect" : {
+    "signatureValid" : true,
+    "verdict" : "ttl_too_long"
+  },
+  "flow" : "invite",
+  "id" : "invite.ticket.ttl-too-long",
+  "object" : {
+    "ak" : "email",
+    "au" : "aud-0c5d1e",
+    "bs" : [
+      {
+        "k" : "name",
+        "o" : "Boklisten, 12. sep.",
+        "v" : "Bob Testesen"
+      }
+    ],
+    "ca" : 1793102000,
+    "ce" : "ep-interop-1",
+    "ea" : 1800964400,
+    "er" : "cell:\/\/\/EntityAnchor",
+    "gn" : "Bob",
+    "hc" : "ABC234",
+    "id" : "private",
+    "is" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "alice",
+      "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+    },
+    "n" : "Alice",
+    "nc" : "oc3twOlIHiFuhTz\/nb0HBA==",
+    "no" : "Velkommen til masterprosjektet.",
+    "pf" : {
+      "al" : "EdDSA",
+      "by" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+      "cv" : "Curve25519",
+      "sg" : "R3NeKxw16XkM3mhtMSn4U\/IGzN+8IxN4oewqJa1nldzeoJlIyMYXDs3VX5muxNJ\/5IuXc4zAyJEoEaYBtELzCQ==",
+      "ty" : "signature"
+    },
+    "t" : "inv-interop-0001",
+    "v" : 1
+  },
+  "signatureBase64" : "R3NeKxw16XkM3mhtMSn4U\/IGzN+8IxN4oewqJa1nldzeoJlIyMYXDs3VX5muxNJ\/5IuXc4zAyJEoEaYBtELzCQ==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "alice",
+    "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+  },
+  "type" : "HavenInviteTicket"
+}

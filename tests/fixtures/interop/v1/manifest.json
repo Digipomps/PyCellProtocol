@@ -1,0 +1,219 @@
+{
+  "canonicalRule" : "JSONEncoder() default strategies, then JSONSerialization.data(withJSONObject:options:[.sortedKeys]) after removing excludedTopLevelKeys. IdentitySigningChallenge signs JSONEncoder(.sortedKeys) output directly.",
+  "cases" : [
+    {
+      "file" : "extend.request.valid.json",
+      "flow" : "extend",
+      "id" : "extend.request.valid",
+      "type" : "IdentityEnrollmentRequest"
+    },
+    {
+      "file" : "extend.request.tampered.json",
+      "flow" : "extend",
+      "id" : "extend.request.tampered",
+      "type" : "IdentityEnrollmentRequest"
+    },
+    {
+      "file" : "extend.request.wrong-key.json",
+      "flow" : "extend",
+      "id" : "extend.request.wrong-key",
+      "type" : "IdentityEnrollmentRequest"
+    },
+    {
+      "file" : "extend.approval.valid.json",
+      "flow" : "extend",
+      "id" : "extend.approval.valid",
+      "type" : "IdentityEnrollmentApproval"
+    },
+    {
+      "file" : "extend.approval.wrong-key.json",
+      "flow" : "extend",
+      "id" : "extend.approval.wrong-key",
+      "type" : "IdentityEnrollmentApproval"
+    },
+    {
+      "file" : "extend.revocation.valid.json",
+      "flow" : "extend",
+      "id" : "extend.revocation.valid",
+      "type" : "IdentityLinkRevocation"
+    },
+    {
+      "file" : "invite.ticket.valid.json",
+      "flow" : "invite",
+      "id" : "invite.ticket.valid",
+      "type" : "HavenInviteTicket"
+    },
+    {
+      "file" : "invite.ticket.stress-text.json",
+      "flow" : "invite",
+      "id" : "invite.ticket.stress-text",
+      "type" : "HavenInviteTicket"
+    },
+    {
+      "file" : "invite.ticket.tampered.json",
+      "flow" : "invite",
+      "id" : "invite.ticket.tampered",
+      "type" : "HavenInviteTicket"
+    },
+    {
+      "file" : "invite.ticket.expired.json",
+      "flow" : "invite",
+      "id" : "invite.ticket.expired",
+      "type" : "HavenInviteTicket"
+    },
+    {
+      "file" : "invite.ticket.ttl-too-long.json",
+      "flow" : "invite",
+      "id" : "invite.ticket.ttl-too-long",
+      "type" : "HavenInviteTicket"
+    },
+    {
+      "file" : "invite.ticket.wrong-key.json",
+      "flow" : "invite",
+      "id" : "invite.ticket.wrong-key",
+      "type" : "HavenInviteTicket"
+    },
+    {
+      "file" : "invite.publication.valid.json",
+      "flow" : "invite",
+      "id" : "invite.publication.valid",
+      "type" : "HavenInvitePublication"
+    },
+    {
+      "file" : "invite.publication.code-swapped.json",
+      "flow" : "invite",
+      "id" : "invite.publication.code-swapped",
+      "type" : "HavenInvitePublication"
+    },
+    {
+      "file" : "invite.reply.yes.json",
+      "flow" : "invite",
+      "id" : "invite.reply.yes",
+      "type" : "HavenInviteReply"
+    },
+    {
+      "file" : "invite.reply.notNow.json",
+      "flow" : "invite",
+      "id" : "invite.reply.notNow",
+      "type" : "HavenInviteReply"
+    },
+    {
+      "file" : "invite.reply.never.json",
+      "flow" : "invite",
+      "id" : "invite.reply.never",
+      "type" : "HavenInviteReply"
+    },
+    {
+      "file" : "invite.reply.wrong-audience.json",
+      "flow" : "invite",
+      "id" : "invite.reply.wrong-audience",
+      "type" : "HavenInviteReply"
+    },
+    {
+      "file" : "invite.revocation.valid.json",
+      "flow" : "invite",
+      "id" : "invite.revocation.valid",
+      "type" : "HavenInviteRevocationNotice"
+    },
+    {
+      "file" : "invite.revocation.forged.json",
+      "flow" : "invite",
+      "id" : "invite.revocation.forged",
+      "type" : "HavenInviteRevocationNotice"
+    },
+    {
+      "file" : "invite.contact-request.valid.json",
+      "flow" : "invite",
+      "id" : "invite.contact-request.valid",
+      "type" : "HavenInviteContactRequest"
+    },
+    {
+      "file" : "chat.invitation.valid.json",
+      "flow" : "chat",
+      "id" : "chat.invitation.valid",
+      "type" : "ChatInvitationArtifact"
+    },
+    {
+      "file" : "chat.invitation.stress-text.json",
+      "flow" : "chat",
+      "id" : "chat.invitation.stress-text",
+      "type" : "ChatInvitationArtifact"
+    },
+    {
+      "file" : "chat.invitation.tampered.json",
+      "flow" : "chat",
+      "id" : "chat.invitation.tampered",
+      "type" : "ChatInvitationArtifact"
+    },
+    {
+      "file" : "chat.acceptance.valid.json",
+      "flow" : "chat",
+      "id" : "chat.acceptance.valid",
+      "type" : "ChatInvitationAcceptance"
+    },
+    {
+      "file" : "chat.acceptance.wrong-key.json",
+      "flow" : "chat",
+      "id" : "chat.acceptance.wrong-key",
+      "type" : "ChatInvitationAcceptance"
+    },
+    {
+      "file" : "bridge.signing-challenge.valid.json",
+      "flow" : "bridge",
+      "id" : "bridge.signing-challenge.valid",
+      "type" : "IdentitySigningChallenge"
+    },
+    {
+      "file" : "bridge.signing-challenge.expired.json",
+      "flow" : "bridge",
+      "id" : "bridge.signing-challenge.expired",
+      "type" : "IdentitySigningChallenge"
+    },
+    {
+      "file" : "bridge.signing-challenge.too-long.json",
+      "flow" : "bridge",
+      "id" : "bridge.signing-challenge.too-long",
+      "type" : "IdentitySigningChallenge"
+    }
+  ],
+  "generator" : "Tests\/CellBaseTests\/InteropFixturesV1Tests.swift",
+  "parties" : [
+    {
+      "descriptor" : {
+        "algorithm" : "EdDSA",
+        "curveType" : "Curve25519",
+        "displayName" : "alice",
+        "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+        "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+      },
+      "name" : "alice",
+      "seedHex" : "1e3ff6d5a082d337f921b148ca213b0b5c9aa2313487533d3681f78979aa163a"
+    },
+    {
+      "descriptor" : {
+        "algorithm" : "EdDSA",
+        "curveType" : "Curve25519",
+        "displayName" : "bob",
+        "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+        "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+      },
+      "name" : "bob",
+      "seedHex" : "7fad4ed0b06eeb65cbeb0c85dece7d64d8c08512f5abca6845e33548e4e268bc"
+    },
+    {
+      "descriptor" : {
+        "algorithm" : "EdDSA",
+        "curveType" : "Curve25519",
+        "displayName" : "mallory",
+        "publicKey" : "0dXzEDrAuTUuZBOH5cdej0MPEzv1pK0A8nB47Y5YwqI=",
+        "uuid" : "6F1C2B0A-0000-4000-8000-0000000BAD00"
+      },
+      "name" : "mallory",
+      "seedHex" : "af7f4f48a4132241d17dc7c193daa0d26b614e81afa9052df94296ede0fd34a6"
+    }
+  ],
+  "schema" : "haven.interop.fixtures.v1",
+  "signature" : "Ed25519 (RFC 8032) over the canonical bytes. Keys are derived from SHA-256(\"haven-interop-v1\/<name>\") and are public test keys.",
+  "verifyAt" : "2026-10-27T12:00:00Z",
+  "verifyAtEpoch" : 1793102400
+}
