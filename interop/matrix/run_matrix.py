@@ -113,13 +113,23 @@ def flow_extend(host: Peer, guest: Peer, stranger: Peer, steps: Steps, _node: di
     steps.check("host reviews, same human code", review.get("status") == "reviewable" and review.get("humanCode") == asked.get("humanCode"), review)
     approved = host.set("extension", "extension.approveRequest", asked["payload"])
     steps.check("host signs approval", isinstance(approved, dict) and approved.get("payload"), approved)
-    accepted = guest.set("extension", "extension.acceptApproval", {"payload": approved["payload"], "issuerIdentity": approved["issuerIdentity"]})
+    # Binding's approval result names only the issuer's UUID; the guest gets the
+    # host's public descriptor out of band, as a new device would.
+    issuer = approved.get("issuerIdentity") or host.descriptor
+    accepted = guest.set("extension", "extension.acceptApproval", {"payload": approved["payload"], "issuerIdentity": issuer})
     steps.check("guest verifies approval signature", accepted.get("status") == "ok" and accepted.get("signatureVerified") is True, accepted)
     other = stranger.set("extension", "extension.beginRequest", {"audience": AUDIENCE})
     foreign = host.set("extension", "extension.approveRequest", other["payload"])
     guest.set("extension", "extension.beginRequest", {"audience": AUDIENCE})
-    wrong = guest.set("extension", "extension.acceptApproval", {"payload": foreign["payload"], "issuerIdentity": foreign["issuerIdentity"]})
+    wrong = guest.set("extension", "extension.acceptApproval", {"payload": foreign["payload"], "issuerIdentity": foreign.get("issuerIdentity") or host.descriptor})
     steps.check("guest refuses an approval for someone else's request", not (isinstance(wrong, dict) and wrong.get("status") == "ok"), wrong)
+
+
+def long_link(prepared: dict) -> str:
+    """The link the invitee verifies: the self-contained one when the issuer
+    gives it, else the short link (Binding sends only that once published),
+    which the invitee resolves at the landing."""
+    return prepared.get("selfContainedLink") or prepared["link"]
 
 
 def flow_invite(host: Peer, guest: Peer, _stranger: Peer, steps: Steps, node: dict):
@@ -129,8 +139,8 @@ def flow_invite(host: Peer, guest: Peer, _stranger: Peer, steps: Steps, node: di
     guest.op("invitation", landingBase=base)
     p = host.set("invitation", "invite.prepare", {"recipient": f"guest+{port}@example.org", "recipientDisplayName": "Guest"})
     steps.check("host prepares and publishes on its landing", p.get("status") == "ok" and p.get("published") and p["link"].endswith("/i/" + p["humanCode"]), p)
-    verdict = guest.set("invitation", "invite.verify", {"link": p["selfContainedLink"]})
-    steps.check("guest verifies the long link", verdict.get("code") == "valid", verdict)
+    verdict = guest.set("invitation", "invite.verify", {"link": long_link(p)})
+    steps.check("guest verifies the link", verdict.get("code") == "valid", verdict)
     reply = guest.set("invitation", "invite.respond", {"link": p["link"], "message": f"hei fra {guest.lang}"})
     steps.check("guest replies via short code", reply.get("status") == "ok", reply)
     status = host.set("invitation", "invite.refreshStatus", {})
@@ -140,8 +150,10 @@ def flow_invite(host: Peer, guest: Peer, _stranger: Peer, steps: Steps, node: di
     steps.check("reply is collected once", host.set("invitation", "invite.pullContactRequests", {}).get("receivedCount") == 0)
     p2 = host.set("invitation", "invite.prepare", {"recipient": f"guest2+{port}@example.org"})
     host.set("invitation", "invite.revoke", {"ticketID": p2["ticketID"]})
-    late = guest.set("invitation", "invite.respond", {"link": p2["selfContainedLink"]})
-    steps.check("revoked link refuses the reply", late.get("code") == "not_active", late)
+    late = guest.set("invitation", "invite.respond", {"link": long_link(p2)})
+    # Swift's landing answers a short code with the same not_available for
+    # unknown, expired and revoked; Python and Go say not_active.
+    steps.check("revoked link refuses the reply", late.get("code") in ("not_active", "not_available"), late)
 
 
 def flow_chat(host: Peer, guest: Peer, stranger: Peer, steps: Steps, node: dict):

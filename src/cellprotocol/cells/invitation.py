@@ -610,12 +610,33 @@ class InvitationCell(GeneralCell):
                 remote = f"Lokalt trukket tilbake, men scaffoldet svarte ikke: {_rejected(status, body)} Prøv igjen."
         return self._done(_ok("Invitasjonen er trukket tilbake. " + remote, True, ticketID=ticket_id))
 
-    def verify(self, value: Any) -> dict[str, Any]:
+    async def _resolve_token(self, link: str, payload: dict[str, Any]) -> tuple[Optional[str], Optional[dict[str, Any]]]:
+        """The ticket token behind a link. A short code is looked up at the landing that holds it."""
+        try:
+            token = inv.token_from_link(link)
+        except inv.LinkFailure as failure:
+            return None, _error(failure.code, failure.message)
+        if not inv.looks_like_human_code(token):
+            return token, None
+        parsed = urlparse(link.strip())
+        base = f"{parsed.scheme}://{parsed.netloc}" if parsed.scheme in ("http", "https") and parsed.netloc else None
+        base = base or _string(payload.get("landingBase")) or (self._bases()[0] if self._bases() else None)
+        if base is None:
+            return None, _error("not_configured", "En kort kode trenger adressen til scaffoldet som holder invitasjonen.")
+        status, body = await self._transport("GET", f"{base.strip(' /')}/i/{token}", None, {})
+        if not (200 <= status < 300) or not isinstance(body, dict) or not isinstance(body.get("ticketToken"), str):
+            return None, _error("not_available", _rejected(status, body) if status else "Fikk ikke kontakt med scaffoldet.")
+        return body["ticketToken"], None
+
+    async def verify(self, value: Any) -> dict[str, Any]:
         payload = value if isinstance(value, dict) else {}
         link = _string(payload.get("link")) or _string(value)
         try:
             if link is not None:
-                ticket = inv.decode_ticket(inv.token_from_link(link))
+                token, problem = await self._resolve_token(link, payload)
+                if problem is not None:
+                    return problem
+                ticket = inv.decode_ticket(token)
             elif isinstance(payload.get("ticket"), dict):
                 ticket = HavenInviteTicket.from_wire(payload["ticket"])
             else:
@@ -650,21 +671,12 @@ class InvitationCell(GeneralCell):
         link = _string(payload.get("link"))
         if link is None:
             return self._fail(_error("bad_request", "Send `link`: invitasjonslenken du fikk."))
-        try:
-            token = inv.token_from_link(link)
-        except inv.LinkFailure as failure:
-            return self._fail(_error(failure.code, failure.message))
+        token, problem = await self._resolve_token(link, payload)
+        if problem is not None:
+            return self._fail(problem)
         parsed = urlparse(link.strip())
         base = f"{parsed.scheme}://{parsed.netloc}" if parsed.scheme in ("http", "https") and parsed.netloc else None
         base = base or _string(payload.get("landingBase")) or (self._bases()[0] if self._bases() else None)
-
-        if inv.looks_like_human_code(token):
-            if base is None:
-                return self._fail(_error("not_configured", "En kort kode trenger adressen til scaffoldet som holder invitasjonen."))
-            status, body = await self._transport("GET", f"{base.strip(' /')}/i/{token}", None, {})
-            if not (200 <= status < 300) or not isinstance(body, dict) or not isinstance(body.get("ticketToken"), str):
-                return self._fail(_error("not_available", _rejected(status, body) if status else "Fikk ikke kontakt med scaffoldet."))
-            token = body["ticketToken"]
         try:
             ticket = inv.decode_ticket(token)
         except inv.LinkFailure as failure:
