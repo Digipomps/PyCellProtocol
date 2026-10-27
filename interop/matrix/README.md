@@ -39,6 +39,7 @@ result such as `"error: ..."` is a result, not a refusal.
 | `init` | `name` | Makes a fresh identity in an in-memory vault, a home `ChatCell` (`home`) and an `EntityScaffoldExtensionCell` (`extension`) owned by it | `{identity, descriptor}`: the identity's wire JSON and its `IdentityPublicKeyDescriptor` |
 | `invitation` | `landingBase`, `contactEndpointID`? | (Re)creates the `InvitationCell` (`invitation`) | `{cell}` |
 | `serve` | `port`, `topic`? | Starts a node on `127.0.0.1:port`: an authenticated bridgehead whose public URL is `ws://127.0.0.1:port`, a `ChatCell` named `Chat` owned by the identity (`chat`), and the invitation landing at `/i/` with rate limits off | `{landingBase, chatURL}` |
+| `admit` | `identity` | The chat owner admits an invited identity the way its language does. Swift's ChatCell needs an Agreement the owner signs (`addAgreement(_:for:authorizedBy: owner)`); the Python and Go ChatCells admit by the verified acceptance and answer `{admittedBy: "acceptance"}` | `{admittedBy}` |
 | `call` | `cell`, `method` (`get`/`set`), `key`, `value` | Calls a local cell as its owner | the cell's answer |
 | `remote` | `url`, `method`, `key`, `value` | Calls a cell over the authenticated bridge as this identity; one connection per URL | the cell's answer |
 

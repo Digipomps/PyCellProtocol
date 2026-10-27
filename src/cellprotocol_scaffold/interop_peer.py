@@ -109,6 +109,10 @@ class Peer:
             time.sleep(0.05)
         return {"landingBase": f"http://127.0.0.1:{port}", "chatURL": f"ws://127.0.0.1:{port}/bridgehead/{chat.uuid}/Chat"}
 
+    def op_admit(self, msg: dict) -> Any:
+        """Swift's owner signs an Agreement here; this ChatCell admits by the verified acceptance."""
+        return {"admittedBy": "acceptance"}
+
     def op_call(self, msg: dict) -> Any:
         cell = self.cells.get(msg["cell"])
         if cell is None:

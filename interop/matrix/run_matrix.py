@@ -150,6 +150,7 @@ def flow_chat(host: Peer, guest: Peer, stranger: Peer, steps: Steps, port: int, 
     url = node["chatURL"]
     host.set("chat", "audience.inviteIdentities", [guest.identity])
     artifact = host.set("chat", "audience.generateInvitationArtifacts", True)[0]
+    host.op("admit", identity=guest.identity)
     acceptance = guest.set("home", "audience.generateInvitationAcceptance", artifact)
     steps.check("guest signs acceptance on its own node", isinstance(acceptance, dict) and acceptance.get("invitationID") == artifact.get("invitationID"), acceptance)
     steps.check("guest refused before accepting", refused(lambda: guest.remote(url, "get", "messages")))
