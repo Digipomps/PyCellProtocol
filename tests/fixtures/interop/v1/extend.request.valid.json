@@ -56,6 +56,8 @@
     "version" : 1
   },
   "related" : {
+    "bindingRequestHashBase64" : "ZDkyMGI2MDEwODBkOWMzYzg0M2Q3MDU5NTNhM2E2YWRmOGNjMWRhY2FmMDc4Zjk3ZDIzYjI0ZTY0M2E4MjBkOQ==",
+    "humanCode" : "E5Z69J",
     "requestHashBase64" : "em6sWAmJwoROjVsO1ODz94rajg0oDW\/bevdw2dNDe5E="
   },
   "signatureBase64" : "Qxyu5r0UE23OPUaWGiw3ct1jBuIyI5omjHBFbQ0ni5TGvMf1e1lP1Q\/yOJ8usndjZQ70AJa9VD5+yx1C8DZYBA==",
