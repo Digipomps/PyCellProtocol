@@ -11,6 +11,7 @@ from cellprotocol.interop import channel as channel_auth
 
 from . import entity_anchor_data
 from .bridge_auth import AuthenticatedBridgeSession
+from .invite_landing import InviteLanding, mount_fastapi as mount_invite_landing
 from .registry import ScaffoldRegistry
 
 
@@ -43,6 +44,7 @@ def create_app(
     public_url: str | None = None,
     allow_insecure_loopback: bool | None = None,
     legacy_ready_bridge: bool | None = None,
+    invite_landing: InviteLanding | None = None,
 ) -> Any:
     """ASGI scaffold.
 
@@ -64,6 +66,9 @@ def create_app(
         raise RuntimeError("cellprotocol_scaffold.create_app requires optional dependency 'fastapi'") from error
 
     app = FastAPI(title="PyCellProtocol Scaffold", version="0.1.0")
+    # /i/... is the same invitation landing a Swift CellScaffold serves.
+    app.state.invite_landing = invite_landing or InviteLanding()
+    mount_invite_landing(app, app.state.invite_landing)
     state: dict[str, Any] = {"resolver": None, "owner": None, "lock": asyncio.Lock()}
 
     async def ensure() -> tuple[CellResolver, Any]:
