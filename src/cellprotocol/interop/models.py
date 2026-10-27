@@ -46,7 +46,7 @@ class Spec:
     """How one field travels: wire key, kind, and when it is left out."""
 
     key: str
-    kind: str  # str | int | bool | bytes | strs | model | models | number
+    kind: str  # str | int | bool | bytes | strs | model | models | number | raw
     model: Optional[type] = None
     optional: bool = False
     default: Any = None
@@ -123,7 +123,7 @@ def _encode(value: Any, spec: Spec) -> Any:
         return [item.to_wire() for item in value]
     if kind == "strs":
         return list(value)
-    return value
+    return value  # str, int, bool, number, raw (JSON passed through)
 
 
 def _decode(value: Any, spec: Spec, name: str) -> Any:
@@ -150,6 +150,8 @@ def _decode(value: Any, spec: Spec, name: str) -> Any:
         if not isinstance(value, list) or not all(isinstance(item, str) for item in value):
             raise WireDecodeError(f"{name}: expected list of strings")
         return list(value)
+    if kind == "raw":
+        return value
     if kind == "model":
         assert spec.model is not None
         return spec.model.from_wire(value)

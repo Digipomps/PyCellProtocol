@@ -192,6 +192,72 @@
       "flow" : "bridge",
       "id" : "bridge.channel-auth.wrong-key",
       "type" : "BridgeChannelAuthV1"
+    },
+    {
+      "file" : "extend.credential.valid.json",
+      "flow" : "extend",
+      "id" : "extend.credential.valid",
+      "type" : "VCClaim"
+    },
+    {
+      "file" : "extend.credential.tampered.json",
+      "flow" : "extend",
+      "id" : "extend.credential.tampered",
+      "type" : "VCClaim"
+    },
+    {
+      "file" : "extend.presentation.valid.json",
+      "flow" : "extend",
+      "id" : "extend.presentation.valid",
+      "type" : "VCPresentation"
+    },
+    {
+      "file" : "extend.presentation.wrong-domain.json",
+      "flow" : "extend",
+      "id" : "extend.presentation.wrong-domain",
+      "type" : "VCPresentation"
+    },
+    {
+      "file" : "extend.completion.valid.json",
+      "flow" : "extend",
+      "id" : "extend.completion.valid",
+      "type" : "IdentityLinkCompletionEnvelope"
+    },
+    {
+      "file" : "extend.completion.scope-escalation.json",
+      "flow" : "extend",
+      "id" : "extend.completion.scope-escalation",
+      "type" : "IdentityLinkCompletionEnvelope"
+    },
+    {
+      "file" : "extend.completion.same-key.json",
+      "flow" : "extend",
+      "id" : "extend.completion.same-key",
+      "type" : "IdentityLinkCompletionEnvelope"
+    },
+    {
+      "file" : "extend.completion.expired-approval.json",
+      "flow" : "extend",
+      "id" : "extend.completion.expired-approval",
+      "type" : "IdentityLinkCompletionEnvelope"
+    },
+    {
+      "file" : "extend.completion.tampered-credential.json",
+      "flow" : "extend",
+      "id" : "extend.completion.tampered-credential",
+      "type" : "IdentityLinkCompletionEnvelope"
+    },
+    {
+      "file" : "extend.completion.holder-mismatch.json",
+      "flow" : "extend",
+      "id" : "extend.completion.holder-mismatch",
+      "type" : "IdentityLinkCompletionEnvelope"
+    },
+    {
+      "file" : "extend.completion.wrong-challenge.json",
+      "flow" : "extend",
+      "id" : "extend.completion.wrong-challenge",
+      "type" : "IdentityLinkCompletionEnvelope"
     }
   ],
   "generator" : "Tests\/CellBaseTests\/InteropFixturesV1Tests.swift",
