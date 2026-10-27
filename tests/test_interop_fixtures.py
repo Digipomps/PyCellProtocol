@@ -19,7 +19,9 @@ from cellprotocol.interop import verify as v
 
 FIXTURES = Path(__file__).parent / "fixtures" / "interop" / "v1"
 MANIFEST = json.loads((FIXTURES / "manifest.json").read_text(encoding="utf-8"))
-CASES = {entry["id"]: json.loads((FIXTURES / entry["file"]).read_text(encoding="utf-8")) for entry in MANIFEST["cases"]}
+ALL_CASES = {entry["id"]: json.loads((FIXTURES / entry["file"]).read_text(encoding="utf-8")) for entry in MANIFEST["cases"]}
+# Bridge channel admission vectors are checked in test_interop_channel.py.
+CASES = {key: case for key, case in ALL_CASES.items() if case["type"] != "BridgeChannelAuthV1"}
 NOW = float(MANIFEST["verifyAtEpoch"])
 
 
@@ -41,6 +43,7 @@ def _related(case: dict, name: str):
 
 def test_manifest_covers_all_three_flows_and_the_bridge_proof():
     flows = {entry["flow"] for entry in MANIFEST["cases"]}
+    assert {case["type"] for case in ALL_CASES.values()} - set(WIRE_TYPES) == {"BridgeChannelAuthV1"}
     assert flows == {"extend", "invite", "chat", "bridge"}
     assert len(CASES) >= 28
 

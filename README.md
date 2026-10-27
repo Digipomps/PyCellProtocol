@@ -14,14 +14,23 @@ The first priority is Swift wire compatibility. Python names may be pleasant to 
 Identity signing uses Ed25519 private keys held by the identity vault; an
 identity UUID is never signing material. Owned Cells require a fresh
 private-key control proof for local `get`, `set`, key inspection, flow, and
-attachment operations. Caller-supplied Agreements and inbound bridge signing
-fail closed because Python does not yet implement Swift's complete
-owner-approved Agreement admission or purpose/audience/nonce/expiry signing
-challenge lifecycle.
+attachment operations. Caller-supplied Agreements still fail closed because
+Python does not yet implement Swift's owner-approved Agreement admission.
 
-The ASGI bridge therefore exposes public descriptions but does not upgrade a
-wire-supplied identity into the server owner. Protected bridge reads and writes
-remain denied until an authenticated, replay-resistant session proof is added.
+The ASGI bridge speaks `org.haven.bridge-channel.v1`, the admission handshake
+current Swift bridgeheads require: the client signs a purpose-, audience-,
+nonce- and expiry-bound challenge with its vault key, the server never sends a
+`ready` frame, nothing reaches a Cell before admission, and every later
+command must carry the admitted public key. Admission proves control of a key
+and grants no Cell permission; protected reads and writes stay denied until
+Agreement admission and the origin-proof callback exist. The signed audience is
+the configured public URL (`--public-url` / `PYCELL_PUBLIC_URL`, for example
+`wss://node.example`), never the Host header; without it the bridge refuses.
+`ws://` needs `--allow-insecure-loopback` and a loopback host.
+`PYCELL_LEGACY_READY_BRIDGE=1` restores the old unauthenticated bridge for
+local tests with older Python peers only. Outbound, use
+`WebSocketBridgeClient(url, identity, authenticate=True)`.
+
 Ownerless Cells are intentionally local/public and should not carry private
 state. These limitations are release boundaries, not claims of full Swift
 security or persistence parity.
@@ -63,8 +72,10 @@ byte and are tested against the golden fixtures Swift generates
 python3 -m pytest tests/test_interop_fixtures.py
 ```
 
-These are contracts only. The cells that run the flows on a Python scaffold,
-and the authenticated inbound bridge they need, are not here yet.
+`cellprotocol.interop.channel` is the bridge admission handshake; its tests
+replay the Swift vectors and show the Python server and client emit the same
+bytes. The cells that run the three flows on a Python scaffold are not here
+yet.
 
 ## Upstream parity watch
 

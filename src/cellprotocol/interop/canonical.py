@@ -71,9 +71,12 @@ _ESCAPES = {
 }
 
 
-def _string(value: str) -> str:
+def _string(value: str, escape_slashes: bool = True) -> str:
     out = ['"']
     for char in value:
+        if char == "/" and not escape_slashes:
+            out.append(char)
+            continue
         escaped = _ESCAPES.get(char)
         if escaped is not None:
             out.append(escaped)
@@ -97,7 +100,7 @@ def _number(value: int | float) -> str:
     return repr(value)
 
 
-def _write(value: Any, out: list[str], key_order: str = "foundation") -> None:
+def _write(value: Any, out: list[str], key_order: str = "foundation", escape_slashes: bool = True) -> None:
     if value is None:
         out.append("null")
     elif value is True:
@@ -107,7 +110,7 @@ def _write(value: Any, out: list[str], key_order: str = "foundation") -> None:
     elif isinstance(value, (int, float)):
         out.append(_number(value))
     elif isinstance(value, str):
-        out.append(_string(value))
+        out.append(_string(value, escape_slashes))
     elif isinstance(value, Mapping):
         out.append("{")
         if not all(isinstance(key, str) for key in value.keys()):
@@ -116,31 +119,33 @@ def _write(value: Any, out: list[str], key_order: str = "foundation") -> None:
         for index, key in enumerate(keys):
             if index:
                 out.append(",")
-            out.append(_string(key))
+            out.append(_string(key, escape_slashes))
             out.append(":")
-            _write(value[key], out, key_order)
+            _write(value[key], out, key_order, escape_slashes)
         out.append("}")
     elif isinstance(value, (list, tuple)):
         out.append("[")
         for index, item in enumerate(value):
             if index:
                 out.append(",")
-            _write(item, out, key_order)
+            _write(item, out, key_order, escape_slashes)
         out.append("]")
     else:
         raise CanonicalEncodingError(f"cannot encode {type(value).__name__}")
 
 
-def canonical_json(value: Any, key_order: str = "foundation") -> bytes:
+def canonical_json(value: Any, key_order: str = "foundation", escape_slashes: bool = True) -> bytes:
     """Encode a JSON value exactly like Foundation with `.sortedKeys`.
 
     `key_order="foundation"` is `JSONSerialization` (what signatures cover);
     `key_order="encoder"` is `JSONEncoder` (code-point order).
+    `escape_slashes=False` is `JSONEncoder` with `.withoutEscapingSlashes`,
+    used by the bridge channel authentication envelopes.
     """
     if key_order not in ("foundation", "encoder"):
         raise ValueError(f"unknown key order {key_order}")
     out: list[str] = []
-    _write(value, out, key_order)
+    _write(value, out, key_order, escape_slashes)
     return "".join(out).encode("utf-8")
 
 

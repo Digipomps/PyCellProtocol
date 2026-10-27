@@ -58,6 +58,21 @@ top-level keys, and writes the result with
 `IdentitySigningChallenge` is the exception: its signed bytes are the
 `JSONEncoder` output with `.sortedKeys` directly, with nothing removed.
 
+## Bridge channel admission (`BridgeChannelAuthV1`)
+
+The `bridge.channel-auth.*` cases are the four WebSocket messages of
+`org.haven.bridge-channel.v1` (see `Docs/BridgeIdentitySecurity.md`) with fixed
+nonces, session ID and generation. `encodedBase64` is the transcript,
+`canonicalBase64` the `IdentitySigningChallenge` bytes the client signs, and
+`related` holds each full envelope and the transcript digest.
+
+- Envelopes and bodies use `JSONEncoder` with `.sortedKeys` **and**
+  `.withoutEscapingSlashes`, in code-point key order.
+- The signed challenge escapes slashes like every other `IdentitySigningChallenge`.
+- `issuedAt` is `issuedAtMilliseconds / 1000` through Foundation `Date`, which
+  stores seconds since 2001. `expiresAt` is that date plus 30 seconds, read back.
+  Do the same arithmetic in doubles to get the same digits.
+
 ## Regenerating
 
 On Linux, where swift-crypto's Ed25519 is deterministic, through the Linux gate
@@ -73,5 +88,5 @@ bytes than the committed ones.
 
 ## Not in v1
 
-`ChatMessage` (unsigned, carries a full `Identity`) and the bridge commands.
-They come with the chat and bridge work packages.
+`ChatMessage` (unsigned, carries a full `Identity`) and the Cell commands after
+admission. They come with the chat and bridge work packages.
