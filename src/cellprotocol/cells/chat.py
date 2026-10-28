@@ -5,21 +5,22 @@ needs: messages, participants, audience, the signed invitation artifact and
 acceptance (`ChatInvitationProofUtility`), the composer, and the
 `chat.message` / `chat.participant` / `chat.status` flow events.
 
-Who may use the cell:
+Who may use the cell is decided by its Agreement, as in Swift:
 
 * the owner, proven as for every Python cell;
-* an invited identity once it has accepted: the owner signs a
-  `ChatInvitationArtifact` for it (`audience.generateInvitationArtifacts`), the
-  invitee signs a `ChatInvitationAcceptance` on its own node
-  (`audience.generateInvitationAcceptance`), and anyone may hand both to
-  `audience.acceptInvitationArtifact`, which checks both signatures. From then
-  on that identity's key may read and send. Revoking the invitation takes it
-  away again.
+* anyone holding a contract the cell signed from its Agreement template. The
+  owner picks the conditions with `audience.admissionConditions`:
+  `invitationAccepted` (the requester presented a signed acceptance of a
+  current, unrevoked invitation) or `member` (an accepted invitation, or one
+  the owner accepted directly). With conditions, the cell signs a requester's
+  contract when they hold; with none, only an owner-approved Agreement admits.
+  Every access re-checks the conditions, so revoking an invitation ends access.
 
-Swift reaches the same result through its Agreement grants. Python has no
-Agreement admission yet, so the verified acceptance is what admits here. A
-member is recognised by its signing key, as the authenticated bridge checks
-it on every command.
+Before a guest holds a contract it may read its own `audience.admission.*`
+answers and hand a signed artifact and acceptance to
+`audience.acceptInvitationArtifact`, which checks both signatures. A member is
+recognised by its signing key, as the authenticated bridge checks it on every
+command.
 
 Not ported: end-to-end encrypted envelopes (`crypto.*` answer that only
 plaintext is supported), rekey tracking, the invitation ledger history and the
@@ -34,6 +35,7 @@ import time
 from typing import Any, Callable, Optional
 from uuid import uuid4
 
+from ..agreement import AUTOMATIC_WHEN_CONDITIONS_MET, OWNER_APPROVAL_REQUIRED, LookupCondition
 from ..general_cell import FlowElement, GeneralCell
 from ..identity import Identity, proves_identity_control
 from ..interop import chat as chat_proofs
@@ -68,15 +70,36 @@ WRITE_KEYS = [
     "audience.revokeInvites", "audience.clearInvites", "compose.body", "compose.contentType",
     "sendMessage", "addMessage", "sendComposedMessage", "clearComposer",
 ]
-# An accepted member may do these; everything else is the owner's.
-MEMBER_KEYS = {
-    "status", "state", "messages", "participants", "members", "audience", "audience.mode",
-    "audience.inheritedRecipients", "audience.invitedRecipients", "audience.resolvedRecipients",
-    "compose.body", "compose.contentType", "compose.state", "compose.availableFormats", "crypto", "crypto.state",
-    "sendMessage", "addMessage", "sendComposedMessage", "clearComposer",
-}
-# Self-authenticating: the proofs say who may use them.
-OPEN_KEYS = {"audience.acceptInvitationArtifact", "audience.inspectInvitationArtifact"}
+# Swift ChatCell's Agreement template grants, in the same order.
+TEMPLATE_GRANTS = [
+    ("r---", "feed"), ("rw--", "chat"), ("rw--", "status"), ("rw--", "state"), ("rw--", "messages"),
+    ("rw--", "participants"), ("rw--", "members"), ("rw--", "audience"), ("rw--", "audience.mode"),
+    ("r---", "audience.inheritedRecipients"), ("r---", "audience.invitedRecipients"),
+    ("r---", "audience.resolvedRecipients"), ("r---", "audience.invitations"), ("r---", "audience.invitationLedger"),
+    ("r---", "audience.invitationArtifacts"), ("-w--", "audience.inspectInvitationArtifact"),
+    ("rw--", "audience.inviteIdentities"), ("rw--", "audience.generateInvitationArtifacts"),
+    ("rw--", "audience.generateInvitationAcceptance"), ("rw--", "audience.acceptInvitationArtifact"),
+    ("rw--", "audience.acceptInvites"), ("rw--", "audience.declineInvites"), ("rw--", "audience.revokeInvites"),
+    ("rw--", "audience.removeContextMembers"), ("rw--", "audience.clearInvites"), ("rw--", "compose"),
+    ("rw--", "compose.body"), ("rw--", "compose.contentType"), ("rw--", "compose.state"), ("rw--", "compose.previewRows"),
+    ("r---", "crypto"), ("r---", "crypto.state"), ("r---", "crypto.policy"), ("r---", "crypto.supportedSuites"),
+    ("r---", "crypto.recipients"), ("r---", "crypto.membership"), ("r---", "crypto.rekeyStatus"),
+    ("r---", "crypto.persistencePolicy"), ("r---", "crypto.persistenceMode"), ("r---", "crypto.encryptedMessages"),
+    ("r---", "crypto.draftEnvelope"), ("rw--", "crypto.persistenceMode"), ("rw--", "crypto.requestRekey"),
+    ("rw--", "crypto.prepareDraftEnvelope"), ("rw--", "crypto.openEnvelope"), ("rw--", "crypto.clearDraftEnvelope"),
+    ("rw--", "crypto.clearEncryptedMessages"), ("rw--", "sendMessage"), ("rw--", "sendComposedMessage"),
+    ("rw--", "clearComposer"), ("rw--", "addMessage"), ("rw--", "start"), ("rw--", "stop"),
+]
+# Conditions an owner can put in the Agreement. Each reads `audience.admission.<name>` on the chat.
+ADMISSION_CONDITIONS = ("invitationAccepted", "member")
+ADMISSION_KEYS = {f"audience.admission.{name}": name for name in ADMISSION_CONDITIONS}
+# Usable before a contract: the admission keys answer only for the requester, and
+# an artifact with its acceptance carries the owner's and the invitee's signatures.
+OPEN_BEFORE_ADMISSION = {**{key: "r---" for key in ADMISSION_KEYS}, "audience.acceptInvitationArtifact": "-w--", "audience.inspectInvitationArtifact": "-w--"}
+
+
+def admission_condition(name: str) -> LookupCondition:
+    return LookupCondition(keypath=f"target.audience.admission.{name}", expected_value=True)
 
 
 def _initials(name: str) -> str:
@@ -164,27 +187,92 @@ class ChatCell(GeneralCell):
         self.consumed: dict[str, dict[str, Any]] = {}  # invitation id -> consumption
         self.drafts: dict[str, dict[str, str]] = {}
         self._owner_person = _Person.from_value(owner) if owner is not None else None
+        for permission, key in TEMPLATE_GRANTS:
+            self.agreement_template.add_grant(permission, key)
         for key in READ_KEYS:
-            self.agreement_template.add_grant("r---", key)
             self._get_handlers[key] = self._read
         for key in WRITE_KEYS:
-            self.agreement_template.add_grant("rw--", key)
             self._set_handlers[key] = self._write
+        for key in ADMISSION_KEYS:
+            self._get_handlers[key] = self._admission
+        self._get_handlers["audience.admissionConditions"] = self._admission
+        self._set_handlers["audience.admissionConditions"] = self._set_admission_conditions
 
     # -- access ---------------------------------------------------------------
 
     async def validate_access(self, permission: str, keypath: str, requester: Any | None = None) -> bool:
         if self.owner is None or await proves_identity_control(requester, self.owner):
             return True
-        if keypath in OPEN_KEYS:
+        if OPEN_BEFORE_ADMISSION.get(keypath) == permission:
             return True
-        return keypath in MEMBER_KEYS and self.member_for(requester) is not None
+        if keypath == "audience.admissionConditions" and permission == "-w--":
+            return False  # the owner's alone, whatever "audience" grants say
+        # As Swift: the dispatcher accepts the exact key or its root, the
+        # handler the exact key or "chat".
+        root = keypath.split(".", 1)[0]
+        dispatch = await self.contract_allows(permission, keypath, requester) or (
+            root != keypath and await self.contract_allows(permission, root, requester)
+        )
+        if not dispatch:
+            return False
+        return await self.contract_allows(permission, keypath, requester) or await self.contract_allows(permission, "chat", requester)
 
     def member_for(self, requester: Any) -> Optional[_Person]:
-        for record in self.invitations.values():
-            if record["status"] == "accepted" and record["acceptance"] is not None and record["person"].matches(requester):
-                return record["person"]
+        """The accepted invitee `requester` is, by uuid and signing key. Says who; grants nothing."""
+        record = self.invitations.get(getattr(requester, "uuid", None) or "")
+        if record is not None and record["status"] == "accepted" and record["person"].matches(requester):
+            return record["person"]
         return None
+
+    # -- admission ------------------------------------------------------------
+
+    def admission_condition_holds(self, name: str, requester: Any) -> bool:
+        member = self.member_for(requester)
+        if member is None:
+            return False
+        if name == "member":
+            return True
+        record = self.invitations[member.uuid]
+        artifact, acceptance = record["artifact"], record["acceptance"]
+        if artifact is None or acceptance is None:
+            return False
+        consumed = self.consumed.get(artifact.invitation_id)
+        if consumed is None or consumed["acceptanceID"] != acceptance.acceptance_id:
+            return False
+        try:
+            verify_chat_invitation(artifact, now=self._clock())
+        except VerificationFailure:
+            return False
+        return True
+
+    def admission_conditions(self) -> list[str]:
+        names = []
+        for condition in self.agreement_template.conditions:
+            name = ADMISSION_KEYS.get(condition.keypath.removeprefix("target."))
+            if name is not None:
+                names.append(name)
+        return names
+
+    def apply_admission_conditions(self, names: list[str]) -> None:
+        """Replace the Agreement's conditions; contracts signed under others stop matching."""
+        self.agreement_template.conditions = [admission_condition(name) for name in names]
+        self.agreement_admission_policy = AUTOMATIC_WHEN_CONDITIONS_MET if names else OWNER_APPROVAL_REQUIRED
+
+    async def _admission(self, keypath: str, requester: Any | None) -> Any:
+        if keypath == "audience.admissionConditions":
+            if not await self.validate_access("r---", "audience", requester):
+                raise PermissionError("Cell access denied: audience")
+            return self.admission_conditions()
+        return self.admission_condition_holds(ADMISSION_KEYS[keypath], requester)
+
+    async def _set_admission_conditions(self, keypath: str, value: Any, requester: Any | None) -> Any:
+        _ = keypath
+        value = from_json_value(value)
+        if not isinstance(value, list) or not all(isinstance(item, str) and item in ADMISSION_CONDITIONS for item in value):
+            return f"error: admission conditions must be a list of {list(ADMISSION_CONDITIONS)}"
+        names = list(dict.fromkeys(value))
+        self.apply_admission_conditions(names)
+        return names
 
     def _is_owner(self, requester: Any) -> bool:
         return self.owner is not None and requester is not None and getattr(requester, "uuid", None) == self.owner.uuid

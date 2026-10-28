@@ -109,9 +109,30 @@ class Peer:
             time.sleep(0.05)
         return {"landingBase": f"http://127.0.0.1:{port}", "chatURL": f"ws://127.0.0.1:{port}/bridgehead/{chat.uuid}/Chat"}
 
-    def op_admit(self, msg: dict) -> Any:
-        """Swift's owner signs an Agreement here; this ChatCell admits by the verified acceptance."""
-        return {"admittedBy": "acceptance"}
+    def op_agree(self, msg: dict) -> Any:
+        """Ask a remote cell for a contract: fetch its Agreement template, keep
+        the grants named in `keys` (all when absent), send it back as this
+        identity, and answer the cell's verdict."""
+        url = msg["url"]
+        keys = msg.get("keys")
+        extra = msg.get("extraGrants") or []
+
+        async def call() -> Any:
+            bridge = await self._bridge(url)
+            description = await bridge.request("description", requester=self.me)
+            template = dict(_jsonable(description).get("contractTemplate") or {})
+            if keys is not None:
+                template["grants"] = [g for g in template.get("grants") or [] if g.get("keypath") in keys]
+            template["grants"] = list(template.get("grants") or []) + list(extra)
+            if msg.get("dropConditions"):
+                template["conditions"] = []
+            return await bridge.add_agreement(template, self.me)
+
+        state = self.run(call())
+        refusal = _refusal(state)
+        if refusal is not None:
+            raise Refused(refusal)
+        return {"state": state}
 
     def op_call(self, msg: dict) -> Any:
         cell = self.cells.get(msg["cell"])
@@ -126,15 +147,19 @@ class Peer:
         except PermissionError as error:
             raise Refused(str(error)) from error
 
+    async def _bridge(self, url: str) -> WebSocketBridgeClient:
+        bridge = self.bridges.get(url)
+        if bridge is None:
+            bridge = WebSocketBridgeClient(url, identity=self.me, authenticate=True, allow_insecure_loopback=True, response_timeout=10)
+            await bridge.connect()
+            self.bridges[url] = bridge
+        return bridge
+
     def op_remote(self, msg: dict) -> Any:
         url = msg["url"]
 
         async def call() -> Any:
-            bridge = self.bridges.get(url)
-            if bridge is None:
-                bridge = WebSocketBridgeClient(url, identity=self.me, authenticate=True, allow_insecure_loopback=True, response_timeout=10)
-                await bridge.connect()
-                self.bridges[url] = bridge
+            bridge = await self._bridge(url)
             if msg.get("method") == "get":
                 return await bridge.get(msg["key"], self.me)
             return await bridge.set(msg["key"], msg.get("value"), self.me)

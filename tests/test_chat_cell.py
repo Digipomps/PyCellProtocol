@@ -28,14 +28,23 @@ def public(identity: Identity) -> Identity:
     return Identity.from_json(identity.to_json())
 
 
-async def _invited_chat():
+async def _invited_chat(conditions=("invitationAccepted",)):
     alice, bob, mallory = await _people()
     chat = ChatCell(owner=alice)
+    assert await chat.set("audience.admissionConditions", list(conditions), alice) == list(conditions)
     bob_home = ChatCell(owner=bob)
     await chat.set("audience.inviteIdentities", [bob.to_json()], alice)
     artifacts = await chat.set("audience.generateInvitationArtifacts", True, alice)
     acceptance = await bob_home.set("audience.generateInvitationAcceptance", artifacts[0], bob)
     return alice, bob, mallory, chat, artifacts[0], acceptance
+
+
+async def _request(chat, requester, keys=None):
+    """What a guest sends: the advertised template, with the grants it wants."""
+    template = dict((await chat.advertise(requester))["contractTemplate"])
+    if keys is not None:
+        template["grants"] = [grant for grant in template["grants"] if grant["keypath"] in keys]
+    return template
 
 
 def test_artifact_and_acceptance_verify_as_swift_does():
@@ -56,10 +65,19 @@ def test_invitee_joins_sends_and_reads_after_accepting():
         remote_bob = public(bob)
         with pytest.raises(PermissionError):
             await chat.get("messages", remote_bob)
+        # No proof yet: the Agreement's condition does not hold.
+        assert await chat.add_agreement(await _request(chat, remote_bob), remote_bob) == "rejected"
+        assert await chat.get("audience.admission.invitationAccepted", remote_bob) is False
         accepted = await chat.set("audience.acceptInvitationArtifact", {"artifact": artifact, "acceptance": acceptance}, remote_bob)
         assert accepted["status"] == "accepted" and accepted["idempotent"] is False
         again = await chat.set("audience.acceptInvitationArtifact", {"artifact": artifact, "acceptance": acceptance}, remote_bob)
         assert again["idempotent"] is True
+        # The proof alone opens nothing; the contract does.
+        with pytest.raises(PermissionError):
+            await chat.get("messages", remote_bob)
+        assert await chat.get("audience.admission.invitationAccepted", remote_bob) is True
+        wanted = {"messages", "sendMessage"}
+        assert await chat.add_agreement(await _request(chat, remote_bob, wanted), remote_bob) == "signed"
 
         sent = await chat.set("sendMessage", "Hei Alice", remote_bob)
         assert sent["status"] == "sent" and sent["message"]["ownerUUID"] == bob.uuid
@@ -76,8 +94,12 @@ def test_invitee_joins_sends_and_reads_after_accepting():
         impostor = Identity.from_json({**mallory.to_json(), "uuid": bob.uuid})
         with pytest.raises(PermissionError):
             await chat.get("messages", impostor)
+        # Bob asked only for reading and sending; the owner's keys stay the owner's.
         with pytest.raises(PermissionError):
             await chat.set("audience.generateInvitationArtifacts", True, remote_bob)
+        with pytest.raises(PermissionError):
+            await chat.set("audience.admissionConditions", [], remote_bob)
+        assert await chat.add_agreement(await _request(chat, public(mallory)), public(mallory)) == "rejected"
 
         # Revoking takes access away again.
         await chat.set("audience.revokeInvites", [bob.uuid], alice)
@@ -115,6 +137,7 @@ def test_composer_and_flow_events():
     async def scenario():
         alice, bob, _, chat, artifact, acceptance = await _invited_chat()
         await chat.set("audience.acceptInvitationArtifact", {"artifact": artifact, "acceptance": acceptance}, public(bob))
+        assert await chat.add_agreement(await _request(chat, public(bob)), public(bob)) == "signed"
         await chat.set("compose.body", "  utkast  ", public(bob))
         assert (await chat.get("compose.state", public(bob)))["canSend"] is True
         sent = await chat.set("sendComposedMessage", None, public(bob))
@@ -125,5 +148,49 @@ def test_composer_and_flow_events():
             element = chat._flow_queue.get_nowait()
             topics.append(element.topic)
         assert "chat.message" in topics and "chat.participant" in topics and "chat.status" in topics
+
+    run(scenario())
+
+
+def test_agreement_conditions_decide_admission_as_in_swift():
+    async def scenario():
+        alice, bob, mallory, chat, artifact, acceptance = await _invited_chat(("member",))
+        remote_bob = public(bob)
+        # An owner-accepted invitee is a member without presenting proof.
+        await chat.set("audience.acceptInvites", [bob.uuid], alice)
+        assert await chat.add_agreement(await _request(chat, remote_bob), remote_bob) == "signed"
+        assert (await chat.set("sendMessage", "hei", remote_bob))["status"] == "sent"
+
+        # The same identity does not meet "invitationAccepted" without proof.
+        _, bob2, _, chat2, _, _ = await _invited_chat(("invitationAccepted",))
+        await chat2.set("audience.acceptInvites", [bob2.uuid], chat2.owner)
+        assert await chat2.add_agreement(await _request(chat2, public(bob2)), public(bob2)) == "rejected"
+
+        # A guest cannot widen the grants or drop the conditions.
+        widened = await _request(chat, remote_bob)
+        widened["grants"] = widened["grants"] + [{"keypath": "audience.admissionConditions", "permission": {"group": 6, "other": 0}}]
+        assert await chat.add_agreement(widened, remote_bob) == "rejected"
+        dropped = {**(await _request(chat, remote_bob)), "conditions": []}
+        assert await chat.add_agreement(dropped, remote_bob) == "rejected"
+
+        # Without conditions only the owner approves.
+        assert await chat.set("audience.admissionConditions", [], alice) == []
+        assert await chat.add_agreement(await _request(chat, public(mallory)), public(mallory)) == "rejected"
+        assert await chat.add_agreement(await _request(chat, public(mallory), {"messages"}), public(mallory), authorized_by=alice) == "signed"
+        assert isinstance(await chat.get("messages", public(mallory)), list)
+
+    run(scenario())
+
+
+def test_conditions_travel_in_swifts_agreement_wire_format():
+    async def scenario():
+        _, bob, _, chat, _, _ = await _invited_chat(("invitationAccepted", "member"))
+        template = await _request(chat, public(bob))
+        assert [c["type"] for c in template["conditions"]] == ["lookup", "lookup"]
+        assert template["conditions"][0]["condition"]["keypath"] == "target.audience.admission.invitationAccepted"
+        assert template["conditions"][0]["condition"]["expectedValue"] is True
+        assert template["conditions"][0]["condition"]["name"] == "Lookup condition"
+        grant = next(g for g in template["grants"] if g["keypath"] == "sendMessage")
+        assert grant["permission"] == {"group": 6, "other": 0}
 
     run(scenario())

@@ -8,13 +8,16 @@ written in different languages:
 - **invite**: a node issues an invitation and publishes it on its own landing
   (`/i/...`, as CellScaffold); the invitee verifies the link, replies by short
   code, and the issuer sees the reply.
-- **chat**: a node hosts a chat and invites a guest; the guest signs the
-  acceptance on its own node, joins over the authenticated bridge
-  (`org.haven.bridge-channel.v1`), sends and reads.
+- **chat**: a node hosts a chat whose Agreement requires a proven invitation
+  (`audience.admissionConditions = ["invitationAccepted"]`) and invites a
+  guest; the guest signs the acceptance on its own node, hands in the proof,
+  asks for a contract over the authenticated bridge
+  (`org.haven.bridge-channel.v1`), sends and reads. Access is decided by the
+  Agreement's conditions, the same in Swift, Python and Go.
 
 Each flow runs for every host → guest pair of the peers you give, with negative
 steps (strangers, revoked links and guests, owner-only keys, someone else's
-approval). With Swift, Python and Go that is 3 flows × 9 pairs.
+approval, no proof, widened grants, dropped conditions). With Swift, Python and Go that is 3 flows × 9 pairs.
 
 ```sh
 pip install -e '.[scaffold]'
@@ -39,7 +42,7 @@ result such as `"error: ..."` is a result, not a refusal.
 | `init` | `name` | Makes a fresh identity in an in-memory vault, a home `ChatCell` (`home`) and an `EntityScaffoldExtensionCell` (`extension`) owned by it | `{identity, descriptor}`: the identity's wire JSON and its `IdentityPublicKeyDescriptor` |
 | `invitation` | `landingBase`, `contactEndpointID`? | (Re)creates the `InvitationCell` (`invitation`) | `{cell}` |
 | `serve` | `port`, `topic`? | Starts a node on `127.0.0.1:port`: an authenticated bridgehead whose public URL is `ws://127.0.0.1:port`, a `ChatCell` named `Chat` owned by the identity (`chat`), and the invitation landing at `/i/` with rate limits off | `{landingBase, chatURL}` |
-| `admit` | `identity` | The chat owner admits an invited identity the way its language does. Swift's ChatCell needs an Agreement the owner signs (`addAgreement(_:for:authorizedBy: owner)`); the Python and Go ChatCells admit by the verified acceptance and answer `{admittedBy: "acceptance"}` | `{admittedBy}` |
+| `agree` | `url`, `keys`?, `extraGrants`?, `dropConditions`? | Asks a remote cell for a contract over the authenticated bridge, as this identity: fetches its description, takes the Agreement template, keeps only the grants named in `keys` (all when absent), adds `extraGrants` (Swift `Grant` JSON), drops the conditions when `dropConditions`, and sends it with `agreement`. The cell signs when the request stays inside its template and the conditions hold | `{state}`: `signed` or `rejected` |
 | `call` | `cell`, `method` (`get`/`set`), `key`, `value` | Calls a local cell as its owner | the cell's answer |
 | `remote` | `url`, `method`, `key`, `value` | Calls a cell over the authenticated bridge as this identity; one connection per URL | the cell's answer |
 

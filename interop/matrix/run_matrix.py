@@ -16,9 +16,11 @@ Flows, for host H and guest G:
 - invite: H issues an invitation and publishes it on H's own landing, G
   verifies the link, replies by short code, H sees "joined", pulls and
   verifies the reply once, and a revoked link refuses G's reply.
-- chat: H hosts a chat on its node and invites G, G signs the acceptance on
-  its own node, joins over the authenticated bridge, sends and reads. A
-  stranger, owner-only keys and a revoked guest are refused.
+- chat: H hosts a chat whose Agreement requires a proven invitation, invites
+  G, G signs the acceptance on its own node, hands in the proof, asks for a
+  contract over the authenticated bridge, sends and reads. No proof, widened
+  grants, dropped conditions, a stranger, owner-only keys and a revoked guest
+  are refused.
 
 Exit code 0 only when every step of every cell passes.
 """
@@ -156,16 +158,37 @@ def flow_invite(host: Peer, guest: Peer, _stranger: Peer, steps: Steps, node: di
     steps.check("revoked link refuses the reply", late.get("code") in ("not_active", "not_available"), late)
 
 
+GUEST_GRANTS = ["messages", "sendMessage"]
+# A grant the template does not offer: the owner-only admission setting.
+WIDENING = {"uuid": "7E57AB1E-0000-4000-8000-000000000001", "name": "Condition grant", "keypath": "audience.admissionConditions", "permission": {"group": 6, "other": 0}}
+
+
+def agreed(fn) -> bool:
+    try:
+        result = fn()
+    except PeerError:
+        return False
+    return isinstance(result, dict) and result.get("state") == "signed"
+
+
 def flow_chat(host: Peer, guest: Peer, stranger: Peer, steps: Steps, node: dict):
     url = node["chatURL"]
+    # Access is decided by the Agreement's conditions, the same in every language.
+    conditions = host.set("chat", "audience.admissionConditions", ["invitationAccepted"])
+    steps.check("host requires a proven invitation in the Agreement", conditions == ["invitationAccepted"], conditions)
     host.set("chat", "audience.inviteIdentities", [guest.identity])
     artifact = host.set("chat", "audience.generateInvitationArtifacts", True)[0]
-    host.op("admit", identity=guest.identity)
     acceptance = guest.set("home", "audience.generateInvitationAcceptance", artifact)
     steps.check("guest signs acceptance on its own node", isinstance(acceptance, dict) and acceptance.get("invitationID") == artifact.get("invitationID"), acceptance)
     steps.check("guest refused before accepting", refused(lambda: guest.remote(url, "get", "messages")))
+    steps.check("no contract without proof", not agreed(lambda: guest.op("agree", url=url, keys=GUEST_GRANTS)))
     accepted = guest.remote(url, "set", "audience.acceptInvitationArtifact", {"artifact": artifact, "acceptance": acceptance})
-    steps.check("host verifies both signatures and admits", isinstance(accepted, dict) and accepted.get("status") == "accepted", accepted)
+    steps.check("host verifies both signatures", isinstance(accepted, dict) and accepted.get("status") == "accepted", accepted)
+    steps.check("proof alone opens nothing", refused(lambda: guest.remote(url, "get", "messages")))
+    steps.check("widened grants refused", not agreed(lambda: guest.op("agree", url=url, keys=GUEST_GRANTS, extraGrants=[WIDENING])))
+    steps.check("dropped conditions refused", not agreed(lambda: guest.op("agree", url=url, keys=GUEST_GRANTS, dropConditions=True)))
+    contract = guest.op("agree", url=url, keys=GUEST_GRANTS)
+    steps.check("host signs the guest's Agreement", isinstance(contract, dict) and contract.get("state") == "signed", contract)
     sent = guest.remote(url, "set", "sendMessage", f"Hei fra {guest.lang}")
     steps.check("guest sends over the bridge", isinstance(sent, dict) and sent.get("status") == "sent", sent)
     host.set("chat", "sendMessage", f"Hei tilbake fra {host.lang}")
@@ -174,8 +197,10 @@ def flow_chat(host: Peer, guest: Peer, stranger: Peer, steps: Steps, node: dict)
     steps.check("guest reads both messages", contents == [f"Hei fra {guest.lang}", f"Hei tilbake fra {host.lang}"], messages)
     owners = [m.get("ownerUUID") for m in host.get("chat", "messages")]
     steps.check("host attributes the message to the guest", owners == [guest.uuid, host.uuid], owners)
+    steps.check("stranger gets no contract", not agreed(lambda: stranger.op("agree", url=url, keys=GUEST_GRANTS)))
     steps.check("stranger refused", refused(lambda: stranger.remote(url, "set", "sendMessage", "slipp meg inn")))
-    steps.check("member refused on owner keys", refused(lambda: guest.remote(url, "set", "audience.generateInvitationArtifacts", True)))
+    steps.check("guest refused on owner keys", refused(lambda: guest.remote(url, "set", "audience.generateInvitationArtifacts", True)))
+    steps.check("guest cannot change the conditions", refused(lambda: guest.remote(url, "set", "audience.admissionConditions", [])))
     host.set("chat", "audience.revokeInvites", [guest.uuid])
     steps.check("revoked guest refused", refused(lambda: guest.remote(url, "get", "messages")))
 
