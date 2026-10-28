@@ -1,0 +1,61 @@
+{
+  "canonicalBase64" : "eyJhayI6ImVtYWlsIiwiYXUiOiJhdWQtMGM1ZDFlIiwiYnMiOlt7ImsiOiJuYW1lIiwibyI6IkJva2xpc3RlbiwgMTIuIHNlcC4iLCJ2IjoiQm9iIFRlc3Rlc2VuIn1dLCJjYSI6MTc5MzEwMjAwMCwiY2UiOiJlcC1pbnRlcm9wLTEiLCJlYSI6MTc5NDMxMjAwMCwiZXIiOiJjZWxsOlwvXC9cL0VudGl0eUFuY2hvciIsImduIjoiQm9iIiwiaGMiOiJBQkMyMzQiLCJpZCI6InByaXZhdGUiLCJpcyI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImFsaWNlIiwicHVibGljS2V5IjoiMUtxbnpEbGprTmhpalkwRVhoK0Y3eWVtM3lTOXNIM01NZm5vOUtEYjRRWT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIn0sIm4iOiJBbGljZSAoYWRtaW4pIiwibmMiOiJvYzN0d09sSUhpRnVoVHpcL25iMEhCQT09Iiwibm8iOiJWZWxrb21tZW4gdGlsIG1hc3RlcnByb3NqZWt0ZXQuIiwidCI6Imludi1pbnRlcm9wLTAwMDEiLCJ2IjoxfQ==",
+  "canonicalSHA256Hex" : "d0aa2e85f60dbc006c0c1482fce9e27c1c205811519d7340d50840e32a87dc59",
+  "description" : "Avsendernavnet er endret etter signering.",
+  "encodedBase64" : "eyJhayI6ImVtYWlsIiwiYXUiOiJhdWQtMGM1ZDFlIiwiYnMiOlt7ImsiOiJuYW1lIiwibyI6IkJva2xpc3RlbiwgMTIuIHNlcC4iLCJ2IjoiQm9iIFRlc3Rlc2VuIn1dLCJjYSI6MTc5MzEwMjAwMCwiY2UiOiJlcC1pbnRlcm9wLTEiLCJlYSI6MTc5NDMxMjAwMCwiZXIiOiJjZWxsOlwvXC9cL0VudGl0eUFuY2hvciIsImduIjoiQm9iIiwiaGMiOiJBQkMyMzQiLCJpZCI6InByaXZhdGUiLCJpcyI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImFsaWNlIiwicHVibGljS2V5IjoiMUtxbnpEbGprTmhpalkwRVhoK0Y3eWVtM3lTOXNIM01NZm5vOUtEYjRRWT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIn0sIm4iOiJBbGljZSAoYWRtaW4pIiwibmMiOiJvYzN0d09sSUhpRnVoVHpcL25iMEhCQT09Iiwibm8iOiJWZWxrb21tZW4gdGlsIG1hc3RlcnByb3NqZWt0ZXQuIiwicGYiOnsiYWwiOiJFZERTQSIsImJ5IjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIiwiY3YiOiJDdXJ2ZTI1NTE5Iiwic2ciOiJpZXdJNG5oZ0F3UG1oaXlqRHhPZmp2Ym9uXC90ZDNKN0w0RmpxbHZKckZSTGhrZ2tHOHorUGprNG5xUTVEYUxLcUltZ1VOWjBHb3hCc1N3empONGJMQ2c9PSIsInR5Ijoic2lnbmF0dXJlIn0sInQiOiJpbnYtaW50ZXJvcC0wMDAxIiwidiI6MX0=",
+  "excludedTopLevelKeys" : [
+    "pf"
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "bad_signature"
+  },
+  "flow" : "invite",
+  "id" : "invite.ticket.tampered",
+  "object" : {
+    "ak" : "email",
+    "au" : "aud-0c5d1e",
+    "bs" : [
+      {
+        "k" : "name",
+        "o" : "Boklisten, 12. sep.",
+        "v" : "Bob Testesen"
+      }
+    ],
+    "ca" : 1793102000,
+    "ce" : "ep-interop-1",
+    "ea" : 1794312000,
+    "er" : "cell:\/\/\/EntityAnchor",
+    "gn" : "Bob",
+    "hc" : "ABC234",
+    "id" : "private",
+    "is" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "alice",
+      "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+    },
+    "n" : "Alice (admin)",
+    "nc" : "oc3twOlIHiFuhTz\/nb0HBA==",
+    "no" : "Velkommen til masterprosjektet.",
+    "pf" : {
+      "al" : "EdDSA",
+      "by" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+      "cv" : "Curve25519",
+      "sg" : "iewI4nhgAwPmhiyjDxOfjvbon\/td3J7L4FjqlvJrFRLhkgkG8z+Pjk4nqQ5DaLKqImgUNZ0GoxBsSwzjN4bLCg==",
+      "ty" : "signature"
+    },
+    "t" : "inv-interop-0001",
+    "v" : 1
+  },
+  "signatureBase64" : "iewI4nhgAwPmhiyjDxOfjvbon\/td3J7L4FjqlvJrFRLhkgkG8z+Pjk4nqQ5DaLKqImgUNZ0GoxBsSwzjN4bLCg==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "alice",
+    "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+  },
+  "type" : "HavenInviteTicket"
+}

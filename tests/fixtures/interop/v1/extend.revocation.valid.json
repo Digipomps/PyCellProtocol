@@ -1,0 +1,40 @@
+{
+  "canonicalBase64" : "eyJpc3N1ZXJUeXBlIjoiZXhpc3RpbmdEZXZpY2UiLCJsaW5rSUQiOiJhcHItaW50ZXJvcC0wMDAxIiwicmVhc29uIjoiRW5oZXRlbiBlciBtaXN0ZXQgXC8gc3Rqw6VsZXQiLCJyZXZva2VkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjUwWiIsInJldm9rZWRCeUlkZW50aXR5VVVJRCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyIsInZlcnNpb24iOjF9",
+  "canonicalSHA256Hex" : "c4a80369014a89ce9d313e4252bc1553b84d0a81740a9281a1308619f85bcdc4",
+  "description" : "Alice trekker lenken tilbake. Begrunnelsen inneholder skråstrek og æøå.",
+  "encodedBase64" : "eyJpc3N1ZXJUeXBlIjoiZXhpc3RpbmdEZXZpY2UiLCJsaW5rSUQiOiJhcHItaW50ZXJvcC0wMDAxIiwicHJvb2YiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiaXNzdWVySWRlbnRpdHlVVUlEIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIiwiaXNzdWVyVHlwZSI6ImV4aXN0aW5nRGV2aWNlIiwic2lnbmF0dXJlIjoiRmpBblZkbGd4THRLU05HOVNLY2ROMjVtRkhFXC9cL0tlVU9HR1NFYVwvTHhRK20rVTdHd2lVU0RtU1wvSlpVeWd1TFR6TWhQQ3p4V2pyazF4WnBKTERtYUF3PT0iLCJ0eXBlIjoic2lnbmF0dXJlIn0sInJlYXNvbiI6IkVuaGV0ZW4gZXIgbWlzdGV0IFwvIHN0asOlbGV0IiwicmV2b2tlZEF0IjoiMjAyNi0xMC0yN1QxMTo1OTo1MFoiLCJyZXZva2VkQnlJZGVudGl0eVVVSUQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMiLCJ2ZXJzaW9uIjoxfQ==",
+  "excludedTopLevelKeys" : [
+    "proof"
+  ],
+  "expect" : {
+    "signatureValid" : true,
+    "verdict" : "valid"
+  },
+  "flow" : "extend",
+  "id" : "extend.revocation.valid",
+  "object" : {
+    "issuerType" : "existingDevice",
+    "linkID" : "apr-interop-0001",
+    "proof" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "issuerIdentityUUID" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+      "issuerType" : "existingDevice",
+      "signature" : "FjAnVdlgxLtKSNG9SKcdN25mFHE\/\/KeUOGGSEa\/LxQ+m+U7GwiUSDmS\/JZUyguLTzMhPCzxWjrk1xZpJLDmaAw==",
+      "type" : "signature"
+    },
+    "reason" : "Enheten er mistet \/ stjålet",
+    "revokedAt" : "2026-10-27T11:59:50Z",
+    "revokedByIdentityUUID" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+    "version" : 1
+  },
+  "signatureBase64" : "FjAnVdlgxLtKSNG9SKcdN25mFHE\/\/KeUOGGSEa\/LxQ+m+U7GwiUSDmS\/JZUyguLTzMhPCzxWjrk1xZpJLDmaAw==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "alice",
+    "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+  },
+  "type" : "IdentityLinkRevocation"
+}

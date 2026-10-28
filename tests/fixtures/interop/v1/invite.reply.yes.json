@@ -1,0 +1,51 @@
+{
+  "canonicalBase64" : "eyJhdWRpZW5jZVRva2VuIjoiYXVkLTBjNWQxZSIsImNyZWF0ZWRBdCI6MTc5MzEwMjMwMCwiZGVjaXNpb24iOiJ5ZXMiLCJub25jZSI6IjQyWGJpMzVtdnBIVXJiclgiLCJyZXBsaWVyIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYm9iIiwicHVibGljS2V5IjoiUFNobjVKYmFhS1QwbHB6SEhGZ2M0ZnE4SUJERzRXeU9rZFpMMFVlZnV6RT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwQjBCIn0sInJlcGxpZXJLZXlBZ3JlZW1lbnRLZXkiOiJIbjVXZFwvdUV4c2hsMzdJS05YR1ZTeWZ2Z0RVSlhRMmFWbERiTmVFTXlRYz0iLCJyZXBseUlEIjoicnAtaW50ZXJvcC15ZXMiLCJzY2hlbWEiOiJoYXZlbi5pbnZpdGUucmVwbHkudjEiLCJ0aWNrZXRJRCI6Imludi1pbnRlcm9wLTAwMDEifQ==",
+  "canonicalSHA256Hex" : "ba71bd51c6a133c69d582a7e2f5a7210f18725f4d11bc408f7bfaba854336c1a",
+  "description" : "Bobs svar: yes.",
+  "encodedBase64" : "eyJhdWRpZW5jZVRva2VuIjoiYXVkLTBjNWQxZSIsImNyZWF0ZWRBdCI6MTc5MzEwMjMwMCwiZGVjaXNpb24iOiJ5ZXMiLCJub25jZSI6IjQyWGJpMzVtdnBIVXJiclgiLCJwcm9vZiI6eyJhbCI6IkVkRFNBIiwiYnkiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDBCMEIiLCJjdiI6IkN1cnZlMjU1MTkiLCJzZyI6IjNpcHdlcU5JV1h2WEQ0cUpYNExxaXlERUpzUHAyQUZ5VkViOENkc1oyTUlvRngzUDUrZ0hFSGxoTWxCY1dyR1ExcDNIVGxOYWhJbXpqM2FJZUlrdERBPT0iLCJ0eSI6InNpZ25hdHVyZSJ9LCJyZXBsaWVyIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYm9iIiwicHVibGljS2V5IjoiUFNobjVKYmFhS1QwbHB6SEhGZ2M0ZnE4SUJERzRXeU9rZFpMMFVlZnV6RT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwQjBCIn0sInJlcGxpZXJLZXlBZ3JlZW1lbnRLZXkiOiJIbjVXZFwvdUV4c2hsMzdJS05YR1ZTeWZ2Z0RVSlhRMmFWbERiTmVFTXlRYz0iLCJyZXBseUlEIjoicnAtaW50ZXJvcC15ZXMiLCJzY2hlbWEiOiJoYXZlbi5pbnZpdGUucmVwbHkudjEiLCJ0aWNrZXRJRCI6Imludi1pbnRlcm9wLTAwMDEifQ==",
+  "excludedTopLevelKeys" : [
+    "proof"
+  ],
+  "expect" : {
+    "signatureValid" : true,
+    "verdict" : "valid"
+  },
+  "flow" : "invite",
+  "id" : "invite.reply.yes",
+  "object" : {
+    "audienceToken" : "aud-0c5d1e",
+    "createdAt" : 1793102300,
+    "decision" : "yes",
+    "nonce" : "42Xbi35mvpHUrbrX",
+    "proof" : {
+      "al" : "EdDSA",
+      "by" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+      "cv" : "Curve25519",
+      "sg" : "3ipweqNIWXvXD4qJX4LqiyDEJsPp2AFyVEb8CdsZ2MIoFx3P5+gHEHlhMlBcWrGQ1p3HTlNahImzj3aIeIktDA==",
+      "ty" : "signature"
+    },
+    "replier" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "bob",
+      "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+    },
+    "replierKeyAgreementKey" : "Hn5Wd\/uExshl37IKNXGVSyfvgDUJXQ2aVlDbNeEMyQc=",
+    "replyID" : "rp-interop-yes",
+    "schema" : "haven.invite.reply.v1",
+    "ticketID" : "inv-interop-0001"
+  },
+  "related" : {
+    "ticket" : "invite.ticket.valid"
+  },
+  "signatureBase64" : "3ipweqNIWXvXD4qJX4LqiyDEJsPp2AFyVEb8CdsZ2MIoFx3P5+gHEHlhMlBcWrGQ1p3HTlNahImzj3aIeIktDA==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "bob",
+    "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+  },
+  "type" : "HavenInviteReply"
+}

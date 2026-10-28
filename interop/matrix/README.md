@@ -1,0 +1,57 @@
+# Interop matrix
+
+`run_matrix.py` checks that the three student flows work between scaffolds
+written in different languages:
+
+- **extend**: a new device asks to join an entity, the entity's node reviews and
+  signs the approval, the device verifies it.
+- **invite**: a node issues an invitation and publishes it on its own landing
+  (`/i/...`, as CellScaffold); the invitee verifies the link, replies by short
+  code, and the issuer sees the reply.
+- **chat**: a node hosts a chat whose Agreement requires a proven invitation
+  (`audience.admissionConditions = ["invitationAccepted"]`) and invites a
+  guest; the guest signs the acceptance on its own node, hands in the proof,
+  asks for a contract over the authenticated bridge
+  (`org.haven.bridge-channel.v1`), sends and reads. Access is decided by the
+  Agreement's conditions, the same in Swift, Python and Go.
+
+Each flow runs for every host → guest pair of the peers you give, with negative
+steps (strangers, revoked links and guests, owner-only keys, someone else's
+approval, no proof, widened grants, dropped conditions). With Swift, Python and Go that is 3 flows × 9 pairs.
+
+```sh
+pip install -e '.[scaffold]'
+go build -o /tmp/interop-peer github.com/Digipomps/GoCellProtocol/cmd/interop-peer
+python3 interop/matrix/run_matrix.py \
+  --peer python="python3 -m cellprotocol_scaffold.interop_peer" \
+  --peer go=/tmp/interop-peer \
+  --out TESTRESULT.md
+```
+
+## Peer protocol `haven.interop-peer.v1`
+
+A peer is a program that reads one JSON object per line on stdin and writes one
+JSON line per request on stdout: `{"ok": true, "result": ...}` or
+`{"ok": false, "error": "..."}`. A refusal (access denied, a bridge answer with
+`state: error`) is `ok: false`. Results are the cell's own wire JSON. A cell
+result such as `"error: ..."` is a result, not a refusal.
+
+| op | fields | does | result |
+|---|---|---|---|
+| `hello` | | | `{lang, protocol: "haven.interop-peer.v1"}` |
+| `init` | `name` | Makes a fresh identity in an in-memory vault, a home `ChatCell` (`home`) and an `EntityScaffoldExtensionCell` (`extension`) owned by it | `{identity, descriptor}`: the identity's wire JSON and its `IdentityPublicKeyDescriptor` |
+| `invitation` | `landingBase`, `contactEndpointID`? | (Re)creates the `InvitationCell` (`invitation`) | `{cell}` |
+| `serve` | `port`, `topic`? | Starts a node on `127.0.0.1:port`: an authenticated bridgehead whose public URL is `ws://127.0.0.1:port`, a `ChatCell` named `Chat` owned by the identity (`chat`), and the invitation landing at `/i/` with rate limits off | `{landingBase, chatURL}` |
+| `agree` | `url`, `keys`?, `extraGrants`?, `dropConditions`? | Asks a remote cell for a contract over the authenticated bridge, as this identity: fetches its description, takes the Agreement template, keeps only the grants named in `keys` (all when absent), adds `extraGrants` (Swift `Grant` JSON), drops the conditions when `dropConditions`, and sends it with `agreement`. The cell signs when the request stays inside its template and the conditions hold | `{state}`: `signed` or `rejected` |
+| `call` | `cell`, `method` (`get`/`set`), `key`, `value` | Calls a local cell as its owner | the cell's answer |
+| `remote` | `url`, `method`, `key`, `value` | Calls a cell over the authenticated bridge as this identity; one connection per URL | the cell's answer |
+
+Peers today:
+
+- Python: `python3 -m cellprotocol_scaffold.interop_peer` (this repo).
+- Go: `cmd/interop-peer` in Digipomps/GoCellProtocol.
+- Swift: to be added on a CellScaffold build (CellBase `ChatCell`, the
+  CellScaffold bridgehead and `VaporInviteLanding`, Binding's `InvitationCell`
+  and `EntityScaffoldExtensionCell`).
+
+CI runs the Python and Go pairs (`.github/workflows/interop-matrix.yml`).

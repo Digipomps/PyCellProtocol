@@ -1,0 +1,110 @@
+{
+  "canonicalBase64" : "eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL2V4YW1wbGVzL3YxIl0sImNoYWxsZW5nZSI6InVmVW51K3RuZTQrVkk1alJQMmJWaXAzb3ZvNGJYblRhNklpbnBjNG0zOFE9IiwiZG9tYWluIjoic3RhZ2luZy5oYXZlbi5kaWdpcG9tcHMub3JnIiwiaG9sZGVyIjoiZGlkOmtleTp6Nk1raVp6ZWZRaWJ1WWNpYWlLeXR5VmdKUjk3U2VzamR2SjdVY1lWa3d1a3loSDIiLCJob2xkZXJCaW5kaW5nIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYm9iIiwicHVibGljS2V5IjoiUFNobjVKYmFhS1QwbHB6SEhGZ2M0ZnE4SUJERzRXeU9rZFpMMFVlZnV6RT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwQjBCIn0sImlkIjoiY2VsbDovLy9pZGVudGl0eS82RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDBCMEIvY2xhaW1zLzlFNUUwMDAwLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMDAwMSIsInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJTYW1lRW50aXR5SWRlbnRpdHlMaW5rUHJlc2VudGF0aW9uIl0sInZlcmlmaWFibGVDcmVkZW50aWFsIjpbeyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL2V4YW1wbGVzL3YxIl0sImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImFwcHJvdmVkRG9tYWlucyI6WyJwcml2YXRlIl0sImFwcHJvdmVkSWRlbnRpdHlDb250ZXh0cyI6WyJkZWZhdWx0Il0sImFwcHJvdmVkU2NvcGVzIjpbImNoYXQucmVhZCIsImNoYXQud3JpdGUiXSwiYXNzdXJhbmNlTGV2ZWwiOiJoaWdoIiwiYXNzdXJhbmNlU291cmNlIjoiZnJlc2hfYXV0aF9hbmRfcG9zc2Vzc2lvbiIsImVucm9sbG1lbnRSZXF1ZXN0SGFzaCI6ImVtNnNXQW1Kd29ST2pWc08xT0R6OTRyYWpnMG9EVy9iZXZkdzJkTkRlNUU9IiwiZW50aXR5QmluZGluZyI6eyJhdWRpZW5jZSI6InN0YWdpbmcuaGF2ZW4uZGlnaXBvbXBzLm9yZyIsImJpbmRpbmdJRCI6ImJpbmQtMDAwMSIsImVudGl0eUFuY2hvclJlZmVyZW5jZSI6ImNlbGw6Ly8vRW50aXR5QW5jaG9yIiwibW9kZSI6ImxvY2FsRW50aXR5QW5jaG9yIn0sImlkIjoiZGlkOmtleTp6Nk1raVp6ZWZRaWJ1WWNpYWlLeXR5VmdKUjk3U2VzamR2SjdVY1lWa3d1a3loSDIiLCJsaW5rVHlwZSI6InNhbWVfZW50aXR5IiwibGlua2VkSWRlbnRpdHkiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJib2IiLCJwdWJsaWNLZXkiOiJQU2huNUpiYWFLVDBscHpISEZnYzRmcThJQkRHNFd5T2tkWkwwVWVmdXpFPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDBCMEIifSwicmV2b2NhdGlvblJlZmVyZW5jZSI6ImNlbGw6Ly8vRW50aXR5QW5jaG9yL2lkZW50aXR5TGlua3MvcmV2b2NhdGlvbnMvYXByLWludGVyb3AtMDAwMSIsInZhbGlkVW50aWwiOiIyMDI2LTEwLTI3VDEyOjA0OjMwWiJ9LCJpZCI6ImNlbGw6Ly8vaWRlbnRpdHkvNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwQjBCL2NsYWltcy9DMUExMDAwMC0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDAwMDEiLCJpc3N1YW5jZURhdGUiOiIyMDI2LTEwLTI3VDExOjU5OjMwWiIsImlzc3VlciI6ImRpZDprZXk6ejZNa3RtUlFWdTV2WWtYRWJ6ZU5Cb2tNWW5vcXhRcTliOXZ2NkZKb3RoQTh6VUhiIiwicHJvb2YiOnsiY3JlYXRlZCI6IjIwMjYtMTAtMjdUMTE6NTk6MzBaIiwicHJvb2ZQdXJwb3NlIjoiYXNzZXJ0aW9uTWV0aG9kIiwic2lnbmF0dXJlRGF0YSI6IkxzSC85OEoyOGFmZitwNWZHVDFRcE4yWVBWS2J6d0UzVDNBL3UrdWlZcHM3UUx3bXJSRDVoQUxGTVdqNHd5cnNVMTlOYzdwQzdSUVpieUxYS202Y0NnPT0iLCJ0eXBlIjoiRWQyNTUxOVNpZ25hdHVyZTIwMjAiLCJ2ZXJpZmljYXRpb25NZXRob2QiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMifSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCIsIlNhbWVFbnRpdHlJZGVudGl0eUxpbmtDcmVkZW50aWFsIl19XX0=",
+  "canonicalSHA256Hex" : "eac439e3a11bd70f94db8e814059038d6b03983c05a9b206e94d1bc14386eee3",
+  "description" : "Bob viser fram credentialet, bundet til tjenerens utfordring og domene. Signert over JSONEncoder(sortedKeys, withoutEscapingSlashes) uten proof; verifiableCredential har med sine proof.",
+  "encodedBase64" : "eyJAY29udGV4dCI6WyJodHRwczpcL1wvd3d3LnczLm9yZ1wvMjAxOFwvY3JlZGVudGlhbHNcL3YxIiwiaHR0cHM6XC9cL3d3dy53My5vcmdcLzIwMThcL2NyZWRlbnRpYWxzXC9leGFtcGxlc1wvdjEiXSwiY2hhbGxlbmdlIjoidWZVbnUrdG5lNCtWSTVqUlAyYlZpcDNvdm80YlhuVGE2SWlucGM0bTM4UT0iLCJkb21haW4iOiJzdGFnaW5nLmhhdmVuLmRpZ2lwb21wcy5vcmciLCJob2xkZXIiOiJkaWQ6a2V5Ono2TWtpWnplZlFpYnVZY2lhaUt5dHlWZ0pSOTdTZXNqZHZKN1VjWVZrd3VreWhIMiIsImhvbGRlckJpbmRpbmciOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJib2IiLCJwdWJsaWNLZXkiOiJQU2huNUpiYWFLVDBscHpISEZnYzRmcThJQkRHNFd5T2tkWkwwVWVmdXpFPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDBCMEIifSwiaWQiOiJjZWxsOlwvXC9cL2lkZW50aXR5XC82RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDBCMEJcL2NsYWltc1wvOUU1RTAwMDAtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwMDAxIiwicHJvb2YiOnsiY3JlYXRlZCI6IjIwMjYtMTAtMjdUMTE6NTk6NDBaIiwicHJvb2ZQdXJwb3NlIjoiYXV0aGVudGljYXRpb24iLCJzaWduYXR1cmVEYXRhIjoiNWdNYm9KYXh4a0VHQ3hUNDAxRFRCQlNDcmVuMG1NZFh4OWNBMzd6TXFnK0VadFl0TXpJOENyQURVR1RtZ3JYck5HeU5KalwvRVhKYlwvQ3ZjQWFLM1RBZz09IiwidHlwZSI6IkVkMjU1MTlTaWduYXR1cmUyMDIwIiwidmVyaWZpY2F0aW9uTWV0aG9kIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwQjBCIn0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJTYW1lRW50aXR5SWRlbnRpdHlMaW5rUHJlc2VudGF0aW9uIl0sInZlcmlmaWFibGVDcmVkZW50aWFsIjpbeyJAY29udGV4dCI6WyJodHRwczpcL1wvd3d3LnczLm9yZ1wvMjAxOFwvY3JlZGVudGlhbHNcL3YxIiwiaHR0cHM6XC9cL3d3dy53My5vcmdcLzIwMThcL2NyZWRlbnRpYWxzXC9leGFtcGxlc1wvdjEiXSwiY3JlZGVudGlhbFN1YmplY3QiOnsiYXBwcm92ZWREb21haW5zIjpbInByaXZhdGUiXSwiYXBwcm92ZWRJZGVudGl0eUNvbnRleHRzIjpbImRlZmF1bHQiXSwiYXBwcm92ZWRTY29wZXMiOlsiY2hhdC5yZWFkIiwiY2hhdC53cml0ZSJdLCJhc3N1cmFuY2VMZXZlbCI6ImhpZ2giLCJhc3N1cmFuY2VTb3VyY2UiOiJmcmVzaF9hdXRoX2FuZF9wb3NzZXNzaW9uIiwiZW5yb2xsbWVudFJlcXVlc3RIYXNoIjoiZW02c1dBbUp3b1JPalZzTzFPRHo5NHJhamcwb0RXXC9iZXZkdzJkTkRlNUU9IiwiZW50aXR5QmluZGluZyI6eyJhdWRpZW5jZSI6InN0YWdpbmcuaGF2ZW4uZGlnaXBvbXBzLm9yZyIsImJpbmRpbmdJRCI6ImJpbmQtMDAwMSIsImVudGl0eUFuY2hvclJlZmVyZW5jZSI6ImNlbGw6XC9cL1wvRW50aXR5QW5jaG9yIiwibW9kZSI6ImxvY2FsRW50aXR5QW5jaG9yIn0sImlkIjoiZGlkOmtleTp6Nk1raVp6ZWZRaWJ1WWNpYWlLeXR5VmdKUjk3U2VzamR2SjdVY1lWa3d1a3loSDIiLCJsaW5rVHlwZSI6InNhbWVfZW50aXR5IiwibGlua2VkSWRlbnRpdHkiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJib2IiLCJwdWJsaWNLZXkiOiJQU2huNUpiYWFLVDBscHpISEZnYzRmcThJQkRHNFd5T2tkWkwwVWVmdXpFPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDBCMEIifSwicmV2b2NhdGlvblJlZmVyZW5jZSI6ImNlbGw6XC9cL1wvRW50aXR5QW5jaG9yXC9pZGVudGl0eUxpbmtzXC9yZXZvY2F0aW9uc1wvYXByLWludGVyb3AtMDAwMSIsInZhbGlkVW50aWwiOiIyMDI2LTEwLTI3VDEyOjA0OjMwWiJ9LCJpZCI6ImNlbGw6XC9cL1wvaWRlbnRpdHlcLzZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQlwvY2xhaW1zXC9DMUExMDAwMC0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDAwMDEiLCJpc3N1YW5jZURhdGUiOiIyMDI2LTEwLTI3VDExOjU5OjMwWiIsImlzc3VlciI6ImRpZDprZXk6ejZNa3RtUlFWdTV2WWtYRWJ6ZU5Cb2tNWW5vcXhRcTliOXZ2NkZKb3RoQTh6VUhiIiwicHJvb2YiOnsiY3JlYXRlZCI6IjIwMjYtMTAtMjdUMTE6NTk6MzBaIiwicHJvb2ZQdXJwb3NlIjoiYXNzZXJ0aW9uTWV0aG9kIiwic2lnbmF0dXJlRGF0YSI6IkxzSFwvOThKMjhhZmYrcDVmR1QxUXBOMllQVktiendFM1QzQVwvdSt1aVlwczdRTHdtclJENWhBTEZNV2o0d3lyc1UxOU5jN3BDN1JRWmJ5TFhLbTZjQ2c9PSIsInR5cGUiOiJFZDI1NTE5U2lnbmF0dXJlMjAyMCIsInZlcmlmaWNhdGlvbk1ldGhvZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyJ9LCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiU2FtZUVudGl0eUlkZW50aXR5TGlua0NyZWRlbnRpYWwiXX1dfQ==",
+  "excludedTopLevelKeys" : [
+    "proof"
+  ],
+  "expect" : {
+    "signatureValid" : true,
+    "verdict" : "valid"
+  },
+  "flow" : "extend",
+  "id" : "extend.presentation.valid",
+  "object" : {
+    "@context" : [
+      "https:\/\/www.w3.org\/2018\/credentials\/v1",
+      "https:\/\/www.w3.org\/2018\/credentials\/examples\/v1"
+    ],
+    "challenge" : "ufUnu+tne4+VI5jRP2bVip3ovo4bXnTa6Iinpc4m38Q=",
+    "domain" : "staging.haven.digipomps.org",
+    "holder" : "did:key:z6MkiZzefQibuYciaiKytyVgJR97SesjdvJ7UcYVkwukyhH2",
+    "holderBinding" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "bob",
+      "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+    },
+    "id" : "cell:\/\/\/identity\/6F1C2B0A-0000-4000-8000-000000000B0B\/claims\/9E5E0000-0000-4000-8000-000000000001",
+    "proof" : {
+      "created" : "2026-10-27T11:59:40Z",
+      "proofPurpose" : "authentication",
+      "signatureData" : "5gMboJaxxkEGCxT401DTBBSCren0mMdXx9cA37zMqg+EZtYtMzI8CrADUGTmgrXrNGyNJj\/EXJb\/CvcAaK3TAg==",
+      "type" : "Ed25519Signature2020",
+      "verificationMethod" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+    },
+    "type" : [
+      "VerifiableCredential",
+      "SameEntityIdentityLinkPresentation"
+    ],
+    "verifiableCredential" : [
+      {
+        "@context" : [
+          "https:\/\/www.w3.org\/2018\/credentials\/v1",
+          "https:\/\/www.w3.org\/2018\/credentials\/examples\/v1"
+        ],
+        "credentialSubject" : {
+          "approvedDomains" : [
+            "private"
+          ],
+          "approvedIdentityContexts" : [
+            "default"
+          ],
+          "approvedScopes" : [
+            "chat.read",
+            "chat.write"
+          ],
+          "assuranceLevel" : "high",
+          "assuranceSource" : "fresh_auth_and_possession",
+          "enrollmentRequestHash" : "em6sWAmJwoROjVsO1ODz94rajg0oDW\/bevdw2dNDe5E=",
+          "entityBinding" : {
+            "audience" : "staging.haven.digipomps.org",
+            "bindingID" : "bind-0001",
+            "entityAnchorReference" : "cell:\/\/\/EntityAnchor",
+            "mode" : "localEntityAnchor"
+          },
+          "id" : "did:key:z6MkiZzefQibuYciaiKytyVgJR97SesjdvJ7UcYVkwukyhH2",
+          "linkedIdentity" : {
+            "algorithm" : "EdDSA",
+            "curveType" : "Curve25519",
+            "displayName" : "bob",
+            "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+            "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+          },
+          "linkType" : "same_entity",
+          "revocationReference" : "cell:\/\/\/EntityAnchor\/identityLinks\/revocations\/apr-interop-0001",
+          "validUntil" : "2026-10-27T12:04:30Z"
+        },
+        "id" : "cell:\/\/\/identity\/6F1C2B0A-0000-4000-8000-000000000B0B\/claims\/C1A10000-0000-4000-8000-000000000001",
+        "issuanceDate" : "2026-10-27T11:59:30Z",
+        "issuer" : "did:key:z6MktmRQVu5vYkXEbzeNBokMYnoqxQq9b9vv6FJothA8zUHb",
+        "proof" : {
+          "created" : "2026-10-27T11:59:30Z",
+          "proofPurpose" : "assertionMethod",
+          "signatureData" : "LsH\/98J28aff+p5fGT1QpN2YPVKbzwE3T3A\/u+uiYps7QLwmrRD5hALFMWj4wyrsU19Nc7pC7RQZbyLXKm6cCg==",
+          "type" : "Ed25519Signature2020",
+          "verificationMethod" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+        },
+        "type" : [
+          "VerifiableCredential",
+          "SameEntityIdentityLinkCredential"
+        ]
+      }
+    ]
+  },
+  "related" : {
+    "holderDID" : "did:key:z6MkiZzefQibuYciaiKytyVgJR97SesjdvJ7UcYVkwukyhH2",
+    "issuerDID" : "did:key:z6MktmRQVu5vYkXEbzeNBokMYnoqxQq9b9vv6FJothA8zUHb"
+  },
+  "signatureBase64" : "5gMboJaxxkEGCxT401DTBBSCren0mMdXx9cA37zMqg+EZtYtMzI8CrADUGTmgrXrNGyNJj\/EXJb\/CvcAaK3TAg==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "bob",
+    "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+  },
+  "type" : "VCPresentation"
+}

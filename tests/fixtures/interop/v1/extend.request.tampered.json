@@ -1,0 +1,68 @@
+{
+  "canonicalBase64" : "eyJhdWRpZW5jZSI6InN0YWdpbmcuaGF2ZW4uZGlnaXBvbXBzLm9yZyIsImNyZWF0ZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTk6MDBaIiwiZGV2aWNlTGFiZWwiOiJTdHVkZW50ZW5zIGLDpnJiYXJlIiwiZW50aXR5QmluZGluZyI6eyJhdWRpZW5jZSI6InN0YWdpbmcuaGF2ZW4uZGlnaXBvbXBzLm9yZyIsImJpbmRpbmdJRCI6ImJpbmQtMDAwMSIsImVudGl0eUFuY2hvclJlZmVyZW5jZSI6ImNlbGw6XC9cL1wvRW50aXR5QW5jaG9yIiwibW9kZSI6ImxvY2FsRW50aXR5QW5jaG9yIn0sImV4cGlyZXNBdCI6IjIwMjYtMTAtMjdUMTI6MDk6MDBaIiwibmV3SWRlbnRpdHkiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJib2IiLCJwdWJsaWNLZXkiOiJQU2huNUpiYWFLVDBscHpISEZnYzRmcThJQkRHNFd5T2tkWkwwVWVmdXpFPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDBCMEIifSwibm9uY2UiOiJpWjNNUlJPZmFSeHdIR2ZZZWtHQWpoSU1zU25Jd09VQjhpdFc4WGxyRk5BPSIsIm9yaWdpbiI6Imh0dHBzOlwvXC9zdGFnaW5nLmhhdmVuLmRpZ2lwb21wcy5vcmdcL2xpbmsiLCJwbGF0Zm9ybSI6InB5dGhvbiIsInB1cnBvc2UiOiJsaW5rX2lkZW50aXR5IiwicmVxdWVzdGVkRG9tYWlucyI6WyJwcml2YXRlIiwic2NhZmZvbGQiXSwicmVxdWVzdGVkSWRlbnRpdHlDb250ZXh0cyI6WyJkZWZhdWx0Il0sInJlcXVlc3RlZFNjb3BlcyI6WyJjaGF0LnJlYWQiLCJjaGF0LndyaXRlIiwiYWRtaW4iXSwicmVxdWVzdElEIjoicmVxLWludGVyb3AtMDAwMSIsInZlcnNpb24iOjF9",
+  "canonicalSHA256Hex" : "23e09cf204ca82ec6776a639e8bf9bd7c3ea197b124437153e8d026b47604084",
+  "description" : "Et omfang er lagt til etter signering. Signaturen skal ikke holde.",
+  "encodedBase64" : "eyJhdWRpZW5jZSI6InN0YWdpbmcuaGF2ZW4uZGlnaXBvbXBzLm9yZyIsImNyZWF0ZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTk6MDBaIiwiZGV2aWNlTGFiZWwiOiJTdHVkZW50ZW5zIGLDpnJiYXJlIiwiZW50aXR5QmluZGluZyI6eyJhdWRpZW5jZSI6InN0YWdpbmcuaGF2ZW4uZGlnaXBvbXBzLm9yZyIsImJpbmRpbmdJRCI6ImJpbmQtMDAwMSIsImVudGl0eUFuY2hvclJlZmVyZW5jZSI6ImNlbGw6XC9cL1wvRW50aXR5QW5jaG9yIiwibW9kZSI6ImxvY2FsRW50aXR5QW5jaG9yIn0sImV4cGlyZXNBdCI6IjIwMjYtMTAtMjdUMTI6MDk6MDBaIiwibmV3SWRlbnRpdHkiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJib2IiLCJwdWJsaWNLZXkiOiJQU2huNUpiYWFLVDBscHpISEZnYzRmcThJQkRHNFd5T2tkWkwwVWVmdXpFPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDBCMEIifSwibm9uY2UiOiJpWjNNUlJPZmFSeHdIR2ZZZWtHQWpoSU1zU25Jd09VQjhpdFc4WGxyRk5BPSIsIm9yaWdpbiI6Imh0dHBzOlwvXC9zdGFnaW5nLmhhdmVuLmRpZ2lwb21wcy5vcmdcL2xpbmsiLCJwbGF0Zm9ybSI6InB5dGhvbiIsInByb29mIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiYnlJZGVudGl0eVVVSUQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDBCMEIiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5Iiwic2lnbmF0dXJlIjoiUXh5dTVyMFVFMjNPUFVhV0dpdzNjdDFqQnVJeUk1b21qSEJGYlEwbmk1VEd2TWYxZTFsUDFRXC95T0o4dXNuZGpaUTcwQUphOVZENSt5eDFDOERaWUJBPT0iLCJ0eXBlIjoic2lnbmF0dXJlIn0sInB1cnBvc2UiOiJsaW5rX2lkZW50aXR5IiwicmVxdWVzdElEIjoicmVxLWludGVyb3AtMDAwMSIsInJlcXVlc3RlZERvbWFpbnMiOlsicHJpdmF0ZSIsInNjYWZmb2xkIl0sInJlcXVlc3RlZElkZW50aXR5Q29udGV4dHMiOlsiZGVmYXVsdCJdLCJyZXF1ZXN0ZWRTY29wZXMiOlsiY2hhdC5yZWFkIiwiY2hhdC53cml0ZSIsImFkbWluIl0sInZlcnNpb24iOjF9",
+  "excludedTopLevelKeys" : [
+    "proof"
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "bad_signature"
+  },
+  "flow" : "extend",
+  "id" : "extend.request.tampered",
+  "object" : {
+    "audience" : "staging.haven.digipomps.org",
+    "createdAt" : "2026-10-27T11:59:00Z",
+    "deviceLabel" : "Studentens bærbare",
+    "entityBinding" : {
+      "audience" : "staging.haven.digipomps.org",
+      "bindingID" : "bind-0001",
+      "entityAnchorReference" : "cell:\/\/\/EntityAnchor",
+      "mode" : "localEntityAnchor"
+    },
+    "expiresAt" : "2026-10-27T12:09:00Z",
+    "newIdentity" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "bob",
+      "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+    },
+    "nonce" : "iZ3MRROfaRxwHGfYekGAjhIMsSnIwOUB8itW8XlrFNA=",
+    "origin" : "https:\/\/staging.haven.digipomps.org\/link",
+    "platform" : "python",
+    "proof" : {
+      "algorithm" : "EdDSA",
+      "byIdentityUUID" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+      "curveType" : "Curve25519",
+      "signature" : "Qxyu5r0UE23OPUaWGiw3ct1jBuIyI5omjHBFbQ0ni5TGvMf1e1lP1Q\/yOJ8usndjZQ70AJa9VD5+yx1C8DZYBA==",
+      "type" : "signature"
+    },
+    "purpose" : "link_identity",
+    "requestedDomains" : [
+      "private",
+      "scaffold"
+    ],
+    "requestedIdentityContexts" : [
+      "default"
+    ],
+    "requestedScopes" : [
+      "chat.read",
+      "chat.write",
+      "admin"
+    ],
+    "requestID" : "req-interop-0001",
+    "version" : 1
+  },
+  "signatureBase64" : "Qxyu5r0UE23OPUaWGiw3ct1jBuIyI5omjHBFbQ0ni5TGvMf1e1lP1Q\/yOJ8usndjZQ70AJa9VD5+yx1C8DZYBA==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "bob",
+    "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+  },
+  "type" : "IdentityEnrollmentRequest"
+}

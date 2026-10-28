@@ -1,0 +1,58 @@
+{
+  "canonicalBase64" : "eyJhdWRpZW5jZU1vZGUiOiJpbnZpdGVkIiwiY2hhdENlbGxVVUlEIjoiQzRBN0MzMTEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBDNEE3IiwiY3JlYXRlZEF0IjoiMjAyNi0xMC0yN1QxMTo1ODowMC4wMDBaIiwiZXhwaXJlc0F0IjoiMjAzNi0xMC0yN1QxMjowMDowMFoiLCJpbnZpdGF0aW9uSUQiOiJjaGF0aW52LWludGVyb3AtMDAwMSIsImludml0ZWRJZGVudGl0eSI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImJvYiIsInB1YmxpY0tleSI6IlBTaG41SmJhYUtUMGxwekhIRmdjNGZxOElCREc0V3lPa2RaTDBVZWZ1ekU9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQiJ9LCJpbnZpdGVySWRlbnRpdHkiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJhbGljZSIsInB1YmxpY0tleSI6IjFLcW56RGxqa05oaWpZMEVYaCtGN3llbTN5UzlzSDNNTWZubzlLRGI0UVk9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyJ9LCJub25jZSI6IlVFV2dHTXIxTUdiR0lEVjFWb2licGVWdWMwTlFyYlpQQktqU2VyU2xrYzg9IiwicGVyc2lzdGVuY2VNb2RlIjoiZXBoZW1lcmFsIiwicHVycG9zZSI6ImNoYXRfaW52aXRhdGlvbiIsInN1aXRlSUQiOiJoYXZlbi5jaGF0LnYxIiwidG9waWMiOiJNYXN0ZXJwcm9zamVrdCBIQVZFTiIsInZlcnNpb24iOjF9",
+  "canonicalSHA256Hex" : "6546eac8da1d92e5106498859664ab854db3dc231f1c336c9bd60bb2ccb82656",
+  "description" : "Lagringsmodus endret etter signering.",
+  "encodedBase64" : "eyJhdWRpZW5jZU1vZGUiOiJpbnZpdGVkIiwiY2hhdENlbGxVVUlEIjoiQzRBN0MzMTEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBDNEE3IiwiY3JlYXRlZEF0IjoiMjAyNi0xMC0yN1QxMTo1ODowMC4wMDBaIiwiZXhwaXJlc0F0IjoiMjAzNi0xMC0yN1QxMjowMDowMFoiLCJpbnZpdGF0aW9uSUQiOiJjaGF0aW52LWludGVyb3AtMDAwMSIsImludml0ZWRJZGVudGl0eSI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImJvYiIsInB1YmxpY0tleSI6IlBTaG41SmJhYUtUMGxwekhIRmdjNGZxOElCREc0V3lPa2RaTDBVZWZ1ekU9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQiJ9LCJpbnZpdGVySWRlbnRpdHkiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJhbGljZSIsInB1YmxpY0tleSI6IjFLcW56RGxqa05oaWpZMEVYaCtGN3llbTN5UzlzSDNNTWZubzlLRGI0UVk9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyJ9LCJub25jZSI6IlVFV2dHTXIxTUdiR0lEVjFWb2licGVWdWMwTlFyYlpQQktqU2VyU2xrYzg9IiwicGVyc2lzdGVuY2VNb2RlIjoiZXBoZW1lcmFsIiwicHJvb2YiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJieUlkZW50aXR5VVVJRCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJzaWduYXR1cmUiOiJhNTNSeXZDdFdiVTFGVURDXC9QNkF2NFk3cDN1ZzcybjVYVVR3d1YrN2JBbml3R1RVand0K29xSWhcL2VrSm5nWG9cL2lvd04wbGxxQ245K2owc0FmeENEdz09IiwidHlwZSI6InNpZ25hdHVyZSJ9LCJwdXJwb3NlIjoiY2hhdF9pbnZpdGF0aW9uIiwic3VpdGVJRCI6ImhhdmVuLmNoYXQudjEiLCJ0b3BpYyI6Ik1hc3RlcnByb3NqZWt0IEhBVkVOIiwidmVyc2lvbiI6MX0=",
+  "excludedTopLevelKeys" : [
+    "proof"
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "invalidArtifactProof"
+  },
+  "flow" : "chat",
+  "id" : "chat.invitation.tampered",
+  "object" : {
+    "audienceMode" : "invited",
+    "chatCellUUID" : "C4A7C311-0000-4000-8000-00000000C4A7",
+    "createdAt" : "2026-10-27T11:58:00.000Z",
+    "expiresAt" : "2036-10-27T12:00:00Z",
+    "invitationID" : "chatinv-interop-0001",
+    "invitedIdentity" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "bob",
+      "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+    },
+    "inviterIdentity" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "alice",
+      "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+    },
+    "nonce" : "UEWgGMr1MGbGIDV1VoibpeVuc0NQrbZPBKjSerSlkc8=",
+    "persistenceMode" : "ephemeral",
+    "proof" : {
+      "algorithm" : "EdDSA",
+      "byIdentityUUID" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+      "curveType" : "Curve25519",
+      "signature" : "a53RyvCtWbU1FUDC\/P6Av4Y7p3ug72n5XUTwwV+7bAniwGTUjwt+oqIh\/ekJngXo\/iowN0llqCn9+j0sAfxCDw==",
+      "type" : "signature"
+    },
+    "purpose" : "chat_invitation",
+    "suiteID" : "haven.chat.v1",
+    "topic" : "Masterprosjekt HAVEN",
+    "version" : 1
+  },
+  "signatureBase64" : "a53RyvCtWbU1FUDC\/P6Av4Y7p3ug72n5XUTwwV+7bAniwGTUjwt+oqIh\/ekJngXo\/iowN0llqCn9+j0sAfxCDw==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "alice",
+    "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+  },
+  "type" : "ChatInvitationArtifact"
+}

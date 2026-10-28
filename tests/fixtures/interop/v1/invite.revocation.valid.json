@@ -1,0 +1,41 @@
+{
+  "canonicalBase64" : "eyJpc3N1ZXJJZGVudGl0eVVVSUQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMiLCJyZWFzb24iOiJTZW5kdCB0aWwgZmVpbCBhZHJlc3NlIiwicmV2b2tlZEF0IjoxNzkzMTAyMzUwLCJzY2hlbWEiOiJoYXZlbi5pbnZpdGUucmV2b2NhdGlvbi52MSIsInRpY2tldElEIjoiaW52LWludGVyb3AtMDAwMSJ9",
+  "canonicalSHA256Hex" : "cc01bdd38cb678c05344815c8eb80d0dab9e3c3639020c04764fa97b81a69d87",
+  "description" : "Alice trekker invitasjonen tilbake.",
+  "encodedBase64" : "eyJpc3N1ZXJJZGVudGl0eVVVSUQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMiLCJwcm9vZiI6eyJhbCI6IkVkRFNBIiwiYnkiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMiLCJjdiI6IkN1cnZlMjU1MTkiLCJzZyI6IjErQkwzUmpcL3FkT1loQ2VFdnBldVhNNmNiR0c3WDBcL1UzaW9OenNQeDNMNVNETGg2T3c4ajVhRG5cL0RKSkFscjVIZHZpXC93SzhGZEJSRWZFSXAzQ21EZz09IiwidHkiOiJzaWduYXR1cmUifSwicmVhc29uIjoiU2VuZHQgdGlsIGZlaWwgYWRyZXNzZSIsInJldm9rZWRBdCI6MTc5MzEwMjM1MCwic2NoZW1hIjoiaGF2ZW4uaW52aXRlLnJldm9jYXRpb24udjEiLCJ0aWNrZXRJRCI6Imludi1pbnRlcm9wLTAwMDEifQ==",
+  "excludedTopLevelKeys" : [
+    "proof"
+  ],
+  "expect" : {
+    "signatureValid" : true,
+    "verdict" : "valid"
+  },
+  "flow" : "invite",
+  "id" : "invite.revocation.valid",
+  "object" : {
+    "issuerIdentityUUID" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+    "proof" : {
+      "al" : "EdDSA",
+      "by" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+      "cv" : "Curve25519",
+      "sg" : "1+BL3Rj\/qdOYhCeEvpeuXM6cbGG7X0\/U3ioNzsPx3L5SDLh6Ow8j5aDn\/DJJAlr5Hdvi\/wK8FdBREfEIp3CmDg==",
+      "ty" : "signature"
+    },
+    "reason" : "Sendt til feil adresse",
+    "revokedAt" : 1793102350,
+    "schema" : "haven.invite.revocation.v1",
+    "ticketID" : "inv-interop-0001"
+  },
+  "related" : {
+    "ticket" : "invite.ticket.valid"
+  },
+  "signatureBase64" : "1+BL3Rj\/qdOYhCeEvpeuXM6cbGG7X0\/U3ioNzsPx3L5SDLh6Ow8j5aDn\/DJJAlr5Hdvi\/wK8FdBREfEIp3CmDg==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "alice",
+    "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+  },
+  "type" : "HavenInviteRevocationNotice"
+}

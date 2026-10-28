@@ -1,0 +1,50 @@
+{
+  "canonicalBase64" : "eyJhdWRpZW5jZVRva2VuIjoiYXVkLTBjNWQxZSIsImNyZWF0ZWRBdCI6MTc5MzEwMjMwMCwiZGVjaXNpb24iOiJub3ROb3ciLCJub25jZSI6InhTXC9OOGFhOVUxQTVJSmtPIiwicmVwbGllciI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImJvYiIsInB1YmxpY0tleSI6IlBTaG41SmJhYUtUMGxwekhIRmdjNGZxOElCREc0V3lPa2RaTDBVZWZ1ekU9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQiJ9LCJyZXBseUlEIjoicnAtaW50ZXJvcC1ub3ROb3ciLCJzY2hlbWEiOiJoYXZlbi5pbnZpdGUucmVwbHkudjEiLCJ0aWNrZXRJRCI6Imludi1pbnRlcm9wLTAwMDEifQ==",
+  "canonicalSHA256Hex" : "c972898aa85f73ec7880b8e1471163fb69e462499dbdb4fd39e3266c9491947e",
+  "description" : "Bobs svar: notNow.",
+  "encodedBase64" : "eyJhdWRpZW5jZVRva2VuIjoiYXVkLTBjNWQxZSIsImNyZWF0ZWRBdCI6MTc5MzEwMjMwMCwiZGVjaXNpb24iOiJub3ROb3ciLCJub25jZSI6InhTXC9OOGFhOVUxQTVJSmtPIiwicHJvb2YiOnsiYWwiOiJFZERTQSIsImJ5IjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwQjBCIiwiY3YiOiJDdXJ2ZTI1NTE5Iiwic2ciOiJ6Z1FSSkRUbnpvU2I3MUZKc2U4eTR2YlwvaXdlbzdrY1R1VmdFUGRldzljT2RYMHFvbzU5ZW1LdDhBS1grSVNaQVlld1wvbE5wcGtJUTBZbzltVXIyakF3PT0iLCJ0eSI6InNpZ25hdHVyZSJ9LCJyZXBsaWVyIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYm9iIiwicHVibGljS2V5IjoiUFNobjVKYmFhS1QwbHB6SEhGZ2M0ZnE4SUJERzRXeU9rZFpMMFVlZnV6RT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwQjBCIn0sInJlcGx5SUQiOiJycC1pbnRlcm9wLW5vdE5vdyIsInNjaGVtYSI6ImhhdmVuLmludml0ZS5yZXBseS52MSIsInRpY2tldElEIjoiaW52LWludGVyb3AtMDAwMSJ9",
+  "excludedTopLevelKeys" : [
+    "proof"
+  ],
+  "expect" : {
+    "signatureValid" : true,
+    "verdict" : "valid"
+  },
+  "flow" : "invite",
+  "id" : "invite.reply.notNow",
+  "object" : {
+    "audienceToken" : "aud-0c5d1e",
+    "createdAt" : 1793102300,
+    "decision" : "notNow",
+    "nonce" : "xS\/N8aa9U1A5IJkO",
+    "proof" : {
+      "al" : "EdDSA",
+      "by" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+      "cv" : "Curve25519",
+      "sg" : "zgQRJDTnzoSb71FJse8y4vb\/iweo7kcTuVgEPdew9cOdX0qoo59emKt8AKX+ISZAYew\/lNppkIQ0Yo9mUr2jAw==",
+      "ty" : "signature"
+    },
+    "replier" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "bob",
+      "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+    },
+    "replyID" : "rp-interop-notNow",
+    "schema" : "haven.invite.reply.v1",
+    "ticketID" : "inv-interop-0001"
+  },
+  "related" : {
+    "ticket" : "invite.ticket.valid"
+  },
+  "signatureBase64" : "zgQRJDTnzoSb71FJse8y4vb\/iweo7kcTuVgEPdew9cOdX0qoo59emKt8AKX+ISZAYew\/lNppkIQ0Yo9mUr2jAw==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "bob",
+    "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+  },
+  "type" : "HavenInviteReply"
+}

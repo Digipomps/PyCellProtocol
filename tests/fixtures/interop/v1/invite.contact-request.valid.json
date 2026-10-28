@@ -1,0 +1,53 @@
+{
+  "canonicalBase64" : "eyJjcmVhdGVkQXQiOjE3OTMxMDIzMTAsImV4cGlyZXNBdCI6MTc5MzcwNzExMCwiaXNzdWVyRW5kcG9pbnRJRCI6ImVwLWludGVyb3AtMSIsIm1lc3NhZ2UiOiJUYWtrIGZvciBpbnZpdGFzam9uZW4hIiwibm9uY2UiOiJ1R0lSb2xWOWpvMU0wQjJ6M3grb1NBPT0iLCJyZXF1ZXN0SUQiOiJjci1pbnRlcm9wLTAwMDEiLCJzY2hlbWEiOiJoYXZlbi5pbnZpdGUuY29udGFjdFJlcXVlc3QudjEiLCJzZW5kZXIiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJib2IiLCJwdWJsaWNLZXkiOiJQU2huNUpiYWFLVDBscHpISEZnYzRmcThJQkRHNFd5T2tkWkwwVWVmdXpFPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDBCMEIifSwic2VuZGVyRGlzcGxheU5hbWUiOiJCb2IiLCJzZW5kZXJLZXlBZ3JlZW1lbnRLZXkiOiJIbjVXZFwvdUV4c2hsMzdJS05YR1ZTeWZ2Z0RVSlhRMmFWbERiTmVFTXlRYz0iLCJ0aWNrZXRJRCI6Imludi1pbnRlcm9wLTAwMDEifQ==",
+  "canonicalSHA256Hex" : "a1c6b73ab1c78ead86e01030ee9c0c7970ec963d5c026fd19055ef6ead5e77de",
+  "description" : "Bob ber om kontakt via endepunktet i billetten.",
+  "encodedBase64" : "eyJjcmVhdGVkQXQiOjE3OTMxMDIzMTAsImV4cGlyZXNBdCI6MTc5MzcwNzExMCwiaXNzdWVyRW5kcG9pbnRJRCI6ImVwLWludGVyb3AtMSIsIm1lc3NhZ2UiOiJUYWtrIGZvciBpbnZpdGFzam9uZW4hIiwibm9uY2UiOiJ1R0lSb2xWOWpvMU0wQjJ6M3grb1NBPT0iLCJwcm9vZiI6eyJhbCI6IkVkRFNBIiwiYnkiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDBCMEIiLCJjdiI6IkN1cnZlMjU1MTkiLCJzZyI6IlBSXC9ycGNZRmFKMmR1UTBpczE0WVBqMVpLbVkycmhhd2RVNGNobFowRFBRb1A3VHN1RXl5ZGVYTlUwZXE5VWhva1dmSG1rYUdnbTBJYmlnSGZMZHNEUT09IiwidHkiOiJzaWduYXR1cmUifSwicmVxdWVzdElEIjoiY3ItaW50ZXJvcC0wMDAxIiwic2NoZW1hIjoiaGF2ZW4uaW52aXRlLmNvbnRhY3RSZXF1ZXN0LnYxIiwic2VuZGVyIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYm9iIiwicHVibGljS2V5IjoiUFNobjVKYmFhS1QwbHB6SEhGZ2M0ZnE4SUJERzRXeU9rZFpMMFVlZnV6RT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwQjBCIn0sInNlbmRlckRpc3BsYXlOYW1lIjoiQm9iIiwic2VuZGVyS2V5QWdyZWVtZW50S2V5IjoiSG41V2RcL3VFeHNobDM3SUtOWEdWU3lmdmdEVUpYUTJhVmxEYk5lRU15UWM9IiwidGlja2V0SUQiOiJpbnYtaW50ZXJvcC0wMDAxIn0=",
+  "excludedTopLevelKeys" : [
+    "proof"
+  ],
+  "expect" : {
+    "signatureValid" : true,
+    "verdict" : "valid"
+  },
+  "flow" : "invite",
+  "id" : "invite.contact-request.valid",
+  "object" : {
+    "createdAt" : 1793102310,
+    "expiresAt" : 1793707110,
+    "issuerEndpointID" : "ep-interop-1",
+    "message" : "Takk for invitasjonen!",
+    "nonce" : "uGIRolV9jo1M0B2z3x+oSA==",
+    "proof" : {
+      "al" : "EdDSA",
+      "by" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+      "cv" : "Curve25519",
+      "sg" : "PR\/rpcYFaJ2duQ0is14YPj1ZKmY2rhawdU4chlZ0DPQoP7TsuEyydeXNU0eq9UhokWfHmkaGgm0IbigHfLdsDQ==",
+      "ty" : "signature"
+    },
+    "requestID" : "cr-interop-0001",
+    "schema" : "haven.invite.contactRequest.v1",
+    "sender" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "bob",
+      "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+    },
+    "senderDisplayName" : "Bob",
+    "senderKeyAgreementKey" : "Hn5Wd\/uExshl37IKNXGVSyfvgDUJXQ2aVlDbNeEMyQc=",
+    "ticketID" : "inv-interop-0001"
+  },
+  "related" : {
+    "ticket" : "invite.ticket.valid"
+  },
+  "signatureBase64" : "PR\/rpcYFaJ2duQ0is14YPj1ZKmY2rhawdU4chlZ0DPQoP7TsuEyydeXNU0eq9UhokWfHmkaGgm0IbigHfLdsDQ==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "bob",
+    "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+  },
+  "type" : "HavenInviteContactRequest"
+}

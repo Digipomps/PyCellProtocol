@@ -429,7 +429,10 @@ def _decode_public_secure_key(
         raise ValueError("Identity public key must not contain private key material")
     if value.get("use") != expected_use or value.get("algorithm") != expected_algorithm:
         raise ValueError("Identity public key role or algorithm is incompatible")
-    if value.get("curveType") != "Curve25519" or value.get("size") != 256:
+    # Swift writes 256 (CellApple IdentityVault) or 32 (CellBase
+    # EphemeralIdentityVault, also Go); the key length is checked below.
+    size = value.get("size")
+    if value.get("curveType") != "Curve25519" or isinstance(size, bool) or size not in (32, 256):
         raise ValueError("Identity public key curve or size is incompatible")
     date = value.get("date")
     if (

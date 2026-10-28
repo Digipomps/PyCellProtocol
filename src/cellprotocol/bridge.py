@@ -9,7 +9,7 @@ from typing import Any, AsyncIterator, Mapping
 
 from .configuration import CellConfiguration, CellReference
 from .general_cell import FlowElement
-from .identity import Identity
+from .identity import Identity, _validated_signing_challenge, same_identity_reference
 from .value import (
     KeyValue,
     SetValueResponse,
@@ -303,9 +303,18 @@ class WebSocketBridgeClient(BridgeBase):
         identity: Identity | None = None,
         connect: Any | None = None,
         response_timeout: float = 30.0,
+        authenticate: bool = False,
+        channel_domain: str = "bridge",
+        allow_insecure_loopback: bool = False,
     ) -> None:
         super().__init__(send_command=self._send_command, identity=identity)
         self.url = url
+        # org.haven.bridge-channel.v1: what current Swift bridgeheads require
+        # before any command. Off by default only for older Python peers.
+        self.authenticate = authenticate
+        self.channel_domain = channel_domain
+        self.allow_insecure_loopback = allow_insecure_loopback
+        self.admitted_channel: Any | None = None
         self.response_timeout = response_timeout
         self._connect_factory = connect
         self._websocket: Any | None = None
@@ -316,6 +325,7 @@ class WebSocketBridgeClient(BridgeBase):
         self._streams: dict[int, asyncio.Queue[BridgeCommand | None]] = {}
         self._ready_waiter: asyncio.Future[None] | None = None
         self.unhandled_commands: asyncio.Queue[BridgeCommand] = asyncio.Queue()
+        self._used_signing_challenges: set[tuple[str, str]] = set()
 
     @property
     def is_connected(self) -> bool:
@@ -330,6 +340,17 @@ class WebSocketBridgeClient(BridgeBase):
             loop = asyncio.get_running_loop()
             self._ready_waiter = loop.create_future()
             self._websocket = await self._open_websocket()
+            if self.authenticate:
+                try:
+                    await asyncio.wait_for(self._authenticate_channel(), timeout=self.response_timeout)
+                except BaseException as error:
+                    await self.close()
+                    if isinstance(error, asyncio.TimeoutError):
+                        raise BridgeTransportError(f"Timed out authenticating bridge channel at {self.url}") from error
+                    if isinstance(error, BridgeTransportError):
+                        raise
+                    raise BridgeTransportError(f"Bridge channel authentication failed: {error}") from error
+                self._mark_ready()
             self._receiver_task = asyncio.create_task(self._receive_loop())
         try:
             await asyncio.wait_for(asyncio.shield(self._ready_waiter), timeout=self.response_timeout)
@@ -422,6 +443,34 @@ class WebSocketBridgeClient(BridgeBase):
             self._pending.pop(command.cid, None)
             raise
 
+    async def _authenticate_channel(self) -> None:
+        """Client half of org.haven.bridge-channel.v1, signed by the local vault."""
+        from .identity import BridgeIdentityVault
+        from .interop import channel as auth
+
+        identity = self.identity
+        if identity is None or not identity.publicSecureKey:
+            raise BridgeTransportError("Bridge channel authentication needs a local signing identity")
+        if identity.identityVault is None or isinstance(identity.identityVault, BridgeIdentityVault):
+            raise BridgeTransportError("Bridge channel authentication must be signed by the local owner's vault")
+        import base64 as _base64
+
+        public = auth.PublicIdentity(uuid=identity.uuid, public_key=_base64.b64decode(identity.publicSecureKey))
+        endpoint = auth.Endpoint.from_url(self.url, self.channel_domain, allow_insecure_loopback=self.allow_insecure_loopback)
+        client = auth.ChannelClient(public, endpoint, signer=lambda _data: b"")
+        await self._send_text(client.hello().decode("utf-8"))
+        challenge = await self._receive_text()
+        if challenge is None:
+            raise BridgeTransportError("Bridge closed during authentication")
+        offered = client.begin_challenge(challenge.encode("utf-8") if isinstance(challenge, str) else challenge)
+        proof = client.finish_challenge(await identity.sign(offered))
+        await self._send_text(proof.decode("utf-8"))
+        accepted = await self._receive_text()
+        if accepted is None:
+            raise BridgeTransportError("Bridge closed before accepting the channel")
+        client.accept(accepted.encode("utf-8") if isinstance(accepted, str) else accepted)
+        self.admitted_channel = client.admitted
+
     async def _open_websocket(self) -> Any:
         connect = self._connect_factory
         if connect is None:
@@ -444,6 +493,11 @@ class WebSocketBridgeClient(BridgeBase):
                 command = BridgeCommand.from_json(raw)
                 if command.command == "ready" and command.cid == 0:
                     self._mark_ready()
+                    continue
+                if command.command == "sign":
+                    # A Swift cell proving that this identity holds its key
+                    # (checkIdentityOrigin), as Go's CloudBridge answers it.
+                    asyncio.ensure_future(self._answer_sign(command))
                     continue
                 stream = self._streams.get(command.cid)
                 if stream is not None:
@@ -468,6 +522,30 @@ class WebSocketBridgeClient(BridgeBase):
             self._fail_pending(error)
             self._close_streams()
             self._websocket = None
+
+    async def _answer_sign(self, command: BridgeCommand) -> None:
+        """Sign only a valid, fresh, unused identity-origin challenge for our own key."""
+        try:
+            identity = self.identity
+            if identity is None or not same_identity_reference(identity, command.identity):
+                raise PermissionError("identity mismatch")
+            if not isinstance(command.payload, TypedValue) or command.payload.kind != "signData" or not isinstance(command.payload.value, bytes):
+                raise PermissionError("missing sign payload")
+            message = command.payload.value
+            _, replay_key = _validated_signing_challenge(message, identity)
+            if self.authenticate and self.admitted_channel is None:
+                raise PermissionError("bridge is not ready")
+            if replay_key in self._used_signing_challenges:
+                raise PermissionError("signing challenge was already used")
+            self._used_signing_challenges.add(replay_key)
+            reply = TypedValue("signature", await identity.sign(message))
+        except Exception as error:  # noqa: BLE001 - the refusal goes back as data
+            reply = TypedValue("string", f"signing denied: {error}")
+        try:
+            async with self._send_lock:
+                await self._send_text(BridgeCommand("response", reply, command.cid).dumps())
+        except Exception:  # noqa: BLE001 - a closed bridge needs no answer
+            pass
 
     async def _send_text(self, text: str) -> None:
         websocket = self._require_websocket()
