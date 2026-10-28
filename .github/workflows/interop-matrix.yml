@@ -19,8 +19,7 @@ jobs:
     name: Python and Go peers, 3 flows
     runs-on: ubuntu-latest
     env:
-      # The Go peer is on this branch until Digipomps/GoCellProtocol#36 merges.
-      GO_REF: ${{ github.event.inputs.go_ref || 'pdd/interop-contracts-v1' }}
+      GO_REF: ${{ github.event.inputs.go_ref || 'main' }}
       NO_PROXY: 127.0.0.1,localhost
     steps:
       - uses: actions/checkout@v4
