@@ -9,7 +9,7 @@ from typing import Any, AsyncIterator, Mapping
 
 from .configuration import CellConfiguration, CellReference
 from .general_cell import FlowElement
-from .identity import Identity
+from .identity import Identity, _validated_signing_challenge, same_identity_reference
 from .value import (
     KeyValue,
     SetValueResponse,
@@ -325,6 +325,7 @@ class WebSocketBridgeClient(BridgeBase):
         self._streams: dict[int, asyncio.Queue[BridgeCommand | None]] = {}
         self._ready_waiter: asyncio.Future[None] | None = None
         self.unhandled_commands: asyncio.Queue[BridgeCommand] = asyncio.Queue()
+        self._used_signing_challenges: set[tuple[str, str]] = set()
 
     @property
     def is_connected(self) -> bool:
@@ -493,6 +494,11 @@ class WebSocketBridgeClient(BridgeBase):
                 if command.command == "ready" and command.cid == 0:
                     self._mark_ready()
                     continue
+                if command.command == "sign":
+                    # A Swift cell proving that this identity holds its key
+                    # (checkIdentityOrigin), as Go's CloudBridge answers it.
+                    asyncio.ensure_future(self._answer_sign(command))
+                    continue
                 stream = self._streams.get(command.cid)
                 if stream is not None:
                     await stream.put(command)
@@ -516,6 +522,30 @@ class WebSocketBridgeClient(BridgeBase):
             self._fail_pending(error)
             self._close_streams()
             self._websocket = None
+
+    async def _answer_sign(self, command: BridgeCommand) -> None:
+        """Sign only a valid, fresh, unused identity-origin challenge for our own key."""
+        try:
+            identity = self.identity
+            if identity is None or not same_identity_reference(identity, command.identity):
+                raise PermissionError("identity mismatch")
+            if not isinstance(command.payload, TypedValue) or command.payload.kind != "signData" or not isinstance(command.payload.value, bytes):
+                raise PermissionError("missing sign payload")
+            message = command.payload.value
+            _, replay_key = _validated_signing_challenge(message, identity)
+            if self.authenticate and self.admitted_channel is None:
+                raise PermissionError("bridge is not ready")
+            if replay_key in self._used_signing_challenges:
+                raise PermissionError("signing challenge was already used")
+            self._used_signing_challenges.add(replay_key)
+            reply = TypedValue("signature", await identity.sign(message))
+        except Exception as error:  # noqa: BLE001 - the refusal goes back as data
+            reply = TypedValue("string", f"signing denied: {error}")
+        try:
+            async with self._send_lock:
+                await self._send_text(BridgeCommand("response", reply, command.cid).dumps())
+        except Exception:  # noqa: BLE001 - a closed bridge needs no answer
+            pass
 
     async def _send_text(self, text: str) -> None:
         websocket = self._require_websocket()

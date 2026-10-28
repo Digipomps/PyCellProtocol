@@ -572,3 +572,45 @@ def test_identity_accepts_swift_server_and_go_key_size_encoding():
     wire["publicSecureKey"]["size"] = 64
     with pytest.raises(ValueError):
         Identity.from_json(wire)
+
+
+def test_bridge_client_answers_only_valid_origin_challenges_for_its_own_key():
+    """A Swift cell checks the requester's key over the bridge (checkIdentityOrigin)."""
+    from cellprotocol.bridge import WebSocketBridgeClient
+
+    async def scenario():
+        me = await InMemoryIdentityVault().identity("Bob", make_new_if_not_found=True)
+        other = await InMemoryIdentityVault().identity("Mallory", make_new_if_not_found=True)
+        client = WebSocketBridgeClient("ws://127.0.0.1:1/bridgehead/x", identity=me)
+        sent: list[dict] = []
+
+        async def capture(text):
+            sent.append(json.loads(text))
+
+        client._send_text = capture  # type: ignore[method-assign]
+
+        def challenge(identity):
+            now = time.time()
+            return json.dumps({
+                "action": "checkIdentityOrigin", "audience": "GeneralCell", "domain": "private",
+                "expiresAt": now + 60, "identityUUID": identity.uuid, "issuedAt": now,
+                "nonce": base64.b64encode(os.urandom(64)).decode("ascii"),
+                "publicKeyFingerprint": identity_signing_fingerprint(identity),
+                "purpose": "identity-origin-proof", "resource": "chat",
+                "type": "org.haven.cellprotocol.identity-signing-challenge", "version": 1,
+            }, sort_keys=True).encode("utf-8")
+
+        valid = challenge(me)
+        await client._answer_sign(BridgeCommand("sign", TypedValue("signData", valid), 7, identity=me))
+        await client._answer_sign(BridgeCommand("sign", TypedValue("signData", valid), 8, identity=me))
+        await client._answer_sign(BridgeCommand("sign", TypedValue("signData", b"arbitrary bytes"), 9, identity=me))
+        await client._answer_sign(BridgeCommand("sign", TypedValue("signData", challenge(other)), 10, identity=other))
+        return me, valid, sent
+
+    me, valid, sent = asyncio.run(scenario())
+    first = BridgeCommand.from_json(json.dumps(sent[0]))
+    assert first.cid == 7 and first.payload.kind == "signature"
+    assert verify_identity_signature(first.payload.value, valid, me)
+    for reply in sent[1:]:
+        payload = BridgeCommand.from_json(json.dumps(reply)).payload
+        assert payload.kind == "string" and payload.value.startswith("signing denied")

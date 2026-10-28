@@ -81,12 +81,13 @@ class Peer:
 
 
 def refused(fn) -> bool:
-    """A refusal is ok: false from the peer or an "error..." result string."""
+    """A refusal is ok: false from the peer or an "error..." result string.
+    A Swift bridge answers a denied get with a "failure: ... denied(...)" string."""
     try:
         result = fn()
     except PeerError:
         return True
-    return isinstance(result, str) and result.startswith("error")
+    return isinstance(result, str) and (result.startswith("error") or result.startswith("failure:"))
 
 
 class Steps:
