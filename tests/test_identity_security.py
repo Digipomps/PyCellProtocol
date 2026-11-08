@@ -163,8 +163,7 @@ def test_owned_cell_requires_fresh_private_key_proof_and_agreement_admission_fai
             await cell.get("private.value", public_clone)
 
         assert await cell.get("private.value", owner) == "healthy"
-        with pytest.raises(PermissionError, match="owner-approved signatures"):
-            await cell.add_agreement({"state": "signed"}, outsider)
+        assert await cell.add_agreement({"state": "signed"}, outsider) == "rejected"
 
     run(scenario())
 
@@ -206,8 +205,7 @@ def test_bridge_never_upgrades_self_asserted_identity_or_signs_arbitrary_bytes()
         agreement_response = await endpoint.handle(
             BridgeCommand("agreement", TypedValue("object", {"state": "signed"}), 4, asserted_owner)
         )
-        assert agreement_response[0].payload.value.state == "error"
-        assert "owner-approved signatures" in str(agreement_response[0].payload.value.value)
+        assert agreement_response[0].to_json() == {"cmd": "response", "cid": 4, "&agreementState": "rejected"}
 
     run(scenario())
 

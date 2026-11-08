@@ -41,7 +41,7 @@ def create_app(registry: ScaffoldRegistry | None = None) -> Any:
     except Exception as error:
         raise RuntimeError("cellprotocol_scaffold.create_app requires optional dependency 'fastapi'") from error
 
-    app = FastAPI(title="PyCellProtocol Scaffold", version="0.1.0")
+    app = FastAPI(title="PyCellProtocol Scaffold", version="0.1.1")
     state: dict[str, Any] = {"resolver": None, "owner": None, "lock": asyncio.Lock()}
 
     async def ensure() -> tuple[CellResolver, Any]:

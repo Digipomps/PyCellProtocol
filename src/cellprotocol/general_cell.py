@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import asyncio
+import copy
+
+from .agreement import YEAR, Grant, covers, derive, issue, permission_masks, valid
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
 from typing import Any, AsyncIterator
@@ -78,25 +81,12 @@ class FlowElement:
         return output
 
 
-@dataclass
-class Grant:
-    keypath: str
-    permission: str
-    uuid: str = field(default_factory=lambda: str(uuid4()))
-    name: str = "Condition grant"
-
-    def to_json(self) -> dict[str, str]:
-        return {
-            "uuid": self.uuid,
-            "name": self.name,
-            "keypath": self.keypath,
-            "permission": self.permission,
-        }
-
-
 class AgreementTemplate:
     def __init__(self) -> None:
         self.grants: list[Grant] = []
+        self.duration = YEAR
+        self.conditions = []
+        self.authorization_policy_binding = None
 
     def add_grant(self, permission: str, keypath: str) -> None:
         self.grants.append(Grant(keypath=keypath, permission=permission))
@@ -119,6 +109,8 @@ class GeneralCell:
         )
         self.name = name or self.__class__.__name__.removesuffix("Cell")
         self.agreement_template = AgreementTemplate()
+        self.owner_published_reads = frozenset()
+        self._contracts = {}
         self.identity_domain: str | None = None
         self._storage: dict[str, Any] = {}
         self._get_handlers: dict[str, GetHandler] = {}
@@ -270,11 +262,12 @@ class GeneralCell:
         return {label: "connected" for label in self._attached}
 
     async def flow(self, requester: Any | None = None) -> AsyncIterator[FlowElement]:
-        await self._require_access("r---", "flow", requester)
+        await self._require_access("r---", "feed", requester)
         while True:
             item = await self._flow_queue.get()
             if item is None:
                 break
+            await self._require_access("r---", "feed", requester)
             yield item
 
     def push_flow_element(self, element: FlowElement) -> None:
@@ -284,31 +277,113 @@ class GeneralCell:
         self._flow_queue.put_nowait(None)
 
     async def admit(self, context: Any) -> str:
-        _ = context
-        raise PermissionError("Admission is unavailable until proof-validated contracts are implemented")
+        identity = context.get("identity") if isinstance(context, dict) else None
+        if identity is None:
+            return "notConnected"
+        if self.owner is not None and await self.is_member(identity):
+            return "connected"
+        return "signContract"
 
-    async def add_agreement(self, contract: Any, identity: Any) -> str:
-        _ = contract, identity
-        raise PermissionError("Agreement admission is unavailable until owner-approved signatures are implemented")
+    async def _prove(self, identity):
+        return isinstance(identity, Identity) and await proves_identity_control(
+            identity, identity
+        )
 
-    async def advertise(self, requester: Any | None = None) -> dict[str, Any]:
-        _ = requester
+    def _active_contracts(self, identity):
+        if self.owner is None or not isinstance(identity, Identity):
+            return []
+        saved = self._contracts.get((identity.uuid, identity.publicSecureKey), {})
+        return [
+            c
+            for c in saved.values()
+            if valid(
+                c,
+                self.owner,
+                identity,
+                self.identity_domain or self.uuid,
+                self._template(),
+            )
+        ]
+
+    async def add_agreement(self, contract, identity, *, authorized_by=None):
+        issuer = self.owner
+        if issuer is None or not await self._prove(identity):
+            return "rejected"
+        authority = identity if authorized_by is None else authorized_by
+        owner_approved = same_identity_reference(
+            authority, issuer
+        ) and await self._prove(authority)
+        try:
+            agreement = derive(contract, self._template(), issuer, identity)
+        except (ValueError, TypeError, KeyError, AttributeError):
+            return "rejected"
+
+        def approved():
+            return owner_approved or all(
+                g["keypath"] in self.owner_published_reads
+                and permission_masks(g["permission"]) == (4, 0)
+                for g in agreement["grants"]
+            )
+
+        if not approved():
+            return "rejected"
+        try:
+            signed = await issue(
+                agreement, issuer, identity, self.identity_domain or self.uuid
+            )
+        except Exception:
+            return "rejected"
+        if not approved() or not valid(
+            signed,
+            self.owner,
+            identity,
+            self.identity_domain or self.uuid,
+            self._template(),
+        ):
+            return "rejected"
+        scope = tuple(
+            sorted(
+                {
+                    (g["keypath"], permission_masks(g["permission"]))
+                    for g in agreement["grants"]
+                }
+            )
+        )
+        self._contracts.setdefault((identity.uuid, identity.publicSecureKey), {})[
+            scope
+        ] = signed
+        return "signed"
+
+    async def contracts_for(self, identity):
+        if not await self._prove(identity):
+            raise PermissionError("Identity proof required")
+        return copy.deepcopy(self._active_contracts(identity))
+
+    def _template(self):
         owner_json = _identity_json(self.owner)
-        contract_template = {
+        template = {
             "uuid": self._contract_template_uuid,
             "name": "Contract name here",
             "state": "template",
             "owner": owner_json,
             "signatories": [owner_json],
             "grants": [grant.to_json() for grant in self.agreement_template.grants],
-            "duration": 60 * 60 * 24 * 365,
+            "duration": self.agreement_template.duration,
         }
+        if self.agreement_template.conditions:
+            template["conditions"] = copy.deepcopy(self.agreement_template.conditions)
+        if self.agreement_template.authorization_policy_binding is not None:
+            template["authorizationPolicyBinding"] = copy.deepcopy(self.agreement_template.authorization_policy_binding)
+        return template
+
+    async def advertise(self, requester: Any | None = None) -> dict[str, Any]:
+        contract_template = self._template()
         return {
             "uuid": self.uuid,
             "name": self.name,
             "cellScope": self.cell_scope,
             "persistancy": self.persistancy,
-            "identityDomain": self.identity_domain or "",
+            "identityDomain": self.identity_domain or self.uuid,
             "contractTemplate": contract_template,
             "agreementTemplate": self.agreement_template.to_json(),
             "keys": self._declared_keys(),
@@ -319,28 +394,52 @@ class GeneralCell:
             return True
         if requester is not None:
             await self._require_access("r---", "isMember", requester)
-            return same_identity_reference(identity, self.owner)
-        return await proves_identity_control(identity, self.owner)
+            return same_identity_reference(identity, self.owner) or bool(
+                self._active_contracts(identity)
+            )
+        return await self._prove(identity) and (
+            same_identity_reference(identity, self.owner)
+            or bool(self._active_contracts(identity))
+        )
 
     def _handler_for(self, keypath: str, handlers: dict[str, Any]) -> Any | None:
         candidates = [
-            key
-            for key in handlers
-            if keypath == key or keypath.startswith(f"{key}.")
+            key for key in handlers if keypath == key or keypath.startswith(f"{key}.")
         ]
         if not candidates:
             return None
         return handlers[max(candidates, key=len)]
 
-    async def validate_access(self, permission: str, keypath: str, requester: Any | None = None) -> bool:
-        _ = permission, keypath
+    async def validate_access(
+        self, permission: str, keypath: str, requester: Any | None = None
+    ) -> bool:
         if self.owner is None:
             return True
-        return await proves_identity_control(requester, self.owner)
+        if same_identity_reference(requester, self.owner):
+            return await self._prove(requester) and same_identity_reference(
+                requester, self.owner
+            )
+        if not self.has_contract_grant(permission, keypath, requester):
+            return False
+        return await self._prove(requester) and self.has_contract_grant(
+            permission, keypath, requester
+        )
 
-    async def _require_access(self, permission: str, keypath: str, requester: Any | None) -> None:
+    def has_contract_grant(self, permission, keypath, requester):
+        """Check current grant state. Callers must separately prove the requester."""
+        return any(
+            covers(g, {"keypath": keypath, "permission": permission})
+            for c in self._active_contracts(requester)
+            for g in c["agreement"]["grants"]
+        )
+
+    async def _require_access(
+        self, permission: str, keypath: str, requester: Any | None
+    ) -> None:
         if not await self.validate_access(permission, keypath, requester):
-            raise PermissionError("Cell access denied: requester did not prove control of the owner identity")
+            raise PermissionError(
+                "Cell access denied: requester did not prove control of the owner identity"
+            )
 
 
 def _identity_json(identity: Any | None) -> dict[str, Any]:

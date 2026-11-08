@@ -119,15 +119,16 @@ class BridgeEndpoint:
                 case "description":
                     return [BridgeCommand("response", TypedValue("description", await self.target.advertise(requester)), cid)]
                 case "admit":
+                    handler = getattr(self.target, "admit", None)
                     context = _payload_value(command.payload)
-                    if context is None:
-                        context = {}
-                    return [BridgeCommand("response", TypedValue("connectState", await self.target.admit(context)), cid)]
+                    context = {**context, "identity": requester} if isinstance(context, dict) else {"identity": requester}
+                    state = await handler(context) if callable(handler) else "notConnected"
+                    return [BridgeCommand("response", TypedValue("connectState", state), cid)]
                 case "agreement":
-                    if hasattr(self.target, "add_agreement"):
-                        state = await self.target.add_agreement(_payload_value(command.payload), requester)
-                    else:
-                        state = "signed"
+                    handler = getattr(self.target, "add_agreement", None)
+                    state = "rejected"
+                    if callable(handler) and command.payload and command.payload.kind == "agreementPayload":
+                        state = await handler(command.payload.value, requester)
                     return [BridgeCommand("response", TypedValue("agreementState", state), cid)]
                 case "feed":
                     return []
@@ -199,6 +200,10 @@ class BridgeEndpoint:
                 case _:
                     return [BridgeCommand("response", TypedValue("string", f"unsupported command: {command.cmd}"), cid)]
         except Exception as error:
+            if command.command == "agreement":
+                return [BridgeCommand("response", TypedValue("agreementState", "rejected"), cid)]
+            if command.command == "admit":
+                return [BridgeCommand("response", TypedValue("connectState", "denied"), cid)]
             return [
                 BridgeCommand(
                     "response",
@@ -208,7 +213,7 @@ class BridgeEndpoint:
             ]
 
     async def feed_responses(self, command: BridgeCommand) -> AsyncIterator[BridgeCommand]:
-        requester = command.identity or self.owner
+        requester = command.identity
         async for element in self.target.flow(requester):
             yield BridgeCommand("response", TypedValue("flowElement", element), command.cid)
 

@@ -58,3 +58,17 @@ The `Upstream CellProtocol sync` GitHub Actions workflow watches upstream
 runs, and an hourly scheduled fallback. It classifies upstream diffs before
 running parity checks and treats resolver, vault, `CellConfiguration`, bridge,
 identity-vault, and related Swift tests as contract-critical paths.
+
+Owned Python cells support unconditional, owner-issued Agreements. Bridge admission
+returns a connect state and agreement submission returns an agreement state.
+Missing handlers reject. The default policy requires owner approval. Trusted host
+code can explicitly publish individual template keys for read-only admission
+through `owner_published_reads`. Other permissions require an owner-authorized
+local call to `add_agreement(request, subject, authorized_by=owner)`.
+
+Contracts bind issuer, subject and advertised domain. GeneralCell checks current
+template permissions, expiry, signature and fresh identity proof on access.
+Active receipts are process-local and can be read by the proven subject using
+`contracts_for(subject)`. External conditions and authorization-policy bindings
+are rejected in this implementation. Grants encode group/other masks in the
+Swift Permission object and accept legacy rwx text when constructing a grant.
