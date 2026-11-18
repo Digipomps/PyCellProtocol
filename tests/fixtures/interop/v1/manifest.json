@@ -276,6 +276,144 @@
       "flow" : "extend",
       "id" : "extend.genesis.wrong-record",
       "type" : "EntityGenesisSeal"
+    },
+    {
+      "file" : "org.policy.v1.json",
+      "flow" : "org",
+      "id" : "org.policy.v1",
+      "type" : "GovernancePolicy"
+    },
+    {
+      "file" : "org.policy.v2.json",
+      "flow" : "org",
+      "id" : "org.policy.v2",
+      "type" : "GovernancePolicy"
+    },
+    {
+      "file" : "org.policy.all-two.json",
+      "flow" : "org",
+      "id" : "org.policy.all-two",
+      "type" : "GovernancePolicy"
+    },
+    {
+      "file" : "org.genesis.valid.json",
+      "flow" : "org",
+      "id" : "org.genesis.valid",
+      "type" : "OrganizationGenesisSeal"
+    },
+    {
+      "file" : "org.genesis.tampered.json",
+      "flow" : "org",
+      "id" : "org.genesis.tampered",
+      "type" : "OrganizationGenesisSeal"
+    },
+    {
+      "file" : "org.genesis.outsider-signer.json",
+      "flow" : "org",
+      "id" : "org.genesis.outsider-signer",
+      "type" : "OrganizationGenesisSeal"
+    },
+    {
+      "file" : "org.role.valid.json",
+      "flow" : "org",
+      "id" : "org.role.valid",
+      "type" : "VCClaim"
+    },
+    {
+      "file" : "org.role.tampered.json",
+      "flow" : "org",
+      "id" : "org.role.tampered",
+      "type" : "VCClaim"
+    },
+    {
+      "file" : "org.proposal.role-issue.json",
+      "flow" : "org",
+      "id" : "org.proposal.role-issue",
+      "type" : "OrganizationActionProposal"
+    },
+    {
+      "file" : "org.approval.role-issue.alice.json",
+      "flow" : "org",
+      "id" : "org.approval.role-issue.alice",
+      "type" : "OrganizationApproval"
+    },
+    {
+      "file" : "org.approval.role-issue.forged.json",
+      "flow" : "org",
+      "id" : "org.approval.role-issue.forged",
+      "type" : "OrganizationApproval"
+    },
+    {
+      "file" : "org.bundle.role-issue.one-owner.json",
+      "flow" : "org",
+      "id" : "org.bundle.role-issue.one-owner",
+      "type" : "ApprovalBundle"
+    },
+    {
+      "file" : "org.bundle.role-issue.forged.json",
+      "flow" : "org",
+      "id" : "org.bundle.role-issue.forged",
+      "type" : "ApprovalBundle"
+    },
+    {
+      "file" : "org.bundle.role-issue.outsider.json",
+      "flow" : "org",
+      "id" : "org.bundle.role-issue.outsider",
+      "type" : "ApprovalBundle"
+    },
+    {
+      "file" : "org.bundle.all-two.same-owner-twice.json",
+      "flow" : "org",
+      "id" : "org.bundle.all-two.same-owner-twice",
+      "type" : "ApprovalBundle"
+    },
+    {
+      "file" : "org.bundle.all-two.both.json",
+      "flow" : "org",
+      "id" : "org.bundle.all-two.both",
+      "type" : "ApprovalBundle"
+    },
+    {
+      "file" : "org.bundle.amend-v2.alice.json",
+      "flow" : "org",
+      "id" : "org.bundle.amend-v2.alice",
+      "type" : "ApprovalBundle"
+    },
+    {
+      "file" : "org.bundle.amend-v3.only-alice.json",
+      "flow" : "org",
+      "id" : "org.bundle.amend-v3.only-alice",
+      "type" : "ApprovalBundle"
+    },
+    {
+      "file" : "org.bundle.amend-v3.both.json",
+      "flow" : "org",
+      "id" : "org.bundle.amend-v3.both",
+      "type" : "ApprovalBundle"
+    },
+    {
+      "file" : "org.status.v1.json",
+      "flow" : "org",
+      "id" : "org.status.v1",
+      "type" : "OrganizationRoleStatusList"
+    },
+    {
+      "file" : "org.status.v2.json",
+      "flow" : "org",
+      "id" : "org.status.v2",
+      "type" : "OrganizationRoleStatusList"
+    },
+    {
+      "file" : "org.status.tampered.json",
+      "flow" : "org",
+      "id" : "org.status.tampered",
+      "type" : "OrganizationRoleStatusList"
+    },
+    {
+      "file" : "org.status.wrong-key.json",
+      "flow" : "org",
+      "id" : "org.status.wrong-key",
+      "type" : "OrganizationRoleStatusList"
     }
   ],
   "generator" : "Tests\/CellBaseTests\/InteropFixturesV1Tests.swift",
@@ -312,6 +450,17 @@
       },
       "name" : "mallory",
       "seedHex" : "af7f4f48a4132241d17dc7c193daa0d26b614e81afa9052df94296ede0fd34a6"
+    },
+    {
+      "descriptor" : {
+        "algorithm" : "EdDSA",
+        "curveType" : "Curve25519",
+        "displayName" : "custodian",
+        "publicKey" : "fV0O3AY+dFFsldKtti8kABqAr0rkmosI6FlGB8FSZvQ=",
+        "uuid" : "0D9A0000-0000-4000-8000-00000000C057"
+      },
+      "name" : "custodian",
+      "seedHex" : "aaae460dd8df858642b9949f59762759f03ffb4328520a64b6040ca7cf159dfa"
     }
   ],
   "schema" : "haven.interop.fixtures.v1",

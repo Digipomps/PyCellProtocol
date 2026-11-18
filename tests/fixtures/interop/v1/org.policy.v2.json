@@ -1,0 +1,106 @@
+{
+  "canonicalBase64" : "eyJhbWVuZG1lbnRSdWxlSUQiOiJzdHlyaW5nIiwiZXZpZGVuY2UiOlt7ImtpbmQiOiJvd25lcnNoaXBBZ3JlZW1lbnQiLCJyZWZlcmVuY2UiOiJyb2xlcy1vbmUtZ292ZXJuYW5jZS1hbGwifV0sIm1lbWJlcnMiOlt7ImlkZW50aXR5Ijp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYWxpY2UiLCJwdWJsaWNLZXkiOiIxS3FuekRsamtOaGlqWTBFWGgrRjd5ZW0zeVM5c0gzTU1mbm85S0RiNFFZPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMifSwicm9sZXMiOlsib3duZXIiXSwidmFsaWRGcm9tIjoiMjAyNi0xMC0wMVQwMDowMDowMFoifSx7ImlkZW50aXR5Ijp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYm9iIiwicHVibGljS2V5IjoiUFNobjVKYmFhS1QwbHB6SEhGZ2M0ZnE4SUJERzRXeU9rZFpMMFVlZnV6RT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwQjBCIn0sInJvbGVzIjpbIm93bmVyIl0sInZhbGlkRnJvbSI6IjIwMjYtMTAtMDFUMDA6MDA6MDBaIn1dLCJwb2xpY3lJRCI6ImVudGl0eTppbnRlcm9wLWdydXBwZSIsInByZXZpb3VzUG9saWN5SGFzaCI6IjlsMzdsNUZseGlwYVwvVDZHUTlMdmpQVUl3YUdPa2NmNkVPNVlLcTY5VU5RPSIsInJ1bGVzIjpbeyJhY3Rpb25DbGFzc2VzIjpbInJvbGUuaXNzdWUiLCJyb2xlLnJldm9rZSIsInJvbGUuc3RhdHVzLnB1Ymxpc2giXSwiYW55T2YiOlt7ImRpc3RpbmN0UGVyc29ucyI6dHJ1ZSwicmVxdWlyZW1lbnRzIjpbeyJtaW5pbXVtIjoxLCJyb2xlIjoib3duZXIifV19XSwiZXhjbHVkZWRBY3Rpb25zIjpbXSwicmVxdWlyZXNGcmVzaEF1dGgiOmZhbHNlLCJydWxlSUQiOiJyb2xsZXIifSx7ImFjdGlvbkNsYXNzZXMiOlsicG9saWN5LmFtZW5kIl0sImFueU9mIjpbeyJkaXN0aW5jdFBlcnNvbnMiOnRydWUsInJlcXVpcmVtZW50cyI6W3sibWluaW11bSI6Miwicm9sZSI6Im93bmVyIn1dfV0sImV4Y2x1ZGVkQWN0aW9ucyI6W10sInJlcXVpcmVzRnJlc2hBdXRoIjpmYWxzZSwicnVsZUlEIjoic3R5cmluZyJ9XSwidmFsaWRGcm9tIjoiMjAyNi0xMC0wMVQwMDowMDowMFoiLCJ2ZXJzaW9uIjoyfQ==",
+  "canonicalSHA256Hex" : "79eb1cb600d5d0456c33381b8b43c79c4ddb96645175ff3398add680f8d7a3e2",
+  "description" : "Bob er lagt til som eier. Peker på hashen til v1.",
+  "encodedBase64" : "eyJhbWVuZG1lbnRSdWxlSUQiOiJzdHlyaW5nIiwiZXZpZGVuY2UiOlt7ImtpbmQiOiJvd25lcnNoaXBBZ3JlZW1lbnQiLCJyZWZlcmVuY2UiOiJyb2xlcy1vbmUtZ292ZXJuYW5jZS1hbGwifV0sIm1lbWJlcnMiOlt7ImlkZW50aXR5Ijp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYWxpY2UiLCJwdWJsaWNLZXkiOiIxS3FuekRsamtOaGlqWTBFWGgrRjd5ZW0zeVM5c0gzTU1mbm85S0RiNFFZPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMifSwicm9sZXMiOlsib3duZXIiXSwidmFsaWRGcm9tIjoiMjAyNi0xMC0wMVQwMDowMDowMFoifSx7ImlkZW50aXR5Ijp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYm9iIiwicHVibGljS2V5IjoiUFNobjVKYmFhS1QwbHB6SEhGZ2M0ZnE4SUJERzRXeU9rZFpMMFVlZnV6RT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwQjBCIn0sInJvbGVzIjpbIm93bmVyIl0sInZhbGlkRnJvbSI6IjIwMjYtMTAtMDFUMDA6MDA6MDBaIn1dLCJwb2xpY3lJRCI6ImVudGl0eTppbnRlcm9wLWdydXBwZSIsInByZXZpb3VzUG9saWN5SGFzaCI6IjlsMzdsNUZseGlwYVwvVDZHUTlMdmpQVUl3YUdPa2NmNkVPNVlLcTY5VU5RPSIsInJ1bGVzIjpbeyJhY3Rpb25DbGFzc2VzIjpbInJvbGUuaXNzdWUiLCJyb2xlLnJldm9rZSIsInJvbGUuc3RhdHVzLnB1Ymxpc2giXSwiYW55T2YiOlt7ImRpc3RpbmN0UGVyc29ucyI6dHJ1ZSwicmVxdWlyZW1lbnRzIjpbeyJtaW5pbXVtIjoxLCJyb2xlIjoib3duZXIifV19XSwiZXhjbHVkZWRBY3Rpb25zIjpbXSwicmVxdWlyZXNGcmVzaEF1dGgiOmZhbHNlLCJydWxlSUQiOiJyb2xsZXIifSx7ImFjdGlvbkNsYXNzZXMiOlsicG9saWN5LmFtZW5kIl0sImFueU9mIjpbeyJkaXN0aW5jdFBlcnNvbnMiOnRydWUsInJlcXVpcmVtZW50cyI6W3sibWluaW11bSI6Miwicm9sZSI6Im93bmVyIn1dfV0sImV4Y2x1ZGVkQWN0aW9ucyI6W10sInJlcXVpcmVzRnJlc2hBdXRoIjpmYWxzZSwicnVsZUlEIjoic3R5cmluZyJ9XSwidmFsaWRGcm9tIjoiMjAyNi0xMC0wMVQwMDowMDowMFoiLCJ2ZXJzaW9uIjoyfQ==",
+  "excludedTopLevelKeys" : [
+
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "valid"
+  },
+  "flow" : "org",
+  "id" : "org.policy.v2",
+  "object" : {
+    "amendmentRuleID" : "styring",
+    "evidence" : [
+      {
+        "kind" : "ownershipAgreement",
+        "reference" : "roles-one-governance-all"
+      }
+    ],
+    "members" : [
+      {
+        "identity" : {
+          "algorithm" : "EdDSA",
+          "curveType" : "Curve25519",
+          "displayName" : "alice",
+          "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+          "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+        },
+        "roles" : [
+          "owner"
+        ],
+        "validFrom" : "2026-10-01T00:00:00Z"
+      },
+      {
+        "identity" : {
+          "algorithm" : "EdDSA",
+          "curveType" : "Curve25519",
+          "displayName" : "bob",
+          "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+          "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+        },
+        "roles" : [
+          "owner"
+        ],
+        "validFrom" : "2026-10-01T00:00:00Z"
+      }
+    ],
+    "policyID" : "entity:interop-gruppe",
+    "previousPolicyHash" : "9l37l5Flxipa\/T6GQ9LvjPUIwaGOkcf6EO5YKq69UNQ=",
+    "rules" : [
+      {
+        "actionClasses" : [
+          "role.issue",
+          "role.revoke",
+          "role.status.publish"
+        ],
+        "anyOf" : [
+          {
+            "distinctPersons" : true,
+            "requirements" : [
+              {
+                "minimum" : 1,
+                "role" : "owner"
+              }
+            ]
+          }
+        ],
+        "excludedActions" : [
+
+        ],
+        "requiresFreshAuth" : false,
+        "ruleID" : "roller"
+      },
+      {
+        "actionClasses" : [
+          "policy.amend"
+        ],
+        "anyOf" : [
+          {
+            "distinctPersons" : true,
+            "requirements" : [
+              {
+                "minimum" : 2,
+                "role" : "owner"
+              }
+            ]
+          }
+        ],
+        "excludedActions" : [
+
+        ],
+        "requiresFreshAuth" : false,
+        "ruleID" : "styring"
+      }
+    ],
+    "validFrom" : "2026-10-01T00:00:00Z",
+    "version" : 2
+  },
+  "related" : {
+    "policyHashBase64" : "eesctgDV0EVsMzgbi0PHnE3blmRRdf8zmK3WgPjXo+I="
+  },
+  "type" : "GovernancePolicy"
+}

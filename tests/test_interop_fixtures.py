@@ -19,7 +19,8 @@ from cellprotocol.interop import verify as v
 
 FIXTURES = Path(__file__).parent / "fixtures" / "interop" / "v1"
 MANIFEST = json.loads((FIXTURES / "manifest.json").read_text(encoding="utf-8"))
-ALL_CASES = {entry["id"]: json.loads((FIXTURES / entry["file"]).read_text(encoding="utf-8")) for entry in MANIFEST["cases"]}
+# Organization cases (flow "org") are checked in test_interop_organization.py.
+ALL_CASES = {entry["id"]: json.loads((FIXTURES / entry["file"]).read_text(encoding="utf-8")) for entry in MANIFEST["cases"] if entry["flow"] != "org"}
 # Bridge channel admission vectors are checked in test_interop_channel.py.
 # Channel vectors and the VC chain have their own tests (test_interop_channel,
 # test_interop_identity_link).
@@ -45,7 +46,7 @@ def _related(case: dict, name: str):
 
 
 def test_manifest_covers_all_three_flows_and_the_bridge_proof():
-    flows = {entry["flow"] for entry in MANIFEST["cases"]}
+    flows = {entry["flow"] for entry in MANIFEST["cases"] if entry["flow"] != "org"}
     assert {case["type"] for case in ALL_CASES.values()} - set(WIRE_TYPES) == OWN_TESTS
     assert flows == {"extend", "invite", "chat", "bridge"}
     assert len(CASES) >= 28
