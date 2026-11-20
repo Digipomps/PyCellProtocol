@@ -1,0 +1,40 @@
+{
+  "canonicalBase64" : "eyJhY3Rpb25DbGFzcyI6InJvbGUuaXNzdWUiLCJhdWRpZW5jZSI6ImVudGl0eTppbnRlcm9wLWdydXBwZSIsImNyZWF0ZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTk6MDBaIiwiZXhwaXJlc0F0IjoiMjAyNi0xMC0yN1QxMjowOTowMFoiLCJub25jZSI6ImZtMVM3VFJEMXQwRkNac01tT0I1bUE9PSIsIm9yZ2FuaXphdGlvbkFuY2hvcklEIjoiZW50aXR5OmludGVyb3AtZ3J1cHBlIiwicGF5bG9hZEhhc2giOiJndjdzTklaYTFmT2taZ0JRSndqMkY1eEZDV3p3T21UODlteW1iRzJSKzlBPSIsInBheWxvYWRTdW1tYXJ5IjoiSW50ZXJvcC1ncnVwcGEgKHRlc3QpIGdpciByb2xsZW4gwqtyZXNlYXJjaGVywrsgdGlsIGRpZDprZXk6ejZNa2laemVmUWlidVljaWFpS3l0eVZnSlI5N1Nlc2pkdko3VWNZVmt3dWt5aEgyIGkga3VsbGV0IE1hc3RlckhBVkVOMjYsIGd5bGRpZyB0aWwgMjAyNy0wNi0zMC4iLCJwb2xpY3lIYXNoIjoiOWwzN2w1Rmx4aXBhXC9UNkdROUx2alBVSXdhR09rY2Y2RU81WUtxNjlVTlE9IiwicHJvcG9zYWxJRCI6InByb3AtaW50ZXJvcC1yb2xlLWlzc3VlIiwicHJvcG9zZXIiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJhbGljZSIsInB1YmxpY0tleSI6IjFLcW56RGxqa05oaWpZMEVYaCtGN3llbTN5UzlzSDNNTWZubzlLRGI0UVk9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyJ9LCJ2ZXJzaW9uIjoxfQ==",
+  "canonicalSHA256Hex" : "dbb917144bd1cd616863d5a47d027cf4556cb7a8949dd14963e87eb03b2b9e5c",
+  "description" : "Forslag om å gi rollen. payloadHash er hashen av credentialet uten proof; sammendraget er utledet av credentialet.",
+  "encodedBase64" : "eyJhY3Rpb25DbGFzcyI6InJvbGUuaXNzdWUiLCJhdWRpZW5jZSI6ImVudGl0eTppbnRlcm9wLWdydXBwZSIsImNyZWF0ZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTk6MDBaIiwiZXhwaXJlc0F0IjoiMjAyNi0xMC0yN1QxMjowOTowMFoiLCJub25jZSI6ImZtMVM3VFJEMXQwRkNac01tT0I1bUE9PSIsIm9yZ2FuaXphdGlvbkFuY2hvcklEIjoiZW50aXR5OmludGVyb3AtZ3J1cHBlIiwicGF5bG9hZEhhc2giOiJndjdzTklaYTFmT2taZ0JRSndqMkY1eEZDV3p3T21UODlteW1iRzJSKzlBPSIsInBheWxvYWRTdW1tYXJ5IjoiSW50ZXJvcC1ncnVwcGEgKHRlc3QpIGdpciByb2xsZW4gwqtyZXNlYXJjaGVywrsgdGlsIGRpZDprZXk6ejZNa2laemVmUWlidVljaWFpS3l0eVZnSlI5N1Nlc2pkdko3VWNZVmt3dWt5aEgyIGkga3VsbGV0IE1hc3RlckhBVkVOMjYsIGd5bGRpZyB0aWwgMjAyNy0wNi0zMC4iLCJwb2xpY3lIYXNoIjoiOWwzN2w1Rmx4aXBhXC9UNkdROUx2alBVSXdhR09rY2Y2RU81WUtxNjlVTlE9IiwicHJvcG9zYWxJRCI6InByb3AtaW50ZXJvcC1yb2xlLWlzc3VlIiwicHJvcG9zZXIiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJhbGljZSIsInB1YmxpY0tleSI6IjFLcW56RGxqa05oaWpZMEVYaCtGN3llbTN5UzlzSDNNTWZubzlLRGI0UVk9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyJ9LCJ2ZXJzaW9uIjoxfQ==",
+  "excludedTopLevelKeys" : [
+
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "valid"
+  },
+  "flow" : "org",
+  "id" : "org.proposal.role-issue",
+  "object" : {
+    "actionClass" : "role.issue",
+    "audience" : "entity:interop-gruppe",
+    "createdAt" : "2026-10-27T11:59:00Z",
+    "expiresAt" : "2026-10-27T12:09:00Z",
+    "nonce" : "fm1S7TRD1t0FCZsMmOB5mA==",
+    "organizationAnchorID" : "entity:interop-gruppe",
+    "payloadHash" : "gv7sNIZa1fOkZgBQJwj2F5xFCWzwOmT89mymbG2R+9A=",
+    "payloadSummary" : "Interop-gruppa (test) gir rollen «researcher» til did:key:z6MkiZzefQibuYciaiKytyVgJR97SesjdvJ7UcYVkwukyhH2 i kullet MasterHAVEN26, gyldig til 2027-06-30.",
+    "policyHash" : "9l37l5Flxipa\/T6GQ9LvjPUIwaGOkcf6EO5YKq69UNQ=",
+    "proposalID" : "prop-interop-role-issue",
+    "proposer" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "alice",
+      "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+    },
+    "version" : 1
+  },
+  "related" : {
+    "policy" : "org.policy.v1",
+    "proposalHashBase64" : "27kXFEvRzWFoY9WkfQJ89FVst6iUndFJY+h+sDsrnlw="
+  },
+  "type" : "OrganizationActionProposal"
+}

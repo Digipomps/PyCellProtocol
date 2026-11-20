@@ -1,0 +1,53 @@
+{
+  "canonicalBase64" : "eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL2V4YW1wbGVzL3YxIl0sImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImNvaG9ydCI6Ik1hc3RlckhBVkVOMjYiLCJpZCI6ImRpZDprZXk6ejZNa2laemVmUWlidVljaWFpS3l0eVZnSlI5N1Nlc2pkdko3VWNZVmt3dWt5aEgyIiwib3JnYW5pemF0aW9uIjoiZW50aXR5OmludGVyb3AtZ3J1cHBlIiwicG9saWN5SGFzaCI6IjlsMzdsNUZseGlwYS9UNkdROUx2alBVSXdhR09rY2Y2RU81WUtxNjlVTlE9Iiwicm9sZSI6InN1cGVydmlzb3IiLCJ2YWxpZFVudGlsIjoiMjAyNy0wNi0zMCJ9LCJpZCI6ImNlbGw6Ly8vaWRlbnRpdHkvNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwQjBCL2NsYWltcy8wMjAxRTAwMC0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDAwMDEiLCJpc3N1YW5jZURhdGUiOiIyMDI2LTEwLTI3VDExOjU5OjQ1WiIsImlzc3VlciI6ImRpZDprZXk6ejZNa250ZEpyandmS1pvRUZRUlpKMkVVSG1nMkNBcmdUZjJBeDYyd1hzbXg2dlVqIiwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCIsIk9yZ2FuaXphdGlvblJvbGVDcmVkZW50aWFsIiwiSW50ZXJvcEdydXBwZVJvbGVDcmVkZW50aWFsIl19",
+  "canonicalSHA256Hex" : "0626a1a0b09a2f0a87cb319f0e8199460743a97a41f36fce1163df787770dd7d",
+  "description" : "Rollen er endret til supervisor etter signering.",
+  "encodedBase64" : "eyJAY29udGV4dCI6WyJodHRwczpcL1wvd3d3LnczLm9yZ1wvMjAxOFwvY3JlZGVudGlhbHNcL3YxIiwiaHR0cHM6XC9cL3d3dy53My5vcmdcLzIwMThcL2NyZWRlbnRpYWxzXC9leGFtcGxlc1wvdjEiXSwiY3JlZGVudGlhbFN1YmplY3QiOnsiY29ob3J0IjoiTWFzdGVySEFWRU4yNiIsImlkIjoiZGlkOmtleTp6Nk1raVp6ZWZRaWJ1WWNpYWlLeXR5VmdKUjk3U2VzamR2SjdVY1lWa3d1a3loSDIiLCJvcmdhbml6YXRpb24iOiJlbnRpdHk6aW50ZXJvcC1ncnVwcGUiLCJwb2xpY3lIYXNoIjoiOWwzN2w1Rmx4aXBhXC9UNkdROUx2alBVSXdhR09rY2Y2RU81WUtxNjlVTlE9Iiwicm9sZSI6InN1cGVydmlzb3IiLCJ2YWxpZFVudGlsIjoiMjAyNy0wNi0zMCJ9LCJpZCI6ImNlbGw6XC9cL1wvaWRlbnRpdHlcLzZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQlwvY2xhaW1zXC8wMjAxRTAwMC0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMDAwMDEiLCJpc3N1YW5jZURhdGUiOiIyMDI2LTEwLTI3VDExOjU5OjQ1WiIsImlzc3VlciI6ImRpZDprZXk6ejZNa250ZEpyandmS1pvRUZRUlpKMkVVSG1nMkNBcmdUZjJBeDYyd1hzbXg2dlVqIiwicHJvb2YiOnsiY3JlYXRlZCI6IjIwMjYtMTAtMjdUMTE6NTk6NDVaIiwicHJvb2ZQdXJwb3NlIjoiYXNzZXJ0aW9uTWV0aG9kIiwic2lnbmF0dXJlRGF0YSI6Imw2bm5pN2I4V2VsdUQwQmQ0Rml3cDFoaEFEaVdZOXppUGJ6N3VoWWZoUzJQcXBTaUd2bUJYWk0xY3YzZXlMMzA5VkFCeXNnMG5RTVVVRGgyRFhQUENRPT0iLCJ0eXBlIjoiRWQyNTUxOVNpZ25hdHVyZTIwMjAiLCJ2ZXJpZmljYXRpb25NZXRob2QiOiIwRDlBMDAwMC0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEMwNTcifSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCIsIk9yZ2FuaXphdGlvblJvbGVDcmVkZW50aWFsIiwiSW50ZXJvcEdydXBwZVJvbGVDcmVkZW50aWFsIl19",
+  "excludedTopLevelKeys" : [
+    "proof"
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "invalid"
+  },
+  "flow" : "org",
+  "id" : "org.role.tampered",
+  "object" : {
+    "@context" : [
+      "https:\/\/www.w3.org\/2018\/credentials\/v1",
+      "https:\/\/www.w3.org\/2018\/credentials\/examples\/v1"
+    ],
+    "credentialSubject" : {
+      "cohort" : "MasterHAVEN26",
+      "id" : "did:key:z6MkiZzefQibuYciaiKytyVgJR97SesjdvJ7UcYVkwukyhH2",
+      "organization" : "entity:interop-gruppe",
+      "policyHash" : "9l37l5Flxipa\/T6GQ9LvjPUIwaGOkcf6EO5YKq69UNQ=",
+      "role" : "supervisor",
+      "validUntil" : "2027-06-30"
+    },
+    "id" : "cell:\/\/\/identity\/6F1C2B0A-0000-4000-8000-000000000B0B\/claims\/0201E000-0000-4000-8000-000000000001",
+    "issuanceDate" : "2026-10-27T11:59:45Z",
+    "issuer" : "did:key:z6MkntdJrjwfKZoEFQRZJ2EUHmg2CArgTf2Ax62wXsmx6vUj",
+    "proof" : {
+      "created" : "2026-10-27T11:59:45Z",
+      "proofPurpose" : "assertionMethod",
+      "signatureData" : "l6nni7b8WeluD0Bd4Fiwp1hhADiWY9ziPbz7uhYfhS2PqpSiGvmBXZM1cv3eyL309VABysg0nQMUUDh2DXPPCQ==",
+      "type" : "Ed25519Signature2020",
+      "verificationMethod" : "0D9A0000-0000-4000-8000-00000000C057"
+    },
+    "type" : [
+      "VerifiableCredential",
+      "OrganizationRoleCredential",
+      "InteropGruppeRoleCredential"
+    ]
+  },
+  "signatureBase64" : "l6nni7b8WeluD0Bd4Fiwp1hhADiWY9ziPbz7uhYfhS2PqpSiGvmBXZM1cv3eyL309VABysg0nQMUUDh2DXPPCQ==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "custodian",
+    "publicKey" : "fV0O3AY+dFFsldKtti8kABqAr0rkmosI6FlGB8FSZvQ=",
+    "uuid" : "0D9A0000-0000-4000-8000-00000000C057"
+  },
+  "type" : "VCClaim"
+}

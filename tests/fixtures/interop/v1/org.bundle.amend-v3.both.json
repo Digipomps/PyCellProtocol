@@ -1,0 +1,73 @@
+{
+  "canonicalBase64" : "eyJhcHByb3ZhbHMiOlt7ImFwcHJvdmVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjMwWiIsImFwcHJvdmVyIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYWxpY2UiLCJwdWJsaWNLZXkiOiIxS3FuekRsamtOaGlqWTBFWGgrRjd5ZW0zeVM5c0gzTU1mbm85S0RiNFFZPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMifSwiZGVjaXNpb24iOiJhcHByb3ZlIiwicHJvcG9zYWxIYXNoIjoiUHlwVWRtSHFxbVwvXC9WNTBEUXJRR2dGdE9VYUJld09GQ2NFQ3ZCcUtzYnQwPSIsInJvbGUiOiJvd25lciIsInNpZ25hdHVyZSI6IjhrQTIwZXpSWExVMmZEeVlVaE5KZGFnM0E1SW5TRjVOelhoUUlXaDY0SlA5SndVZ1pPYkltcTFoWjdpaXozRUt3S3ZxUDViRlRvXC9kZXRwVnpRazhCZz09IiwidmVyc2lvbiI6MX0seyJhcHByb3ZlZEF0IjoiMjAyNi0xMC0yN1QxMTo1OTozMFoiLCJhcHByb3ZlciI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImJvYiIsInB1YmxpY0tleSI6IlBTaG41SmJhYUtUMGxwekhIRmdjNGZxOElCREc0V3lPa2RaTDBVZWZ1ekU9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQiJ9LCJkZWNpc2lvbiI6ImFwcHJvdmUiLCJwcm9wb3NhbEhhc2giOiJQeXBVZG1IcXFtXC9cL1Y1MERRclFHZ0Z0T1VhQmV3T0ZDY0VDdkJxS3NidDA9Iiwicm9sZSI6Im93bmVyIiwic2lnbmF0dXJlIjoiaktXSFFmcWVrbUFIaWNLUjZncVwveCtEVlwvd1JvY1h6M3FmeDdLc09ZaUNGeFFFMCtaaVNxR2JXZWFtREk1bWlhRmFwd1FBa1BGNW5EYlNiV3JhSXJBQT09IiwidmVyc2lvbiI6MX1dLCJwcm9wb3NhbCI6eyJhY3Rpb25DbGFzcyI6InBvbGljeS5hbWVuZCIsImF1ZGllbmNlIjoiZW50aXR5OmludGVyb3AtZ3J1cHBlIiwiY3JlYXRlZEF0IjoiMjAyNi0xMC0yN1QxMTo1OTowMFoiLCJleHBpcmVzQXQiOiIyMDI2LTEwLTI3VDEyOjA5OjAwWiIsIm5vbmNlIjoidGwxVmp1Zzl4dExTbHJCXC9ZekZqUVE9PSIsIm9yZ2FuaXphdGlvbkFuY2hvcklEIjoiZW50aXR5OmludGVyb3AtZ3J1cHBlIiwicGF5bG9hZEhhc2giOiJWU0FTZHpoeUdFRVNWd0cycmhKOWYwRjdSRWdlREQ2cXlNb2tyR21DekM0PSIsInBheWxvYWRTdW1tYXJ5IjoiUG9saWN5IHYyIOKGkiB2My4gTnkgZWllcjogbWFsbG9yeS4iLCJwb2xpY3lIYXNoIjoiZWVzY3RnRFYwRVZzTXpnYmkwUEhuRTNibG1SUmRmOHptSzNXZ1BqWG8rST0iLCJwcm9wb3NhbElEIjoicHJvcC1pbnRlcm9wLWFtZW5kLXYzIiwicHJvcG9zZXIiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJhbGljZSIsInB1YmxpY0tleSI6IjFLcW56RGxqa05oaWpZMEVYaCtGN3llbTN5UzlzSDNNTWZubzlLRGI0UVk9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyJ9LCJ2ZXJzaW9uIjoxfX0=",
+  "canonicalSHA256Hex" : "a2ff59c7798c324c03c0350a23ffd013858755d87a2ceff5e8a9f30b3427e5fe",
+  "description" : "Alice og Bob godkjenner begge; endringen holder.",
+  "encodedBase64" : "eyJhcHByb3ZhbHMiOlt7ImFwcHJvdmVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjMwWiIsImFwcHJvdmVyIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYWxpY2UiLCJwdWJsaWNLZXkiOiIxS3FuekRsamtOaGlqWTBFWGgrRjd5ZW0zeVM5c0gzTU1mbm85S0RiNFFZPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMifSwiZGVjaXNpb24iOiJhcHByb3ZlIiwicHJvcG9zYWxIYXNoIjoiUHlwVWRtSHFxbVwvXC9WNTBEUXJRR2dGdE9VYUJld09GQ2NFQ3ZCcUtzYnQwPSIsInJvbGUiOiJvd25lciIsInNpZ25hdHVyZSI6IjhrQTIwZXpSWExVMmZEeVlVaE5KZGFnM0E1SW5TRjVOelhoUUlXaDY0SlA5SndVZ1pPYkltcTFoWjdpaXozRUt3S3ZxUDViRlRvXC9kZXRwVnpRazhCZz09IiwidmVyc2lvbiI6MX0seyJhcHByb3ZlZEF0IjoiMjAyNi0xMC0yN1QxMTo1OTozMFoiLCJhcHByb3ZlciI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImJvYiIsInB1YmxpY0tleSI6IlBTaG41SmJhYUtUMGxwekhIRmdjNGZxOElCREc0V3lPa2RaTDBVZWZ1ekU9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQiJ9LCJkZWNpc2lvbiI6ImFwcHJvdmUiLCJwcm9wb3NhbEhhc2giOiJQeXBVZG1IcXFtXC9cL1Y1MERRclFHZ0Z0T1VhQmV3T0ZDY0VDdkJxS3NidDA9Iiwicm9sZSI6Im93bmVyIiwic2lnbmF0dXJlIjoiaktXSFFmcWVrbUFIaWNLUjZncVwveCtEVlwvd1JvY1h6M3FmeDdLc09ZaUNGeFFFMCtaaVNxR2JXZWFtREk1bWlhRmFwd1FBa1BGNW5EYlNiV3JhSXJBQT09IiwidmVyc2lvbiI6MX1dLCJwcm9wb3NhbCI6eyJhY3Rpb25DbGFzcyI6InBvbGljeS5hbWVuZCIsImF1ZGllbmNlIjoiZW50aXR5OmludGVyb3AtZ3J1cHBlIiwiY3JlYXRlZEF0IjoiMjAyNi0xMC0yN1QxMTo1OTowMFoiLCJleHBpcmVzQXQiOiIyMDI2LTEwLTI3VDEyOjA5OjAwWiIsIm5vbmNlIjoidGwxVmp1Zzl4dExTbHJCXC9ZekZqUVE9PSIsIm9yZ2FuaXphdGlvbkFuY2hvcklEIjoiZW50aXR5OmludGVyb3AtZ3J1cHBlIiwicGF5bG9hZEhhc2giOiJWU0FTZHpoeUdFRVNWd0cycmhKOWYwRjdSRWdlREQ2cXlNb2tyR21DekM0PSIsInBheWxvYWRTdW1tYXJ5IjoiUG9saWN5IHYyIOKGkiB2My4gTnkgZWllcjogbWFsbG9yeS4iLCJwb2xpY3lIYXNoIjoiZWVzY3RnRFYwRVZzTXpnYmkwUEhuRTNibG1SUmRmOHptSzNXZ1BqWG8rST0iLCJwcm9wb3NhbElEIjoicHJvcC1pbnRlcm9wLWFtZW5kLXYzIiwicHJvcG9zZXIiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJhbGljZSIsInB1YmxpY0tleSI6IjFLcW56RGxqa05oaWpZMEVYaCtGN3llbTN5UzlzSDNNTWZubzlLRGI0UVk9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyJ9LCJ2ZXJzaW9uIjoxfX0=",
+  "excludedTopLevelKeys" : [
+
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "met:styring:0"
+  },
+  "flow" : "org",
+  "id" : "org.bundle.amend-v3.both",
+  "object" : {
+    "approvals" : [
+      {
+        "approvedAt" : "2026-10-27T11:59:30Z",
+        "approver" : {
+          "algorithm" : "EdDSA",
+          "curveType" : "Curve25519",
+          "displayName" : "alice",
+          "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+          "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+        },
+        "decision" : "approve",
+        "proposalHash" : "PypUdmHqqm\/\/V50DQrQGgFtOUaBewOFCcECvBqKsbt0=",
+        "role" : "owner",
+        "signature" : "8kA20ezRXLU2fDyYUhNJdag3A5InSF5NzXhQIWh64JP9JwUgZObImq1hZ7iiz3EKwKvqP5bFTo\/detpVzQk8Bg==",
+        "version" : 1
+      },
+      {
+        "approvedAt" : "2026-10-27T11:59:30Z",
+        "approver" : {
+          "algorithm" : "EdDSA",
+          "curveType" : "Curve25519",
+          "displayName" : "bob",
+          "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+          "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+        },
+        "decision" : "approve",
+        "proposalHash" : "PypUdmHqqm\/\/V50DQrQGgFtOUaBewOFCcECvBqKsbt0=",
+        "role" : "owner",
+        "signature" : "jKWHQfqekmAHicKR6gq\/x+DV\/wRocXz3qfx7KsOYiCFxQE0+ZiSqGbWeamDI5miaFapwQAkPF5nDbSbWraIrAA==",
+        "version" : 1
+      }
+    ],
+    "proposal" : {
+      "actionClass" : "policy.amend",
+      "audience" : "entity:interop-gruppe",
+      "createdAt" : "2026-10-27T11:59:00Z",
+      "expiresAt" : "2026-10-27T12:09:00Z",
+      "nonce" : "tl1Vjug9xtLSlrB\/YzFjQQ==",
+      "organizationAnchorID" : "entity:interop-gruppe",
+      "payloadHash" : "VSASdzhyGEESVwG2rhJ9f0F7REgeDD6qyMokrGmCzC4=",
+      "payloadSummary" : "Policy v2 → v3. Ny eier: mallory.",
+      "policyHash" : "eesctgDV0EVsMzgbi0PHnE3blmRRdf8zmK3WgPjXo+I=",
+      "proposalID" : "prop-interop-amend-v3",
+      "proposer" : {
+        "algorithm" : "EdDSA",
+        "curveType" : "Curve25519",
+        "displayName" : "alice",
+        "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+        "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+      },
+      "version" : 1
+    }
+  },
+  "related" : {
+    "policy" : "org.policy.v2"
+  },
+  "type" : "ApprovalBundle"
+}

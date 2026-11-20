@@ -1,0 +1,58 @@
+{
+  "canonicalBase64" : "eyJhcHByb3ZhbHMiOlt7ImFwcHJvdmVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjMwWiIsImFwcHJvdmVyIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYWxpY2UiLCJwdWJsaWNLZXkiOiIxS3FuekRsamtOaGlqWTBFWGgrRjd5ZW0zeVM5c0gzTU1mbm85S0RiNFFZPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMifSwiZGVjaXNpb24iOiJhcHByb3ZlIiwicHJvcG9zYWxIYXNoIjoiOWtQQk15RGxrWDloVmZQUFg4SnlHcnRTVVluOHk2cldSTGNYVzVOSlRQST0iLCJyb2xlIjoib3duZXIiLCJzaWduYXR1cmUiOiJMMkdReXZ3TVwvMWZvaTN2SEVkRk5zN0VHWng1MFwvRkFtZ0phT1R6ZlwvM1B0ZEg2SjhWeG5CVEFcL0hhNXFobnlFTXhrbHp1R3Q3ejRtXC81eEN2UjRXTkJ3PT0iLCJ2ZXJzaW9uIjoxfV0sInByb3Bvc2FsIjp7ImFjdGlvbkNsYXNzIjoicG9saWN5LmFtZW5kIiwiYXVkaWVuY2UiOiJlbnRpdHk6aW50ZXJvcC1ncnVwcGUiLCJjcmVhdGVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjAwWiIsImV4cGlyZXNBdCI6IjIwMjYtMTAtMjdUMTI6MDk6MDBaIiwibm9uY2UiOiJMdXVHb09vb0IrUzI3TFZ5U3dZaEdnPT0iLCJvcmdhbml6YXRpb25BbmNob3JJRCI6ImVudGl0eTppbnRlcm9wLWdydXBwZSIsInBheWxvYWRIYXNoIjoiZWVzY3RnRFYwRVZzTXpnYmkwUEhuRTNibG1SUmRmOHptSzNXZ1BqWG8rST0iLCJwYXlsb2FkU3VtbWFyeSI6IlBvbGljeSB2MSDihpIgdjIuIE55IGVpZXI6IGJvYi4iLCJwb2xpY3lIYXNoIjoiOWwzN2w1Rmx4aXBhXC9UNkdROUx2alBVSXdhR09rY2Y2RU81WUtxNjlVTlE9IiwicHJvcG9zYWxJRCI6InByb3AtaW50ZXJvcC1hbWVuZC12MiIsInByb3Bvc2VyIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYWxpY2UiLCJwdWJsaWNLZXkiOiIxS3FuekRsamtOaGlqWTBFWGgrRjd5ZW0zeVM5c0gzTU1mbm85S0RiNFFZPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMifSwidmVyc2lvbiI6MX19",
+  "canonicalSHA256Hex" : "6ca443f996b2169f1e818c6a44c6e712ef85f3e1d8df02deaa6dc5eb7053e981",
+  "description" : "Alice, eneste eier i v1, legger til Bob. Styring krever alle eiere, og det er bare henne.",
+  "encodedBase64" : "eyJhcHByb3ZhbHMiOlt7ImFwcHJvdmVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjMwWiIsImFwcHJvdmVyIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYWxpY2UiLCJwdWJsaWNLZXkiOiIxS3FuekRsamtOaGlqWTBFWGgrRjd5ZW0zeVM5c0gzTU1mbm85S0RiNFFZPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMifSwiZGVjaXNpb24iOiJhcHByb3ZlIiwicHJvcG9zYWxIYXNoIjoiOWtQQk15RGxrWDloVmZQUFg4SnlHcnRTVVluOHk2cldSTGNYVzVOSlRQST0iLCJyb2xlIjoib3duZXIiLCJzaWduYXR1cmUiOiJMMkdReXZ3TVwvMWZvaTN2SEVkRk5zN0VHWng1MFwvRkFtZ0phT1R6ZlwvM1B0ZEg2SjhWeG5CVEFcL0hhNXFobnlFTXhrbHp1R3Q3ejRtXC81eEN2UjRXTkJ3PT0iLCJ2ZXJzaW9uIjoxfV0sInByb3Bvc2FsIjp7ImFjdGlvbkNsYXNzIjoicG9saWN5LmFtZW5kIiwiYXVkaWVuY2UiOiJlbnRpdHk6aW50ZXJvcC1ncnVwcGUiLCJjcmVhdGVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjAwWiIsImV4cGlyZXNBdCI6IjIwMjYtMTAtMjdUMTI6MDk6MDBaIiwibm9uY2UiOiJMdXVHb09vb0IrUzI3TFZ5U3dZaEdnPT0iLCJvcmdhbml6YXRpb25BbmNob3JJRCI6ImVudGl0eTppbnRlcm9wLWdydXBwZSIsInBheWxvYWRIYXNoIjoiZWVzY3RnRFYwRVZzTXpnYmkwUEhuRTNibG1SUmRmOHptSzNXZ1BqWG8rST0iLCJwYXlsb2FkU3VtbWFyeSI6IlBvbGljeSB2MSDihpIgdjIuIE55IGVpZXI6IGJvYi4iLCJwb2xpY3lIYXNoIjoiOWwzN2w1Rmx4aXBhXC9UNkdROUx2alBVSXdhR09rY2Y2RU81WUtxNjlVTlE9IiwicHJvcG9zYWxJRCI6InByb3AtaW50ZXJvcC1hbWVuZC12MiIsInByb3Bvc2VyIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYWxpY2UiLCJwdWJsaWNLZXkiOiIxS3FuekRsamtOaGlqWTBFWGgrRjd5ZW0zeVM5c0gzTU1mbm85S0RiNFFZPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMifSwidmVyc2lvbiI6MX19",
+  "excludedTopLevelKeys" : [
+
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "met:styring:0"
+  },
+  "flow" : "org",
+  "id" : "org.bundle.amend-v2.alice",
+  "object" : {
+    "approvals" : [
+      {
+        "approvedAt" : "2026-10-27T11:59:30Z",
+        "approver" : {
+          "algorithm" : "EdDSA",
+          "curveType" : "Curve25519",
+          "displayName" : "alice",
+          "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+          "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+        },
+        "decision" : "approve",
+        "proposalHash" : "9kPBMyDlkX9hVfPPX8JyGrtSUYn8y6rWRLcXW5NJTPI=",
+        "role" : "owner",
+        "signature" : "L2GQyvwM\/1foi3vHEdFNs7EGZx50\/FAmgJaOTzf\/3PtdH6J8VxnBTA\/Ha5qhnyEMxklzuGt7z4m\/5xCvR4WNBw==",
+        "version" : 1
+      }
+    ],
+    "proposal" : {
+      "actionClass" : "policy.amend",
+      "audience" : "entity:interop-gruppe",
+      "createdAt" : "2026-10-27T11:59:00Z",
+      "expiresAt" : "2026-10-27T12:09:00Z",
+      "nonce" : "LuuGoOooB+S27LVySwYhGg==",
+      "organizationAnchorID" : "entity:interop-gruppe",
+      "payloadHash" : "eesctgDV0EVsMzgbi0PHnE3blmRRdf8zmK3WgPjXo+I=",
+      "payloadSummary" : "Policy v1 → v2. Ny eier: bob.",
+      "policyHash" : "9l37l5Flxipa\/T6GQ9LvjPUIwaGOkcf6EO5YKq69UNQ=",
+      "proposalID" : "prop-interop-amend-v2",
+      "proposer" : {
+        "algorithm" : "EdDSA",
+        "curveType" : "Curve25519",
+        "displayName" : "alice",
+        "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+        "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+      },
+      "version" : 1
+    }
+  },
+  "related" : {
+    "policy" : "org.policy.v1"
+  },
+  "type" : "ApprovalBundle"
+}

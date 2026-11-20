@@ -73,6 +73,36 @@ nonces, session ID and generation. `encodedBase64` is the transcript,
   stores seconds since 2001. `expiresAt` is that date plus 30 seconds, read back.
   Do the same arithmetic in doubles to get the same digits.
 
+## Organizations owned by a group (`org`)
+
+The `org.*` cases come from `Tests/CellBaseTests/InteropFixturesV1OrganizationCases.swift`
+(PDD `informasjonssystemer-gruppeentitet`). The manifest has a fourth party,
+`custodian`: the organization key that the vault holds.
+
+| Type | Excluded | Verdict |
+|---|---|---|
+| `GovernancePolicy` | nothing, unsigned | `valid`; `related.policyHashBase64` is SHA-256 of the canonical bytes |
+| `OrganizationGenesisSeal` | `signatures` | `OrganizationGenesisSeal.verify(initialPolicy:)` against `related.policy`: `valid` or the error case name (`founderSignatureInvalid`, `unexpectedSigner`, ...) |
+| `OrganizationActionProposal` | nothing, unsigned | `valid`; `related.proposalHashBase64` is what approvals sign |
+| `OrganizationApproval` | `signature` | `valid` or `bad_signature` |
+| `ApprovalBundle` | nothing, unsigned | `GovernancePolicyEvaluator.evaluate` against `related.policy` at `verifyAt`: `met:<ruleID>:<clauseIndex>` or the `GovernanceEvaluationError` case name |
+| `VCClaim` (role) | `proof` | `valid` or `invalid`. Signed by `custodian`; `related.payloadHashBase64` is the hash the owners approve |
+| `OrganizationRoleStatusList` | `signature` | `valid` or `bad_signature`, verified with the key inside `issuerDID` (did:key) |
+
+The evaluator rules a port must copy exactly:
+
+- An approval is refused, in this order, when it is for another proposal, its signature fails, the approver is not a member, the approver lacks the role, the approval falls outside the member's validity, or the decision is `reject`.
+- A person who approves twice counts once.
+- A clause's role counts are filled with distinct people, trying people in sorted uuid order.
+- When no candidate rule holds, the error is the first gate failure (exclusion, limit, fresh auth) if any rule had one, otherwise the first `clauseNotSatisfied`.
+
+`org.access-matrix.json` is not a signed case but a shared table: seven
+scenarios (valid, wrong role, revoked, expired, tampered, issuer not trusted,
+stale status mirror) with the decision (`met` or `unresolved`) and the
+TrustedIssuer reason every implementation must reach. Swift checks it in
+`OrganizationVaultTests.testAccessMatrixMatchesSharedTable` through
+`ProvedClaimCondition` and `TrustedIssuerCell`.
+
 ## Regenerating
 
 On Linux, where swift-crypto's Ed25519 is deterministic, through the Linux gate

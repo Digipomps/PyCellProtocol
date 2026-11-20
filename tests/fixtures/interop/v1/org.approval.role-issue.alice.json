@@ -1,0 +1,42 @@
+{
+  "canonicalBase64" : "eyJhcHByb3ZlZEF0IjoiMjAyNi0xMC0yN1QxMTo1OTozMFoiLCJhcHByb3ZlciI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImFsaWNlIiwicHVibGljS2V5IjoiMUtxbnpEbGprTmhpalkwRVhoK0Y3eWVtM3lTOXNIM01NZm5vOUtEYjRRWT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIn0sImRlY2lzaW9uIjoiYXBwcm92ZSIsInByb3Bvc2FsSGFzaCI6IjI3a1hGRXZSeldGb1k5V2tmUUo4OUZWc3Q2aVVuZEZKWStoK3NEc3JubHc9Iiwicm9sZSI6Im93bmVyIiwidmVyc2lvbiI6MX0=",
+  "canonicalSHA256Hex" : "fd6cf75981492c9c07d69a967144135c933474d7d54f5e8e985b689010ebdb02",
+  "description" : "Alice godkjenner forslaget med sin egen nøkkel.",
+  "encodedBase64" : "eyJhcHByb3ZlZEF0IjoiMjAyNi0xMC0yN1QxMTo1OTozMFoiLCJhcHByb3ZlciI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImFsaWNlIiwicHVibGljS2V5IjoiMUtxbnpEbGprTmhpalkwRVhoK0Y3eWVtM3lTOXNIM01NZm5vOUtEYjRRWT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIn0sImRlY2lzaW9uIjoiYXBwcm92ZSIsInByb3Bvc2FsSGFzaCI6IjI3a1hGRXZSeldGb1k5V2tmUUo4OUZWc3Q2aVVuZEZKWStoK3NEc3JubHc9Iiwicm9sZSI6Im93bmVyIiwic2lnbmF0dXJlIjoiM1ZhVkxPcWxHRjZYNGwxTnFqZFp3cGQxRkdjNVBnMUVJZEFqcmZxa0RDK21cLzdFV3pGZDk0a2ZQUTUyV1p0eDdhNm50eE1iS2NwZ1dRa29IVkhMM0NnPT0iLCJ2ZXJzaW9uIjoxfQ==",
+  "excludedTopLevelKeys" : [
+    "signature"
+  ],
+  "expect" : {
+    "signatureValid" : true,
+    "verdict" : "valid"
+  },
+  "flow" : "org",
+  "id" : "org.approval.role-issue.alice",
+  "object" : {
+    "approvedAt" : "2026-10-27T11:59:30Z",
+    "approver" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "alice",
+      "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+      "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+    },
+    "decision" : "approve",
+    "proposalHash" : "27kXFEvRzWFoY9WkfQJ89FVst6iUndFJY+h+sDsrnlw=",
+    "role" : "owner",
+    "signature" : "3VaVLOqlGF6X4l1NqjdZwpd1FGc5Pg1EIdAjrfqkDC+m\/7EWzFd94kfPQ52WZtx7a6ntxMbKcpgWQkoHVHL3Cg==",
+    "version" : 1
+  },
+  "related" : {
+    "proposal" : "org.proposal.role-issue"
+  },
+  "signatureBase64" : "3VaVLOqlGF6X4l1NqjdZwpd1FGc5Pg1EIdAjrfqkDC+m\/7EWzFd94kfPQ52WZtx7a6ntxMbKcpgWQkoHVHL3Cg==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "alice",
+    "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+  },
+  "type" : "OrganizationApproval"
+}

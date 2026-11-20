@@ -1,0 +1,64 @@
+{
+  "canonicalBase64" : "eyJhbmNob3JJRCI6ImVudGl0eTppbnRlcm9wLWdydXBwZSIsImN1c3RvZGlhbktleSI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImN1c3RvZGlhbiIsInB1YmxpY0tleSI6ImZWME8zQVkrZEZGc2xkS3R0aThrQUJxQXIwcmttb3NJNkZsR0I4RlNadlE9IiwidXVpZCI6IjBEOUEwMDAwLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQzA1NyJ9LCJkaXNwbGF5TmFtZSI6Ik5vZW4gYW5kcmVzIGdydXBwZSIsImZvdW5kZXJzIjpbeyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImFsaWNlIiwicHVibGljS2V5IjoiMUtxbnpEbGprTmhpalkwRVhoK0Y3eWVtM3lTOXNIM01NZm5vOUtEYjRRWT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIn1dLCJpbml0aWFsUG9saWN5SGFzaCI6IjlsMzdsNUZseGlwYVwvVDZHUTlMdmpQVUl3YUdPa2NmNkVPNVlLcTY5VU5RPSIsImtpbmQiOiJvcmdhbml6YXRpb24iLCJzZWFsZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTg6MDBaIiwidmVyc2lvbiI6MX0=",
+  "canonicalSHA256Hex" : "3fd1f333092e6e9bc676face9002ffe4640ac31c3a5f7e19fd86ff872ad9a222",
+  "description" : "Navnet er endret etter at Alice signerte.",
+  "encodedBase64" : "eyJhbmNob3JJRCI6ImVudGl0eTppbnRlcm9wLWdydXBwZSIsImN1c3RvZGlhbktleSI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImN1c3RvZGlhbiIsInB1YmxpY0tleSI6ImZWME8zQVkrZEZGc2xkS3R0aThrQUJxQXIwcmttb3NJNkZsR0I4RlNadlE9IiwidXVpZCI6IjBEOUEwMDAwLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQzA1NyJ9LCJkaXNwbGF5TmFtZSI6Ik5vZW4gYW5kcmVzIGdydXBwZSIsImZvdW5kZXJzIjpbeyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImFsaWNlIiwicHVibGljS2V5IjoiMUtxbnpEbGprTmhpalkwRVhoK0Y3eWVtM3lTOXNIM01NZm5vOUtEYjRRWT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIn1dLCJpbml0aWFsUG9saWN5SGFzaCI6IjlsMzdsNUZseGlwYVwvVDZHUTlMdmpQVUl3YUdPa2NmNkVPNVlLcTY5VU5RPSIsImtpbmQiOiJvcmdhbml6YXRpb24iLCJzZWFsZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTg6MDBaIiwic2lnbmF0dXJlcyI6W3siZm91bmRlciI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImFsaWNlIiwicHVibGljS2V5IjoiMUtxbnpEbGprTmhpalkwRVhoK0Y3eWVtM3lTOXNIM01NZm5vOUtEYjRRWT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIn0sInNpZ25hdHVyZSI6Ijl4eXVueGdQQ0tVbzBTMGFJT3czVDVzcE8ycGd2Zzc2dmQ4cE92Y04xeWR2RkF0S0YzR1cyZUVCbmtVb08yNXUwcEo3SGMzYkZYdTZPQkhNR3NnM0J3PT0iLCJzaWduZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTg6MDBaIn1dLCJ2ZXJzaW9uIjoxfQ==",
+  "excludedTopLevelKeys" : [
+    "signatures"
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "founderSignatureInvalid"
+  },
+  "flow" : "org",
+  "id" : "org.genesis.tampered",
+  "object" : {
+    "anchorID" : "entity:interop-gruppe",
+    "custodianKey" : {
+      "algorithm" : "EdDSA",
+      "curveType" : "Curve25519",
+      "displayName" : "custodian",
+      "publicKey" : "fV0O3AY+dFFsldKtti8kABqAr0rkmosI6FlGB8FSZvQ=",
+      "uuid" : "0D9A0000-0000-4000-8000-00000000C057"
+    },
+    "displayName" : "Noen andres gruppe",
+    "founders" : [
+      {
+        "algorithm" : "EdDSA",
+        "curveType" : "Curve25519",
+        "displayName" : "alice",
+        "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+        "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+      }
+    ],
+    "initialPolicyHash" : "9l37l5Flxipa\/T6GQ9LvjPUIwaGOkcf6EO5YKq69UNQ=",
+    "kind" : "organization",
+    "sealedAt" : "2026-10-27T11:58:00Z",
+    "signatures" : [
+      {
+        "founder" : {
+          "algorithm" : "EdDSA",
+          "curveType" : "Curve25519",
+          "displayName" : "alice",
+          "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+          "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+        },
+        "signature" : "9xyunxgPCKUo0S0aIOw3T5spO2pgvg76vd8pOvcN1ydvFAtKF3GW2eEBnkUoO25u0pJ7Hc3bFXu6OBHMGsg3Bw==",
+        "signedAt" : "2026-10-27T11:58:00Z"
+      }
+    ],
+    "version" : 1
+  },
+  "related" : {
+    "policy" : "org.policy.v1"
+  },
+  "signatureBase64" : "9xyunxgPCKUo0S0aIOw3T5spO2pgvg76vd8pOvcN1ydvFAtKF3GW2eEBnkUoO25u0pJ7Hc3bFXu6OBHMGsg3Bw==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "alice",
+    "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+    "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+  },
+  "type" : "OrganizationGenesisSeal"
+}
