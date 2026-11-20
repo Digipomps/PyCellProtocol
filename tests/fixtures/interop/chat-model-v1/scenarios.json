@@ -1,0 +1,1698 @@
+{
+  "constants" : {
+    "answerLimitScalars" : 4000,
+    "askLifetimeSeconds" : 600,
+    "contextLimit" : 20,
+    "mentionTokens" : [
+      "@modell",
+      "@model"
+    ]
+  },
+  "contextCases" : [
+    {
+      "activatedAt" : "2026-11-20T13:03:00Z",
+      "expect" : [
+        "m4",
+        "m5",
+        "m6"
+      ],
+      "limit" : 20,
+      "messages" : [
+        {
+          "createdAt" : "2026-11-20T13:00:00Z",
+          "id" : "m1"
+        },
+        {
+          "createdAt" : "2026-11-20T13:01:00Z",
+          "id" : "m2"
+        },
+        {
+          "createdAt" : "2026-11-20T13:02:00Z",
+          "id" : "m3"
+        },
+        {
+          "createdAt" : "2026-11-20T13:03:00Z",
+          "id" : "m4"
+        },
+        {
+          "createdAt" : "2026-11-20T13:04:00Z",
+          "id" : "m5"
+        },
+        {
+          "createdAt" : "2026-11-20T13:05:00Z",
+          "id" : "m6"
+        }
+      ],
+      "name" : "before_activation_is_hidden",
+      "questionID" : "m6"
+    },
+    {
+      "activatedAt" : "2026-11-20T13:00:00Z",
+      "expect" : [
+        "m11",
+        "m12",
+        "m13",
+        "m14",
+        "m15",
+        "m16",
+        "m17",
+        "m18",
+        "m19",
+        "m20",
+        "m21",
+        "m22",
+        "m23",
+        "m24",
+        "m25",
+        "m26",
+        "m27",
+        "m28",
+        "m29",
+        "m30"
+      ],
+      "limit" : 20,
+      "messages" : [
+        {
+          "createdAt" : "2026-11-20T13:00:00Z",
+          "id" : "m1"
+        },
+        {
+          "createdAt" : "2026-11-20T13:01:00Z",
+          "id" : "m2"
+        },
+        {
+          "createdAt" : "2026-11-20T13:02:00Z",
+          "id" : "m3"
+        },
+        {
+          "createdAt" : "2026-11-20T13:03:00Z",
+          "id" : "m4"
+        },
+        {
+          "createdAt" : "2026-11-20T13:04:00Z",
+          "id" : "m5"
+        },
+        {
+          "createdAt" : "2026-11-20T13:05:00Z",
+          "id" : "m6"
+        },
+        {
+          "createdAt" : "2026-11-20T13:06:00Z",
+          "id" : "m7"
+        },
+        {
+          "createdAt" : "2026-11-20T13:07:00Z",
+          "id" : "m8"
+        },
+        {
+          "createdAt" : "2026-11-20T13:08:00Z",
+          "id" : "m9"
+        },
+        {
+          "createdAt" : "2026-11-20T13:09:00Z",
+          "id" : "m10"
+        },
+        {
+          "createdAt" : "2026-11-20T13:10:00Z",
+          "id" : "m11"
+        },
+        {
+          "createdAt" : "2026-11-20T13:11:00Z",
+          "id" : "m12"
+        },
+        {
+          "createdAt" : "2026-11-20T13:12:00Z",
+          "id" : "m13"
+        },
+        {
+          "createdAt" : "2026-11-20T13:13:00Z",
+          "id" : "m14"
+        },
+        {
+          "createdAt" : "2026-11-20T13:14:00Z",
+          "id" : "m15"
+        },
+        {
+          "createdAt" : "2026-11-20T13:15:00Z",
+          "id" : "m16"
+        },
+        {
+          "createdAt" : "2026-11-20T13:16:00Z",
+          "id" : "m17"
+        },
+        {
+          "createdAt" : "2026-11-20T13:17:00Z",
+          "id" : "m18"
+        },
+        {
+          "createdAt" : "2026-11-20T13:18:00Z",
+          "id" : "m19"
+        },
+        {
+          "createdAt" : "2026-11-20T13:19:00Z",
+          "id" : "m20"
+        },
+        {
+          "createdAt" : "2026-11-20T13:20:00Z",
+          "id" : "m21"
+        },
+        {
+          "createdAt" : "2026-11-20T13:21:00Z",
+          "id" : "m22"
+        },
+        {
+          "createdAt" : "2026-11-20T13:22:00Z",
+          "id" : "m23"
+        },
+        {
+          "createdAt" : "2026-11-20T13:23:00Z",
+          "id" : "m24"
+        },
+        {
+          "createdAt" : "2026-11-20T13:24:00Z",
+          "id" : "m25"
+        },
+        {
+          "createdAt" : "2026-11-20T13:25:00Z",
+          "id" : "m26"
+        },
+        {
+          "createdAt" : "2026-11-20T13:26:00Z",
+          "id" : "m27"
+        },
+        {
+          "createdAt" : "2026-11-20T13:27:00Z",
+          "id" : "m28"
+        },
+        {
+          "createdAt" : "2026-11-20T13:28:00Z",
+          "id" : "m29"
+        },
+        {
+          "createdAt" : "2026-11-20T13:29:00Z",
+          "id" : "m30"
+        }
+      ],
+      "name" : "newest_twenty_kept",
+      "questionID" : "m30"
+    },
+    {
+      "activatedAt" : "2026-11-20T13:00:00Z",
+      "expect" : [
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5",
+        "m6",
+        "m7",
+        "m8",
+        "m9",
+        "m10"
+      ],
+      "limit" : 20,
+      "messages" : [
+        {
+          "createdAt" : "2026-11-20T13:00:00Z",
+          "id" : "m1"
+        },
+        {
+          "createdAt" : "2026-11-20T13:01:00Z",
+          "id" : "m2"
+        },
+        {
+          "createdAt" : "2026-11-20T13:02:00Z",
+          "id" : "m3"
+        },
+        {
+          "createdAt" : "2026-11-20T13:03:00Z",
+          "id" : "m4"
+        },
+        {
+          "createdAt" : "2026-11-20T13:04:00Z",
+          "id" : "m5"
+        },
+        {
+          "createdAt" : "2026-11-20T13:05:00Z",
+          "id" : "m6"
+        },
+        {
+          "createdAt" : "2026-11-20T13:06:00Z",
+          "id" : "m7"
+        },
+        {
+          "createdAt" : "2026-11-20T13:07:00Z",
+          "id" : "m8"
+        },
+        {
+          "createdAt" : "2026-11-20T13:08:00Z",
+          "id" : "m9"
+        },
+        {
+          "createdAt" : "2026-11-20T13:09:00Z",
+          "id" : "m10"
+        },
+        {
+          "createdAt" : "2026-11-20T13:10:00Z",
+          "id" : "m11"
+        },
+        {
+          "createdAt" : "2026-11-20T13:11:00Z",
+          "id" : "m12"
+        },
+        {
+          "createdAt" : "2026-11-20T13:12:00Z",
+          "id" : "m13"
+        },
+        {
+          "createdAt" : "2026-11-20T13:13:00Z",
+          "id" : "m14"
+        },
+        {
+          "createdAt" : "2026-11-20T13:14:00Z",
+          "id" : "m15"
+        },
+        {
+          "createdAt" : "2026-11-20T13:15:00Z",
+          "id" : "m16"
+        },
+        {
+          "createdAt" : "2026-11-20T13:16:00Z",
+          "id" : "m17"
+        },
+        {
+          "createdAt" : "2026-11-20T13:17:00Z",
+          "id" : "m18"
+        },
+        {
+          "createdAt" : "2026-11-20T13:18:00Z",
+          "id" : "m19"
+        },
+        {
+          "createdAt" : "2026-11-20T13:19:00Z",
+          "id" : "m20"
+        },
+        {
+          "createdAt" : "2026-11-20T13:20:00Z",
+          "id" : "m21"
+        },
+        {
+          "createdAt" : "2026-11-20T13:21:00Z",
+          "id" : "m22"
+        },
+        {
+          "createdAt" : "2026-11-20T13:22:00Z",
+          "id" : "m23"
+        },
+        {
+          "createdAt" : "2026-11-20T13:23:00Z",
+          "id" : "m24"
+        },
+        {
+          "createdAt" : "2026-11-20T13:24:00Z",
+          "id" : "m25"
+        },
+        {
+          "createdAt" : "2026-11-20T13:25:00Z",
+          "id" : "m26"
+        },
+        {
+          "createdAt" : "2026-11-20T13:26:00Z",
+          "id" : "m27"
+        },
+        {
+          "createdAt" : "2026-11-20T13:27:00Z",
+          "id" : "m28"
+        },
+        {
+          "createdAt" : "2026-11-20T13:28:00Z",
+          "id" : "m29"
+        },
+        {
+          "createdAt" : "2026-11-20T13:29:00Z",
+          "id" : "m30"
+        }
+      ],
+      "name" : "nothing_after_the_question",
+      "questionID" : "m10"
+    },
+    {
+      "activatedAt" : "2026-11-20T13:00:00Z",
+      "expect" : [
+
+      ],
+      "limit" : 20,
+      "messages" : [
+        {
+          "createdAt" : "2026-11-20T13:00:00Z",
+          "id" : "m1"
+        },
+        {
+          "createdAt" : "2026-11-20T13:01:00Z",
+          "id" : "m2"
+        },
+        {
+          "createdAt" : "2026-11-20T13:02:00Z",
+          "id" : "m3"
+        }
+      ],
+      "name" : "unknown_question",
+      "questionID" : "m99"
+    },
+    {
+      "activatedAt" : "2026-11-20T13:04:00Z",
+      "expect" : [
+
+      ],
+      "limit" : 20,
+      "messages" : [
+        {
+          "createdAt" : "2026-11-20T13:00:00Z",
+          "id" : "m1"
+        },
+        {
+          "createdAt" : "2026-11-20T13:01:00Z",
+          "id" : "m2"
+        },
+        {
+          "createdAt" : "2026-11-20T13:02:00Z",
+          "id" : "m3"
+        },
+        {
+          "createdAt" : "2026-11-20T13:03:00Z",
+          "id" : "m4"
+        },
+        {
+          "createdAt" : "2026-11-20T13:04:00Z",
+          "id" : "m5"
+        }
+      ],
+      "name" : "question_before_activation",
+      "questionID" : "m2"
+    },
+    {
+      "activatedAt" : "2026-11-20T13:00:00Z",
+      "expect" : [
+        "m28",
+        "m29",
+        "m30"
+      ],
+      "limit" : 3,
+      "messages" : [
+        {
+          "createdAt" : "2026-11-20T13:00:00Z",
+          "id" : "m1"
+        },
+        {
+          "createdAt" : "2026-11-20T13:01:00Z",
+          "id" : "m2"
+        },
+        {
+          "createdAt" : "2026-11-20T13:02:00Z",
+          "id" : "m3"
+        },
+        {
+          "createdAt" : "2026-11-20T13:03:00Z",
+          "id" : "m4"
+        },
+        {
+          "createdAt" : "2026-11-20T13:04:00Z",
+          "id" : "m5"
+        },
+        {
+          "createdAt" : "2026-11-20T13:05:00Z",
+          "id" : "m6"
+        },
+        {
+          "createdAt" : "2026-11-20T13:06:00Z",
+          "id" : "m7"
+        },
+        {
+          "createdAt" : "2026-11-20T13:07:00Z",
+          "id" : "m8"
+        },
+        {
+          "createdAt" : "2026-11-20T13:08:00Z",
+          "id" : "m9"
+        },
+        {
+          "createdAt" : "2026-11-20T13:09:00Z",
+          "id" : "m10"
+        },
+        {
+          "createdAt" : "2026-11-20T13:10:00Z",
+          "id" : "m11"
+        },
+        {
+          "createdAt" : "2026-11-20T13:11:00Z",
+          "id" : "m12"
+        },
+        {
+          "createdAt" : "2026-11-20T13:12:00Z",
+          "id" : "m13"
+        },
+        {
+          "createdAt" : "2026-11-20T13:13:00Z",
+          "id" : "m14"
+        },
+        {
+          "createdAt" : "2026-11-20T13:14:00Z",
+          "id" : "m15"
+        },
+        {
+          "createdAt" : "2026-11-20T13:15:00Z",
+          "id" : "m16"
+        },
+        {
+          "createdAt" : "2026-11-20T13:16:00Z",
+          "id" : "m17"
+        },
+        {
+          "createdAt" : "2026-11-20T13:17:00Z",
+          "id" : "m18"
+        },
+        {
+          "createdAt" : "2026-11-20T13:18:00Z",
+          "id" : "m19"
+        },
+        {
+          "createdAt" : "2026-11-20T13:19:00Z",
+          "id" : "m20"
+        },
+        {
+          "createdAt" : "2026-11-20T13:20:00Z",
+          "id" : "m21"
+        },
+        {
+          "createdAt" : "2026-11-20T13:21:00Z",
+          "id" : "m22"
+        },
+        {
+          "createdAt" : "2026-11-20T13:22:00Z",
+          "id" : "m23"
+        },
+        {
+          "createdAt" : "2026-11-20T13:23:00Z",
+          "id" : "m24"
+        },
+        {
+          "createdAt" : "2026-11-20T13:24:00Z",
+          "id" : "m25"
+        },
+        {
+          "createdAt" : "2026-11-20T13:25:00Z",
+          "id" : "m26"
+        },
+        {
+          "createdAt" : "2026-11-20T13:26:00Z",
+          "id" : "m27"
+        },
+        {
+          "createdAt" : "2026-11-20T13:27:00Z",
+          "id" : "m28"
+        },
+        {
+          "createdAt" : "2026-11-20T13:28:00Z",
+          "id" : "m29"
+        },
+        {
+          "createdAt" : "2026-11-20T13:29:00Z",
+          "id" : "m30"
+        }
+      ],
+      "name" : "smaller_limit",
+      "questionID" : "m30"
+    },
+    {
+      "activatedAt" : "2026-11-20T13:00:00Z",
+      "expect" : [
+
+      ],
+      "limit" : 0,
+      "messages" : [
+        {
+          "createdAt" : "2026-11-20T13:00:00Z",
+          "id" : "m1"
+        },
+        {
+          "createdAt" : "2026-11-20T13:01:00Z",
+          "id" : "m2"
+        },
+        {
+          "createdAt" : "2026-11-20T13:02:00Z",
+          "id" : "m3"
+        }
+      ],
+      "name" : "zero_limit",
+      "questionID" : "m3"
+    }
+  ],
+  "ledgerScenarios" : [
+    {
+      "name" : "all_members_must_say_yes",
+      "steps" : [
+        {
+          "at" : "2026-11-20T12:00:00Z",
+          "event" : "propose",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:01:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : "2026-11-20T12:01:00Z",
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : true,
+            "refusal" : null,
+            "status" : "active"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "one_no_blocks_activation",
+      "steps" : [
+        {
+          "at" : "2026-11-20T12:00:00Z",
+          "event" : "propose",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : true,
+              "6F1C2B0A-0000-4000-8000-000000000CA1" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B",
+            "6F1C2B0A-0000-4000-8000-000000000CA1"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:01:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false,
+              "6F1C2B0A-0000-4000-8000-000000000CA1" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B",
+            "6F1C2B0A-0000-4000-8000-000000000CA1"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:02:00Z",
+          "event" : "decline",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false,
+              "6F1C2B0A-0000-4000-8000-000000000CA1" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "member" : "6F1C2B0A-0000-4000-8000-000000000CA1",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B",
+            "6F1C2B0A-0000-4000-8000-000000000CA1"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:03:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : "2026-11-20T12:03:00Z",
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false,
+              "6F1C2B0A-0000-4000-8000-000000000CA1" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B",
+              "6F1C2B0A-0000-4000-8000-000000000CA1"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : true,
+            "refusal" : null,
+            "status" : "active"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-000000000CA1",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B",
+            "6F1C2B0A-0000-4000-8000-000000000CA1"
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "withdraw_after_activation_stops_model",
+      "steps" : [
+        {
+          "at" : "2026-11-20T12:00:00Z",
+          "event" : "propose",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:01:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : "2026-11-20T12:01:00Z",
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : true,
+            "refusal" : null,
+            "status" : "active"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:02:00Z",
+          "event" : "decline",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "member" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:03:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : "2026-11-20T12:03:00Z",
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : true,
+            "refusal" : null,
+            "status" : "active"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "newcomer_after_activation_keeps_model_but_blocks_external",
+      "steps" : [
+        {
+          "at" : "2026-11-20T12:00:00Z",
+          "event" : "propose",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "external" : true,
+          "member" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:01:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : "2026-11-20T12:01:00Z",
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : true,
+            "modelConsentHolds" : true,
+            "refusal" : null,
+            "status" : "active"
+          },
+          "external" : true,
+          "member" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:02:00Z",
+          "event" : "membersChanged",
+          "expect" : {
+            "activatedAt" : "2026-11-20T12:01:00Z",
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false,
+              "6F1C2B0A-0000-4000-8000-000000000CA1" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : true,
+            "refusal" : null,
+            "status" : "active"
+          },
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B",
+            "6F1C2B0A-0000-4000-8000-000000000CA1"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:03:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : "2026-11-20T12:01:00Z",
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false,
+              "6F1C2B0A-0000-4000-8000-000000000CA1" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B",
+              "6F1C2B0A-0000-4000-8000-000000000CA1"
+            ],
+            "externalAllowed" : true,
+            "modelConsentHolds" : true,
+            "refusal" : null,
+            "status" : "active"
+          },
+          "external" : true,
+          "member" : "6F1C2B0A-0000-4000-8000-000000000CA1",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B",
+            "6F1C2B0A-0000-4000-8000-000000000CA1"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:04:00Z",
+          "event" : "decline",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false,
+              "6F1C2B0A-0000-4000-8000-000000000CA1" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "member" : "6F1C2B0A-0000-4000-8000-000000000CA1",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B",
+            "6F1C2B0A-0000-4000-8000-000000000CA1"
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "newcomer_before_activation_must_answer",
+      "steps" : [
+        {
+          "at" : "2026-11-20T12:00:00Z",
+          "event" : "propose",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:01:00Z",
+          "event" : "membersChanged",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : true,
+              "6F1C2B0A-0000-4000-8000-000000000CA1" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B",
+            "6F1C2B0A-0000-4000-8000-000000000CA1"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:02:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false,
+              "6F1C2B0A-0000-4000-8000-000000000CA1" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B",
+            "6F1C2B0A-0000-4000-8000-000000000CA1"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:03:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : "2026-11-20T12:03:00Z",
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false,
+              "6F1C2B0A-0000-4000-8000-000000000CA1" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B",
+              "6F1C2B0A-0000-4000-8000-000000000CA1"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : true,
+            "refusal" : null,
+            "status" : "active"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-000000000CA1",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B",
+            "6F1C2B0A-0000-4000-8000-000000000CA1"
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "leaver_who_said_no_unblocks",
+      "steps" : [
+        {
+          "at" : "2026-11-20T12:00:00Z",
+          "event" : "propose",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : true,
+              "6F1C2B0A-0000-4000-8000-000000000CA1" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B",
+            "6F1C2B0A-0000-4000-8000-000000000CA1"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:01:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false,
+              "6F1C2B0A-0000-4000-8000-000000000CA1" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B",
+            "6F1C2B0A-0000-4000-8000-000000000CA1"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:02:00Z",
+          "event" : "decline",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false,
+              "6F1C2B0A-0000-4000-8000-000000000CA1" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "member" : "6F1C2B0A-0000-4000-8000-000000000CA1",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B",
+            "6F1C2B0A-0000-4000-8000-000000000CA1"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:03:00Z",
+          "event" : "membersChanged",
+          "expect" : {
+            "activatedAt" : "2026-11-20T12:03:00Z",
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : true,
+            "refusal" : null,
+            "status" : "active"
+          },
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "external_needs_everyones_explicit_yes",
+      "steps" : [
+        {
+          "at" : "2026-11-20T12:00:00Z",
+          "event" : "propose",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "external" : true,
+          "member" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:01:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : "2026-11-20T12:01:00Z",
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : true,
+            "refusal" : null,
+            "status" : "active"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:02:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : "2026-11-20T12:01:00Z",
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : true,
+            "modelConsentHolds" : true,
+            "refusal" : null,
+            "status" : "active"
+          },
+          "external" : true,
+          "member" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "remove_then_propose_again",
+      "steps" : [
+        {
+          "at" : "2026-11-20T12:00:00Z",
+          "event" : "propose",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:01:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : "2026-11-20T12:01:00Z",
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : true,
+            "refusal" : null,
+            "status" : "active"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:02:00Z",
+          "event" : "remove",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false
+            },
+            "consentedMembers" : [
+
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "removed"
+          },
+          "member" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:03:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false
+            },
+            "consentedMembers" : [
+
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : "no_proposal",
+            "status" : "removed"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:04:00Z",
+          "event" : "propose",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : true,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:05:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : "2026-11-20T12:05:00Z",
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C",
+              "6F1C2B0A-0000-4000-8000-000000000B0B"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : true,
+            "refusal" : null,
+            "status" : "active"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "refusals",
+      "steps" : [
+        {
+          "at" : "2026-11-20T12:00:00Z",
+          "event" : "consent",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false
+            },
+            "consentedMembers" : [
+
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : "no_proposal",
+            "status" : "none"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:01:00Z",
+          "event" : "propose",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : false
+            },
+            "consentedMembers" : [
+
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : "not_member",
+            "status" : "none"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-0000000BAD00",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:02:00Z",
+          "event" : "propose",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:03:00Z",
+          "event" : "propose",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : "already_present",
+            "status" : "proposed"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-000000000B0B",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:04:00Z",
+          "event" : "decline",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : "not_member",
+            "status" : "proposed"
+          },
+          "member" : "6F1C2B0A-0000-4000-8000-0000000BAD00",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:05:00Z",
+          "event" : "remove",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false,
+              "6F1C2B0A-0000-4000-8000-000000000B0B" : true
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : "not_member",
+            "status" : "proposed"
+          },
+          "member" : "6F1C2B0A-0000-4000-8000-0000000BAD00",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C",
+            "6F1C2B0A-0000-4000-8000-000000000B0B"
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "everyone_leaves",
+      "steps" : [
+        {
+          "at" : "2026-11-20T12:00:00Z",
+          "event" : "propose",
+          "expect" : {
+            "activatedAt" : "2026-11-20T12:00:00Z",
+            "awaitingAnswer" : {
+              "6F1C2B0A-0000-4000-8000-00000000A11C" : false
+            },
+            "consentedMembers" : [
+              "6F1C2B0A-0000-4000-8000-00000000A11C"
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : true,
+            "refusal" : null,
+            "status" : "active"
+          },
+          "external" : false,
+          "member" : "6F1C2B0A-0000-4000-8000-00000000A11C",
+          "members" : [
+            "6F1C2B0A-0000-4000-8000-00000000A11C"
+          ]
+        },
+        {
+          "at" : "2026-11-20T12:01:00Z",
+          "event" : "membersChanged",
+          "expect" : {
+            "activatedAt" : null,
+            "awaitingAnswer" : {
+
+            },
+            "consentedMembers" : [
+
+            ],
+            "externalAllowed" : false,
+            "modelConsentHolds" : false,
+            "refusal" : null,
+            "status" : "proposed"
+          },
+          "members" : [
+
+          ]
+        }
+      ]
+    }
+  ],
+  "mentionCases" : [
+    {
+      "expect" : true,
+      "text" : "@modell hva mener du?"
+    },
+    {
+      "expect" : true,
+      "text" : "Hei @Modell, kan du oppsummere?"
+    },
+    {
+      "expect" : true,
+      "text" : "spør @MODEL om dette"
+    },
+    {
+      "expect" : false,
+      "text" : "@modellen er ikke nevnt"
+    },
+    {
+      "expect" : false,
+      "text" : "e-post: ola@modell.no"
+    },
+    {
+      "expect" : false,
+      "text" : "ola@modell"
+    },
+    {
+      "expect" : true,
+      "text" : "(@modell)"
+    },
+    {
+      "expect" : false,
+      "text" : "@modell_x"
+    },
+    {
+      "expect" : false,
+      "text" : "@modell2"
+    },
+    {
+      "expect" : false,
+      "text" : "ingen omtale her"
+    },
+    {
+      "expect" : false,
+      "text" : "@modelløs"
+    },
+    {
+      "expect" : true,
+      "text" : "første @mod, så @model."
+    }
+  ],
+  "sanitizeCases" : [
+    {
+      "expect" : "Hei, dette er et svar.",
+      "expectScalarCount" : 22,
+      "name" : "plain",
+      "text" : "Hei, dette er et svar."
+    },
+    {
+      "expect" : "linje1\nlinje2\nlinje3",
+      "expectScalarCount" : 20,
+      "name" : "crlf_and_cr",
+      "text" : "linje1\r\nlinje2\rlinje3"
+    },
+    {
+      "expect" : "abc[31mdefg",
+      "expectScalarCount" : 11,
+      "name" : "controls_dropped",
+      "text" : "a\u0000b\u0007c\u001b[31mdefg"
+    },
+    {
+      "expect" : "kol1\tkol2\nrad2",
+      "expectScalarCount" : 14,
+      "name" : "tab_and_lf_kept",
+      "text" : "kol1\tkol2\nrad2"
+    },
+    {
+      "expect" : "svar",
+      "expectScalarCount" : 4,
+      "name" : "trim_whitespace",
+      "text" : "  \n\t svar  \n "
+    },
+    {
+      "expect" : "Ærlig talt: blåbær 🫐 og 👩🏽‍💻",
+      "expectScalarCount" : 28,
+      "name" : "norwegian_and_emoji",
+      "text" : "Ærlig talt: blåbær 🫐 og 👩🏽‍💻"
+    },
+    {
+      "expect" : "<script>alert(1)</script> **fet**",
+      "expectScalarCount" : 33,
+      "name" : "markup_is_just_text",
+      "text" : "<script>alert(1)</script> **fet**"
+    },
+    {
+      "expect" : "åååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååå",
+      "expectScalarCount" : 4000,
+      "name" : "cut_to_limit",
+      "text" : "åååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååååå"
+    },
+    {
+      "expect" : "👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻",
+      "expectScalarCount" : 4000,
+      "name" : "cut_counts_scalars",
+      "text" : "👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻👩🏽‍💻"
+    }
+  ],
+  "version" : "chat-model-v1"
+}

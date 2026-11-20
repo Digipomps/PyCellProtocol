@@ -22,6 +22,11 @@ answers and hand a signed artifact and acceptance to
 recognised by its signing key, as the authenticated bridge checks it on every
 command.
 
+A language model can be a named participant (`model.*`, see `chat_model`):
+it is admitted under the same `member` / `invitationAccepted` condition, which
+for the model identity holds only while every human member has said yes, and
+it may use only its own keys and read only for an open ask.
+
 Not ported: end-to-end encrypted envelopes (`crypto.*` answer that only
 plaintext is supported), rekey tracking, the invitation ledger history and the
 demo emitter (`start` / `stop`).
@@ -42,6 +47,14 @@ from ..interop import chat as chat_proofs
 from ..interop.models import ChatInvitationAcceptance, ChatInvitationArtifact, IdentityPublicKeyDescriptor, WireDecodeError
 from ..interop.verify import Signer, VerificationFailure, invitation_hash, verify_chat_acceptance, verify_chat_invitation
 from ..value import from_json_value
+from .chat_model import (
+    ASK_LIFETIME_SECONDS,
+    CONTEXT_LIMIT,
+    ChatModelConsentLedger,
+    ChatModelRefusal,
+    context_message_ids,
+    sanitize_answer,
+)
 from .entity_anchor import descriptor_for, with_identity_signer
 
 ENDPOINT = "cell:///Chat"
@@ -89,13 +102,26 @@ TEMPLATE_GRANTS = [
     ("rw--", "crypto.prepareDraftEnvelope"), ("rw--", "crypto.openEnvelope"), ("rw--", "crypto.clearDraftEnvelope"),
     ("rw--", "crypto.clearEncryptedMessages"), ("rw--", "sendMessage"), ("rw--", "sendComposedMessage"),
     ("rw--", "clearComposer"), ("rw--", "addMessage"), ("rw--", "start"), ("rw--", "stop"),
+    # The model participant (PDD_modell-i-felles-chat_2026-11-15), as Swift.
+    ("rw--", "model.state"), ("rw--", "model.propose"), ("rw--", "model.consent"), ("rw--", "model.decline"),
+    ("rw--", "model.remove"), ("rw--", "model.ask"), ("rw--", "model.dismissNotice"),
+    ("rw--", "model.context"), ("rw--", "model.answer"), ("rw--", "model.fail"),
 ]
+# Keys a human member uses, and the only keys the admitted model identity may use.
+MODEL_MEMBER_KEYS = ("model.state", "model.propose", "model.consent", "model.decline", "model.remove", "model.ask", "model.dismissNotice")
+MODEL_PARTICIPANT_KEYS = ("model.state", "model.context", "model.answer", "model.fail")
+MODEL_CONSENT_KEY = "audience.admission.modelConsent"
 # Conditions an owner can put in the Agreement. Each reads `audience.admission.<name>` on the chat.
 ADMISSION_CONDITIONS = ("invitationAccepted", "member")
 ADMISSION_KEYS = {f"audience.admission.{name}": name for name in ADMISSION_CONDITIONS}
 # Usable before a contract: the admission keys answer only for the requester, and
 # an artifact with its acceptance carries the owner's and the invitee's signatures.
-OPEN_BEFORE_ADMISSION = {**{key: "r---" for key in ADMISSION_KEYS}, "audience.acceptInvitationArtifact": "-w--", "audience.inspectInvitationArtifact": "-w--"}
+OPEN_BEFORE_ADMISSION = {
+    **{key: "r---" for key in ADMISSION_KEYS},
+    MODEL_CONSENT_KEY: "r---",
+    "audience.acceptInvitationArtifact": "-w--",
+    "audience.inspectInvitationArtifact": "-w--",
+}
 
 
 def admission_condition(name: str) -> LookupCondition:
@@ -187,6 +213,10 @@ class ChatCell(GeneralCell):
         self.consumed: dict[str, dict[str, Any]] = {}  # invitation id -> consumption
         self.drafts: dict[str, dict[str, str]] = {}
         self._owner_person = _Person.from_value(owner) if owner is not None else None
+        self.model_ledger = ChatModelConsentLedger()
+        self.model_person: Optional[_Person] = None
+        self.model_asks: dict[str, dict[str, Any]] = {}
+        self.model_notices: dict[str, dict[str, Any]] = {}  # asker uuid -> notice
         for permission, key in TEMPLATE_GRANTS:
             self.agreement_template.add_grant(permission, key)
         for key in READ_KEYS:
@@ -197,6 +227,10 @@ class ChatCell(GeneralCell):
             self._get_handlers[key] = self._admission
         self._get_handlers["audience.admissionConditions"] = self._admission
         self._set_handlers["audience.admissionConditions"] = self._set_admission_conditions
+        self._get_handlers[MODEL_CONSENT_KEY] = self._model_consent
+        self._get_handlers["model.state"] = self._model_get
+        for key in set(MODEL_MEMBER_KEYS + MODEL_PARTICIPANT_KEYS) - {"model.state"}:
+            self._set_handlers[key] = self._model_set
 
     # -- access ---------------------------------------------------------------
 
@@ -205,6 +239,8 @@ class ChatCell(GeneralCell):
             return True
         if OPEN_BEFORE_ADMISSION.get(keypath) == permission:
             return True
+        if self.is_model(requester) and keypath not in MODEL_PARTICIPANT_KEYS:
+            return False  # the model uses only its own keys
         if keypath == "audience.admissionConditions" and permission == "-w--":
             return False  # the owner's alone, whatever "audience" grants say
         # As Swift: the dispatcher accepts the exact key or its root, the
@@ -227,6 +263,10 @@ class ChatCell(GeneralCell):
     # -- admission ------------------------------------------------------------
 
     def admission_condition_holds(self, name: str, requester: Any) -> bool:
+        if self.is_model(requester):
+            # The model is admitted by the members' consent, under whichever
+            # condition the chat uses (FORMAALSSPEC: modelConsent).
+            return self.model_consent_holds()
         member = self.member_for(requester)
         if member is None:
             return False
@@ -325,29 +365,11 @@ class ChatCell(GeneralCell):
 
     async def _write(self, keypath: str, value: Any, requester: Any | None) -> Any:
         value = from_json_value(value)
-        if keypath == "audience.mode":
-            if value not in AUDIENCE_MODES:
-                return "error: unsupported audience mode"
-            self.audience_mode = value
-            return self.audience_payload(requester)
-        if keypath == "audience.inviteIdentities":
-            return self.invite_identities(value, requester)
-        if keypath == "audience.generateInvitationArtifacts":
-            return await self.generate_invitation_artifacts(value)
-        if keypath == "audience.generateInvitationAcceptance":
-            return await self.generate_invitation_acceptance(value, requester)
-        if keypath == "audience.acceptInvitationArtifact":
-            return self.accept_invitation_artifact(value, requester)
-        if keypath == "audience.inspectInvitationArtifact":
-            artifact = _artifact_from(value)
-            return "error: invalid invitation artifact payload" if artifact is None else self.inspect(artifact)
-        if keypath in ("audience.acceptInvites", "audience.declineInvites", "audience.revokeInvites"):
-            status = {"audience.acceptInvites": "accepted", "audience.declineInvites": "declined", "audience.revokeInvites": "revoked"}[keypath]
-            return self.update_statuses(value, status, requester)
-        if keypath == "audience.clearInvites":
-            self.invitations.clear()
-            self.consumed.clear()
-            return self.audience_payload(requester)
+        if keypath.startswith("audience."):
+            try:
+                return await self._audience_write(keypath, value, requester)
+            finally:
+                self._model_members_changed()
         if keypath == "compose.body":
             self._draft(requester)["body"] = value if isinstance(value, str) else ""
             return self.composer_payload(requester)
@@ -372,6 +394,32 @@ class ChatCell(GeneralCell):
             return dict(self._draft(requester))
         return None
 
+    async def _audience_write(self, keypath: str, value: Any, requester: Any | None) -> Any:
+        if keypath == "audience.mode":
+            if value not in AUDIENCE_MODES:
+                return "error: unsupported audience mode"
+            self.audience_mode = value
+            return self.audience_payload(requester)
+        if keypath == "audience.inviteIdentities":
+            return self.invite_identities(value, requester)
+        if keypath == "audience.generateInvitationArtifacts":
+            return await self.generate_invitation_artifacts(value)
+        if keypath == "audience.generateInvitationAcceptance":
+            return await self.generate_invitation_acceptance(value, requester)
+        if keypath == "audience.acceptInvitationArtifact":
+            return self.accept_invitation_artifact(value, requester)
+        if keypath == "audience.inspectInvitationArtifact":
+            artifact = _artifact_from(value)
+            return "error: invalid invitation artifact payload" if artifact is None else self.inspect(artifact)
+        if keypath in ("audience.acceptInvites", "audience.declineInvites", "audience.revokeInvites"):
+            status = {"audience.acceptInvites": "accepted", "audience.declineInvites": "declined", "audience.revokeInvites": "revoked"}[keypath]
+            return self.update_statuses(value, status, requester)
+        if keypath == "audience.clearInvites":
+            self.invitations.clear()
+            self.consumed.clear()
+            return self.audience_payload(requester)
+        return None
+
     # -- signing --------------------------------------------------------------
 
     async def _signed(self, build: Callable[[Signer], Any]) -> Any:
@@ -387,6 +435,8 @@ class ChatCell(GeneralCell):
     def _person_for(self, requester: Any) -> _Person:
         if self._is_owner(requester) and self._owner_person is not None:
             return self._owner_person
+        if self.is_model(requester) and self.model_person is not None:
+            return self.model_person
         member = self.member_for(requester)
         if member is not None:
             return member
@@ -405,9 +455,11 @@ class ChatCell(GeneralCell):
             return "error: invalid chat payload"
         return self._store(body.strip(), _normalized_content_type(content_type), topic, requester)
 
-    def _store(self, body: str, content_type: str, topic: str, requester: Any) -> dict[str, Any]:
+    def _store(self, body: str, content_type: str, topic: str, requester: Any, model_fields: Optional[dict[str, Any]] = None) -> dict[str, Any]:
         person = self._person_for(requester)
         name = getattr(requester, "displayName", None) or person.display_name
+        if model_fields is not None:
+            name = self.model_ledger.model_display_name or name
         message = {
             "id": self._new_uuid(),
             "owner": person.public_json(),
@@ -423,7 +475,10 @@ class ChatCell(GeneralCell):
             "createdAt": self._now(),
             "cryptoState": "plaintextOnly",
             "encryptedCompanionAvailable": False,
+            "authorKind": "person",
         }
+        if model_fields is not None:
+            message.update(model_fields, authorKind="model")
         self.messages.append(message)
         if len(self.messages) > self.messages_limit:
             del self.messages[: len(self.messages) - self.messages_limit]
@@ -773,7 +828,9 @@ class ChatCell(GeneralCell):
         }
 
     def participant_rows(self) -> list[dict[str, Any]]:
-        return sorted((dict(row) for row in self.participants.values()), key=lambda row: row["displayName"].lower())
+        model_uuid = self.model_person.uuid if self.model_person else None
+        rows = [{**row, "kind": "model" if row["id"] == model_uuid else "person"} for row in self.participants.values()]
+        return sorted(rows, key=lambda row: row["displayName"].lower())
 
     def status_summary(self) -> str:
         return f"participants: {len(self.participants)} · messages: {len(self.messages)} · topic: {self.topic}"
@@ -822,6 +879,249 @@ class ChatCell(GeneralCell):
             "crypto": self.crypto_payload(),
             "availableFormats": [dict(item) for item in AVAILABLE_FORMATS],
         }
+
+    # -- model participant (PDD_modell-i-felles-chat_2026-11-15) ---------------
+
+    def is_model(self, requester: Any) -> bool:
+        return self.model_person is not None and self.model_person.matches(requester)
+
+    def human_member_uuids(self) -> list[str]:
+        """The owner and everyone with an accepted invitation, the model left out."""
+        model_uuid = self.model_person.uuid if self.model_person else None
+        members = {self.owner.uuid} if self.owner is not None else set()
+        for uuid, record in self.invitations.items():
+            if record["status"] == "accepted" and uuid != model_uuid:
+                members.add(uuid)
+        return sorted(members)
+
+    async def is_human_member(self, requester: Any) -> bool:
+        if requester is None or self.is_model(requester):
+            return False
+        if await proves_identity_control(requester, self.owner):
+            return True
+        if self._owner_person is not None and self._owner_person.matches(requester):
+            return True
+        return self.member_for(requester) is not None
+
+    def model_consent_holds(self) -> bool:
+        return self.model_ledger.model_consent_holds(self.human_member_uuids())
+
+    def _model_members_changed(self) -> None:
+        self.model_ledger.members_changed(self.human_member_uuids(), self._now())
+        self._fail_asks_if_model_lost_access()
+
+    def _display_name_for(self, uuid: str) -> str:
+        if self.owner is not None and uuid == self.owner.uuid:
+            return self.owner.displayName
+        record = self.invitations.get(uuid)
+        if record is not None:
+            return record["person"].display_name
+        row = self.participants.get(uuid)
+        return row["displayName"] if row else uuid
+
+    def _notice(self, ask: dict[str, Any], code: str, message: str) -> None:
+        self.model_notices[ask["askedByUUID"]] = {
+            "askID": ask["askID"], "code": code, "message": message, "routeClass": ask["routeClass"], "at": self._now(),
+        }
+
+    def _fail_asks_if_model_lost_access(self) -> None:
+        if self.model_consent_holds():
+            return
+        for ask in self.model_asks.values():
+            if ask["status"] == "open":
+                ask["status"] = "failed"
+                self._notice(ask, "model_removed", "Modellen er ikke lenger med i samtalen, så spørsmålet ble ikke besvart.")
+
+    def _expire_old_asks(self) -> None:
+        cutoff = chat_proofs.timestamp(self._clock() - ASK_LIFETIME_SECONDS)
+        for ask in self.model_asks.values():
+            if ask["status"] == "open" and ask["createdAt"] < cutoff:
+                ask["status"] = "expired"
+                self._notice(ask, "ask_expired", "Modellen svarte ikke i tide. Prøv igjen.")
+
+    @staticmethod
+    def _ask_object(ask: dict[str, Any]) -> dict[str, Any]:
+        out = {key: ask[key] for key in ("askID", "askedByUUID", "askedByDisplayName", "questionMessageID", "routeClass", "createdAt", "status")}
+        out["contextCount"] = len(ask["contextMessageIDs"])
+        return out
+
+    def model_state(self, requester: Any) -> dict[str, Any]:
+        ledger, members = self.model_ledger, self.human_member_uuids()
+        consented = ledger.consented_members(members)
+        uuid = getattr(requester, "uuid", "")
+        mine = ledger.consents.get(uuid)
+        is_member = uuid in members and not self.is_model(requester)
+        state: dict[str, Any] = {
+            "status": ledger.status,
+            "hasProposal": ledger.status == "proposed",
+            "isActive": self.model_consent_holds(),
+            "canPropose": is_member and ledger.status in ("none", "removed"),
+            "awaitingMe": ledger.awaiting_answer(uuid, members),
+            "externalAllowed": ledger.external_allowed(members),
+            "consentedCount": len(consented),
+            "memberCount": len(members),
+            "consentedNames": [self._display_name_for(m) for m in consented],
+            "declinedNames": [self._display_name_for(m) for m in members if m in ledger.declined],
+            "externalConsentedCount": sum(1 for m in members if m in ledger.consents and ledger.consents[m].external),
+            "modelUUID": ledger.model_uuid,
+            "modelDisplayName": ledger.model_display_name,
+            "proposedByName": self._display_name_for(ledger.proposed_by_uuid) if ledger.proposed_by_uuid else None,
+            "proposedAt": ledger.proposed_at,
+            "activatedAt": ledger.activated_at,
+            "myConsent": {"external": mine.external, "at": mine.at} if mine else None,
+            "contextLimit": CONTEXT_LIMIT,
+            "notice": dict(self.model_notices[uuid]) if uuid in self.model_notices else None,
+        }
+        if self.is_model(requester):
+            open_asks = sorted((a for a in self.model_asks.values() if a["status"] == "open"), key=lambda a: a["createdAt"])
+            state["openAsks"] = [self._ask_object(a) for a in open_asks]
+        return state
+
+    @staticmethod
+    def _refusal(code: str, message: str) -> dict[str, Any]:
+        return {"status": "refused", "code": code, "message": message}
+
+    async def _model_consent(self, keypath: str, requester: Any | None) -> Any:
+        _ = keypath
+        return self.is_model(requester) and self.model_consent_holds()
+
+    async def _model_get(self, keypath: str, requester: Any | None) -> Any:
+        _ = keypath
+        if not (await self.is_human_member(requester) or (self.is_model(requester) and self.model_consent_holds())):
+            return "denied"
+        self._expire_old_asks()
+        return self.model_state(requester)
+
+    async def _model_set(self, keypath: str, value: Any, requester: Any | None) -> Any:
+        payload = from_json_value(value)
+        payload = payload if isinstance(payload, dict) else {}
+        if keypath in ("model.context", "model.answer", "model.fail"):
+            if not self.is_model(requester) or (keypath != "model.fail" and not self.model_consent_holds()):
+                return "denied"
+            if keypath == "model.context":
+                return self._model_context(payload)
+            if keypath == "model.answer":
+                return self._model_answer(payload, requester)
+            return self._model_fail(payload)
+        if not await self.is_human_member(requester):
+            return "denied"
+        if keypath == "model.ask":
+            return self._open_model_ask(payload, requester)
+        if keypath == "model.dismissNotice":
+            self.model_notices.pop(requester.uuid, None)
+            return {"status": "ok", "model": self.model_state(requester)}
+        members, now, by = self.human_member_uuids(), self._now(), requester.uuid
+        external = payload.get("external") is True
+        try:
+            if keypath == "model.propose":
+                model = _Person.from_value(payload.get("identity"))
+                if model is None or model.descriptor is None:
+                    return self._refusal("invalid_payload", "model.propose needs {identity}")
+                if model.uuid == by or model.uuid in members:
+                    return self._refusal("invalid_model", "A member cannot be the model participant.")
+                name = payload.get("displayName") if isinstance(payload.get("displayName"), str) else "Språkmodell"
+                self.model_ledger.propose(model.uuid, name, by, external, now, members)
+                self.model_person = model
+                self.model_asks = {}
+            elif keypath == "model.consent":
+                self.model_ledger.consent(by, external, now, members)
+            elif keypath == "model.decline":
+                self.model_ledger.decline(by, now, members)
+            elif keypath == "model.remove":
+                self.model_ledger.remove(by, now, members)
+        except ChatModelRefusal as refusal:
+            return self._refusal(refusal.code, refusal.code)
+        self._fail_asks_if_model_lost_access()
+        return {"status": "ok", "model": self.model_state(requester)}
+
+    def _open_model_ask(self, payload: dict[str, Any], requester: Any) -> Any:
+        self._expire_old_asks()
+        activated_at = self.model_ledger.activated_at
+        if not self.model_consent_holds() or activated_at is None:
+            return self._refusal("model_not_active", "Modellen er ikke med i samtalen.")
+        route = payload.get("route") if isinstance(payload.get("route"), str) else "local"
+        if route not in ("local", "external"):
+            return self._refusal("invalid_route", "route must be local or external")
+        if route == "external" and not self.model_ledger.external_allowed(self.human_member_uuids()):
+            return self._refusal("external_not_allowed", "Alle i samtalen må si ja til ekstern modell først.")
+        message_id = payload.get("messageID")
+        question = next((m for m in self.messages if m["id"] == message_id), None)
+        if question is None:
+            return self._refusal("no_question", "Fant ikke spørsmålet.")
+        if question["ownerUUID"] != requester.uuid or question.get("authorKind", "person") != "person":
+            return self._refusal("not_your_message", "Du kan bare spørre modellen om din egen melding.")
+        context = context_message_ids(self.messages, activated_at, message_id)
+        if message_id not in context:
+            return self._refusal("question_before_model", "Spørsmålet ble skrevet før modellen kom inn.")
+        ask = {
+            "askID": f"ask-{self._new_uuid()}",
+            "askedByUUID": requester.uuid,
+            "askedByDisplayName": getattr(requester, "displayName", None) or self._display_name_for(requester.uuid),
+            "questionMessageID": message_id,
+            "routeClass": route,
+            "createdAt": self._now(),
+            "contextMessageIDs": context,
+            "status": "open",
+        }
+        self.model_asks[ask["askID"]] = ask
+        self.model_notices.pop(requester.uuid, None)
+        return {"status": "open", "ask": self._ask_object(ask)}
+
+    def _open_ask(self, payload: dict[str, Any]) -> Optional[dict[str, Any]]:
+        ask = self.model_asks.get(payload.get("askID") if isinstance(payload.get("askID"), str) else "")
+        return ask if ask is not None and ask["status"] == "open" else None
+
+    def _model_context(self, payload: dict[str, Any]) -> Any:
+        self._expire_old_asks()
+        ask = self._open_ask(payload)
+        if ask is None:
+            return self._refusal("no_open_ask", "No open ask with that id.")
+        by_id = {m["id"]: m for m in self.messages}
+        messages = [
+            {
+                "id": m["id"],
+                "authorDisplayName": m["ownerDisplayName"],
+                "authorKind": m.get("authorKind", "person"),
+                "content": m["content"],
+                "createdAt": m["createdAt"],
+            }
+            for m in (by_id.get(i) for i in ask["contextMessageIDs"])
+            if m is not None
+        ]
+        question = by_id.get(ask["questionMessageID"])
+        return {"status": "ok", "ask": self._ask_object(ask), "question": question["content"] if question else "", "messages": messages}
+
+    def _model_answer(self, payload: dict[str, Any], requester: Any) -> Any:
+        ask = self._open_ask(payload)
+        if ask is None:
+            return self._refusal("no_open_ask", "No open ask with that id.")
+        if ask["routeClass"] == "external" and not self.model_ledger.external_allowed(self.human_member_uuids()):
+            ask["status"] = "failed"
+            self._notice(ask, "external_not_allowed", "Noen har trukket ja til ekstern modell, så svaret ble ikke vist.")
+            return self._refusal("external_not_allowed", "External routes are no longer allowed in this chat.")
+        text = sanitize_answer(payload.get("text") if isinstance(payload.get("text"), str) else "")
+        if not text:
+            return self._refusal("empty_answer", "The answer is empty.")
+        fields: dict[str, Any] = {
+            "askedByUUID": ask["askedByUUID"],
+            "askedByDisplayName": ask["askedByDisplayName"],
+            "routeClass": ask["routeClass"],
+            "contextCount": len(ask["contextMessageIDs"]),
+        }
+        if isinstance(payload.get("model"), str):
+            fields["model"] = payload["model"]
+        ask["status"] = "answered"
+        return self._store(text, DEFAULT_CONTENT_TYPE, self.topic, requester, model_fields=fields)
+
+    def _model_fail(self, payload: dict[str, Any]) -> Any:
+        ask = self._open_ask(payload)
+        if ask is None:
+            return self._refusal("no_open_ask", "No open ask with that id.")
+        ask["status"] = "failed"
+        code = payload.get("code") if isinstance(payload.get("code"), str) else "model_unavailable"
+        message = payload.get("message") if isinstance(payload.get("message"), str) else "Modellen svarte ikke."
+        self._notice(ask, code, sanitize_answer(message))
+        return {"status": "ok", "askID": ask["askID"]}
 
 
 def _from_wire(model: type, value: Any) -> Any:
