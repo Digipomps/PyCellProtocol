@@ -107,6 +107,8 @@ TEMPLATE_GRANTS = [
     ("rw--", "model.remove"), ("rw--", "model.ask"), ("rw--", "model.dismissNotice"),
     ("rw--", "model.context"), ("rw--", "model.answer"), ("rw--", "model.fail"),
 ]
+# Owner only: False when a node hosts the chat for its people.
+MODEL_OWNER_IS_MEMBER_KEY = "model.ownerIsMember"
 # Keys a human member uses, and the only keys the admitted model identity may use.
 MODEL_MEMBER_KEYS = ("model.state", "model.propose", "model.consent", "model.decline", "model.remove", "model.ask", "model.dismissNotice")
 MODEL_PARTICIPANT_KEYS = ("model.state", "model.context", "model.answer", "model.fail")
@@ -217,6 +219,8 @@ class ChatCell(GeneralCell):
         self.model_person: Optional[_Person] = None
         self.model_asks: dict[str, dict[str, Any]] = {}
         self.model_notices: dict[str, dict[str, Any]] = {}  # asker uuid -> notice
+        # False for a node-hosted chat: the owner neither counts nor answers for the model.
+        self.model_owner_is_member = True
         for permission, key in TEMPLATE_GRANTS:
             self.agreement_template.add_grant(permission, key)
         for key in READ_KEYS:
@@ -231,6 +235,7 @@ class ChatCell(GeneralCell):
         self._get_handlers["model.state"] = self._model_get
         for key in set(MODEL_MEMBER_KEYS + MODEL_PARTICIPANT_KEYS) - {"model.state"}:
             self._set_handlers[key] = self._model_set
+        self._set_handlers[MODEL_OWNER_IS_MEMBER_KEY] = self._set_model_owner_is_member
 
     # -- access ---------------------------------------------------------------
 
@@ -888,7 +893,7 @@ class ChatCell(GeneralCell):
     def human_member_uuids(self) -> list[str]:
         """The owner and everyone with an accepted invitation, the model left out."""
         model_uuid = self.model_person.uuid if self.model_person else None
-        members = {self.owner.uuid} if self.owner is not None else set()
+        members = {self.owner.uuid} if self.owner is not None and self.model_owner_is_member else set()
         for uuid, record in self.invitations.items():
             if record["status"] == "accepted" and uuid != model_uuid:
                 members.add(uuid)
@@ -897,10 +902,10 @@ class ChatCell(GeneralCell):
     async def is_human_member(self, requester: Any) -> bool:
         if requester is None or self.is_model(requester):
             return False
-        if await proves_identity_control(requester, self.owner):
-            return True
-        if self._owner_person is not None and self._owner_person.matches(requester):
-            return True
+        if await proves_identity_control(requester, self.owner) or (
+            self._owner_person is not None and self._owner_person.matches(requester)
+        ):
+            return self.model_owner_is_member
         return self.member_for(requester) is not None
 
     def model_consent_holds(self) -> bool:
@@ -971,6 +976,7 @@ class ChatCell(GeneralCell):
             "myConsent": {"external": mine.external, "at": mine.at} if mine else None,
             "contextLimit": CONTEXT_LIMIT,
             "notice": dict(self.model_notices[uuid]) if uuid in self.model_notices else None,
+            "ownerIsMember": self.model_owner_is_member,
         }
         if self.is_model(requester):
             open_asks = sorted((a for a in self.model_asks.values() if a["status"] == "open"), key=lambda a: a["createdAt"])
@@ -991,6 +997,17 @@ class ChatCell(GeneralCell):
             return "denied"
         self._expire_old_asks()
         return self.model_state(requester)
+
+    async def _set_model_owner_is_member(self, keypath: str, value: Any, requester: Any | None) -> Any:
+        _ = keypath
+        if not await proves_identity_control(requester, self.owner):
+            return "denied"
+        value = from_json_value(value)
+        if not isinstance(value, bool):
+            return self._refusal("invalid_payload", "model.ownerIsMember needs a bool")
+        self.model_owner_is_member = value
+        self._model_members_changed()
+        return {"status": "ok", "ownerIsMember": value}
 
     async def _model_set(self, keypath: str, value: Any, requester: Any | None) -> Any:
         payload = from_json_value(value)
@@ -1017,7 +1034,7 @@ class ChatCell(GeneralCell):
                 model = _Person.from_value(payload.get("identity"))
                 if model is None or model.descriptor is None:
                     return self._refusal("invalid_payload", "model.propose needs {identity}")
-                if model.uuid == by or model.uuid in members:
+                if model.uuid == by or model.uuid in members or (self.owner is not None and model.uuid == self.owner.uuid):
                     return self._refusal("invalid_model", "A member cannot be the model participant.")
                 name = payload.get("displayName") if isinstance(payload.get("displayName"), str) else "Språkmodell"
                 self.model_ledger.propose(model.uuid, name, by, external, now, members)

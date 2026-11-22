@@ -228,3 +228,22 @@ def test_strangers_and_impostors_cannot_act_for_or_as_the_model():
         assert await chat.set("model.answer", {"askID": "x", "text": "hei"}, bob) == "denied"
 
     run(scenario())
+
+
+def test_node_hosted_chat_counts_only_its_people():
+    async def scenario():
+        chat, _, alice, bob, carol, model, _ = await _chat(with_carol=True)
+        assert (await chat.set("model.ownerIsMember", False, alice)) == {"status": "ok", "ownerIsMember": False}
+        with pytest.raises(PermissionError):
+            await chat.set("model.ownerIsMember", True, bob)
+        await chat.set("model.propose", {"identity": model.to_json(), "displayName": "Qwen"}, bob)
+        state = (await chat.set("model.consent", {}, carol))["model"]
+        assert state["isActive"] is True and state["memberCount"] == 2
+        assert await chat.set("model.decline", None, alice) == "denied"
+        assert await chat.get("audience.admission.modelConsent", model) is True
+        assert await chat.add_agreement(await _request(chat, model, set(MODEL_PARTICIPANT_KEYS)), model) == "signed"
+        await chat.set("model.remove", None, bob)
+        refused = await chat.set("model.propose", {"identity": public(alice).to_json()}, bob)
+        assert refused["code"] == "invalid_model"
+
+    run(scenario())
