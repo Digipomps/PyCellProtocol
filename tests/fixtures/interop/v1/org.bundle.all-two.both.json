@@ -1,0 +1,73 @@
+{
+  "canonicalBase64" : "eyJhcHByb3ZhbHMiOlt7ImFwcHJvdmVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjMwWiIsImFwcHJvdmVyIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYWxpY2UiLCJwdWJsaWNLZXkiOiIxS3FuekRsamtOaGlqWTBFWGgrRjd5ZW0zeVM5c0gzTU1mbm85S0RiNFFZPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMifSwiZGVjaXNpb24iOiJhcHByb3ZlIiwicHJvcG9zYWxIYXNoIjoiRkhGb1NuSDh4MmsxejVyakdFMEIraUdTR2pvWjRJYVNWclZTVk5mZll2ST0iLCJyb2xlIjoib3duZXIiLCJzaWduYXR1cmUiOiJKcmY2NEg5RnVobmNkMGNuSFY0Nyt3K1lMSjUyaTJaQTdFUUVHa05jdUs4QjJPcmVOTXd5QmNHK3oyM3lHdENWU3puZ2x3cExPZG5UWG1kRjFRNVVBdz09IiwidmVyc2lvbiI6MX0seyJhcHByb3ZlZEF0IjoiMjAyNi0xMC0yN1QxMTo1OTozMFoiLCJhcHByb3ZlciI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImJvYiIsInB1YmxpY0tleSI6IlBTaG41SmJhYUtUMGxwekhIRmdjNGZxOElCREc0V3lPa2RaTDBVZWZ1ekU9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQiJ9LCJkZWNpc2lvbiI6ImFwcHJvdmUiLCJwcm9wb3NhbEhhc2giOiJGSEZvU25IOHgyazF6NXJqR0UwQitpR1NHam9aNElhU1ZyVlNWTmZmWXZJPSIsInJvbGUiOiJvd25lciIsInNpZ25hdHVyZSI6IjVhZWtwQnVnT1ltRDdoVFVrRHZFWGxWOEZjRDRDSEk2SlZrY1U4MUN6cDZoZzdPaFRIaTJoRTExUG5VOXNQRTZQY0lNblQ5OGdIb1V5RlppMUhwZkF3PT0iLCJ2ZXJzaW9uIjoxfV0sInByb3Bvc2FsIjp7ImFjdGlvbkNsYXNzIjoicm9sZS5pc3N1ZSIsImF1ZGllbmNlIjoiZW50aXR5OmludGVyb3AtZ3J1cHBlIiwiY3JlYXRlZEF0IjoiMjAyNi0xMC0yN1QxMTo1OTowMFoiLCJleHBpcmVzQXQiOiIyMDI2LTEwLTI3VDEyOjA5OjAwWiIsIm5vbmNlIjoiSDV3eG1MN1ZJTTZrTXRmU2p6YzJKQT09Iiwib3JnYW5pemF0aW9uQW5jaG9ySUQiOiJlbnRpdHk6aW50ZXJvcC1ncnVwcGUiLCJwYXlsb2FkSGFzaCI6Imd2N3NOSVphMWZPa1pnQlFKd2oyRjV4RkNXendPbVQ4OW15bWJHMlIrOUE9IiwicGF5bG9hZFN1bW1hcnkiOiJJbnRlcm9wLWdydXBwYSAodGVzdCkgZ2lyIHJvbGxlbiDCq3Jlc2VhcmNoZXLCuyB0aWwgZGlkOmtleTp6Nk1raVp6ZWZRaWJ1WWNpYWlLeXR5VmdKUjk3U2VzamR2SjdVY1lWa3d1a3loSDIgaSBrdWxsZXQgTWFzdGVySEFWRU4yNiwgZ3lsZGlnIHRpbCAyMDI3LTA2LTMwLiIsInBvbGljeUhhc2giOiJqS3RKaFFDeDZYT2pvTXM3WUY4cXhsUUs1YW80OWdJK1hRN09vWFBqTFBZPSIsInByb3Bvc2FsSUQiOiJwcm9wLWludGVyb3Atcm9sZS1pc3N1ZS1hbGwtdHdvIiwicHJvcG9zZXIiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJhbGljZSIsInB1YmxpY0tleSI6IjFLcW56RGxqa05oaWpZMEVYaCtGN3llbTN5UzlzSDNNTWZubzlLRGI0UVk9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyJ9LCJ2ZXJzaW9uIjoxfX0=",
+  "canonicalSHA256Hex" : "e11d4c0625fc2091500fc711d1544c48dd41859facd8b0f4aafef1db54f9274c",
+  "description" : "Alice og Bob godkjenner begge; to eiere holder.",
+  "encodedBase64" : "eyJhcHByb3ZhbHMiOlt7ImFwcHJvdmVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjMwWiIsImFwcHJvdmVyIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYWxpY2UiLCJwdWJsaWNLZXkiOiIxS3FuekRsamtOaGlqWTBFWGgrRjd5ZW0zeVM5c0gzTU1mbm85S0RiNFFZPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMifSwiZGVjaXNpb24iOiJhcHByb3ZlIiwicHJvcG9zYWxIYXNoIjoiRkhGb1NuSDh4MmsxejVyakdFMEIraUdTR2pvWjRJYVNWclZTVk5mZll2ST0iLCJyb2xlIjoib3duZXIiLCJzaWduYXR1cmUiOiJKcmY2NEg5RnVobmNkMGNuSFY0Nyt3K1lMSjUyaTJaQTdFUUVHa05jdUs4QjJPcmVOTXd5QmNHK3oyM3lHdENWU3puZ2x3cExPZG5UWG1kRjFRNVVBdz09IiwidmVyc2lvbiI6MX0seyJhcHByb3ZlZEF0IjoiMjAyNi0xMC0yN1QxMTo1OTozMFoiLCJhcHByb3ZlciI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImJvYiIsInB1YmxpY0tleSI6IlBTaG41SmJhYUtUMGxwekhIRmdjNGZxOElCREc0V3lPa2RaTDBVZWZ1ekU9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQiJ9LCJkZWNpc2lvbiI6ImFwcHJvdmUiLCJwcm9wb3NhbEhhc2giOiJGSEZvU25IOHgyazF6NXJqR0UwQitpR1NHam9aNElhU1ZyVlNWTmZmWXZJPSIsInJvbGUiOiJvd25lciIsInNpZ25hdHVyZSI6IjVhZWtwQnVnT1ltRDdoVFVrRHZFWGxWOEZjRDRDSEk2SlZrY1U4MUN6cDZoZzdPaFRIaTJoRTExUG5VOXNQRTZQY0lNblQ5OGdIb1V5RlppMUhwZkF3PT0iLCJ2ZXJzaW9uIjoxfV0sInByb3Bvc2FsIjp7ImFjdGlvbkNsYXNzIjoicm9sZS5pc3N1ZSIsImF1ZGllbmNlIjoiZW50aXR5OmludGVyb3AtZ3J1cHBlIiwiY3JlYXRlZEF0IjoiMjAyNi0xMC0yN1QxMTo1OTowMFoiLCJleHBpcmVzQXQiOiIyMDI2LTEwLTI3VDEyOjA5OjAwWiIsIm5vbmNlIjoiSDV3eG1MN1ZJTTZrTXRmU2p6YzJKQT09Iiwib3JnYW5pemF0aW9uQW5jaG9ySUQiOiJlbnRpdHk6aW50ZXJvcC1ncnVwcGUiLCJwYXlsb2FkSGFzaCI6Imd2N3NOSVphMWZPa1pnQlFKd2oyRjV4RkNXendPbVQ4OW15bWJHMlIrOUE9IiwicGF5bG9hZFN1bW1hcnkiOiJJbnRlcm9wLWdydXBwYSAodGVzdCkgZ2lyIHJvbGxlbiDCq3Jlc2VhcmNoZXLCuyB0aWwgZGlkOmtleTp6Nk1raVp6ZWZRaWJ1WWNpYWlLeXR5VmdKUjk3U2VzamR2SjdVY1lWa3d1a3loSDIgaSBrdWxsZXQgTWFzdGVySEFWRU4yNiwgZ3lsZGlnIHRpbCAyMDI3LTA2LTMwLiIsInBvbGljeUhhc2giOiJqS3RKaFFDeDZYT2pvTXM3WUY4cXhsUUs1YW80OWdJK1hRN09vWFBqTFBZPSIsInByb3Bvc2FsSUQiOiJwcm9wLWludGVyb3Atcm9sZS1pc3N1ZS1hbGwtdHdvIiwicHJvcG9zZXIiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJhbGljZSIsInB1YmxpY0tleSI6IjFLcW56RGxqa05oaWpZMEVYaCtGN3llbTN5UzlzSDNNTWZubzlLRGI0UVk9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwQTExQyJ9LCJ2ZXJzaW9uIjoxfX0=",
+  "excludedTopLevelKeys" : [
+
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "met:roller:0"
+  },
+  "flow" : "org",
+  "id" : "org.bundle.all-two.both",
+  "object" : {
+    "approvals" : [
+      {
+        "approvedAt" : "2026-10-27T11:59:30Z",
+        "approver" : {
+          "algorithm" : "EdDSA",
+          "curveType" : "Curve25519",
+          "displayName" : "alice",
+          "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+          "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+        },
+        "decision" : "approve",
+        "proposalHash" : "FHFoSnH8x2k1z5rjGE0B+iGSGjoZ4IaSVrVSVNffYvI=",
+        "role" : "owner",
+        "signature" : "Jrf64H9Fuhncd0cnHV47+w+YLJ52i2ZA7EQEGkNcuK8B2OreNMwyBcG+z23yGtCVSznglwpLOdnTXmdF1Q5UAw==",
+        "version" : 1
+      },
+      {
+        "approvedAt" : "2026-10-27T11:59:30Z",
+        "approver" : {
+          "algorithm" : "EdDSA",
+          "curveType" : "Curve25519",
+          "displayName" : "bob",
+          "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+          "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+        },
+        "decision" : "approve",
+        "proposalHash" : "FHFoSnH8x2k1z5rjGE0B+iGSGjoZ4IaSVrVSVNffYvI=",
+        "role" : "owner",
+        "signature" : "5aekpBugOYmD7hTUkDvEXlV8FcD4CHI6JVkcU81Czp6hg7OhTHi2hE11PnU9sPE6PcIMnT98gHoUyFZi1HpfAw==",
+        "version" : 1
+      }
+    ],
+    "proposal" : {
+      "actionClass" : "role.issue",
+      "audience" : "entity:interop-gruppe",
+      "createdAt" : "2026-10-27T11:59:00Z",
+      "expiresAt" : "2026-10-27T12:09:00Z",
+      "nonce" : "H5wxmL7VIM6kMtfSjzc2JA==",
+      "organizationAnchorID" : "entity:interop-gruppe",
+      "payloadHash" : "gv7sNIZa1fOkZgBQJwj2F5xFCWzwOmT89mymbG2R+9A=",
+      "payloadSummary" : "Interop-gruppa (test) gir rollen «researcher» til did:key:z6MkiZzefQibuYciaiKytyVgJR97SesjdvJ7UcYVkwukyhH2 i kullet MasterHAVEN26, gyldig til 2027-06-30.",
+      "policyHash" : "jKtJhQCx6XOjoMs7YF8qxlQK5ao49gI+XQ7OoXPjLPY=",
+      "proposalID" : "prop-interop-role-issue-all-two",
+      "proposer" : {
+        "algorithm" : "EdDSA",
+        "curveType" : "Curve25519",
+        "displayName" : "alice",
+        "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+        "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+      },
+      "version" : 1
+    }
+  },
+  "related" : {
+    "policy" : "org.policy.all-two"
+  },
+  "type" : "ApprovalBundle"
+}

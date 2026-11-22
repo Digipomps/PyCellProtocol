@@ -1,0 +1,50 @@
+{
+  "schema" : "haven.interop.org-access-matrix.v1",
+  "description" : "Does a role credential from a group open a cell whose Agreement condition asks for the role? Every implementation runs each scenario through its own condition path (Swift: ProvedClaimCondition + TrustedIssuerCell) and must reach `decision`, with `reason` among the TrustedIssuer reasons. Swift issues fresh credentials at run time; Python and Go use org.role.valid / org.role.tampered with org.status.v1 / org.status.v2 and move the clock instead.",
+  "contextId" : "informasjonssystemer.researcher",
+  "maximumMirrorAgeSeconds" : 600,
+  "scenarios" : [
+    {
+      "id" : "valid",
+      "description" : "Riktig rolle fra en godkjent utsteder, frisk statusliste uten tilbaketrekking.",
+      "credential" : "valid", "issuerTrusted" : true, "status" : "fresh", "expectedRole" : "researcher",
+      "decision" : "met", "reason" : "revocation_status_valid"
+    },
+    {
+      "id" : "wrong-role",
+      "description" : "Vilkåret ber om supervisor; credentialet sier researcher.",
+      "credential" : "valid", "issuerTrusted" : true, "status" : "fresh", "expectedRole" : "supervisor",
+      "decision" : "unresolved", "reason" : "claim_predicate_not_met"
+    },
+    {
+      "id" : "revoked",
+      "description" : "Statuslisten trekker tilbake credentialet.",
+      "credential" : "valid", "issuerTrusted" : true, "status" : "revoked", "expectedRole" : "researcher",
+      "decision" : "unresolved", "reason" : "revocation_check_failed"
+    },
+    {
+      "id" : "expired",
+      "description" : "validUntil i credentialSubject er passert.",
+      "credential" : "expired", "issuerTrusted" : true, "status" : "fresh", "expectedRole" : "researcher",
+      "decision" : "unresolved", "reason" : "vc_subject_validity_expired"
+    },
+    {
+      "id" : "tampered",
+      "description" : "Rollen er endret etter signering.",
+      "credential" : "tampered", "issuerTrusted" : true, "status" : "fresh", "expectedRole" : "supervisor",
+      "decision" : "unresolved", "reason" : "vc_signature_invalid"
+    },
+    {
+      "id" : "issuer-not-trusted",
+      "description" : "Noden har ikke registrert gruppa som utsteder.",
+      "credential" : "valid", "issuerTrusted" : false, "status" : "fresh", "expectedRole" : "researcher",
+      "decision" : "unresolved", "reason" : "issuer_not_registered_or_inactive"
+    },
+    {
+      "id" : "status-unknown",
+      "description" : "Speilet av statuslisten er eldre enn 600 sekunder. Ukjent stenger.",
+      "credential" : "valid", "issuerTrusted" : true, "status" : "stale", "expectedRole" : "researcher",
+      "decision" : "unresolved", "reason" : "revocation_status_unknown"
+    }
+  ]
+}

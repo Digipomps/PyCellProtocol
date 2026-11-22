@@ -1,0 +1,38 @@
+{
+  "canonicalBase64" : "eyJpc3N1ZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTg6MDBaIiwiaXNzdWVyRElEIjoiZGlkOmtleTp6Nk1rbnRkSnJqd2ZLWm9FRlFSWkoyRVVIbWcyQ0FyZ1RmMkF4NjJ3WHNteDZ2VWoiLCJvcmdhbml6YXRpb25BbmNob3JJRCI6ImVudGl0eTppbnRlcm9wLWdydXBwZSIsInJldm9rZWRDcmVkZW50aWFsSURzIjpbXSwic2VxdWVuY2UiOjEsInZlcnNpb24iOjF9",
+  "canonicalSHA256Hex" : "a3e1b67e9bb55cfd1d5164091be24778a20120b0942e769d080b5f3bb118b37c",
+  "description" : "Første statusliste, tom. Signeres når hvelvet opprettes.",
+  "encodedBase64" : "eyJpc3N1ZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTg6MDBaIiwiaXNzdWVyRElEIjoiZGlkOmtleTp6Nk1rbnRkSnJqd2ZLWm9FRlFSWkoyRVVIbWcyQ0FyZ1RmMkF4NjJ3WHNteDZ2VWoiLCJvcmdhbml6YXRpb25BbmNob3JJRCI6ImVudGl0eTppbnRlcm9wLWdydXBwZSIsInJldm9rZWRDcmVkZW50aWFsSURzIjpbXSwic2VxdWVuY2UiOjEsInNpZ25hdHVyZSI6IlZHVytGN0oyMDY5K25LeVlPR2pYb3lINW96Z0d0K0U0OXU3Z1d6R1wvdFZ6cG9QMlJKNjRtQUYzaVpZaGpjUmhzTFU0eDgzRFc0Ym9EaWpZZURnSUhCUT09IiwidmVyc2lvbiI6MX0=",
+  "excludedTopLevelKeys" : [
+    "signature"
+  ],
+  "expect" : {
+    "signatureValid" : true,
+    "verdict" : "valid"
+  },
+  "flow" : "org",
+  "id" : "org.status.v1",
+  "object" : {
+    "issuedAt" : "2026-10-27T11:58:00Z",
+    "issuerDID" : "did:key:z6MkntdJrjwfKZoEFQRZJ2EUHmg2CArgTf2Ax62wXsmx6vUj",
+    "organizationAnchorID" : "entity:interop-gruppe",
+    "revokedCredentialIDs" : [
+
+    ],
+    "sequence" : 1,
+    "signature" : "VGW+F7J2069+nKyYOGjXoyH5ozgGt+E49u7gWzG\/tVzpoP2RJ64mAF3iZYhjcRhsLU4x83DW4boDijYeDgIHBQ==",
+    "version" : 1
+  },
+  "related" : {
+    "issuerDID" : "did:key:z6MkntdJrjwfKZoEFQRZJ2EUHmg2CArgTf2Ax62wXsmx6vUj"
+  },
+  "signatureBase64" : "VGW+F7J2069+nKyYOGjXoyH5ozgGt+E49u7gWzG\/tVzpoP2RJ64mAF3iZYhjcRhsLU4x83DW4boDijYeDgIHBQ==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "custodian",
+    "publicKey" : "fV0O3AY+dFFsldKtti8kABqAr0rkmosI6FlGB8FSZvQ=",
+    "uuid" : "0D9A0000-0000-4000-8000-00000000C057"
+  },
+  "type" : "OrganizationRoleStatusList"
+}

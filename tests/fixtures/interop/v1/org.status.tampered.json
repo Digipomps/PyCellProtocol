@@ -1,0 +1,38 @@
+{
+  "canonicalBase64" : "eyJpc3N1ZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTk6NTBaIiwiaXNzdWVyRElEIjoiZGlkOmtleTp6Nk1rbnRkSnJqd2ZLWm9FRlFSWkoyRVVIbWcyQ0FyZ1RmMkF4NjJ3WHNteDZ2VWoiLCJvcmdhbml6YXRpb25BbmNob3JJRCI6ImVudGl0eTppbnRlcm9wLWdydXBwZSIsInJldm9rZWRDcmVkZW50aWFsSURzIjpbXSwic2VxdWVuY2UiOjIsInZlcnNpb24iOjF9",
+  "canonicalSHA256Hex" : "285ed1bd26ea09ac99cb73ee19015b11d8705ce90adea765d8383d85bd310b4c",
+  "description" : "Tilbaketrekkingen er fjernet etter signering.",
+  "encodedBase64" : "eyJpc3N1ZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTk6NTBaIiwiaXNzdWVyRElEIjoiZGlkOmtleTp6Nk1rbnRkSnJqd2ZLWm9FRlFSWkoyRVVIbWcyQ0FyZ1RmMkF4NjJ3WHNteDZ2VWoiLCJvcmdhbml6YXRpb25BbmNob3JJRCI6ImVudGl0eTppbnRlcm9wLWdydXBwZSIsInJldm9rZWRDcmVkZW50aWFsSURzIjpbXSwic2VxdWVuY2UiOjIsInNpZ25hdHVyZSI6Imx0V1FtTE9zXC9RK1E2TjV1d3NuWWlWeU5NSnBSNUVJUHlmdlRaajNiMnVaQTRlNDVoMVd0RWtySGJtMGFUTTM3eGVEcW02VTdSbVk2OUtSQnNDUzZBdz09IiwidmVyc2lvbiI6MX0=",
+  "excludedTopLevelKeys" : [
+    "signature"
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "bad_signature"
+  },
+  "flow" : "org",
+  "id" : "org.status.tampered",
+  "object" : {
+    "issuedAt" : "2026-10-27T11:59:50Z",
+    "issuerDID" : "did:key:z6MkntdJrjwfKZoEFQRZJ2EUHmg2CArgTf2Ax62wXsmx6vUj",
+    "organizationAnchorID" : "entity:interop-gruppe",
+    "revokedCredentialIDs" : [
+
+    ],
+    "sequence" : 2,
+    "signature" : "ltWQmLOs\/Q+Q6N5uwsnYiVyNMJpR5EIPyfvTZj3b2uZA4e45h1WtEkrHbm0aTM37xeDqm6U7RmY69KRBsCS6Aw==",
+    "version" : 1
+  },
+  "related" : {
+    "issuerDID" : "did:key:z6MkntdJrjwfKZoEFQRZJ2EUHmg2CArgTf2Ax62wXsmx6vUj"
+  },
+  "signatureBase64" : "ltWQmLOs\/Q+Q6N5uwsnYiVyNMJpR5EIPyfvTZj3b2uZA4e45h1WtEkrHbm0aTM37xeDqm6U7RmY69KRBsCS6Aw==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "custodian",
+    "publicKey" : "fV0O3AY+dFFsldKtti8kABqAr0rkmosI6FlGB8FSZvQ=",
+    "uuid" : "0D9A0000-0000-4000-8000-00000000C057"
+  },
+  "type" : "OrganizationRoleStatusList"
+}

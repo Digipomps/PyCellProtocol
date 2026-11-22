@@ -23,7 +23,7 @@ MANIFEST = json.loads((FIXTURES / "manifest.json").read_text(encoding="utf-8"))
 CASES = {
     entry["id"]: json.loads((FIXTURES / entry["file"]).read_text(encoding="utf-8"))
     for entry in MANIFEST["cases"]
-    if entry["type"] in ("VCClaim", "VCPresentation", "IdentityLinkCompletionEnvelope", "EntityGenesisSeal")
+    if entry["flow"] != "org" and entry["type"] in ("VCClaim", "VCPresentation", "IdentityLinkCompletionEnvelope", "EntityGenesisSeal")
 }
 SEEDS = {party["name"]: bytes.fromhex(party["seedHex"]) for party in MANIFEST["parties"]}
 DESCRIPTORS = {party["name"]: m.IdentityPublicKeyDescriptor.from_wire(party["descriptor"]) for party in MANIFEST["parties"]}

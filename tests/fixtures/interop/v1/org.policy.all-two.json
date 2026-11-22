@@ -1,0 +1,105 @@
+{
+  "canonicalBase64" : "eyJhbWVuZG1lbnRSdWxlSUQiOiJzdHlyaW5nIiwiZXZpZGVuY2UiOlt7ImtpbmQiOiJvd25lcnNoaXBBZ3JlZW1lbnQiLCJyZWZlcmVuY2UiOiJhbGwtdHdvIn1dLCJtZW1iZXJzIjpbeyJpZGVudGl0eSI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImFsaWNlIiwicHVibGljS2V5IjoiMUtxbnpEbGprTmhpalkwRVhoK0Y3eWVtM3lTOXNIM01NZm5vOUtEYjRRWT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIn0sInJvbGVzIjpbIm93bmVyIl0sInZhbGlkRnJvbSI6IjIwMjYtMTAtMDFUMDA6MDA6MDBaIn0seyJpZGVudGl0eSI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImJvYiIsInB1YmxpY0tleSI6IlBTaG41SmJhYUtUMGxwekhIRmdjNGZxOElCREc0V3lPa2RaTDBVZWZ1ekU9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQiJ9LCJyb2xlcyI6WyJvd25lciJdLCJ2YWxpZEZyb20iOiIyMDI2LTEwLTAxVDAwOjAwOjAwWiJ9XSwicG9saWN5SUQiOiJlbnRpdHk6aW50ZXJvcC1ncnVwcGUiLCJydWxlcyI6W3siYWN0aW9uQ2xhc3NlcyI6WyJyb2xlLmlzc3VlIiwicm9sZS5yZXZva2UiLCJyb2xlLnN0YXR1cy5wdWJsaXNoIl0sImFueU9mIjpbeyJkaXN0aW5jdFBlcnNvbnMiOnRydWUsInJlcXVpcmVtZW50cyI6W3sibWluaW11bSI6Miwicm9sZSI6Im93bmVyIn1dfV0sImV4Y2x1ZGVkQWN0aW9ucyI6W10sInJlcXVpcmVzRnJlc2hBdXRoIjpmYWxzZSwicnVsZUlEIjoicm9sbGVyIn0seyJhY3Rpb25DbGFzc2VzIjpbInBvbGljeS5hbWVuZCJdLCJhbnlPZiI6W3siZGlzdGluY3RQZXJzb25zIjp0cnVlLCJyZXF1aXJlbWVudHMiOlt7Im1pbmltdW0iOjIsInJvbGUiOiJvd25lciJ9XX1dLCJleGNsdWRlZEFjdGlvbnMiOltdLCJyZXF1aXJlc0ZyZXNoQXV0aCI6ZmFsc2UsInJ1bGVJRCI6InN0eXJpbmcifV0sInZhbGlkRnJvbSI6IjIwMjYtMTAtMDFUMDA6MDA6MDBaIiwidmVyc2lvbiI6MX0=",
+  "canonicalSHA256Hex" : "8cab498500b1e973a3a0cb3b605f2ac6540ae5aa38f6023e5d0ecea173e32cf6",
+  "description" : "Eierskapsavtalen all-two: to eiere for alt.",
+  "encodedBase64" : "eyJhbWVuZG1lbnRSdWxlSUQiOiJzdHlyaW5nIiwiZXZpZGVuY2UiOlt7ImtpbmQiOiJvd25lcnNoaXBBZ3JlZW1lbnQiLCJyZWZlcmVuY2UiOiJhbGwtdHdvIn1dLCJtZW1iZXJzIjpbeyJpZGVudGl0eSI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImFsaWNlIiwicHVibGljS2V5IjoiMUtxbnpEbGprTmhpalkwRVhoK0Y3eWVtM3lTOXNIM01NZm5vOUtEYjRRWT0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDBBMTFDIn0sInJvbGVzIjpbIm93bmVyIl0sInZhbGlkRnJvbSI6IjIwMjYtMTAtMDFUMDA6MDA6MDBaIn0seyJpZGVudGl0eSI6eyJhbGdvcml0aG0iOiJFZERTQSIsImN1cnZlVHlwZSI6IkN1cnZlMjU1MTkiLCJkaXNwbGF5TmFtZSI6ImJvYiIsInB1YmxpY0tleSI6IlBTaG41SmJhYUtUMGxwekhIRmdjNGZxOElCREc0V3lPa2RaTDBVZWZ1ekU9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDAwMEIwQiJ9LCJyb2xlcyI6WyJvd25lciJdLCJ2YWxpZEZyb20iOiIyMDI2LTEwLTAxVDAwOjAwOjAwWiJ9XSwicG9saWN5SUQiOiJlbnRpdHk6aW50ZXJvcC1ncnVwcGUiLCJydWxlcyI6W3siYWN0aW9uQ2xhc3NlcyI6WyJyb2xlLmlzc3VlIiwicm9sZS5yZXZva2UiLCJyb2xlLnN0YXR1cy5wdWJsaXNoIl0sImFueU9mIjpbeyJkaXN0aW5jdFBlcnNvbnMiOnRydWUsInJlcXVpcmVtZW50cyI6W3sibWluaW11bSI6Miwicm9sZSI6Im93bmVyIn1dfV0sImV4Y2x1ZGVkQWN0aW9ucyI6W10sInJlcXVpcmVzRnJlc2hBdXRoIjpmYWxzZSwicnVsZUlEIjoicm9sbGVyIn0seyJhY3Rpb25DbGFzc2VzIjpbInBvbGljeS5hbWVuZCJdLCJhbnlPZiI6W3siZGlzdGluY3RQZXJzb25zIjp0cnVlLCJyZXF1aXJlbWVudHMiOlt7Im1pbmltdW0iOjIsInJvbGUiOiJvd25lciJ9XX1dLCJleGNsdWRlZEFjdGlvbnMiOltdLCJyZXF1aXJlc0ZyZXNoQXV0aCI6ZmFsc2UsInJ1bGVJRCI6InN0eXJpbmcifV0sInZhbGlkRnJvbSI6IjIwMjYtMTAtMDFUMDA6MDA6MDBaIiwidmVyc2lvbiI6MX0=",
+  "excludedTopLevelKeys" : [
+
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "valid"
+  },
+  "flow" : "org",
+  "id" : "org.policy.all-two",
+  "object" : {
+    "amendmentRuleID" : "styring",
+    "evidence" : [
+      {
+        "kind" : "ownershipAgreement",
+        "reference" : "all-two"
+      }
+    ],
+    "members" : [
+      {
+        "identity" : {
+          "algorithm" : "EdDSA",
+          "curveType" : "Curve25519",
+          "displayName" : "alice",
+          "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+          "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+        },
+        "roles" : [
+          "owner"
+        ],
+        "validFrom" : "2026-10-01T00:00:00Z"
+      },
+      {
+        "identity" : {
+          "algorithm" : "EdDSA",
+          "curveType" : "Curve25519",
+          "displayName" : "bob",
+          "publicKey" : "PShn5JbaaKT0lpzHHFgc4fq8IBDG4WyOkdZL0UefuzE=",
+          "uuid" : "6F1C2B0A-0000-4000-8000-000000000B0B"
+        },
+        "roles" : [
+          "owner"
+        ],
+        "validFrom" : "2026-10-01T00:00:00Z"
+      }
+    ],
+    "policyID" : "entity:interop-gruppe",
+    "rules" : [
+      {
+        "actionClasses" : [
+          "role.issue",
+          "role.revoke",
+          "role.status.publish"
+        ],
+        "anyOf" : [
+          {
+            "distinctPersons" : true,
+            "requirements" : [
+              {
+                "minimum" : 2,
+                "role" : "owner"
+              }
+            ]
+          }
+        ],
+        "excludedActions" : [
+
+        ],
+        "requiresFreshAuth" : false,
+        "ruleID" : "roller"
+      },
+      {
+        "actionClasses" : [
+          "policy.amend"
+        ],
+        "anyOf" : [
+          {
+            "distinctPersons" : true,
+            "requirements" : [
+              {
+                "minimum" : 2,
+                "role" : "owner"
+              }
+            ]
+          }
+        ],
+        "excludedActions" : [
+
+        ],
+        "requiresFreshAuth" : false,
+        "ruleID" : "styring"
+      }
+    ],
+    "validFrom" : "2026-10-01T00:00:00Z",
+    "version" : 1
+  },
+  "related" : {
+    "policyHashBase64" : "jKtJhQCx6XOjoMs7YF8qxlQK5ao49gI+XQ7OoXPjLPY="
+  },
+  "type" : "GovernancePolicy"
+}

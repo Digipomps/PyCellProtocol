@@ -1,0 +1,92 @@
+{
+  "canonicalBase64" : "eyJhbWVuZG1lbnRSdWxlSUQiOiJzdHlyaW5nIiwiZXZpZGVuY2UiOlt7ImtpbmQiOiJvd25lcnNoaXBBZ3JlZW1lbnQiLCJyZWZlcmVuY2UiOiJyb2xlcy1vbmUtZ292ZXJuYW5jZS1hbGwifV0sIm1lbWJlcnMiOlt7ImlkZW50aXR5Ijp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYWxpY2UiLCJwdWJsaWNLZXkiOiIxS3FuekRsamtOaGlqWTBFWGgrRjd5ZW0zeVM5c0gzTU1mbm85S0RiNFFZPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMifSwicm9sZXMiOlsib3duZXIiXSwidmFsaWRGcm9tIjoiMjAyNi0xMC0wMVQwMDowMDowMFoifV0sInBvbGljeUlEIjoiZW50aXR5OmludGVyb3AtZ3J1cHBlIiwicnVsZXMiOlt7ImFjdGlvbkNsYXNzZXMiOlsicm9sZS5pc3N1ZSIsInJvbGUucmV2b2tlIiwicm9sZS5zdGF0dXMucHVibGlzaCJdLCJhbnlPZiI6W3siZGlzdGluY3RQZXJzb25zIjp0cnVlLCJyZXF1aXJlbWVudHMiOlt7Im1pbmltdW0iOjEsInJvbGUiOiJvd25lciJ9XX1dLCJleGNsdWRlZEFjdGlvbnMiOltdLCJyZXF1aXJlc0ZyZXNoQXV0aCI6ZmFsc2UsInJ1bGVJRCI6InJvbGxlciJ9LHsiYWN0aW9uQ2xhc3NlcyI6WyJwb2xpY3kuYW1lbmQiXSwiYW55T2YiOlt7ImRpc3RpbmN0UGVyc29ucyI6dHJ1ZSwicmVxdWlyZW1lbnRzIjpbeyJtaW5pbXVtIjoxLCJyb2xlIjoib3duZXIifV19XSwiZXhjbHVkZWRBY3Rpb25zIjpbXSwicmVxdWlyZXNGcmVzaEF1dGgiOmZhbHNlLCJydWxlSUQiOiJzdHlyaW5nIn1dLCJ2YWxpZEZyb20iOiIyMDI2LTEwLTAxVDAwOjAwOjAwWiIsInZlcnNpb24iOjF9",
+  "canonicalSHA256Hex" : "f65dfb979165c62a5afd3e8643d2ef8cf508c1a18e91c7fa10ee582aaebd50d4",
+  "description" : "Gruppa eies av Alice alene. Roller: én eier. Styring: alle eiere.",
+  "encodedBase64" : "eyJhbWVuZG1lbnRSdWxlSUQiOiJzdHlyaW5nIiwiZXZpZGVuY2UiOlt7ImtpbmQiOiJvd25lcnNoaXBBZ3JlZW1lbnQiLCJyZWZlcmVuY2UiOiJyb2xlcy1vbmUtZ292ZXJuYW5jZS1hbGwifV0sIm1lbWJlcnMiOlt7ImlkZW50aXR5Ijp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoiYWxpY2UiLCJwdWJsaWNLZXkiOiIxS3FuekRsamtOaGlqWTBFWGgrRjd5ZW0zeVM5c0gzTU1mbm85S0RiNFFZPSIsInV1aWQiOiI2RjFDMkIwQS0wMDAwLTQwMDAtODAwMC0wMDAwMDAwMEExMUMifSwicm9sZXMiOlsib3duZXIiXSwidmFsaWRGcm9tIjoiMjAyNi0xMC0wMVQwMDowMDowMFoifV0sInBvbGljeUlEIjoiZW50aXR5OmludGVyb3AtZ3J1cHBlIiwicnVsZXMiOlt7ImFjdGlvbkNsYXNzZXMiOlsicm9sZS5pc3N1ZSIsInJvbGUucmV2b2tlIiwicm9sZS5zdGF0dXMucHVibGlzaCJdLCJhbnlPZiI6W3siZGlzdGluY3RQZXJzb25zIjp0cnVlLCJyZXF1aXJlbWVudHMiOlt7Im1pbmltdW0iOjEsInJvbGUiOiJvd25lciJ9XX1dLCJleGNsdWRlZEFjdGlvbnMiOltdLCJyZXF1aXJlc0ZyZXNoQXV0aCI6ZmFsc2UsInJ1bGVJRCI6InJvbGxlciJ9LHsiYWN0aW9uQ2xhc3NlcyI6WyJwb2xpY3kuYW1lbmQiXSwiYW55T2YiOlt7ImRpc3RpbmN0UGVyc29ucyI6dHJ1ZSwicmVxdWlyZW1lbnRzIjpbeyJtaW5pbXVtIjoxLCJyb2xlIjoib3duZXIifV19XSwiZXhjbHVkZWRBY3Rpb25zIjpbXSwicmVxdWlyZXNGcmVzaEF1dGgiOmZhbHNlLCJydWxlSUQiOiJzdHlyaW5nIn1dLCJ2YWxpZEZyb20iOiIyMDI2LTEwLTAxVDAwOjAwOjAwWiIsInZlcnNpb24iOjF9",
+  "excludedTopLevelKeys" : [
+
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "valid"
+  },
+  "flow" : "org",
+  "id" : "org.policy.v1",
+  "object" : {
+    "amendmentRuleID" : "styring",
+    "evidence" : [
+      {
+        "kind" : "ownershipAgreement",
+        "reference" : "roles-one-governance-all"
+      }
+    ],
+    "members" : [
+      {
+        "identity" : {
+          "algorithm" : "EdDSA",
+          "curveType" : "Curve25519",
+          "displayName" : "alice",
+          "publicKey" : "1KqnzDljkNhijY0EXh+F7yem3yS9sH3MMfno9KDb4QY=",
+          "uuid" : "6F1C2B0A-0000-4000-8000-00000000A11C"
+        },
+        "roles" : [
+          "owner"
+        ],
+        "validFrom" : "2026-10-01T00:00:00Z"
+      }
+    ],
+    "policyID" : "entity:interop-gruppe",
+    "rules" : [
+      {
+        "actionClasses" : [
+          "role.issue",
+          "role.revoke",
+          "role.status.publish"
+        ],
+        "anyOf" : [
+          {
+            "distinctPersons" : true,
+            "requirements" : [
+              {
+                "minimum" : 1,
+                "role" : "owner"
+              }
+            ]
+          }
+        ],
+        "excludedActions" : [
+
+        ],
+        "requiresFreshAuth" : false,
+        "ruleID" : "roller"
+      },
+      {
+        "actionClasses" : [
+          "policy.amend"
+        ],
+        "anyOf" : [
+          {
+            "distinctPersons" : true,
+            "requirements" : [
+              {
+                "minimum" : 1,
+                "role" : "owner"
+              }
+            ]
+          }
+        ],
+        "excludedActions" : [
+
+        ],
+        "requiresFreshAuth" : false,
+        "ruleID" : "styring"
+      }
+    ],
+    "validFrom" : "2026-10-01T00:00:00Z",
+    "version" : 1
+  },
+  "related" : {
+    "policyHashBase64" : "9l37l5Flxipa\/T6GQ9LvjPUIwaGOkcf6EO5YKq69UNQ="
+  },
+  "type" : "GovernancePolicy"
+}

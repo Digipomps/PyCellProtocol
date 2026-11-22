@@ -1,0 +1,58 @@
+{
+  "canonicalBase64" : "eyJhcHByb3ZhbHMiOlt7ImFwcHJvdmVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjMwWiIsImFwcHJvdmVyIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoibWFsbG9yeSIsInB1YmxpY0tleSI6IjBkWHpFRHJBdVRVdVpCT0g1Y2RlajBNUEV6djFwSzBBOG5CNDdZNVl3cUk9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDBCQUQwMCJ9LCJkZWNpc2lvbiI6ImFwcHJvdmUiLCJwcm9wb3NhbEhhc2giOiJ6eTNwSXNoSm0zSXFrbHNkcXhqcnFVODFYWkcwMGdqTE5Id2g0RGQweElRPSIsInJvbGUiOiJvd25lciIsInNpZ25hdHVyZSI6IjJyYkRLRXRPU2F6bk5abURlQjFsb1dJOHkxbEdWSTN2OVFpUUZYWDFTRlRvaUEzVFk3dVJ0endGVnlGWmVkSVA1SXptQmtcLzVIUVlFb1dhV1wvamFlQ2c9PSIsInZlcnNpb24iOjF9XSwicHJvcG9zYWwiOnsiYWN0aW9uQ2xhc3MiOiJyb2xlLmlzc3VlIiwiYXVkaWVuY2UiOiJlbnRpdHk6aW50ZXJvcC1ncnVwcGUiLCJjcmVhdGVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjAwWiIsImV4cGlyZXNBdCI6IjIwMjYtMTAtMjdUMTI6MDk6MDBaIiwibm9uY2UiOiJ2b0Z1WmF0aUtuRHkyXC96aGhtXC9NUGc9PSIsIm9yZ2FuaXphdGlvbkFuY2hvcklEIjoiZW50aXR5OmludGVyb3AtZ3J1cHBlIiwicGF5bG9hZEhhc2giOiJndjdzTklaYTFmT2taZ0JRSndqMkY1eEZDV3p3T21UODlteW1iRzJSKzlBPSIsInBheWxvYWRTdW1tYXJ5IjoiSW50ZXJvcC1ncnVwcGEgKHRlc3QpIGdpciByb2xsZW4gwqtyZXNlYXJjaGVywrsgdGlsIGRpZDprZXk6ejZNa2laemVmUWlidVljaWFpS3l0eVZnSlI5N1Nlc2pkdko3VWNZVmt3dWt5aEgyIGkga3VsbGV0IE1hc3RlckhBVkVOMjYsIGd5bGRpZyB0aWwgMjAyNy0wNi0zMC4iLCJwb2xpY3lIYXNoIjoiOWwzN2w1Rmx4aXBhXC9UNkdROUx2alBVSXdhR09rY2Y2RU81WUtxNjlVTlE9IiwicHJvcG9zYWxJRCI6InByb3AtaW50ZXJvcC1yb2xlLWlzc3VlLW91dHNpZGVyIiwicHJvcG9zZXIiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJtYWxsb3J5IiwicHVibGljS2V5IjoiMGRYekVEckF1VFV1WkJPSDVjZGVqME1QRXp2MXBLMEE4bkI0N1k1WXdxST0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMEJBRDAwIn0sInZlcnNpb24iOjF9fQ==",
+  "canonicalSHA256Hex" : "8294f96b71d9184658b7d6ab5fd5f35592cd4a563cd1403e3056b876b6c3f6ef",
+  "description" : "Mallory er ikke eier og kan ikke gi roller.",
+  "encodedBase64" : "eyJhcHByb3ZhbHMiOlt7ImFwcHJvdmVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjMwWiIsImFwcHJvdmVyIjp7ImFsZ29yaXRobSI6IkVkRFNBIiwiY3VydmVUeXBlIjoiQ3VydmUyNTUxOSIsImRpc3BsYXlOYW1lIjoibWFsbG9yeSIsInB1YmxpY0tleSI6IjBkWHpFRHJBdVRVdVpCT0g1Y2RlajBNUEV6djFwSzBBOG5CNDdZNVl3cUk9IiwidXVpZCI6IjZGMUMyQjBBLTAwMDAtNDAwMC04MDAwLTAwMDAwMDBCQUQwMCJ9LCJkZWNpc2lvbiI6ImFwcHJvdmUiLCJwcm9wb3NhbEhhc2giOiJ6eTNwSXNoSm0zSXFrbHNkcXhqcnFVODFYWkcwMGdqTE5Id2g0RGQweElRPSIsInJvbGUiOiJvd25lciIsInNpZ25hdHVyZSI6IjJyYkRLRXRPU2F6bk5abURlQjFsb1dJOHkxbEdWSTN2OVFpUUZYWDFTRlRvaUEzVFk3dVJ0endGVnlGWmVkSVA1SXptQmtcLzVIUVlFb1dhV1wvamFlQ2c9PSIsInZlcnNpb24iOjF9XSwicHJvcG9zYWwiOnsiYWN0aW9uQ2xhc3MiOiJyb2xlLmlzc3VlIiwiYXVkaWVuY2UiOiJlbnRpdHk6aW50ZXJvcC1ncnVwcGUiLCJjcmVhdGVkQXQiOiIyMDI2LTEwLTI3VDExOjU5OjAwWiIsImV4cGlyZXNBdCI6IjIwMjYtMTAtMjdUMTI6MDk6MDBaIiwibm9uY2UiOiJ2b0Z1WmF0aUtuRHkyXC96aGhtXC9NUGc9PSIsIm9yZ2FuaXphdGlvbkFuY2hvcklEIjoiZW50aXR5OmludGVyb3AtZ3J1cHBlIiwicGF5bG9hZEhhc2giOiJndjdzTklaYTFmT2taZ0JRSndqMkY1eEZDV3p3T21UODlteW1iRzJSKzlBPSIsInBheWxvYWRTdW1tYXJ5IjoiSW50ZXJvcC1ncnVwcGEgKHRlc3QpIGdpciByb2xsZW4gwqtyZXNlYXJjaGVywrsgdGlsIGRpZDprZXk6ejZNa2laemVmUWlidVljaWFpS3l0eVZnSlI5N1Nlc2pkdko3VWNZVmt3dWt5aEgyIGkga3VsbGV0IE1hc3RlckhBVkVOMjYsIGd5bGRpZyB0aWwgMjAyNy0wNi0zMC4iLCJwb2xpY3lIYXNoIjoiOWwzN2w1Rmx4aXBhXC9UNkdROUx2alBVSXdhR09rY2Y2RU81WUtxNjlVTlE9IiwicHJvcG9zYWxJRCI6InByb3AtaW50ZXJvcC1yb2xlLWlzc3VlLW91dHNpZGVyIiwicHJvcG9zZXIiOnsiYWxnb3JpdGhtIjoiRWREU0EiLCJjdXJ2ZVR5cGUiOiJDdXJ2ZTI1NTE5IiwiZGlzcGxheU5hbWUiOiJtYWxsb3J5IiwicHVibGljS2V5IjoiMGRYekVEckF1VFV1WkJPSDVjZGVqME1QRXp2MXBLMEE4bkI0N1k1WXdxST0iLCJ1dWlkIjoiNkYxQzJCMEEtMDAwMC00MDAwLTgwMDAtMDAwMDAwMEJBRDAwIn0sInZlcnNpb24iOjF9fQ==",
+  "excludedTopLevelKeys" : [
+
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "approverNotMember"
+  },
+  "flow" : "org",
+  "id" : "org.bundle.role-issue.outsider",
+  "object" : {
+    "approvals" : [
+      {
+        "approvedAt" : "2026-10-27T11:59:30Z",
+        "approver" : {
+          "algorithm" : "EdDSA",
+          "curveType" : "Curve25519",
+          "displayName" : "mallory",
+          "publicKey" : "0dXzEDrAuTUuZBOH5cdej0MPEzv1pK0A8nB47Y5YwqI=",
+          "uuid" : "6F1C2B0A-0000-4000-8000-0000000BAD00"
+        },
+        "decision" : "approve",
+        "proposalHash" : "zy3pIshJm3IqklsdqxjrqU81XZG00gjLNHwh4Dd0xIQ=",
+        "role" : "owner",
+        "signature" : "2rbDKEtOSaznNZmDeB1loWI8y1lGVI3v9QiQFXX1SFToiA3TY7uRtzwFVyFZedIP5IzmBk\/5HQYEoWaW\/jaeCg==",
+        "version" : 1
+      }
+    ],
+    "proposal" : {
+      "actionClass" : "role.issue",
+      "audience" : "entity:interop-gruppe",
+      "createdAt" : "2026-10-27T11:59:00Z",
+      "expiresAt" : "2026-10-27T12:09:00Z",
+      "nonce" : "voFuZatiKnDy2\/zhhm\/MPg==",
+      "organizationAnchorID" : "entity:interop-gruppe",
+      "payloadHash" : "gv7sNIZa1fOkZgBQJwj2F5xFCWzwOmT89mymbG2R+9A=",
+      "payloadSummary" : "Interop-gruppa (test) gir rollen «researcher» til did:key:z6MkiZzefQibuYciaiKytyVgJR97SesjdvJ7UcYVkwukyhH2 i kullet MasterHAVEN26, gyldig til 2027-06-30.",
+      "policyHash" : "9l37l5Flxipa\/T6GQ9LvjPUIwaGOkcf6EO5YKq69UNQ=",
+      "proposalID" : "prop-interop-role-issue-outsider",
+      "proposer" : {
+        "algorithm" : "EdDSA",
+        "curveType" : "Curve25519",
+        "displayName" : "mallory",
+        "publicKey" : "0dXzEDrAuTUuZBOH5cdej0MPEzv1pK0A8nB47Y5YwqI=",
+        "uuid" : "6F1C2B0A-0000-4000-8000-0000000BAD00"
+      },
+      "version" : 1
+    }
+  },
+  "related" : {
+    "policy" : "org.policy.v1"
+  },
+  "type" : "ApprovalBundle"
+}

@@ -1,0 +1,38 @@
+{
+  "canonicalBase64" : "eyJpc3N1ZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTk6NTBaIiwiaXNzdWVyRElEIjoiZGlkOmtleTp6Nk1rbnRkSnJqd2ZLWm9FRlFSWkoyRVVIbWcyQ0FyZ1RmMkF4NjJ3WHNteDZ2VWoiLCJvcmdhbml6YXRpb25BbmNob3JJRCI6ImVudGl0eTppbnRlcm9wLWdydXBwZSIsInJldm9rZWRDcmVkZW50aWFsSURzIjpbXSwic2VxdWVuY2UiOjIsInZlcnNpb24iOjF9",
+  "canonicalSHA256Hex" : "285ed1bd26ea09ac99cb73ee19015b11d8705ce90adea765d8383d85bd310b4c",
+  "description" : "Listen sier organisasjonens did:key, men er signert av Mallory.",
+  "encodedBase64" : "eyJpc3N1ZWRBdCI6IjIwMjYtMTAtMjdUMTE6NTk6NTBaIiwiaXNzdWVyRElEIjoiZGlkOmtleTp6Nk1rbnRkSnJqd2ZLWm9FRlFSWkoyRVVIbWcyQ0FyZ1RmMkF4NjJ3WHNteDZ2VWoiLCJvcmdhbml6YXRpb25BbmNob3JJRCI6ImVudGl0eTppbnRlcm9wLWdydXBwZSIsInJldm9rZWRDcmVkZW50aWFsSURzIjpbXSwic2VxdWVuY2UiOjIsInNpZ25hdHVyZSI6IllaVDZxVkFOU1wvMUIwQ2dMdU44VlhUeUx0ZmpGbFRwd3VtcWNRU1FUMnA1MWI3M1wvWWJxdVEyZXJ3TkVJb3dRQ1RSZWJoaG5cLzdrcUppZUs3VGJWd0NnPT0iLCJ2ZXJzaW9uIjoxfQ==",
+  "excludedTopLevelKeys" : [
+    "signature"
+  ],
+  "expect" : {
+    "signatureValid" : false,
+    "verdict" : "bad_signature"
+  },
+  "flow" : "org",
+  "id" : "org.status.wrong-key",
+  "object" : {
+    "issuedAt" : "2026-10-27T11:59:50Z",
+    "issuerDID" : "did:key:z6MkntdJrjwfKZoEFQRZJ2EUHmg2CArgTf2Ax62wXsmx6vUj",
+    "organizationAnchorID" : "entity:interop-gruppe",
+    "revokedCredentialIDs" : [
+
+    ],
+    "sequence" : 2,
+    "signature" : "YZT6qVANS\/1B0CgLuN8VXTyLtfjFlTpwumqcQSQT2p51b73\/YbquQ2erwNEIowQCTRebhhn\/7kqJieK7TbVwCg==",
+    "version" : 1
+  },
+  "related" : {
+    "issuerDID" : "did:key:z6MkntdJrjwfKZoEFQRZJ2EUHmg2CArgTf2Ax62wXsmx6vUj"
+  },
+  "signatureBase64" : "YZT6qVANS\/1B0CgLuN8VXTyLtfjFlTpwumqcQSQT2p51b73\/YbquQ2erwNEIowQCTRebhhn\/7kqJieK7TbVwCg==",
+  "signer" : {
+    "algorithm" : "EdDSA",
+    "curveType" : "Curve25519",
+    "displayName" : "custodian",
+    "publicKey" : "fV0O3AY+dFFsldKtti8kABqAr0rkmosI6FlGB8FSZvQ=",
+    "uuid" : "0D9A0000-0000-4000-8000-00000000C057"
+  },
+  "type" : "OrganizationRoleStatusList"
+}
