@@ -247,3 +247,50 @@ def test_node_hosted_chat_counts_only_its_people():
         assert refused["code"] == "invalid_model"
 
     run(scenario())
+
+
+def _legacy(count: int) -> dict:
+    return {"messages": [
+        {"id": f"msg-{i}", "authorUUID": "uuid-sara" if i % 2 == 0 else "uuid-ola", "authorDisplayName": "Sara" if i % 2 == 0 else "Ola",
+         "content": f"melding {i}", "createdAt": f"2026-11-01T10:{i % 60:02d}:00Z"}
+        for i in range(count)
+    ]}
+
+
+def test_history_import_keeps_messages_authors_times_and_order_and_runs_again_without_harm():
+    """test.modellchat.migrering, as CellBase ChatHistoryImportTests."""
+    async def scenario():
+        chat, _, alice, *_ = await _chat()
+        assert await chat.set("history.limit", 1000, alice) == {"status": "ok", "messagesLimit": 1000}
+        assert (await chat.set("history.import", _legacy(250), alice))["imported"] == 250
+        messages = await chat.get("messages", alice)
+        assert len(messages) == 250
+        first = messages[0]
+        assert (first["id"], first["ownerUUID"], first["ownerDisplayName"], first["createdAt"], first["authorKind"]) == (
+            "msg-0", "uuid-sara", "Sara", "2026-11-01T10:00:00.000Z", "person")
+        assert messages[-1]["id"] == "msg-249"
+        again = await chat.set("history.import", _legacy(250), alice)
+        assert (again["imported"], again["messageCount"]) == (0, 250)
+        await chat.set("sendMessage", "ny melding", alice)
+        assert (await chat.set("history.import", _legacy(250), alice))["code"] == "history_not_empty"
+
+    run(scenario())
+
+
+def test_only_the_owner_moves_history_and_bad_input_is_refused():
+    async def scenario():
+        chat, _, alice, bob, *_ = await _chat()
+        for key, value in (("history.import", _legacy(2)), ("history.limit", 5)):
+            with pytest.raises(PermissionError):
+                await chat.set(key, value, bob)
+        assert (await chat.set("history.import", _legacy(201), alice))["code"] == "over_limit"
+        assert (await chat.set("history.limit", 0, alice))["code"] == "invalid_payload"
+        bad_time = {"messages": [{"id": "x", "authorUUID": "u", "content": "c", "createdAt": "i går"}]}
+        assert (await chat.set("history.import", bad_time, alice))["code"] == "invalid_message"
+        duplicate = {"messages": [
+            {"id": "x", "authorUUID": "u", "content": "a", "createdAt": "2026-11-01T10:00:00Z"},
+            {"id": "x", "authorUUID": "u", "content": "b", "createdAt": "2026-11-01T10:01:00Z"},
+        ]}
+        assert (await chat.set("history.import", duplicate, alice))["code"] == "duplicate_id"
+
+    run(scenario())

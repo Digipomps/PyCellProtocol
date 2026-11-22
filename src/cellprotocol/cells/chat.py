@@ -37,6 +37,7 @@ from __future__ import annotations
 import base64
 import os
 import time
+from datetime import datetime, timezone
 from typing import Any, Callable, Optional
 from uuid import uuid4
 
@@ -109,6 +110,9 @@ TEMPLATE_GRANTS = [
 ]
 # Owner only: False when a node hosts the chat for its people.
 MODEL_OWNER_IS_MEMBER_KEY = "model.ownerIsMember"
+# Owner only: move an earlier conversation in, and keep more than 200 messages (WP8).
+HISTORY_KEYS = ("history.limit", "history.import")
+HISTORY_LIMIT_MAXIMUM = 100_000
 # Keys a human member uses, and the only keys the admitted model identity may use.
 MODEL_MEMBER_KEYS = ("model.state", "model.propose", "model.consent", "model.decline", "model.remove", "model.ask", "model.dismissNotice")
 MODEL_PARTICIPANT_KEYS = ("model.state", "model.context", "model.answer", "model.fail")
@@ -236,6 +240,8 @@ class ChatCell(GeneralCell):
         for key in set(MODEL_MEMBER_KEYS + MODEL_PARTICIPANT_KEYS) - {"model.state"}:
             self._set_handlers[key] = self._model_set
         self._set_handlers[MODEL_OWNER_IS_MEMBER_KEY] = self._set_model_owner_is_member
+        self._set_handlers["history.limit"] = self._set_history_limit
+        self._set_handlers["history.import"] = self._set_history_import
 
     # -- access ---------------------------------------------------------------
 
@@ -1009,6 +1015,68 @@ class ChatCell(GeneralCell):
         self._model_members_changed()
         return {"status": "ok", "ownerIsMember": value}
 
+    # -- history moved in from an earlier store (WP8) -------------------------
+
+    async def _set_history_limit(self, keypath: str, value: Any, requester: Any | None) -> Any:
+        _ = keypath
+        if not await proves_identity_control(requester, self.owner):
+            return "denied"
+        limit = from_json_value(value)
+        if isinstance(limit, bool) or not isinstance(limit, int) or not 1 <= limit <= HISTORY_LIMIT_MAXIMUM:
+            return self._refusal("invalid_payload", f"history.limit needs an integer from 1 to {HISTORY_LIMIT_MAXIMUM}")
+        self.messages_limit = limit
+        if len(self.messages) > limit:
+            del self.messages[: len(self.messages) - limit]
+        return {"status": "ok", "messagesLimit": limit}
+
+    async def _set_history_import(self, keypath: str, value: Any, requester: Any | None) -> Any:
+        """In order, only into a chat holding nothing but these messages, so a rerun changes nothing."""
+        _ = keypath
+        if not await proves_identity_control(requester, self.owner):
+            return "denied"
+        payload = from_json_value(value)
+        items = payload.get("messages") if isinstance(payload, dict) else None
+        if not isinstance(items, list):
+            return self._refusal("invalid_payload", "history.import needs {messages: [...]}")
+        imported: list[dict[str, Any]] = []
+        seen: set[str] = set()
+        for item in items:
+            item = item if isinstance(item, dict) else {}
+            message_id, author, content = item.get("id"), item.get("authorUUID"), item.get("content")
+            created_at = _normalized_history_timestamp(item.get("createdAt"))
+            if not (isinstance(message_id, str) and message_id and isinstance(author, str) and author and isinstance(content, str) and created_at):
+                return self._refusal("invalid_message", "Every message needs id, authorUUID, content and an ISO 8601 createdAt.")
+            if message_id in seen:
+                return self._refusal("duplicate_id", f"The message id {message_id} appears twice.")
+            seen.add(message_id)
+            name = item.get("authorDisplayName") if isinstance(item.get("authorDisplayName"), str) else ""
+            content_type = _normalized_content_type(item.get("contentType") or "text/plain")
+            imported.append({
+                "id": message_id,
+                "owner": {"uuid": author, "displayName": name},
+                "ownerUUID": author,
+                "ownerDisplayName": name,
+                "ownerInitials": _initials(name),
+                "content": content,
+                "contentPreview": content if len(content) <= 140 else content[:139] + "…",
+                "contentType": content_type,
+                "formatLabel": "Markdown" if content_type == "text/markdown" else "Plain text",
+                "isMarkdown": content_type == "text/markdown",
+                "topic": self.topic,
+                "createdAt": created_at,
+                "cryptoState": "plaintextOnly",
+                "encryptedCompanionAvailable": False,
+                "authorKind": "person",
+            })
+        if self.messages:
+            if [m["id"] for m in self.messages] != [m["id"] for m in imported]:
+                return self._refusal("history_not_empty", "The chat already has other messages.")
+            return {"status": "ok", "imported": 0, "messageCount": len(self.messages)}
+        if len(imported) > self.messages_limit:
+            return self._refusal("over_limit", f"Raise history.limit to at least {len(imported)} first.")
+        self.messages = imported
+        return {"status": "ok", "imported": len(imported), "messageCount": len(self.messages)}
+
     async def _model_set(self, keypath: str, value: Any, requester: Any | None) -> Any:
         payload = from_json_value(value)
         payload = payload if isinstance(payload, dict) else {}
@@ -1169,3 +1237,17 @@ def _artifact_from(value: Any) -> Optional[ChatInvitationArtifact]:
 
 def _acceptance_from(value: Any) -> Optional[ChatInvitationAcceptance]:
     return _from_wire(ChatInvitationAcceptance, value)
+
+
+def _normalized_history_timestamp(raw: Any) -> Optional[str]:
+    """ISO 8601 with or without fractional seconds, written the way the chat writes its own times."""
+    if not isinstance(raw, str) or "T" not in raw:
+        return None
+    try:
+        value = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if value.tzinfo is None:
+        return None
+    value = value.astimezone(timezone.utc)
+    return value.strftime("%Y-%m-%dT%H:%M:%S.") + f"{value.microsecond // 1000:03d}Z"
