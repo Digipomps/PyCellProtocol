@@ -9,9 +9,9 @@ from pathlib import Path
 
 from cellprotocol.cells.entity_extension import (
     EntityScaffoldExtensionCell,
-    binding_request_hash,
     data_from_base64url,
-    human_code,
+    extension_human_code,
+    extension_request_hash,
 )
 from cellprotocol.identity import InMemoryIdentityVault
 from cellprotocol.interop import models as m
@@ -52,8 +52,15 @@ def _cell(party: str, now: float = VERIFY_AT) -> EntityScaffoldExtensionCell:
 def test_request_hash_and_human_code_match_swift():
     case = _case("extend.request.valid")
     request = m.IdentityEnrollmentRequest.from_wire(_wire(case))
-    assert base64.b64encode(binding_request_hash(request)).decode() == case["related"]["bindingRequestHashBase64"]
-    assert human_code(request.request_id + request.audience) == case["related"]["humanCode"]
+    assert base64.b64encode(extension_request_hash(request)).decode() == case["related"]["requestHashBase64"]
+    assert extension_human_code(request) == case["related"]["humanCode"]
+
+
+def test_human_code_changes_when_the_request_content_changes():
+    request = m.IdentityEnrollmentRequest.from_wire(_wire(_case("extend.request.valid")))
+    widened = request.replace(requested_scopes=list(request.requested_scopes) + ["admin"])
+    assert widened.request_id == request.request_id and widened.audience == request.audience
+    assert extension_human_code(widened) != extension_human_code(request)
 
 
 def test_reviews_a_swift_request():
@@ -82,7 +89,7 @@ def test_ask_approve_accept_between_two_python_places():
         approval = m.IdentityEnrollmentApproval.from_wire(json.loads(data_from_base64url(approved["payload"])))
         v.verify_enrollment_approval(approval, DESCRIPTORS["alice"])
 
-        accepted = await new_place.set("extension.acceptApproval", {"payload": approved["payload"], "issuerIdentity": approved["issuerIdentity"]}, owner)
+        accepted = await new_place.set("extension.acceptApproval", {"package": approved["package"]}, owner)
         assert accepted["status"] == "ok" and accepted["signatureVerified"] is True
         assert accepted["approvedScopes"] == ["entity.read"]
 
@@ -112,9 +119,16 @@ def test_accept_refuses_a_foreign_or_tampered_approval():
     tampered = {"approval": approval, "issuerIdentity": approved["issuerIdentity"]}
     assert new_place.accept_approval(tampered)["code"] == "bad_signature"
 
-    # Without the approver's key, Binding links on the hash alone and says so.
-    plain = new_place.accept_approval(approved["payload"])
-    assert plain["status"] == "ok" and plain["signatureVerified"] is False
+    # Without the approver's key nothing is linked.
+    assert new_place.accept_approval(approved["payload"])["code"] == "missing_issuer_key"
+
+    # Another identity's approval of the same request, presented with Alice's key, is refused.
+    forged = _cell("mallory").approve_request(asked["payload"])
+    assert new_place.accept_approval({"payload": forged["payload"], "issuerIdentity": approved["issuerIdentity"]})["code"] == "bad_signature"
+
+    # The whole package links.
+    linked = new_place.accept_approval({"package": approved["package"]})
+    assert linked["status"] == "ok" and linked["signatureVerified"] is True
 
 
 def test_accept_refuses_an_expired_approval():

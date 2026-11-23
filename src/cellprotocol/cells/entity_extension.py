@@ -12,11 +12,12 @@ accept against a Swift or Go node:
 
 Transport packets are base64url of the model's JSON, as Binding sends them.
 
-The request hash here is Binding's: the UTF-8 bytes of the hex SHA-256 of the
-base64 of the canonical request. `EntityAnchorCell` and the VC completion chain
-in CellBase use the raw SHA-256 of the canonical request instead, so an
-approval from this flow does not complete on an `EntityAnchor`. That mismatch
-is in Swift; it is kept here so Binding accepts what Python approves.
+The request hash is SHA-256 of the canonical request, as in CellBase
+(`IdentityLinkProtocolService.requestHash`) and `EntityAnchorCell`. The human
+code both screens show is derived from that hash, so a request with another key
+or other scopes shows another code. `extension.approveRequest` returns a
+`package` with the approval and the approver's public key, and
+`extension.acceptApproval` links only when that signature verifies.
 """
 
 from __future__ import annotations
@@ -102,10 +103,14 @@ def data_from_base64url(text: str) -> Optional[bytes]:
         return None
 
 
-def binding_request_hash(request: IdentityEnrollmentRequest) -> bytes:
-    """`Data(sha256Hex(canonical.base64EncodedString()).utf8)` from Binding."""
-    canonical = base64.b64encode(request.canonical_payload()).decode("ascii")
-    return sha256_hex(canonical).encode("utf-8")
+def extension_request_hash(request: IdentityEnrollmentRequest) -> bytes:
+    """SHA-256 of the canonical request, as `IdentityLinkProtocolService.requestHash`."""
+    return hashlib.sha256(request.canonical_payload()).digest()
+
+
+def extension_human_code(request: IdentityEnrollmentRequest) -> str:
+    """The code both screens show: `human_code` of the hex request hash."""
+    return human_code(extension_request_hash(request).hex())
 
 
 def _ok(message: str, side_effect: bool, **extra: Any) -> dict[str, Any]:
@@ -165,6 +170,24 @@ def _decode_transport(model: type, value: Any, key: str) -> Any:
 
 def _encode(model: Any) -> str:
     return base64url(model.to_json_bytes())
+
+
+def _encode_package(approval: IdentityEnrollmentApproval, issuer: IdentityPublicKeyDescriptor) -> str:
+    """`{"approval": ..., "issuerIdentity": ...}` as base64url JSON, as Binding's `ApprovalPackage`."""
+    body = {"approval": json.loads(approval.to_json_bytes()), "issuerIdentity": issuer.to_wire()}
+    return base64url(json.dumps(body, ensure_ascii=False, separators=(",", ":")).encode("utf-8"))
+
+
+def _decode_package(value: Any) -> Optional[tuple[IdentityEnrollmentApproval, IdentityPublicKeyDescriptor]]:
+    text = _string(value.get("package")) if isinstance(value, dict) else _string(value)
+    data = data_from_base64url(text) if text else None
+    if data is None:
+        return None
+    try:
+        body = json.loads(data)
+        return IdentityEnrollmentApproval.from_wire(body["approval"]), IdentityPublicKeyDescriptor.from_wire(body["issuerIdentity"])
+    except (ValueError, WireDecodeError, TypeError, KeyError):
+        return None
 
 
 def _readable(moment: float) -> str:
@@ -295,7 +318,7 @@ class EntityScaffoldExtensionCell(GeneralCell):
                 signature=signature,
             )
         )
-        code = human_code(request_id + audience)
+        code = extension_human_code(request)
         self.outgoing = [entry for entry in self.outgoing if entry["request"].request_id != request_id]
         self.outgoing.insert(0, {"request": request, "humanCode": code, "createdAt": now, "approvedAt": None, "linkID": None})
         result = _ok(
@@ -331,7 +354,7 @@ class EntityScaffoldExtensionCell(GeneralCell):
             and verify_signature(proof.signature, request.canonical_payload(), request.new_identity)
         )
         already_linked = any(link.linked_identity.uuid == request.new_identity.uuid and link.status == "active" for link in self.links)
-        code = human_code(request.request_id + request.audience)
+        code = extension_human_code(request)
         return {
             "schema": "haven.entityExtension.review.v1",
             "status": "reviewable" if signature_valid and not expired else "rejected",
@@ -380,7 +403,7 @@ class EntityScaffoldExtensionCell(GeneralCell):
         fresh_method = _string(payload.get("freshAuthMethod"))
         approval = IdentityEnrollmentApproval(
             approval_id=f"apr-{self._new_uuid().lower()}",
-            request_hash=binding_request_hash(request),
+            request_hash=extension_request_hash(request),
             entity_binding=request.entity_binding or EntityBindingDescriptor(mode="localEntityAnchor", audience=request.audience),
             subject_identity=request.new_identity,
             approved_domains=_strings(payload.get("approvedDomains")) or list(request.requested_domains),
@@ -428,12 +451,12 @@ class EntityScaffoldExtensionCell(GeneralCell):
             approvalID=approval.approval_id,
             linkID=record.link_id,
             payload=_encode(approval),
+            package=_encode_package(approval, self.descriptor),
             approvedScopes=granted,
             refusedScopes=refused,
             expiresAt=approval.expires_at,
-            nextStep="Send denne pakken tilbake til den nye enheten og kjør extension.acceptApproval der.",
+            nextStep="Send `package` tilbake til den nye enheten og kjør extension.acceptApproval der. Den har godkjennerens offentlige nøkkel med, så signaturen kan sjekkes.",
             links=self.link_rows(),
-            # Not in Binding: lets the new place check the approver's signature.
             issuerIdentity=self.descriptor.to_wire(),
         )
         self.last_result = result
@@ -442,13 +465,14 @@ class EntityScaffoldExtensionCell(GeneralCell):
     # -- 3. Accept --------------------------------------------------------------
 
     def accept_approval(self, value: Any) -> dict[str, Any]:
-        approval = _decode_transport(IdentityEnrollmentApproval, value, "approval")
+        package = _decode_package(value)
+        approval = package[0] if package else _decode_transport(IdentityEnrollmentApproval, value, "approval")
         if approval is None:
             return self._fail(_error("bad_payload", "Fant ingen gyldig godkjenning i det du sendte."))
         pending = next((entry for entry in self.outgoing if entry["request"].new_identity.uuid == approval.subject_identity.uuid), None)
         if pending is None:
             return self._fail(_error("no_matching_request", "Denne godkjenningen hører ikke til noen forespørsel denne enheten har sendt."))
-        if approval.request_hash != binding_request_hash(pending["request"]):
+        if approval.request_hash != extension_request_hash(pending["request"]):
             return self._fail(
                 _error("request_hash_mismatch", "Godkjenningen gjelder en annen forespørsel enn den denne enheten sendte. Jeg kobler ingenting.")
             )
@@ -457,21 +481,24 @@ class EntityScaffoldExtensionCell(GeneralCell):
         if expiry is not None and now > expiry.timestamp():
             return self._fail(_error("expired", "Godkjenningen er utløpt. Start forespørselen på nytt."))
 
-        signature_present = approval.proof is not None and approval.proof.signature is not None
-        # Binding cannot check the approver's signature because it has no key
-        # for it. When the caller hands one over, check it and refuse a bad one.
-        issuer = _issuer_descriptor(value)
-        signature_verified = False
-        if issuer is not None:
-            proof = approval.proof
-            signature_verified = bool(
-                proof is not None
-                and proof.signature is not None
-                and issuer.uuid == approval.issuer_identity_uuid == proof.issuer_identity_uuid
-                and verify_signature(proof.signature, approval.canonical_payload(), issuer)
+        # The approver's signature must hold. The key comes in `package` from
+        # extension.approveRequest, or next to a bare approval as `issuerIdentity`.
+        issuer = package[1] if package else _issuer_descriptor(value)
+        if issuer is None:
+            return self._fail(
+                _error(
+                    "missing_issuer_key",
+                    "Godkjenningen mangler godkjennerens offentlige nøkkel, så signaturen kan ikke sjekkes. Send hele `package` fra godkjenningen. Jeg kobler ingenting.",
+                )
             )
-            if not signature_verified:
-                return self._fail(_error("bad_signature", "Signaturen på godkjenningen stemmer ikke med godkjennerens nøkkel. Jeg kobler ingenting."))
+        proof = approval.proof
+        if not (
+            proof is not None
+            and proof.signature is not None
+            and issuer.uuid == approval.issuer_identity_uuid == proof.issuer_identity_uuid
+            and verify_signature(proof.signature, approval.canonical_payload(), issuer)
+        ):
+            return self._fail(_error("bad_signature", "Signaturen på godkjenningen stemmer ikke med godkjennerens nøkkel. Jeg kobler ingenting."))
 
         record = IdentityLinkRecord(
             link_id=f"lnk-{self._new_uuid().lower()}",
@@ -490,20 +517,15 @@ class EntityScaffoldExtensionCell(GeneralCell):
             if entry["request"].request_id == pending["request"].request_id:
                 entry["approvedAt"] = now
                 entry["linkID"] = record.link_id
-        note = (
-            "Forespørselens hash og godkjennerens signatur stemmer."
-            if signature_verified
-            else "Forespørselens hash stemmer, og godkjenningen er signert, men denne enheten har ikke godkjennerens offentlige nøkkel og kan derfor ikke sjekke signaturen selv. Bekreft koden muntlig, eller hent nøkkelen fra scaffoldet."
-        )
         result = _ok(
             f"Koblet. Dette stedet er nå en del av entiteten din, med {len(approval.approved_scopes)} rettighet(er).",
             True,
             linkID=record.link_id,
             approvedScopes=list(approval.approved_scopes),
             issuerIdentityUUID=approval.issuer_identity_uuid,
-            signaturePresent=signature_present,
-            signatureVerified=signature_verified,
-            verificationNote=note,
+            signaturePresent=True,
+            signatureVerified=True,
+            verificationNote="Forespørselens hash og godkjennerens signatur stemmer.",
             links=self.link_rows(),
         )
         self.last_result = result
