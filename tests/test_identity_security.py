@@ -8,6 +8,8 @@ import time
 import cellprotocol.identity as identity_module
 import pytest
 
+from cellprotocol.cells.chat import ChatCell
+
 from cellprotocol.bridge import BridgeBase, BridgeCommand, BridgeEndpoint
 from cellprotocol.general_cell import FlowElement, GeneralCell
 from cellprotocol.identity import (
@@ -406,12 +408,13 @@ def test_keyless_identity_is_rejected_from_identity_scoped_caches():
 
 def test_cell_mutations_are_serialized_and_flow_order_matches_commits():
     async def scenario():
-        cell = GeneralCell()
+        owner = await InMemoryIdentityVault().identity("owner")
+        cell = GeneralCell(owner=owner)
         cell._storage["counter"] = 0
 
         async def increment(keypath, value, requester):
             _ = keypath, value, requester
-            current = await cell.get("counter")
+            current = await cell.get("counter", owner)
             await asyncio.sleep(0.001)
             next_value = current + 1
             cell._storage["counter"] = next_value
@@ -427,10 +430,10 @@ def test_cell_mutations_are_serialized_and_flow_order_matches_commits():
 
         cell._set_handlers["counter.increment"] = increment
         results = await asyncio.gather(
-            *(cell.set("counter.increment", None) for _ in range(40))
+            *(cell.set("counter.increment", None, owner) for _ in range(40))
         )
         assert sorted(results) == list(range(1, 41))
-        assert await cell.get("counter") == 40
+        assert await cell.get("counter", owner) == 40
         events = [cell._flow_queue.get_nowait().content["counter"] for _ in range(40)]
         assert events == list(range(1, 41))
 
@@ -614,3 +617,21 @@ def test_bridge_client_answers_only_valid_origin_challenges_for_its_own_key():
     for reply in sent[1:]:
         payload = BridgeCommand.from_json(json.dumps(reply)).payload
         assert payload.kind == "string" and payload.value.startswith("signing denied")
+
+
+def test_cell_without_owner_denies_everyone():
+    """Parity with Swift and Go: no owner means nobody could have granted access."""
+    async def scenario():
+        anyone = await InMemoryIdentityVault().identity("anyone")
+        cell = GeneralCell(name="Ownerless")
+        assert await cell.validate_access("r---", "state", anyone) is False
+        assert await cell.validate_access("-w--", "state", None) is False
+        assert await cell.is_member(anyone) is False
+        with pytest.raises(PermissionError):
+            await cell.set("state.value", "x", anyone)
+        with pytest.raises(PermissionError):
+            await cell.get("state.value")
+        chat = ChatCell()
+        assert await chat.validate_access("r---", "chat.messages", anyone) is False
+
+    run(scenario())

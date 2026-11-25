@@ -21,6 +21,8 @@ DESCRIPTORS = {party["name"]: m.IdentityPublicKeyDescriptor.from_wire(party["des
 VERIFY_AT = MANIFEST["verifyAtEpoch"]
 BASE = "https://landing.test"
 
+from owned import owned_sync
+
 
 def _wire(name: str) -> dict:
     case = json.loads((FIXTURES / f"{name}.json").read_text(encoding="utf-8"))
@@ -67,7 +69,8 @@ def in_process(landing: InviteLanding):
 def _cell(party: str, clock: Clock, landing: InviteLanding, **kwargs) -> InvitationCell:
     signer, _ = v.ed25519_signer(SEEDS[party])
     counter = iter(range(1, 10_000))
-    return InvitationCell(
+    return owned_sync(lambda owner: InvitationCell(
+        owner=owner,
         descriptor=DESCRIPTORS[party],
         signer=signer,
         display_name=party.capitalize(),
@@ -76,7 +79,7 @@ def _cell(party: str, clock: Clock, landing: InviteLanding, **kwargs) -> Invitat
         clock=clock,
         new_uuid=lambda: f"00000000-0000-4000-8000-{next(counter):012d}",
         **kwargs,
-    )
+    ))
 
 
 # -- landing against the Swift fixtures ---------------------------------------
@@ -213,6 +216,6 @@ def test_inbox_cap_and_unreachable_landing():
     async def down(method, url, body, headers):
         return 0, {"code": "transport", "message": "nede"}
 
-    offline = InvitationCell(descriptor=DESCRIPTORS["alice"], signer=v.ed25519_signer(SEEDS["alice"])[0], landing_base=BASE, transport=down, clock=clock)
+    offline = owned_sync(lambda owner: InvitationCell(owner=owner, descriptor=DESCRIPTORS["alice"], signer=v.ed25519_signer(SEEDS["alice"])[0], landing_base=BASE, transport=down, clock=clock))
     result = run(offline.set("invite.prepare", {"recipient": "bob@example.org"}))
     assert result["published"] is False and result["link"].startswith("haven://invite/") and "publicationWarning" in result

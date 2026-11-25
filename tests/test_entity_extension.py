@@ -37,10 +37,11 @@ def run(coro):
     return asyncio.run(coro)
 
 
-def _cell(party: str, now: float = VERIFY_AT) -> EntityScaffoldExtensionCell:
+def _cell(party: str, now: float = VERIFY_AT, owner=None) -> EntityScaffoldExtensionCell:
     signer, _ = v.ed25519_signer(SEEDS[party])
     counter = iter(range(1, 10_000))
     return EntityScaffoldExtensionCell(
+        owner=owner,
         descriptor=DESCRIPTORS[party],
         signer=signer,
         display_name=party.capitalize(),
@@ -68,7 +69,7 @@ def test_reviews_a_swift_request():
 def test_ask_approve_accept_between_two_python_places():
     async def scenario():
         owner = await InMemoryIdentityVault().identity("owner")
-        new_place, approver = _cell("bob"), _cell("alice")
+        new_place, approver = _cell("bob", owner=owner), _cell("alice", owner=owner)
         asked = await new_place.set("extension.beginRequest", {"audience": AUDIENCE, "requestedScopes": ["entity.read", "agreement.sign", "admin"]}, owner)
         assert asked["status"] == "ok" and len(asked["humanCode"]) == 6
 
