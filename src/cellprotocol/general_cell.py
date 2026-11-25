@@ -390,7 +390,7 @@ class GeneralCell:
 
     async def is_member(self, identity: Any, requester: Any | None = None) -> bool:
         if self.owner is None:
-            return True
+            return False
         if requester is not None:
             await self._require_access("r---", "isMember", requester)
             return same_identity_reference(identity, self.owner)
@@ -407,8 +407,10 @@ class GeneralCell:
         return handlers[max(candidates, key=len)]
 
     async def validate_access(self, permission: str, keypath: str, requester: Any | None = None) -> bool:
+        # A cell without an owner has nobody who could have granted access: closed,
+        # as in Swift and Go (GoCellProtocol ValidateAccess: owner nil -> deny).
         if self.owner is None:
-            return True
+            return False
         if await proves_identity_control(requester, self.owner):
             return True
         return await self.contract_allows(permission, keypath, requester)

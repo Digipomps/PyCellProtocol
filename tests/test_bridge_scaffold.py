@@ -9,6 +9,8 @@ from cellprotocol.resolver import CellResolver, RemoteCellHostRoute, ResolverErr
 from cellprotocol.value import KeyValue, SetValueResponse, TypedValue
 from cellprotocol_scaffold import entity_anchor_data
 
+from owned import open_cell
+
 
 def run(coro):
     return asyncio.run(coro)
@@ -16,20 +18,21 @@ def run(coro):
 
 def test_bridge_endpoint_handles_get_set_description():
     async def scenario():
-        cell = GeneralCell(name="Echo")
-        endpoint = BridgeEndpoint(cell)
+        owner = await InMemoryIdentityVault().identity("owner")
+        cell = GeneralCell(name="Echo", owner=owner)
+        endpoint = BridgeEndpoint(cell, owner=owner)
 
         set_response = await endpoint.handle(
-            BridgeCommand("set", TypedValue("keyValue", KeyValue("state.value", "ok")), 1)
+            BridgeCommand("set", TypedValue("keyValue", KeyValue("state.value", "ok")), 1, owner)
         )
         assert set_response[0].cmd == "response"
         assert isinstance(set_response[0].payload.value, SetValueResponse)
         assert set_response[0].payload.value.state == "ok"
 
-        get_response = await endpoint.handle(BridgeCommand("get", TypedValue("string", "state.value"), 2))
+        get_response = await endpoint.handle(BridgeCommand("get", TypedValue("string", "state.value"), 2, owner))
         assert get_response[0].payload.value == "ok"
 
-        description = await endpoint.handle(BridgeCommand("description", cid=3))
+        description = await endpoint.handle(BridgeCommand("description", cid=3, identity=owner))
         assert description[0].payload.kind == "description"
         assert description[0].payload.value["name"] == "Echo"
 
@@ -49,7 +52,7 @@ def test_bridge_endpoint_handles_swift_aliases_state_agreement_and_lifecycle_com
     async def scenario():
         owner = await InMemoryIdentityVault().identity("swift-requester")
         assert owner is not None
-        cell = LifecycleTestCell(name="Lifecycle")
+        cell = LifecycleTestCell(name="Lifecycle", owner=owner)
         endpoint = BridgeEndpoint(cell, owner=owner)
 
         set_response = await endpoint.handle(
@@ -106,7 +109,7 @@ def test_websocket_bridge_client_round_trips_commands_over_transport():
     async def scenario():
         owner = await InMemoryIdentityVault().identity("python-cloudbridge")
         assert owner is not None
-        fake_socket = FakeBridgeSocket(BridgeEndpoint(GeneralCell(name="Echo"), owner=owner))
+        fake_socket = FakeBridgeSocket(BridgeEndpoint(open_cell(GeneralCell)(name="Echo", owner=owner), owner=owner))
 
         async def connect(url: str):
             assert url == "ws://example.test/bridgehead/Echo/client"
@@ -137,7 +140,7 @@ def test_websocket_bridge_client_streams_feed_and_sends_lifecycle_commands():
     async def scenario():
         owner = await InMemoryIdentityVault().identity("python-cloudbridge")
         assert owner is not None
-        remote_cell = GeneralCell(name="Remote")
+        remote_cell = open_cell(GeneralCell)(name="Remote", owner=owner)
         fake_socket = FakeBridgeSocket(BridgeEndpoint(remote_cell, owner=owner))
 
         client = WebSocketBridgeClient(
@@ -147,7 +150,7 @@ def test_websocket_bridge_client_streams_feed_and_sends_lifecycle_commands():
             response_timeout=1,
         )
 
-        source = GeneralCell(name="Source")
+        source = GeneralCell(name="Source", owner=owner)
         assert await client.attach(source, "source") == "connected"
         assert await client.attached_status("source") == "connected"
         await client.detach("source")
@@ -172,7 +175,7 @@ def test_resolver_remote_cell_endpoint_uses_outbound_cloudbridge_transport():
 
         def bridge_factory(url: str, requester):
             urls.append(url)
-            fake_socket = FakeBridgeSocket(BridgeEndpoint(GeneralCell(name="Remote"), owner=requester))
+            fake_socket = FakeBridgeSocket(BridgeEndpoint(open_cell(GeneralCell)(name="Remote", owner=requester), owner=requester))
             return WebSocketBridgeClient(url, identity=requester, connect=lambda _url: fake_socket, response_timeout=1)
 
         resolver = CellResolver(allows_insecure_websockets=True, remote_bridge_factory=bridge_factory)
@@ -215,7 +218,7 @@ def test_cloudbridge_publisher_session_serves_python_cell_to_remote_bridgehead()
         assert owner is not None
         assert remote is not None
 
-        cell = GeneralCell(name="PublishedPython")
+        cell = open_cell(GeneralCell)(name="PublishedPython", owner=owner)
         socket = ScriptedBridgeheadSocket()
         session = CloudBridgePublisherSession(
             "wss://swift.example.test/bridgehead/Porthole/PublishedPython",

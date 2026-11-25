@@ -10,6 +10,8 @@ from cellprotocol.cells import (
 )
 from cellprotocol.identity import InMemoryIdentityVault
 
+from owned import owned
+
 
 def run(coro):
     return asyncio.run(coro)
@@ -38,7 +40,7 @@ def test_vault_cell_contracts_create_list_link_and_state():
 
 def test_graph_index_extracts_wiki_links():
     async def scenario():
-        graph = GraphIndexCell()
+        graph = await owned(GraphIndexCell)
         result = await graph.set("graph.reindex", {"notes": [{"id": "n1", "content": "See [[n2]] and [[n3]]"}]})
         assert result["edgeCount"] == 2
         assert await graph.set("graph.outgoing", {"id": "n1"}) == {"status": "ok", "ids": ["n2", "n3"]}
@@ -83,7 +85,7 @@ def _triangle_edgelist():
 
 def test_structural_value_profile_load_and_compute():
     async def scenario():
-        cell = StructuralValueProfileCell()
+        cell = await owned(StructuralValueProfileCell)
         loaded = await cell.set("graph.profile.load", _triangle_edgelist())
         assert loaded == {"status": "ok", "graphID": "t", "N": 4, "E": 4}
 
@@ -109,8 +111,8 @@ def test_structural_value_profile_load_and_compute():
 
 def test_structural_value_profile_is_deterministic_and_emits_audit():
     async def scenario():
-        cell_a = StructuralValueProfileCell()
-        cell_b = StructuralValueProfileCell()
+        cell_a = await owned(StructuralValueProfileCell)
+        cell_b = await owned(StructuralValueProfileCell)
         spec = {"graph": _triangle_edgelist(), "nulls": 25, "bootstrap": 25, "seed": 11}
         a = await cell_a.set("graph.profile.compute", spec)
         b = await cell_b.set("graph.profile.compute", spec)
@@ -127,7 +129,7 @@ def test_structural_value_profile_is_deterministic_and_emits_audit():
 
 def test_structural_value_profile_pillar2_available_with_usage():
     async def scenario():
-        cell = StructuralValueProfileCell()
+        cell = await owned(StructuralValueProfileCell)
         await cell.set("graph.profile.load", _triangle_edgelist())
         profile = await cell.set("graph.profile.compute", {
             "nulls": 0,
@@ -143,11 +145,11 @@ def test_structural_value_profile_pillar2_available_with_usage():
 
 def test_structural_value_profile_from_graph_index():
     async def scenario():
-        graph = GraphIndexCell()
+        graph = await owned(GraphIndexCell)
         await graph.set("graph.reindex", {"notes": [{"id": "n1", "content": "See [[n2]] and [[n3]]"}]})
         state = await graph.get("graph.state")
 
-        cell = StructuralValueProfileCell()
+        cell = await owned(StructuralValueProfileCell)
         loaded = await cell.set("graph.profile.fromGraphIndex", state)
         assert loaded["status"] == "ok"
         assert loaded["N"] == 3 and loaded["E"] == 2
@@ -171,7 +173,7 @@ def _dense_edgelist(gid):
 
 def test_graph_metrics_compare_graphs_exchange():
     async def scenario():
-        cell = GraphMetricsCompareCell()
+        cell = await owned(GraphMetricsCompareCell)
         result = await cell.set("graph.compare.graphs", {
             "a": _triangle_edgelist(),          # sparse, one triangle + tail
             "b": _dense_edgelist("dense"),      # two overlapping triangles
@@ -196,11 +198,11 @@ def test_graph_metrics_compare_graphs_exchange():
 def test_graph_metrics_compare_growth_flags_padding():
     async def scenario():
         # before: integrated small graph; after: same plus a long disconnected chain
-        before = StructuralValueProfileCell()
+        before = await owned(StructuralValueProfileCell)
         await before.set("graph.profile.load", _dense_edgelist("t0"))
         prof_before = await before.set("graph.profile.compute", {"nulls": 0, "bootstrap": 0})
 
-        after = StructuralValueProfileCell()
+        after = await owned(StructuralValueProfileCell)
         padded = _dense_edgelist("t1")
         chain = [f"z{i}" for i in range(8)]
         padded["nodes"] += [{"id": n, "type": "pad"} for n in chain]
@@ -208,7 +210,7 @@ def test_graph_metrics_compare_growth_flags_padding():
         await after.set("graph.profile.load", padded)
         prof_after = await after.set("graph.profile.compute", {"nulls": 0, "bootstrap": 0})
 
-        cell = GraphMetricsCompareCell()
+        cell = await owned(GraphMetricsCompareCell)
         result = await cell.set("graph.compare.profiles", {
             "a": prof_before, "b": prof_after, "mode": "growth",
             "labels": {"a": "t0", "b": "t1"},
@@ -224,7 +226,7 @@ def test_graph_metrics_compare_growth_flags_padding():
 
 def test_trusted_issuers_proxy_fails_closed_without_swift_verifier():
     async def scenario():
-        cell = TrustedIssuersProxyCell()
+        cell = await owned(TrustedIssuersProxyCell)
         result = await cell.set("trustedIssuers.evaluate", {"issuerId": "did:key:test", "candidateVc": {}}, None)
         assert result["status"] == "unavailable"
         assert result["trusted"] is False

@@ -201,7 +201,9 @@ class ChatCell(GeneralCell):
     # -- access ---------------------------------------------------------------
 
     async def validate_access(self, permission: str, keypath: str, requester: Any | None = None) -> bool:
-        if self.owner is None or await proves_identity_control(requester, self.owner):
+        if self.owner is None:
+            return False  # ownerless: closed, as GeneralCell
+        if await proves_identity_control(requester, self.owner):
             return True
         if OPEN_BEFORE_ADMISSION.get(keypath) == permission:
             return True
